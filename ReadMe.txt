@@ -4,3 +4,5 @@ Good night, my friend.
 Please, delete this text later.
 ---------------------------------------------------------------------------------------------------------------------------
 "Notes" is for documents with different ideas.
+----------------------------------------------------------------------------------------
+There will be also catalogs "include" for headers and "checkers" for realizations.
