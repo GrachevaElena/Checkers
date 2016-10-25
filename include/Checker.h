@@ -19,15 +19,18 @@ public:
 	int GetType() { return  Check & 2; }
 	int GetCoord() { return  Check & 252; }
 
-	void SetColor(int color) { Check & (~1) | color; }
-	void SetType(int type) { Check & (~2) | (type << 1); }
-	void SetCoord(int coord) { Check & (~252) | (coord << 2); }
+	void SetColor(int color) { Check = Check & (~1) | color; }
+	void SetType(int type) { Check = Check & (~2) | (type << 1); }
+	void SetCoord(int coord) { Check = Check & (~252) | (coord << 2); }
 
-private:
+	void ChangeColor() { Check = Check ^ 1; }
+	void ChangeType() { Check = Check ^ 2; }
+
+protected:
 	int GetNextNum() { return  Check & 3840; }
 	int GetPrevNum() { return  Check & 61440; }
 
-	void SetNextNum(int num) { Check & (~3840) | (num << 10); }
-	void SetPrevNum(int num) { Check & (~61440) | (num << 14); }
+	void SetNextNum(int num) { Check = Check & (~3840) | (num << 10); }
+	void SetPrevNum(int num) { Check = Check & (~61440) | (num << 14); }
 };
 

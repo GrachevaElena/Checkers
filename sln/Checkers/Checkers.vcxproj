@@ -18,6 +18,9 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\Checker.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C51582E5-D11E-4A3C-9549-281E8F0741D9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
