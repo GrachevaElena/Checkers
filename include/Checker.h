@@ -12,25 +12,24 @@ class Checker
 {
 	int Check;
 public:
-	Checker() {};
+	Checker() {}
 	~Checker() {}
-
-	int GetColor() { return  Check & 1; }
-	int GetType() { return  Check & 2; }
-	int GetCoord() { return  Check & 252; }
 
 	void SetColor(int color) { Check = Check & (~1) | color; }
 	void SetType(int type) { Check = Check & (~2) | (type << 1); }
 	void SetCoord(int coord) { Check = Check & (~252) | (coord << 2); }
 
+	int GetColor() { return  Check & 1; }
+	int GetType() { return  (Check & 2) >> 1; }
+	int GetCoord() { return  (Check & 252) >> 2; }
+
 	void ChangeColor() { Check = Check ^ 1; }
 	void ChangeType() { Check = Check ^ 2; }
 
-protected:
-	int GetNextNum() { return  Check & 3840; }
-	int GetPrevNum() { return  Check & 61440; }
+	void SetNextNum(int num) { Check = Check & (~3840) | (num << 8); }
+	void SetPrevNum(int num) { Check = Check & (~61440) | (num << 12); }
 
-	void SetNextNum(int num) { Check = Check & (~3840) | (num << 10); }
-	void SetPrevNum(int num) { Check = Check & (~61440) | (num << 14); }
+	int GetNextNum() { return  (Check & 3840) >> 8; }
+	int GetPrevNum() { return  (Check & 61440) >> 12; }
 };
 
