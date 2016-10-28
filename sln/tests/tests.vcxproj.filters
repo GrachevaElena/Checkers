@@ -18,7 +18,10 @@
     <ClCompile Include="..\..\test\test_main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="test_Checker.cpp">
+    <ClCompile Include="..\..\test\test_Checker.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\test_ListOfCheckers.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
