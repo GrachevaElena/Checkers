@@ -1,6 +1,12 @@
 #include "ListOfCheckers.h"
 #include <fstream>
 
+std::ifstream fios;
+std::ofstream fouts;
+
+#define OUTS fouts;
+#define INS fins;
+
 ListOfCheckers::ListOfCheckers()
 {
 	for (int i = 0; i < 12; i++)
@@ -10,7 +16,7 @@ ListOfCheckers::ListOfCheckers()
 
 void ListOfCheckers::GenerateInitialPosition(char* filename)
 {
-	using namespace std;
+	
 }
 
 void ListOfCheckers::Insert(int num)

@@ -12,6 +12,8 @@ Insert(1);
 head->1->4->6->7->11->head
 */
 
+/*может, написать итератор?*/
+
 class ListOfCheckers {
 private:				
 	Checker List[13];	//12 шашек + голова, чтобы список никогда не был пустым
@@ -22,10 +24,10 @@ public:
 
 	void GenerateInitialPosition(char* filename);	//генерирует первоначальную позицию для шашек опр.цвета
 
-	void Insert(int num);						//вставляет шашку с номером в список, не нарушая упорядоченности номеров
+	void Insert(int num);						//?//вставляет шашку с номером в список, не нарушая упорядоченности номеров
 	void Delete(int num);						//удаляет шашку с номером из списка
 
-	int IsEmpty() { if (List[0].GetNextNum == 0) return 1; return 0; }
+	int IsEmpty() { if (List[0].GetNextNum() == 0) return 1; return 0; }
 	Checker& operator[] (int i) { return List[i]; }
 	int GetFirstNum() { return List[0].GetNextNum(); }
 };
