@@ -1,5 +1,4 @@
 #pragma once
-
 // ... _ _ _ _ (указатель на предыдущий) _ _ _ _ (указатель на следующий) _ _ _  _ _ _ (координаты) _ (тип фигуры) _ (цвет)
 
 #define WHITE 0
@@ -10,9 +9,9 @@
 
 class Checker
 {
-	int Check;
+	unsigned int Check;
 public:
-	Checker() {}
+	Checker() { Check = 0; }
 	~Checker() {}
 
 	void SetColor(int color) { Check = Check & (~1) | color; }
@@ -26,6 +25,10 @@ public:
 	void ChangeColor() { Check = Check ^ 1; }
 	void ChangeType() { Check = Check ^ 2; }
 
+	friend class ListOfCheckers;
+	friend class LChIterator;
+
+protected:
 	void SetNextNum(int num) { Check = Check & (~3840) | (num << 8); }
 	void SetPrevNum(int num) { Check = Check & (~61440) | (num << 12); }
 
