@@ -21,6 +21,9 @@
     <ClInclude Include="..\..\include\ListOfCheckers.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Cache.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp">

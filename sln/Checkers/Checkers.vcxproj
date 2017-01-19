@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\Cache.h" />
     <ClInclude Include="..\..\include\Checker.h" />
     <ClInclude Include="..\..\include\ListOfCheckers.h" />
   </ItemGroup>

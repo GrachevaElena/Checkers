@@ -55,7 +55,6 @@ TEST(test_ListOfCheckers, can_insert_element_to_empty_list)
 	EXPECT_EQ(it, &(white[1]));
 }
 
-
 TEST(test_ListOfCheckers, can_delete_element_if_size_is_one)
 {
 	ListOfCheckers white;

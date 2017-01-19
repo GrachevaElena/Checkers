@@ -27,5 +27,8 @@
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\test_Cache.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

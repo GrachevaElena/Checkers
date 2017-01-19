@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp" />
+    <ClCompile Include="..\..\test\test_Cache.cpp" />
     <ClCompile Include="..\..\test\test_Checker.cpp" />
     <ClCompile Include="..\..\test\test_ListOfCheckers.cpp" />
     <ClCompile Include="..\..\test\test_main.cpp" />
