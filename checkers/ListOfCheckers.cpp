@@ -16,7 +16,7 @@ ListOfCheckers::ListOfCheckers()
 	List[0].SetNextNum(1);
 	List[0].SetPrevNum(0);
 	List[12].SetNextNum(0);
-	List[12].SetPrevNum(12);
+	List[12].SetPrevNum(11);//why was List[12].SetPrevNum(12) ? why SetPrevNum(12) ? why 12 ? why ? õD
 }
 
 void ListOfCheckers::GenerateInitialPosition(char* filename)

@@ -76,7 +76,13 @@ TEST(test_ListOfCheckers, can_bypassing_the_list)
 {
 	ListOfCheckers white;
 	int count = 0;
+	white.Delete(1);
+	white.Delete(11);
+	white.Delete(12);
 	for (ListOfCheckers::iterator it = white.begin(); it != white.end(); it++)
-		white.Insert(count++);
-	EXPECT_EQ(count, 12);
+	{
+		(Checker*)it;
+		count++;
+	}
+	EXPECT_EQ(count, 9);
 }
