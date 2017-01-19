@@ -71,3 +71,12 @@ TEST(test_ListOfCheckers, can_generate_initial_position)
 {
 	ASSERT_TRUE(1);
 }
+
+TEST(test_ListOfCheckers, can_bypassing_the_list)
+{
+	ListOfCheckers white;
+	int count = 0;
+	for (ListOfCheckers::iterator it = white.begin(); it != white.end(); it++)
+		white.Insert(count++);
+	EXPECT_EQ(count, 12);
+}

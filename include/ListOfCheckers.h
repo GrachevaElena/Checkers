@@ -18,6 +18,7 @@ public:
 
 	Checker operator* (LChIterator it) { return *(it.p); }
 	friend int operator==(LChIterator it, Checker* pch) { if (pch == it.p) return 1; return 0; }
+	friend int operator!=(LChIterator it1, LChIterator it2) { if (it1 == it2) return 0; return 1; }
 };
 
 
@@ -38,4 +39,5 @@ public:
 
 	typedef LChIterator iterator;
 	iterator begin() { return iterator(&(List[List[0].GetNextNum()]),List); }
+	iterator end() { return iterator(List, List); }
 };
