@@ -14,6 +14,6 @@ public:
 	void Rollback(type *saved) { pLast = saved; }//указатель pLast переносится на сохраненную позицию saved
 	int CurPos() { return (pLast - pData); }
 	bool IsFull() { return CurPos()>= Size; }
-	bool IsEmty() { return CurPos() <= 0; }
+	bool IsEmpty() { return CurPos() <= 0; }
 	~Cache() { delete[] pData; }
 };
