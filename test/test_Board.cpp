@@ -8,14 +8,14 @@ TEST(test_Board, can_create) {
 	black[8].SetType(DAMKA);
 	Board board(white, black);
 
-	EXPECT_EQ(CHECKER, board[3].GetType());
-	EXPECT_EQ(DAMKA, board[48].GetType());
+	EXPECT_EQ(CHECKER, board[3]->GetType());
+	EXPECT_EQ(DAMKA, board[48]->GetType());
 
 	black[8].SetCoord(62);
 	board.Set(white, black);
 
 	ASSERT_ANY_THROW(board[48]);
-	EXPECT_EQ(DAMKA, board[62].GetType());
+	EXPECT_EQ(DAMKA, board[62]->GetType());
 }
 
 TEST(test_Board, can_set) {
@@ -27,7 +27,7 @@ TEST(test_Board, can_set) {
 	board.Set(white, black);
 
 	ASSERT_ANY_THROW(board[48]);
-	EXPECT_EQ(DAMKA, board[62].GetType());
+	EXPECT_EQ(DAMKA, board[62]->GetType());
 }
 
 TEST(test_Board, can_check_if_is_empty) {

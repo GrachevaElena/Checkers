@@ -1,8 +1,9 @@
 #pragma once
 #include "Cache.h"
 #include "Checker.h"
+#include "Board.h"
 extern Cache cache(100);
-extern  Checker *board[64];
+extern Board board;
 int forwardLeft[2] = {7,-9}, forwardRight[2] = {9,-7}, backLeft[2] = {-9,7}, backRight[2] = {-7,9};
 
 int SearchMoveChecker(Checker *ch);
