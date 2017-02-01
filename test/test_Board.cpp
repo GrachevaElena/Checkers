@@ -14,7 +14,7 @@ TEST(test_Board, can_create) {
 	black[8].SetCoord(62);
 	board.Set(white, black);
 
-	ASSERT_ANY_THROW(board[48]);
+	ASSERT_EQ(0,board[48]);
 	EXPECT_EQ(DAMKA, board[62]->GetType());
 }
 
@@ -26,7 +26,7 @@ TEST(test_Board, can_set) {
 	black[8].SetType(DAMKA);
 	board.Set(white, black);
 
-	ASSERT_ANY_THROW(board[48]);
+	ASSERT_EQ(0, board[48]);
 	EXPECT_EQ(DAMKA, board[62]->GetType());
 }
 
