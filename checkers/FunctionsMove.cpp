@@ -1,15 +1,21 @@
 #include "FunctionsMove.h"
-inline int Inside(int coord, int delta)
+
+#define CELL_ON_BOARD(cell) (cell>>6==0)
+#define CELL_IS_BLACK(cell) (((cell>>3)^cell)&1)
+
+inline int Inside(int cell)
 {
-	return (coord / 8 + delta / 8 < 8 && coord % 8 + delta % 8 < 8);
+	return (CELL_ON_BOARD(cell) && CELL_IS_BLACK(cell));
 }
+
 inline int CanMove(int coord, int delta)
 {
-	return (Inside(coord, delta) && board[coord+delta]->Empty());
+	return (Inside(coord+delta) && board[coord+delta]->Empty());
 }
 inline int CanEat(int coord, int delta)
 {
-	return (Inside(coord, delta) && board[coord + delta]->Empty());
+	//сие есть заглушка, я уверена
+	return (Inside(coord+delta) && board[coord + delta]->Empty());
 }
 inline type GetMove();
 int SearchMoveChecker(Checker *ch)

@@ -156,7 +156,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\checkers\Board.cpp" />
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp" />
+    <ClCompile Include="..\..\test\test_Board.cpp" />
     <ClCompile Include="..\..\test\test_Cache.cpp" />
     <ClCompile Include="..\..\test\test_Checker.cpp" />
     <ClCompile Include="..\..\test\test_ListOfCheckers.cpp" />

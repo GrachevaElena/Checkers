@@ -19,11 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\Board.h" />
     <ClInclude Include="..\..\include\Cache.h" />
     <ClInclude Include="..\..\include\Checker.h" />
+    <ClInclude Include="..\..\include\FunctionsMove.h" />
     <ClInclude Include="..\..\include\ListOfCheckers.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\checkers\Board.cpp" />
+    <ClCompile Include="..\..\checkers\Cashe.cpp" />
+    <ClCompile Include="..\..\checkers\FunctionsMove.cpp" />
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
