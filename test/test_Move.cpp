@@ -24,9 +24,9 @@ TEST(test_Move, can_set_get_coord) {
 
 TEST(test_Move, can_set_get_numchecker) {
 	Move move;
-	move.SetNumChecker(2);
+	move.SetNum(2);
 
-	EXPECT_EQ(2, move.GetNumChecker());
+	EXPECT_EQ(2, move.GetNum());
 }
 
 TEST(test_Move, can_set_get_neaten) {
@@ -62,14 +62,14 @@ TEST(test_Move, can_set_get_in_general) {
 	Move move;
 	move.SetColor(BLACK);
 	move.SetCoord(4);
-	move.SetNumChecker(3);
+	move.SetNum(3);
 	move.SetNEaten(12);
-	move.SetType(DAMKA);
+	move.SetType(1);
 	move.SetEaten(arr);
 
 	EXPECT_EQ(BLACK, move.GetColor());
-	EXPECT_EQ(DAMKA, move.GetType());
-	EXPECT_EQ(3, move.GetNumChecker());
+	EXPECT_EQ(1, move.GetType());
+	EXPECT_EQ(3, move.GetNum());
 	EXPECT_EQ(4, move.GetCoord());
 	EXPECT_EQ(12, move.GetNEaten());
 
