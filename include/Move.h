@@ -9,27 +9,26 @@
 #define CHECKER 0
 
 
-//не смотри на эти макросы
-#define COLOROFFSET 0
-#define TYPEOFFSET 1
-#define NUMCHECKEROFFSET 2
-#define COORDOFFSET 6
-#define NEATENOFFSET 12
-#define EATENOFFSET 16
+#define OFFSET_COLOR 0
+#define OFFSET_TYPE 1
+#define OFFSET_NUMCHECKER 2
+#define OFFSET_COORD 6
+#define OFFSET_NEATEN 12
+#define OFFSET_EATEN 16
 
-#define MAXCOLOR 1
-#define MAXTYPE 1
-#define MAXNUMCHECKER 15
-#define MAXCOORD 63
-#define MAXNEATEN 15
-#define MAXEATEN 281474976710655
+#define MASK_COLOR 1
+#define MASK_TYPE 1
+#define MASK_NUMCHECKER 15
+#define MASK_COORD 63
+#define MASK_NEATEN 15
+#define MASK_EATEN 281474976710655
 
-#define COLORPOS ~(MAXCOLOR<<COLOROFFSET)
-#define TYPEPOS ~(MAXTYPE<<TYPEOFFSET)
-#define NUMCHECKERPOS ~(MAXNUMCHECKER<<NUMCHECKEROFFSET)
-#define COORDPOS ~(MAXCOORD<<COORDOFFSET)
-#define NEATENPOS ~(MAXNEATEN<<NEATENOFFSET)
-#define EATENPOS ~(MAXEATEN<<EATENOFFSET)
+#define INVMASK_COLOR ~(MASK_COLOR<<OFFSET_COLOR)
+#define INVMASK_TYPE ~(MASK_TYPE<<OFFSET_TYPE)
+#define INVMASK_NUMCHECKER ~(MASK_NUMCHECKER<<OFFSET_NUMCHECKER)
+#define INVMASK_COORD ~(MASK_COORD<<OFFSET_COORD)
+#define INVMASK_NEATEN ~(MASK_NEATEN<<OFFSET_NEATEN)
+#define INVMASK_EATEN ~(MASK_EATEN<<OFFSET_EATEN)
 
 class Move {
 	long long move;
@@ -40,21 +39,21 @@ public:
 	friend int operator==(const Move& m1, const Move& m2) { return m1.move == m2.move; }
 	~Move() {}
 
-	void SetColor(int color) { move = move & COLORPOS | (color << COLOROFFSET); }
-	void SetCoord(int coord) { move = move & COORDPOS | (coord << COORDOFFSET); }
-	void SetNumChecker(int numchecker) { move = move & NUMCHECKERPOS | (numchecker << NUMCHECKEROFFSET); }
-	void SetType(int type) { move = move & TYPEPOS | (type << TYPEOFFSET); }
-	void SetNEaten(long long neaten) { move = move & NEATENPOS | (neaten << NEATENOFFSET); }
-	void SetEaten(long long eaten) { move = move & EATENPOS | (eaten << EATENOFFSET); }
-	void SetEaten(int* arrEaten) { move = move&EATENPOS; for (int i = 0; i < GetNEaten(); i++) move = move | ((long long)arrEaten[i] << (EATENOFFSET + 4 * i)); }
+	void SetColor(int color) { move = move & INVMASK_COLOR | (color << OFFSET_COLOR); }
+	void SetCoord(int coord) { move = move & INVMASK_COORD | (coord << OFFSET_COORD); }
+	void SetNumChecker(int numchecker) { move = move & INVMASK_NUMCHECKER | (numchecker << OFFSET_NUMCHECKER); }
+	void SetType(int type) { move = move & INVMASK_TYPE | (type << OFFSET_TYPE); }
+	void SetNEaten(long long neaten) { move = move & INVMASK_NEATEN | (neaten << OFFSET_NEATEN); }
+	void SetEaten(long long eaten) { move = move & INVMASK_EATEN | (eaten << OFFSET_EATEN); }
+	void SetEaten(int* arrEaten) { move = move & INVMASK_EATEN; for (int i = 0; i < GetNEaten(); i++) move = move | ((long long)arrEaten[i] << (OFFSET_EATEN + 4 * i)); }
 
-	int GetColor() { return move & MAXCOLOR; }
-	int GetCoord() { return (move >> COORDOFFSET) & MAXCOORD; }
-	int GetNumChecker() { return (move >> NUMCHECKEROFFSET) & MAXNUMCHECKER; }
-	int GetType() { return (move >> TYPEOFFSET) & MAXTYPE; }
-	long long GetNEaten() { return (move >> NEATENOFFSET) & MAXNEATEN; }
-	long long GetEaten() { return (move >> EATENOFFSET) & MAXEATEN; }
-	void GetEaten(int* arrEaten) { for (int i = 0; i < 12; i++) arrEaten[i] = (move >> (EATENOFFSET + i * 4)) & MAXNUMCHECKER; }
+	int GetColor() { return move & MASK_COLOR; }
+	int GetCoord() { return (move >> OFFSET_COORD) & MASK_COORD; }
+	int GetNumChecker() { return (move >> OFFSET_NUMCHECKER) & MASK_NUMCHECKER; }
+	int GetType() { return (move >> OFFSET_TYPE) & MASK_TYPE; }
+	long long GetNEaten() { return (move >> OFFSET_NEATEN) & MASK_NEATEN; }
+	long long GetEaten() { return (move >> OFFSET_EATEN) & MASK_EATEN; }
+	void GetEaten(int* arrEaten) { for (int i = 0; i < 12; i++) arrEaten[i] = (move >> (OFFSET_EATEN + i * 4)) & MASK_NUMCHECKER; }
 
 	
 };

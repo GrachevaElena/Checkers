@@ -53,8 +53,5 @@
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp">
       <Filter>Файлы исходного кода\classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\checkers\Move.cpp">
-      <Filter>Файлы исходного кода\classes</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

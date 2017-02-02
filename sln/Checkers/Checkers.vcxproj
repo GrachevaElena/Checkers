@@ -31,7 +31,6 @@
     <ClCompile Include="..\..\checkers\Cashe.cpp" />
     <ClCompile Include="..\..\checkers\FunctionsMove.cpp" />
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp" />
-    <ClCompile Include="..\..\checkers\Move.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C51582E5-D11E-4A3C-9549-281E8F0741D9}</ProjectGuid>
