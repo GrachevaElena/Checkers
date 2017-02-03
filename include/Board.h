@@ -8,4 +8,5 @@ public:
 	void Set(ListOfCheckers& white, ListOfCheckers& black);
 	int IsEmpty(int cell) { return board[cell] == 0; }
 	Checker*& operator [](int cell) { return board[cell]; }
+	void Clean(){ for (int i = 0; i < 64; i++) board[i] = 0; }
 };

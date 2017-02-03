@@ -15,5 +15,6 @@ public:
 	int CurPos() { return (pLast - pData); }
 	bool IsFull() { return CurPos()>= Size; }
 	bool IsEmpty() { return CurPos() <= 0; }
+	void Clean() { pLast = pData; }
 	~Cache() { delete[] pData; }
 };

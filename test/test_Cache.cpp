@@ -31,3 +31,11 @@ TEST(test_cache, test_cache_can_push_and_pop)
 		a.Push(13);
 	EXPECT_EQ(13, a.Pop());
 }
+
+TEST(test_cache, test_cache_can_det_cur_pos)
+{
+	Cache a(100);
+	for (int i = 0; i < 10; i++) a.Push(15);
+
+	EXPECT_EQ(10, a.CurPos());
+}
