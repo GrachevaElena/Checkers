@@ -9,6 +9,8 @@ std::ofstream fouts;
 
 ListOfCheckers::ListOfCheckers()
 {
+	for (int i = 1; i < 12; i++) List[i].SetNum(i);
+
 	for (int i = 1; i < 12; i++) {
 		List[i].SetNextNum(i + 1);
 		List[i].SetPrevNum(i - 1);
@@ -16,7 +18,8 @@ ListOfCheckers::ListOfCheckers()
 	List[0].SetNextNum(1);
 	List[0].SetPrevNum(0);
 	List[12].SetNextNum(0);
-	List[12].SetPrevNum(12);
+	List[12].SetPrevNum(11);//why was List[12].SetPrevNum(12) ? why SetPrevNum(12) ? why 12 ? why ? õD
+	//just becouse I'm from VMK
 }
 
 void ListOfCheckers::GenerateInitialPosition(char* filename)

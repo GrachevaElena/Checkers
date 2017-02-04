@@ -13,18 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Заголовочные файлы\classes">
+      <UniqueIdentifier>{74a5baab-338f-40ea-b56e-2e5abbd19ae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\classes">
+      <UniqueIdentifier>{ba6919b6-001f-4a71-b2c5-122f570b640a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Checker.h">
+    <ClInclude Include="..\..\include\FunctionsMove.h">
       <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Board.h">
+      <Filter>Заголовочные файлы\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Cache.h">
+      <Filter>Заголовочные файлы\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Checker.h">
+      <Filter>Заголовочные файлы\classes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ListOfCheckers.h">
-      <Filter>Заголовочные файлы</Filter>
+      <Filter>Заголовочные файлы\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Move.h">
+      <Filter>Заголовочные файлы\classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\checkers\ListOfCheckers.cpp">
+    <ClCompile Include="..\..\checkers\FunctionsMove.cpp">
       <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\checkers\Board.cpp">
+      <Filter>Файлы исходного кода\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\checkers\ListOfCheckers.cpp">
+      <Filter>Файлы исходного кода\classes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

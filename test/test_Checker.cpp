@@ -52,6 +52,12 @@ TEST_F(test_Checker, can_set_and_get_prev_num)
 	ASSERT_EQ(GetPrevNum(), 1);
 }
 
+TEST_F(test_Checker, can_set_and_get_num) {
+	SetNum(4);
+
+	ASSERT_EQ(4, GetNum());
+}
+
 TEST_F(test_Checker, can_change_color)
 {
 	SetColor(WHITE);
@@ -73,6 +79,7 @@ TEST_F(test_Checker, can_change_type)
 
 TEST_F(test_Checker, all_set_methods_run_correctly_in_agregate)
 {
+	SetNum(4);
 	SetType(DAMKA);
 	SetColor(WHITE);
 	SetCoord(45);
@@ -84,4 +91,5 @@ TEST_F(test_Checker, all_set_methods_run_correctly_in_agregate)
 	ASSERT_EQ(GetCoord(), 45);
 	ASSERT_EQ(GetNextNum(), 9);
 	ASSERT_EQ(GetPrevNum(), 3);
+	ASSERT_EQ(GetNum(), 4);
 }

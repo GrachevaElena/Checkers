@@ -55,7 +55,6 @@ TEST(test_ListOfCheckers, can_insert_element_to_empty_list)
 	EXPECT_EQ(it, &(white[1]));
 }
 
-
 TEST(test_ListOfCheckers, can_delete_element_if_size_is_one)
 {
 	ListOfCheckers white;
@@ -71,4 +70,19 @@ TEST(test_ListOfCheckers, can_delete_element_if_size_is_one)
 TEST(test_ListOfCheckers, can_generate_initial_position)
 {
 	ASSERT_TRUE(1);
+}
+
+TEST(test_ListOfCheckers, can_bypassing_the_list)
+{
+	ListOfCheckers white;
+	int count = 0;
+	white.Delete(1);
+	white.Delete(11);
+	white.Delete(12);
+	for (ListOfCheckers::iterator it = white.begin(); it != white.end(); it++)
+	{
+		(Checker*)it;
+		count++;
+	}
+	EXPECT_EQ(count, 9);
 }
