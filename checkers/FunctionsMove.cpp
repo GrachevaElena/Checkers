@@ -7,7 +7,7 @@ int color; //в дальнейшем перенести в Generate
 int coord;
 int num;
 int i,j;
-int lToEaten;
+int coordEaten;
 
 int eaten[12]; int nEaten = 0;
 
@@ -50,7 +50,7 @@ inline int CanEatDamka(int route) //сохраняет координаты шашки, которую можно съ
 	for (i = 1; CanMove(coord + i*route); i++);
 	if (!Inside(coord + i*route) || (board[coord + i*route]->GetColor() == color)) return 0;
 	if (CanMove(coord + (i + 1)*route)) {
-		lToEaten=i;
+		coordEaten= coord + i*route;
 		return 1;
 	}
 	return 0;
@@ -112,37 +112,51 @@ inline void UnMakeMoveChecker(int route){
 void SearchEatCheckerInRay(int route)
 {
 	int f=0;
-	MakeMoveChecker(route);
+
+	MakeMoveChecker(route);//встала за съеденной шашкой
+
 	if (CanEatChecker(route)) { f++; SearchEatCheckerInRay(route); }
 	if (CanEatChecker(Perp(route))) { f++; SearchEatCheckerInRay(Perp(route)); }
 	if (CanEatChecker(-Perp(route))) {f++;SearchEatCheckerInRay(-Perp(route));}
+
 	UnMakeMoveChecker(route);
+
+	//сохранение ходa, если нельзя больше есть
 	if (f == 0) cache.Push(GetMove(coord + route)); 
 }
 
-int savedlToEaten;
-inline void MakeMoveDamka(int route, int offset) {
-	coord += (lToEaten+offset)*route;
-	board[coord]->ChangeColor();
-	savedlToEaten = lToEaten;
+inline void MakeMoveDamka(int& savedCoord, int& savedCoordEaten) {
+	savedCoord = coord; savedCoordEaten = coordEaten;
+	coord = coordEaten;
+	board[coordEaten]->ChangeColor();
 }
-inline void UnMakeMoveDamka(int route, int offset) {
-	board[coord]->ChangeColor();
-	coord -= (savedlToEaten+offset)*route;
+inline void UnMakeMoveDamka(int savedCoord, int savedCoordEaten) {
+	board[savedCoordEaten]->ChangeColor();
+	coord =savedCoord;
 }
-/*int SearchEatDamkaInRay(int route) 
+void SearchEatDamkaInRay(int route)
 {
-	for (int j = 1; CanMove(coord + (lToEaten + j)*route);j++) {
-		f = 0;
-		MakeMoveDamka(route,j);
-		if (CanEatDamka(route)) f += SearchEatDamkaInRay(route);
-		if (CanEatDamka(Perp(route))) f += SearchEatDamkaInRay(Perp(route));
-		if (CanEatDamka(-Perp(route))) f += SearchEatDamkaInRay(-Perp(route));
-		UnMakeMoveDamka(route,j);
-		if (f == 0) cache.Push(GetMove(coord + route));
-	}
-	return f;
-}*/
+	int f = 0, savedCoord, savedCoordEaten;
+
+	MakeMoveDamka(savedCoord, savedCoordEaten);//встала на съеденную шашку
+
+	//идем вперед и смотрим влево-вправо
+	do {
+		coord += route;
+		if (CanEatDamka(Perp(route))) { f++; SearchEatDamkaInRay(Perp(route)); }
+		if (CanEatDamka(-Perp(route))) { f++; SearchEatDamkaInRay(-Perp(route)); }
+	} while (CanMove(coord + route));
+	//если впереди препятсвие, смотрим, нельзя ли есть
+	if (CanEatDamka(route)) { f++; SearchEatDamkaInRay(route); }
+
+	//сохранение всех ходов, если некуда больше есть
+	if (f == 0) do {
+		cache.Push(GetMove(coord));
+		coord -= route;
+	} while (CanMove(coord));
+
+	UnMakeMoveDamka(savedCoord, savedCoordEaten);
+}
 
 int SearchEatChecker(Checker* ch) 
 {
@@ -154,7 +168,7 @@ int SearchEatChecker(Checker* ch)
 	return 0;
 }
 
-/*int SearchEatDamka(Checker* ch)
+int SearchEatDamka(Checker* ch)
 {
 	coord = ch->GetCoord();
 	if (CanEatDamka(backRight[color])) SearchEatDamkaInRay(backRight[color]);
@@ -162,4 +176,4 @@ int SearchEatChecker(Checker* ch)
 	if (CanEatDamka(forwardLeft[color])) SearchEatDamkaInRay(forwardLeft[color]);
 	if (CanEatDamka(forwardRight[color])) SearchEatDamkaInRay(forwardRight[color]);
 	return 0;
-}*/
+}

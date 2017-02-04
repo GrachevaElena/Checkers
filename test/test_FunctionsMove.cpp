@@ -169,7 +169,7 @@ TEST(test_functions_move, SearchEatChecker) {
 	cache.Clean();
 }
 
-/*TEST(test_functions_move, SearchEatDamka) {
+TEST(test_functions_move, SearchEatDamka) {
 	coord = 35; color = WHITE;
 	Checker ch[4], ch1; 
 	ch[0].SetColor(BLACK); board[10] = &(ch[0]);
@@ -183,8 +183,10 @@ TEST(test_functions_move, SearchEatChecker) {
 
 	int n = cache.CurPos(); 
 	for(int i=0; i<n; i++) std::cout<<cache.Pop().GetCoord() << ' ';
-	//ASSERT_EQ(4, cache.CurPos());
+	SearchEatDamka(&ch1);
+
+	ASSERT_EQ(5, cache.CurPos());
 
 	board.Clean();
 	cache.Clean();
-}*/
+}
