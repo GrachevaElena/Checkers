@@ -268,3 +268,26 @@ TEST(test_functions_move, SearchEatChecker_become_damka_and_continue) {
 	board.Clean();
 	cache.Clean();
 }
+
+TEST(test_functions_move, SearchEatChecker_SearchEatDamka_with_black_checker) {
+	coord = 1; color = BLACK;
+	Checker ch[5], ch1;
+	ch[0].SetColor(WHITE); board[10] = &(ch[0]);
+	ch[1].SetColor(WHITE); board[12] = &(ch[1]);
+	ch[2].SetColor(WHITE); board[14] = &(ch[2]);
+	ch[3].SetColor(WHITE); board[30] = &(ch[3]);
+	ch[4].SetColor(WHITE); board[44] = &(ch[4]);
+	ch[5].SetColor(WHITE); board[33] = &(ch[5]);
+	ch1.SetColor(BLACK);
+	ch1.SetCoord(1);
+
+	SearchEatChecker(&ch1);
+
+	ASSERT_EQ(1, cache.CurPos());
+	Move move = cache.Pop();
+	ASSERT_TRUE(move.GetType());
+	ASSERT_EQ(move.GetCoord(),24);
+
+	board.Clean();
+	cache.Clean();
+}
