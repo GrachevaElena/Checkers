@@ -38,6 +38,7 @@ inline int Perp(int route) //7<->9, -7<->-9, т.е. задает абсолютно проивоположно
 }
 
 
+
 //может ли двигатьс€ на клетку с координаами
 inline int CanMove(int _coord)	
 {
@@ -63,6 +64,7 @@ inline int CanEatDamka(int route) //сохран€ет координаты шашки, которую можно съ
 }
 
 
+
 //запись хода
 Move temp_move;
 inline Move GetMove(int finalCoord) { //только дл€ простой шашки
@@ -76,85 +78,36 @@ inline Move GetMove(int finalCoord) { //только дл€ простой шашки
 }
 
 
-int SearchMoveChecker(Checker *ch)
-{
-	int j;
-	color = ch->GetColor(); //в дальнейшем перенеси в Generate
-	coord = ch->GetCoord(); //см тоже глобально
-	num = ch->GetNum();//в дальнейшем перенеси в Generate
 
-	for (j = 0; j<4; j++)
-		if (CanEatChecker(direct[j])) return 1;
-	/*
-	if (CanEatChecker(backRight[color])) return 1;
-	if (CanEatChecker(backLeft[color])) return 1;
-	if (CanEatChecker(forwardLeft[color])) return 1;
-	if (CanEatChecker(forwardRight[color])) return 1;
-	*/
-
-	for (j = 0; j<2; j++)
-		if (CanMove(coord + forward[color][j])) {
-			if (OnLastRow(coord + forward[color][j])) type_bool = 1;
-			cache.Push(GetMove(coord + forward[color][j]));
-			type_bool = 0;
-		}
-	/*
-	if (CanMove(coord+forwardRight[color])) { 
-		if (OnLastRow(coord + forwardRight[color])) type_bool = 1;
-		cache.Push(GetMove(coord + forwardRight[color]));
-		type_bool = 0;
-	}
-	if (CanMove(coord + forwardLeft[color])) {
-		if (OnLastRow(coord + forwardLeft[color])) type_bool = 1;
-		cache.Push(GetMove(coord + forwardLeft[color]));
-		type_bool = 0;
-	}
-	*/
-
-	return 0;
-}
-
-int SearchMoveDamka(Checker *ch)
-{
-	int i, j;
-	color = ch->GetColor(); //в дальнейшем перенеси в Generate
-	coord = ch->GetCoord(); //см тоже глобально
-	num = ch->GetNum();//в дальнейшем перенеси в Generate
-
-	for (int j = 0; j<4; j++)
-		if (CanEatDamka(direct[j])) return 1;
-	/*
-	if (CanEatDamka(backRight[color])) return 1;
-	if (CanEatDamka(backLeft[color])) return 1;
-	if (CanEatDamka(forwardLeft[color])) return 1;
-	if (CanEatDamka(forwardRight[color])) return 1;
-	*/
-
-	for(int j=0; j<4; j++) 
-		for (i = 1; CanMove(coord + i*direct[j]); i++) cache.Push(GetMove(coord + i*direct[j]));
-	/*
-	for (i = 1; CanMove(coord + i*backRight[color]); i++) cache.Push(GetMove(coord + i*backRight[color]));
-	for (i = 1; CanMove(coord + i*backLeft[color]); i++) cache.Push(GetMove(coord + i*backLeft[color]));
-	for (i = 1; CanMove(coord + i*forwardLeft[color]); i++) cache.Push(GetMove(coord + i*forwardLeft[color]));
-	for (i = 1; CanMove(coord + i*forwardRight[color]); i++) cache.Push(GetMove(coord + i*forwardRight[color]));
-	*/
-	return 0;
-}
-
-void SearchEatDamkaInRay(int);
-
+//делают ход: двигают шашки, мен€ют им цвет и т.д.
 inline void MakeMoveChecker(int route) {
 	eaten[nEaten++] = board[coord + route]->GetNum();
 	board[coord + route]->ChangeColor();
-	coord +=2 * route;
+	coord += 2 * route;
 	if (OnLastRow(coord)) type_bool = 1;
 }
-inline void UnMakeMoveChecker(int route){
+inline void UnMakeMoveChecker(int route) {
 	coord -= 2 * route;
 	board[coord + route]->ChangeColor();
 	nEaten--;
 	type_bool = 0;
 }
+inline void MakeMoveDamka(int& savedCoord, int& savedCoordEaten) {
+	savedCoord = coord; savedCoordEaten = coordEaten;
+	eaten[nEaten++] = board[coordEaten]->GetNum();
+	coord = coordEaten;
+	board[coordEaten]->ChangeColor();
+}
+inline void UnMakeMoveDamka(int savedCoord, int savedCoordEaten) {
+	board[savedCoordEaten]->ChangeColor();
+	coord = savedCoord;
+	nEaten--;
+}
+
+
+
+//осущесвл€ю рекурсию, смотр€т в 3 направлени€х
+void SearchEatDamkaInRay(int);
 void SearchEatCheckerInRay(int route)
 {
 	int f = 0;
@@ -176,17 +129,6 @@ void SearchEatCheckerInRay(int route)
 	UnMakeMoveChecker(route);
 }
 
-inline void MakeMoveDamka(int& savedCoord, int& savedCoordEaten) {
-	savedCoord = coord; savedCoordEaten = coordEaten;
-	eaten[nEaten++] = board[coordEaten]->GetNum();
-	coord = coordEaten;
-	board[coordEaten]->ChangeColor();
-}
-inline void UnMakeMoveDamka(int savedCoord, int savedCoordEaten) {
-	board[savedCoordEaten]->ChangeColor();
-	coord =savedCoord;
-	nEaten--;
-}
 void SearchEatDamkaInRay(int route)
 {
 	int f = 0, savedCoord, savedCoordEaten;
@@ -211,6 +153,9 @@ void SearchEatDamkaInRay(int route)
 	UnMakeMoveDamka(savedCoord, savedCoordEaten);
 }
 
+
+
+//смотр€т в 4 направлени€х, вызывают функции, осущ. рекурсию
 int SearchEatChecker(Checker* ch) 
 {
 	color = ch->GetColor(); //в дальнейшем перенеси в Generate
@@ -218,12 +163,7 @@ int SearchEatChecker(Checker* ch)
 	num = ch->GetNum();//в дальнейшем перенеси в Generate
 
 	for(int j=0; j<4; j++) if (CanEatChecker(direct[j])) SearchEatCheckerInRay(direct[j]);
-	/*
-	if (CanEatChecker(backRight[color])) SearchEatCheckerInRay(backRight[color]);
-	if (CanEatChecker(backLeft[color])) SearchEatCheckerInRay(backLeft[color]);
-	if (CanEatChecker(forwardLeft[color])) SearchEatCheckerInRay(forwardLeft[color]);
-	if (CanEatChecker(forwardRight[color])) SearchEatCheckerInRay(forwardRight[color]);
-	*/
+
 	return 0;
 }
 
@@ -234,11 +174,44 @@ int SearchEatDamka(Checker* ch)
 	num = ch->GetNum();//в дальнейшем перенеси в Generate
 
 	for (int j = 0; j<4; j++) if (CanEatDamka(direct[j])) SearchEatDamkaInRay(direct[j]);
-	/*
-	if (CanEatDamka(backRight[color])) SearchEatDamkaInRay(backRight[color]);
-	if (CanEatDamka(backLeft[color])) SearchEatDamkaInRay(backLeft[color]);
-	if (CanEatDamka(forwardLeft[color])) SearchEatDamkaInRay(forwardLeft[color]);
-	if (CanEatDamka(forwardRight[color])) SearchEatDamkaInRay(forwardRight[color]);
-	*/
+
+	return 0;
+}
+
+
+//возвращают 1, если можно есть
+int SearchMoveChecker(Checker *ch)
+{
+	int j;
+	color = ch->GetColor(); //в дальнейшем перенеси в Generate
+	coord = ch->GetCoord(); //см тоже глобально
+	num = ch->GetNum();//в дальнейшем перенеси в Generate
+
+	for (j = 0; j<4; j++)
+		if (CanEatChecker(direct[j])) return 1;
+
+	for (j = 0; j<2; j++)
+		if (CanMove(coord + forward[color][j])) {
+			if (OnLastRow(coord + forward[color][j])) type_bool = 1;
+			cache.Push(GetMove(coord + forward[color][j]));
+			type_bool = 0;
+		}
+
+	return 0;
+}
+
+int SearchMoveDamka(Checker *ch)
+{
+	int i, j;
+	color = ch->GetColor(); //в дальнейшем перенеси в Generate
+	coord = ch->GetCoord(); //см тоже глобально
+	num = ch->GetNum();//в дальнейшем перенеси в Generate
+
+	for (int j = 0; j<4; j++)
+		if (CanEatDamka(direct[j])) return 1;
+
+	for (int j = 0; j<4; j++)
+		for (i = 1; CanMove(coord + i*direct[j]); i++) cache.Push(GetMove(coord + i*direct[j]));
+
 	return 0;
 }
