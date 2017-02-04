@@ -5,8 +5,9 @@
 extern Cache cache;
 extern Board board;
 
-const int forwardLeft[2] = { -9, 7 }, forwardRight[2] = { 7,-9 }, backLeft[2] = { -7,9 }, backRight[2] = { 9,-7 };
+const int forwardLeft[2] = { -9, 9 }, forwardRight[2] = { 7,-7 }, backLeft[2] = { -7,7 }, backRight[2] = { 9,-9 };
 //начало координат в левом верхнем углу, 0 - белые
+//I really believe that it's finally correct
 
 int SearchMoveChecker(Checker *ch);
 int SearchMoveDamka(Checker *ch);
