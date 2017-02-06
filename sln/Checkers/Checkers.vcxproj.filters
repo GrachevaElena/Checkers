@@ -39,6 +39,9 @@
     <ClInclude Include="..\..\include\Move.h">
       <Filter>Заголовочные файлы\classes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\CheckCall.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\checkers\FunctionsMove.cpp">
@@ -49,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp">
       <Filter>Файлы исходного кода\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckCall.cpp">
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
