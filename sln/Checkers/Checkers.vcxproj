@@ -33,6 +33,11 @@
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp" />
     <ClCompile Include="CheckCall.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CheckersInterface\Checkers\CheckersInterface.csproj">
+      <Project>{c9a4205e-e777-4f7c-8bf5-36ccb61fb438}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C51582E5-D11E-4A3C-9549-281E8F0741D9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -86,6 +91,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Configuration)\..\Checkers\bin\Debug</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>

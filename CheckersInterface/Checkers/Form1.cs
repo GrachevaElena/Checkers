@@ -16,5 +16,10 @@ namespace Checkers
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(CheckCall.Call(1, 1).ToString());
+        }
     }
 }
