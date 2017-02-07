@@ -25,9 +25,11 @@ namespace CheckerInterface
         private PictureBox body;
         private Figure figure = Figure.empty;
         private Color color = Color.empty;
+        public int x, y;
 
         public Cell(int sizeCell, int x, int y, Panel panel)
         {
+            this.x = x; this.y = y;
             body = new PictureBox();
             panel.Controls.Add(body);
             body.Size = new System.Drawing.Size(sizeCell, sizeCell);
@@ -43,7 +45,7 @@ namespace CheckerInterface
         public bool isEmpty() { return (figure == Figure.empty); }
         public Color GetColor() { return color; }
 
-        public void Delete() { }
+        public void SetEmpty() { }
         public void SetOtherColor()
         {
             if (color == Color.white)
@@ -51,6 +53,7 @@ namespace CheckerInterface
             else if (color == Color.black)
                 color = Color.white;
         }
+        public void SetFigure(Figure fig, Color col) { figure = fig; color = col; }
         public static void SetController(iController _controller)
         {
             controller = _controller;
