@@ -62,6 +62,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -75,6 +76,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlackCell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlackChecker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlackQueen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightBlackCell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightBlackChecker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightBlackQueen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightIntermCell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightWhiteChecker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightWhiteQueen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WhiteCell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WhiteChecker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WhiteQueen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

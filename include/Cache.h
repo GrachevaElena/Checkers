@@ -11,6 +11,7 @@ public:
 	Cache(int size) : Size(size) { pData = new Move[size]; pLast = pData; };
 	void Push(Move data) {*pLast++ = data; }//запись данных в кэш, pLast++
 	Move& Pop() { return *(--pLast); }
+	Move* GetpLast() { return pLast; }
 	void Rollback(Move *saved) { pLast = saved; }//указатель pLast переносится на сохраненную позицию saved
 	int CurPos() { return (pLast - pData); }
 	bool IsFull() { return CurPos()>= Size; }

@@ -24,12 +24,14 @@
     <ClInclude Include="..\..\include\CheckCall.h" />
     <ClInclude Include="..\..\include\Checker.h" />
     <ClInclude Include="..\..\include\FunctionsMove.h" />
+    <ClInclude Include="..\..\include\BasicFunctions.h" />
     <ClInclude Include="..\..\include\ListOfCheckers.h" />
     <ClInclude Include="..\..\include\Move.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\checkers\Board.cpp" />
     <ClCompile Include="..\..\checkers\FunctionsMove.cpp" />
+    <ClCompile Include="..\..\checkers\Generate.cpp" />
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp" />
     <ClCompile Include="CheckCall.cpp" />
   </ItemGroup>

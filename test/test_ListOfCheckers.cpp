@@ -2,6 +2,14 @@
 
 #include "gtest.h"
 
+TEST(test_ListOfCheckers, iterator_operator_pointer) {
+	ListOfCheckers white;
+	white[1].SetCoord(63);
+	ListOfCheckers::iterator it = white.begin();
+
+	ASSERT_EQ(63, it->GetCoord());
+}
+
 TEST(test_ListOfCheckers, can_create_list_correctly)
 {
 	ListOfCheckers white;

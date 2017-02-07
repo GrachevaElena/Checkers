@@ -14,6 +14,7 @@ public:
 	LChIterator& operator--(int) { p = begin + p->GetPrevNum(); return *this; }
 
 	operator Checker* () { return p; }
+	Checker* operator->() { return p; }
 	operator int() { return p - begin; }
 
 	Checker operator* (LChIterator it) { return *(it.p); }

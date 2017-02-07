@@ -108,12 +108,12 @@ TEST(test_functions_move, CanEatDamka) {
 TEST(test_functions_move, SearchMoveChecker_return_1_if_can_eat)
 {
 	coord = 35; color = WHITE;
-	Checker ch, ch1; ch.SetColor(BLACK);
+	Checker ch; ch.SetColor(BLACK);
 	board[44] = &ch;
-	ch1.SetColor(WHITE);
-	ch1.SetCoord(35);
+	color = WHITE;
+	coord = 35;
 
-	ASSERT_TRUE(SearchMoveChecker(&ch1));
+	ASSERT_TRUE(SearchMoveChecker());
 
 	board.Clean();
 }
@@ -121,24 +121,22 @@ TEST(test_functions_move, SearchMoveChecker_return_1_if_can_eat)
 TEST(test_functions_move, SearchMoveDamka_return_1_if_can_eat)
 {
 	color = WHITE;
-	Checker ch, ch1; ch.SetColor(BLACK);
+	Checker ch; ch.SetColor(BLACK);
 	board[53] = &ch;
-	ch1.SetColor(WHITE);
-	ch1.SetCoord(35);
+	color = WHITE;
+	coord = 35;
 
-	ASSERT_TRUE(SearchMoveDamka(&ch1));
+	ASSERT_TRUE(SearchMoveDamka());
 
 	board.Clean();
 }
 
 TEST(test_functions_move, SearchMoveChecker_saves_moves) {
 	coord = 35; color = WHITE;
-	Checker ch, ch1; ch.SetColor(WHITE);
+	Checker ch; ch.SetColor(WHITE);
 	board[42] = &ch;
-	ch1.SetColor(WHITE);
-	ch1.SetCoord(35);
 
-	SearchMoveChecker(&ch1);
+	SearchMoveChecker();
 
 	ASSERT_EQ(1, cache.CurPos());
 
@@ -148,12 +146,10 @@ TEST(test_functions_move, SearchMoveChecker_saves_moves) {
 
 TEST(test_functions_move, SearchMoveDamka_saves_moves) {
 	coord = 35; color = WHITE;
-	Checker ch, ch1; ch.SetColor(WHITE);
+	Checker ch; ch.SetColor(WHITE);
 	board[42] = &ch;
-	ch1.SetColor(WHITE);
-	ch1.SetCoord(35);
 
-	SearchMoveDamka(&ch1);
+	SearchMoveDamka();
 
 	ASSERT_EQ(10, cache.CurPos());
 	
@@ -163,15 +159,13 @@ TEST(test_functions_move, SearchMoveDamka_saves_moves) {
 
 TEST(test_functions_move, SearchEatChecker_saves_moves) {
 	coord = 30; color = WHITE;
-	Checker ch[4], ch1;
+	Checker ch[4];
 	ch[0].SetColor(BLACK); board[21] = &(ch[0]);
 	ch[1].SetColor(BLACK); board[35] = &(ch[1]);
 	ch[2].SetColor(BLACK); board[37] = &(ch[2]);
 	ch[3].SetColor(BLACK); board[51] = &(ch[3]);
-	ch1.SetColor(WHITE);
-	ch1.SetCoord(30);
 
-	SearchEatChecker(&ch1);
+	SearchEatChecker();
 
 	ASSERT_EQ(3, cache.CurPos());
 
@@ -181,15 +175,13 @@ TEST(test_functions_move, SearchEatChecker_saves_moves) {
 
 TEST(test_functions_move, SearchEatDamka_saves_moves) {
 	coord = 35; color = WHITE;
-	Checker ch[4], ch1; 
+	Checker ch[4]; 
 	ch[0].SetColor(BLACK); board[10] = &(ch[0]);
 	ch[1].SetColor(BLACK); board[21] = &(ch[1]);
 	ch[2].SetColor(BLACK); board[26] = &(ch[2]);
 	ch[3].SetColor(BLACK); board[49] = &(ch[3]);
-	ch1.SetColor(WHITE);
-	ch1.SetCoord(35);
 
-	SearchEatDamka(&ch1);
+	SearchEatDamka();
 
 	ASSERT_EQ(5, cache.CurPos());
 
@@ -200,11 +192,8 @@ TEST(test_functions_move, SearchEatDamka_saves_moves) {
 
 TEST(test_functions_move, SearchMoveChecker_become_damka) {
 	coord = 17; color = WHITE;
-	Checker ch1;
-	ch1.SetColor(WHITE);
-	ch1.SetCoord(17);
 
-	SearchMoveChecker(&ch1);
+	SearchMoveChecker();
 
 	ASSERT_EQ(2, cache.CurPos());
 	ASSERT_TRUE(cache.Pop().GetType());
@@ -215,13 +204,11 @@ TEST(test_functions_move, SearchMoveChecker_become_damka) {
 
 TEST(test_functions_move, SearchEatChecker_become_damka) {
 	coord = 44; color = WHITE;
-	Checker ch[2], ch1;
+	Checker ch[2];
 	ch[0].SetColor(BLACK); board[33] = &(ch[0]);
 	ch[1].SetColor(BLACK); board[35] = &(ch[1]);
-	ch1.SetColor(WHITE);
-	ch1.SetCoord(44);
 
-	SearchEatChecker(&ch1);
+	SearchEatChecker();
 
 	ASSERT_EQ(1, cache.CurPos());
 	ASSERT_TRUE(cache.Pop().GetType());
@@ -232,13 +219,11 @@ TEST(test_functions_move, SearchEatChecker_become_damka) {
 
 TEST(test_functions_move, SearchEatChecker_become_damka_if_in_corner) {
 	coord = 60; color = WHITE;
-	Checker ch[2], ch1;
+	Checker ch[2];
 	ch[0].SetColor(BLACK); board[51] = &(ch[0]);
 	ch[1].SetColor(BLACK); board[49] = &(ch[1]);
-	ch1.SetColor(WHITE);
-	ch1.SetCoord(60);
 
-	SearchEatChecker(&ch1);
+	SearchEatChecker();
 
 	ASSERT_EQ(1, cache.CurPos());
 	Move move = cache.Pop();
@@ -251,14 +236,12 @@ TEST(test_functions_move, SearchEatChecker_become_damka_if_in_corner) {
 
 TEST(test_functions_move, SearchEatChecker_become_damka_and_continue) {
 	coord = 44; color = WHITE;
-	Checker ch[3], ch1;
+	Checker ch[3];
 	ch[0].SetColor(BLACK); board[51] = &(ch[0]);
 	ch[1].SetColor(BLACK); board[49] = &(ch[1]);
 	ch[2].SetColor(BLACK); board[12] = &(ch[2]);
-	ch1.SetColor(WHITE);
-	ch1.SetCoord(44);
 
-	SearchEatChecker(&ch1);
+	SearchEatChecker();
 
 	ASSERT_EQ(1, cache.CurPos());
 	Move move = cache.Pop();
@@ -271,17 +254,15 @@ TEST(test_functions_move, SearchEatChecker_become_damka_and_continue) {
 
 TEST(test_functions_move, SearchEatChecker_SearchEatDamka_with_black_checker) {
 	coord = 1; color = BLACK;
-	Checker ch[5], ch1;
+	Checker ch[5];
 	ch[0].SetColor(WHITE); board[10] = &(ch[0]);
 	ch[1].SetColor(WHITE); board[12] = &(ch[1]);
 	ch[2].SetColor(WHITE); board[14] = &(ch[2]);
 	ch[3].SetColor(WHITE); board[30] = &(ch[3]);
 	ch[4].SetColor(WHITE); board[44] = &(ch[4]);
 	ch[5].SetColor(WHITE); board[33] = &(ch[5]);
-	ch1.SetColor(BLACK);
-	ch1.SetCoord(1);
 
-	SearchEatChecker(&ch1);
+	SearchEatChecker();
 
 	ASSERT_EQ(1, cache.CurPos());
 	Move move = cache.Pop();
