@@ -14,9 +14,11 @@ namespace CheckerInterface
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
+            Game_model_observable game = new Game_model_observable();
+            iController controller = new Controller(game);
+            /*Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Form1());*/
         }
     }
 }

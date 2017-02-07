@@ -13,5 +13,7 @@ namespace CheckerInterface
         void loadGame();
         void construtor();
         void setting();
+
+        void ClickCell(Cell cell);
     }
 }

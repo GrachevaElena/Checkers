@@ -14,8 +14,10 @@ namespace CheckerInterface
     {
         iController contoller;
         iGame game;
-        public Form1()
+        public Form1(Controller _contoller, Game_model_observable _game)
         {
+            contoller = _contoller;
+            game = _game;
             InitializeComponent();
         }
 
@@ -30,6 +32,10 @@ namespace CheckerInterface
             this.button3.Visible = vis;
             this.button4.Visible = vis;
             this.button5.Visible = vis;
+        }
+        public void CreateBoard()
+        {
+            //Board board = new Board()
         }
 
         private void button1_Click(object sender, EventArgs e)
