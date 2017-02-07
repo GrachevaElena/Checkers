@@ -44,7 +44,7 @@ TEST(test_functions_move, OnLastRow) {
 	ASSERT_FALSE(OnLastRow(8));
 }
 
-TEST(test_functios_move, Perp) {
+TEST(test_functions_move, Perp) {
 	ASSERT_TRUE(7 == Perp(9));
 	ASSERT_TRUE(-7 == Perp(-9));
 	ASSERT_TRUE(-9 == Perp(-7));

@@ -22,9 +22,16 @@ ListOfCheckers::ListOfCheckers()
 	//just becouse I'm from VMK
 }
 
-void ListOfCheckers::GenerateInitialPosition(char* filename)
+void ListOfCheckers::GenerateInitialPosition(std::ifstream& file)
 {
-	//временно: генерирует позицию 0 - первоначальную расстановку шашек на доске
+	int n; int temp;
+	file >> n;
+	for (int i = 1; i <= n; i++) {
+		file >> temp;
+		List[i].SetType(temp);
+		file >> temp;
+		List[i].SetCoord(temp);
+	}
 }
 
 void ListOfCheckers::Insert(int num)
