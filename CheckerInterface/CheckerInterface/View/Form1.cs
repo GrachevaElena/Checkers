@@ -14,6 +14,7 @@ namespace CheckerInterface
     {
         iController contoller;
         iGame game;
+        Board board;
         public Form1(Controller _contoller, Game_model_observable _game)
         {
             contoller = _contoller;
@@ -35,7 +36,8 @@ namespace CheckerInterface
         }
         public void CreateBoard()
         {
-            //Board board = new Board()
+            board = new Board(contoller, 81, panel1);
+            panel1.Size = new System.Drawing.Size(8 * 81, 8 * 81);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -57,6 +59,11 @@ namespace CheckerInterface
         private void button5_Click(object sender, EventArgs e)
         {
             contoller.setting();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

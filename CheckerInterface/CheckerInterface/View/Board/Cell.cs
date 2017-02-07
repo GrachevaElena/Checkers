@@ -25,12 +25,13 @@ namespace CheckerInterface
         private PictureBox body;
         private Figure figure = Figure.empty;
         private Color color = Color.empty;
-        Cell(int sizeCell, int x, int y, Panel panel, int sizeBoard)
+
+        public Cell(int sizeCell, int x, int y, Panel panel)
         {
             body = new PictureBox();
             panel.Controls.Add(body);
             body.Size = new System.Drawing.Size(sizeCell, sizeCell);
-            body.Location = new System.Drawing.Point(x * sizeCell, (sizeBoard - 1) * sizeCell - y * sizeCell);
+            body.Location = new System.Drawing.Point(x * sizeCell, 7 * sizeCell - y * sizeCell);
             if ((x + y) % 2 == 1)
                 body.Image = Properties.Resources.WhiteCell;
             else
@@ -43,7 +44,7 @@ namespace CheckerInterface
         public Color GetColor() { return color; }
 
         public void Delete() { }
-        public void ChangeColor()
+        public void SetOtherColor()
         {
             if (color == Color.white)
                 color = Color.black;
