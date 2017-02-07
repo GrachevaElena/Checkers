@@ -17,28 +17,28 @@ namespace CheckerInterface
             this.game_model = game;
             form_view = new Form1(this, game);
             Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
+           // Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(form_view);
         }
 
-        public void onePlayer()
+        public void buttonOnePlayer()
         {
             form_view.VisibleButtons(false);
         }
-        public void twoPlayers()
+        public void buttonTwoPlayers()
         {
             form_view.VisibleButtons(false);
             form_view.CreateBoard();
         }
-        public void loadGame()
+        public void buttonLoadGame()
         {
             form_view.VisibleButtons(false);
         }
-        public void construtor()
+        public void buttonConstrutor()
         {
             form_view.VisibleButtons(false);
         }
-        public void setting()
+        public void buttonSetting()
         {
             form_view.VisibleButtons(false);
         }
@@ -46,6 +46,11 @@ namespace CheckerInterface
         public void ClickCell(Cell cell)
         {
 
+        }
+
+        public void keyEsc()
+        {
+            form_view.VisibleButtons(true);
         }
     }
 }

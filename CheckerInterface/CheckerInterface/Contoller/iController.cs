@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace CheckerInterface
 {
-    interface iController
+    public interface iController
     {
-        void onePlayer();
-        void twoPlayers();
-        void loadGame();
-        void construtor();
-        void setting();
+        void buttonOnePlayer();
+        void buttonTwoPlayers();
+        void buttonLoadGame();
+        void buttonConstrutor();
+        void buttonSetting();
+        void keyEsc();
 
         void ClickCell(Cell cell);
     }

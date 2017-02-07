@@ -12,14 +12,22 @@ namespace CheckerInterface
 {
     public partial class Form1 : Form, iObserver 
     {
-        iController contoller;
+        iController controller;
         iGame game;
         Board board;
         public Form1(Controller _contoller, Game_model_observable _game)
         {
-            contoller = _contoller;
+            controller = _contoller;
             game = _game;
             InitializeComponent();
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler(OnKeyDown);
+        }
+        public Form1()//для проверки, а не запорол ли запуск программы)
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler(OnKeyDown);
         }
 
         void iObserver.upDate()
@@ -36,34 +44,42 @@ namespace CheckerInterface
         }
         public void CreateBoard()
         {
-            board = new Board(contoller, 81, panel1);
+            board = new Board(controller, 81, panel1);
             panel1.Size = new System.Drawing.Size(8 * 81, 8 * 81);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            contoller.onePlayer();
+            controller.buttonOnePlayer();
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            contoller.twoPlayers();
+            controller.buttonTwoPlayers();
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            contoller.loadGame();
+            controller.buttonLoadGame();
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            contoller.construtor();
+            controller.buttonConstrutor();
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            contoller.setting();
+            controller.buttonSetting();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+        public void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            MessageBox.Show(e.KeyCode.ToString(), "Key pressed!");
+            if (e.KeyCode.ToString() == "Escape")
+            {            
+                controller.keyEsc();
+            }
         }
     }
 }

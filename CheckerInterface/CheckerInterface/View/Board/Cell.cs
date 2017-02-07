@@ -51,7 +51,7 @@ namespace CheckerInterface
             else if (color == Color.black)
                 color = Color.white;
         }
-        static void SetController(iController _controller)
+        public static void SetController(iController _controller)
         {
             controller = _controller;
         }
