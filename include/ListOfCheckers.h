@@ -1,6 +1,5 @@
 #pragma once
 #include "Checker.h"
-#include "fstream"
 
 class LChIterator {
 	Checker* begin; //указатель на голову списка 
@@ -32,7 +31,7 @@ public:
 	ListOfCheckers();							//связывает список
 	~ListOfCheckers() {}
 
-	void GenerateInitialPosition(std::ifstream &);	//временно:генерирует первоначальную позицию
+	void GenerateInitialPosition(int color, int* types, int* coords, int n);	//временно:генерирует первоначальную позицию
 
 	void Insert(int num);						//вставляет шашку в список
 	void Delete(int num);						//удаляет шашку из списка

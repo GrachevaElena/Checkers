@@ -1,11 +1,4 @@
 #include "ListOfCheckers.h"
-#include <fstream>
-
-std::ifstream fios;
-std::ofstream fouts;
-
-#define OUTS fouts;
-#define INS fins;
 
 ListOfCheckers::ListOfCheckers()
 {
@@ -22,16 +15,14 @@ ListOfCheckers::ListOfCheckers()
 	//just becouse I'm from VMK
 }
 
-void ListOfCheckers::GenerateInitialPosition(std::ifstream& file)
+void ListOfCheckers::GenerateInitialPosition(int color, int * types, int * coords, int n)
 {
-	int n; int temp;
-	file >> n;
 	for (int i = 1; i <= n; i++) {
-		file >> temp;
-		List[i].SetType(temp);
-		file >> temp;
-		List[i].SetCoord(temp);
+		List[i].SetColor(color);
+		List[i].SetCoord(coords[i-1]);
+		List[i].SetType(types[i-1]);
 	}
+	List[n].SetNextNum(0);
 }
 
 void ListOfCheckers::Insert(int num)
