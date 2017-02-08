@@ -53,7 +53,12 @@ namespace CheckerInterface
             else if (color == Color.black)
                 color = Color.white;
         }
-        public void SetFigure(Figure fig, Color col) { figure = fig; color = col; }
+        public void SetFigure(Figure fig, Color col)
+        {
+            figure = fig;
+            
+            color = col;
+        }
         public static void SetController(iController _controller)
         {
             controller = _controller;

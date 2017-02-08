@@ -23,12 +23,6 @@ namespace CheckerInterface
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(OnKeyDown);
         }
-        public Form1()//для проверки, а не запорол ли запуск программы)
-        {
-            InitializeComponent();
-            this.KeyPreview = true;
-            this.KeyDown += new KeyEventHandler(OnKeyDown);
-        }
 
         void iObserver.upDate()
         {
@@ -46,6 +40,11 @@ namespace CheckerInterface
         {
             board = new Board(controller, 81, panel1);
             panel1.Size = new System.Drawing.Size(8 * 81, 8 * 81);
+        }
+        public void FillBoard()
+        {
+            if (board != null)
+                board.Fill();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -29,6 +29,7 @@ namespace CheckerInterface
         {
             form_view.VisibleButtons(false);
             form_view.CreateBoard();
+            form_view.FillBoard();
         }
         public void buttonLoadGame()
         {
@@ -45,7 +46,7 @@ namespace CheckerInterface
 
         public void ClickCell(Cell cell)
         {
-
+            MessageBox.Show(cell.x.ToString() +' '+cell.y.ToString());
         }
 
         public void keyEsc()
