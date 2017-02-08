@@ -272,3 +272,36 @@ TEST(test_functions_move, SearchEatChecker_SearchEatDamka_with_black_checker) {
 	board.Clean();
 	cache.Clean();
 }
+
+TEST(test_functions_move, position_2_a) {
+	coord = 23; color = WHITE;
+	Checker ch[4];
+	ch[0].SetColor(BLACK); board[28] = &(ch[0]);
+	ch[1].SetColor(BLACK); board[12] = &(ch[1]);
+	ch[2].SetColor(BLACK); board[14] = &(ch[2]);
+	ch[3].SetColor(BLACK); board[30] = &(ch[3]);
+
+	SearchEatChecker();
+
+	EXPECT_EQ(2, cache.CurPos());
+	EXPECT_EQ(cache.Pop().GetCoord(), 23);
+
+	board.Clean();
+	cache.Clean();
+}
+
+TEST(test_functions_move, position_2_b) {
+	coord = 23; color = WHITE;
+	Checker ch[3];
+	ch[0].SetColor(BLACK); board[10] = &(ch[0]);
+	ch[1].SetColor(BLACK); board[12] = &(ch[1]);
+	ch[2].SetColor(BLACK); board[14] = &(ch[2]);
+
+	SearchEatChecker();
+
+	EXPECT_EQ(1, cache.CurPos());
+	EXPECT_EQ(cache.Pop().GetCoord(), 1);
+
+	board.Clean();
+	cache.Clean();
+}

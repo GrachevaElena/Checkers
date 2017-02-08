@@ -18,7 +18,9 @@ void Generate(ListOfCheckers& list) {
 		cache.Rollback(saved);
 		for (it = list.begin(); it; it++) {
 			coord = it->GetCoord(); num = it->GetNum();
+			board[coord] = 0;
 			SearchEat[it->GetType()]();
+			board[coord] = &(*it);
 		}
 	}
 }
