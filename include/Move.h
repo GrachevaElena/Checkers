@@ -36,7 +36,7 @@ public:
 	Move() { move = 0; }
 	Move(int n) { move = n; }
 	operator long long() { return move; }
-	friend int operator==(const Move& m1, const Move& m2) { return m1.move == m2.move; }
+	friend int operator==(const Move& m1, const Move& m2);
 	~Move() {}
 
 	void SetColor(int color) { move = move & INVMASK_COLOR | (color << OFFSET_COLOR); }

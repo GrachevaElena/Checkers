@@ -33,6 +33,7 @@
     <ClCompile Include="..\..\checkers\FunctionsMove.cpp" />
     <ClCompile Include="..\..\checkers\Generate.cpp" />
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp" />
+    <ClCompile Include="..\..\checkers\Move.cpp" />
     <ClCompile Include="CheckCall.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

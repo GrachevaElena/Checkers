@@ -62,5 +62,8 @@
     <ClCompile Include="..\..\checkers\Generate.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\checkers\Move.cpp">
+      <Filter>Файлы исходного кода\classes</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
