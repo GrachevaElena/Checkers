@@ -24,6 +24,7 @@ namespace CheckerInterface
         public void buttonOnePlayer()
         {
             form_view.VisibleButtons(false);
+            form_view.ClearBoard();
         }
         public void buttonTwoPlayers()
         {

@@ -38,13 +38,22 @@ namespace CheckerInterface
         }
         public void CreateBoard()
         {
-            board = new Board(controller, 81, panel1);
             panel1.Size = new System.Drawing.Size(8 * 81, 8 * 81);
+            if (board == null)
+            {
+                board = new Board(controller, 81, panel1);
+                Cell.SetImages();
+            }
         }
         public void FillBoard()
         {
             if (board != null)
                 board.Fill();
+        }
+        public void ClearBoard()
+        {
+            if (board != null)
+                board.Clear();
         }
 
         private void button1_Click(object sender, EventArgs e)

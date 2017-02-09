@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace CheckerInterface
 {
+
     static class mainClass
     {
         /// <summary>
