@@ -1,5 +1,6 @@
 #include "BasicFunctions.h"
 #include "FunctionsMove.h"
+#include "..\include\BasicFunctions.h"
 
 ListOfCheckers::iterator it;
 int mustEat;
