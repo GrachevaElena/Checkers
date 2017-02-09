@@ -93,3 +93,15 @@ TEST(test_Move, can_compare) {
 
 	EXPECT_TRUE(move1 == move);
 }
+
+TEST(test_Move, can_SetEaten_if_variable_n_of_parametrs) {
+	Move move;
+	move.SetVarEaten(1, 2, 3, 4, 0);
+	int res[12];
+
+	move.GetEaten(res);
+
+	EXPECT_EQ(move.GetNEaten(), 4);
+	for (int i = 0; i < 4; i++)
+		EXPECT_EQ(i + 1, res[i]);
+}

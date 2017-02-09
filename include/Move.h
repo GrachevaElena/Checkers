@@ -39,9 +39,12 @@ public:
 	friend int operator==(const Move& m1, const Move& m2);
 	~Move() {}
 
+	void Set(int _color, int _coord, int _num, int _type) { SetColor(_color); SetCoord(_coord); SetNum(_num); SetType(_type); }
+	void SetVarEaten(int n1,...);
+
 	void SetColor(int color) { move = move & INVMASK_COLOR | (color << OFFSET_COLOR); }
 	void SetCoord(int coord) { move = move & INVMASK_COORD | (coord << OFFSET_COORD); }
-	void SetNum(int NUM) { move = move & INVMASK_NUM | (NUM << OFFSET_NUM); }
+	void SetNum(int num) { move = move & INVMASK_NUM | (num << OFFSET_NUM); }
 	void SetType(int type) { move = move & INVMASK_TYPE | (type << OFFSET_TYPE); }
 	void SetNEaten(int neaten) { move = move & INVMASK_NEATEN | (neaten << OFFSET_NEATEN); }
 	void SetEaten(long long eaten) { move = move & INVMASK_EATEN | (eaten << OFFSET_EATEN); }

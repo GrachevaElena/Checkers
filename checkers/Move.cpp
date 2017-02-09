@@ -16,3 +16,13 @@ int operator==(const Move & m1, const Move & m2)
 	}
 	return 1;
 }
+
+void Move::SetVarEaten(int n1, ...) {
+	int * p = &n1;
+	int n=0;
+	move = move&INVMASK_EATEN&INVMASK_NEATEN;
+	for (; (*p)&&(n<12); n++, p++) {
+		move = move|((*p) << (n * 4 + OFFSET_EATEN));
+	}
+	SetNEaten(n);
+}
