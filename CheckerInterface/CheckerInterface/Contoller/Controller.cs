@@ -29,8 +29,10 @@ namespace CheckerInterface
         public void buttonTwoPlayers()
         {
             form_view.VisibleButtons(false);
-            form_view.CreateBoard();
+            form_view.CreateBoard();//можно инкапсулировать в один метод: SetNewGameClassic()
             form_view.FillBoard();
+
+            game_model.SetNewGameTwoPlayers();
         }
         public void buttonLoadGame()
         {
@@ -47,7 +49,14 @@ namespace CheckerInterface
 
         public void ClickCell(Cell cell)
         {
-            MessageBox.Show(cell.x.ToString() +' '+cell.y.ToString());
+            //MessageBox.Show(cell.x.ToString() +' '+cell.y.ToString());
+            switch (game_model.GetStatusApplication())
+            {
+                case StatusApplication.game: break;
+                case StatusApplication.constructor: break;
+                default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
+            }
+
         }
 
         public void keyEsc()

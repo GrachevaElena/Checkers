@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace CheckerInterface
 {
-    public enum StatusGame
-    {
-        wait
-    }
-
     interface iGame
     {
+        void SetStatusApplication(StatusApplication st);
         void SetStatusGame(StatusGame st);
-        void Set_ii(bool _ii);
-        void SetSizeCell(int size);
-        void SetSizeBoard(int size);
+        void SetStatusPlayer(StatusPlayer st);
+        void SetNewGameTwoPlayers();
 
-        int GetSizeCell();
-        int GetSizeBoard();
+        void Set_ii();
+
+        StatusApplication GetStatusApplication();
+
+        void GameStep(Cell cell);
     }
 }

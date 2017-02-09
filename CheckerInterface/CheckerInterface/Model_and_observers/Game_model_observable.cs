@@ -6,12 +6,28 @@ using System.Threading.Tasks;
 
 namespace CheckerInterface
 {
+    public enum StatusApplication
+    {
+        game,
+        constructor,
+        menu
+    }
+    public enum StatusGame
+    {
+        wait
+    }
+    public enum StatusPlayer
+    {
+        white,
+        black
+    }
     public class Game_model_observable : iSubject, iGame
     {
+        private StatusApplication statusApplication = StatusApplication.menu;
         private StatusGame statusGame;
-        private bool ii;
-        private int sizeCell;
-        private int sizeBoard;
+        private StatusPlayer statusPlayer;
+        private bool ii_white;
+        private bool ii_black;
 
         public void registerObserver(iObserver o)
         {
@@ -26,30 +42,41 @@ namespace CheckerInterface
 
         }
 
+        public void SetStatusApplication(StatusApplication st)
+        {
+            statusApplication = st;
+        }
         public void SetStatusGame(StatusGame st)
         {
             statusGame = st;
-        }
-        public void Set_ii(bool _ii)
+        }      
+        public void SetStatusPlayer(StatusPlayer st)
         {
-            ii = _ii;
+            statusPlayer = st;
         }
-        public void SetSizeCell(int size)
+        public void SetNewGameTwoPlayers()
         {
-            sizeCell = size;
-        }
-        public void SetSizeBoard(int size)
-        {
-            sizeBoard = size;
+            statusApplication = StatusApplication.game;
+            statusGame = StatusGame.wait;
+            statusPlayer = StatusPlayer.white;
         }
 
-        public int GetSizeCell()
+        public void Set_ii()
         {
-            return sizeCell;
+            
         }
-        public int GetSizeBoard()
+
+        public StatusApplication GetStatusApplication()
         {
-            return sizeBoard;
+            return statusApplication;
+        }
+
+        public void GameStep(Cell cell)
+        {
+            
+
+
+
         }
     }
 }
