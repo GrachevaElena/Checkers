@@ -2,6 +2,14 @@
 
 #include "gtest.h"
 
+TEST(test_ListOfCheckers, iterator_operator_pointer) {
+	ListOfCheckers white;
+	white[1].SetCoord(63);
+	ListOfCheckers::iterator it = white.begin();
+
+	ASSERT_EQ(63, it->GetCoord());
+}
+
 TEST(test_ListOfCheckers, can_create_list_correctly)
 {
 	ListOfCheckers white;
@@ -69,7 +77,19 @@ TEST(test_ListOfCheckers, can_delete_element_if_size_is_one)
 
 TEST(test_ListOfCheckers, can_generate_initial_position)
 {
-	ASSERT_TRUE(1);
+	ListOfCheckers white;
+	ListOfCheckers::iterator it = white.begin();
+	int color = WHITE;
+	int types[7] = { 0,1,1,0,0,0,1 };
+	int coords[7] = { 3,5,7,8,10,12,14 };
+
+	white.GenerateInitialPosition(color, types, coords, 7);
+
+	for (int i = 0; it; it++, i++) {
+		ASSERT_EQ(it->GetCoord(), coords[i]);
+		ASSERT_EQ(it->GetColor(), color);
+		ASSERT_EQ(it->GetType(), types[i]);
+	}
 }
 
 TEST(test_ListOfCheckers, can_bypassing_the_list)
@@ -86,3 +106,4 @@ TEST(test_ListOfCheckers, can_bypassing_the_list)
 	}
 	EXPECT_EQ(count, 9);
 }
+

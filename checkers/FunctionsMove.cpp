@@ -3,9 +3,10 @@
 Cache cache(100);
 Board board;
 
-int color; //в дальнейшем перенести в Generate
+int color; 
 int coord;
 int num;
+
 int coordEaten;
 int eaten[12]; int nEaten = 0;
 int type_bool;
@@ -156,23 +157,15 @@ void SearchEatDamkaInRay(int route)
 
 
 //смотрят в 4 направлениях, вызывают функции, осущ. рекурсию
-int SearchEatChecker(Checker* ch) 
+int SearchEatChecker() 
 {
-	color = ch->GetColor(); //в дальнейшем перенеси в Generate
-	coord = ch->GetCoord(); //см тоже глобально
-	num = ch->GetNum();//в дальнейшем перенеси в Generate
-
 	for(int j=0; j<4; j++) if (CanEatChecker(direct[j])) SearchEatCheckerInRay(direct[j]);
 
 	return 0;
 }
 
-int SearchEatDamka(Checker* ch)
+int SearchEatDamka()
 {
-	color = ch->GetColor(); //в дальнейшем перенеси в Generate
-	coord = ch->GetCoord(); //см тоже глобально
-	num = ch->GetNum();//в дальнейшем перенеси в Generate
-
 	for (int j = 0; j<4; j++) if (CanEatDamka(direct[j])) SearchEatDamkaInRay(direct[j]);
 
 	return 0;
@@ -180,12 +173,9 @@ int SearchEatDamka(Checker* ch)
 
 
 //возвращают 1, если можно есть
-int SearchMoveChecker(Checker *ch)
+int SearchMoveChecker()
 {
 	int j;
-	color = ch->GetColor(); //в дальнейшем перенеси в Generate
-	coord = ch->GetCoord(); //см тоже глобально
-	num = ch->GetNum();//в дальнейшем перенеси в Generate
 
 	for (j = 0; j<4; j++)
 		if (CanEatChecker(direct[j])) return 1;
@@ -200,12 +190,9 @@ int SearchMoveChecker(Checker *ch)
 	return 0;
 }
 
-int SearchMoveDamka(Checker *ch)
+int SearchMoveDamka()
 {
 	int i, j;
-	color = ch->GetColor(); //в дальнейшем перенеси в Generate
-	coord = ch->GetCoord(); //см тоже глобально
-	num = ch->GetNum();//в дальнейшем перенеси в Generate
 
 	for (int j = 0; j<4; j++)
 		if (CanEatDamka(direct[j])) return 1;

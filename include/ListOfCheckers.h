@@ -6,6 +6,7 @@ class LChIterator {
 					//от этой бяки можно избавиться, только если хранить не номер следующей шашки, а расстояние до следующей шашки
 	Checker* p; //шашка, на которую указывает итератор
 public:
+	LChIterator() {}
 	LChIterator(Checker* p_, Checker* begin_) :p(p_), begin(begin_) {};
 
 	LChIterator& operator++() { p = begin + p->GetNextNum(); return *this; }
@@ -14,6 +15,7 @@ public:
 	LChIterator& operator--(int) { p = begin + p->GetPrevNum(); return *this; }
 
 	operator Checker* () { return p; }
+	Checker* operator->() { return p; }
 	operator int() { return p - begin; }
 
 	Checker operator* (LChIterator it) { return *(it.p); }
@@ -29,7 +31,7 @@ public:
 	ListOfCheckers();							//связывает список
 	~ListOfCheckers() {}
 
-	void GenerateInitialPosition(char* filename="");	//временно:генерирует первоначальную позицию
+	void GenerateInitialPosition(int color, int* types, int* coords, int n);	//временно:генерирует первоначальную позицию
 
 	void Insert(int num);						//вставляет шашку в список
 	void Delete(int num);						//удаляет шашку из списка

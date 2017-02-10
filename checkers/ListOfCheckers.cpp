@@ -1,11 +1,4 @@
 #include "ListOfCheckers.h"
-#include <fstream>
-
-std::ifstream fios;
-std::ofstream fouts;
-
-#define OUTS fouts;
-#define INS fins;
 
 ListOfCheckers::ListOfCheckers()
 {
@@ -22,9 +15,14 @@ ListOfCheckers::ListOfCheckers()
 	//just becouse I'm from VMK
 }
 
-void ListOfCheckers::GenerateInitialPosition(char* filename)
+void ListOfCheckers::GenerateInitialPosition(int color, int * types, int * coords, int n)
 {
-	//временно: генерирует позицию 0 - первоначальную расстановку шашек на доске
+	for (int i = 1; i <= n; i++) {
+		List[i].SetColor(color);
+		List[i].SetCoord(coords[i-1]);
+		List[i].SetType(types[i-1]);
+	}
+	List[n].SetNextNum(0);
 }
 
 void ListOfCheckers::Insert(int num)

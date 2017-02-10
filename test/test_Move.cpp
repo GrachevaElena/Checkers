@@ -77,3 +77,31 @@ TEST(test_Move, can_set_get_in_general) {
 	for (int i = 0; i < 12; i++)
 		EXPECT_EQ(arrres[i], arr[i]);
 }
+
+TEST(test_Move, can_compare_if_neaten_diff) {
+	Move move, move1;
+	move.SetNEaten(3); move.SetNEaten(4);
+
+	EXPECT_FALSE(move1==move);
+}
+
+TEST(test_Move, can_compare) {
+	Move move, move1;
+	move.SetNEaten(3); move1.SetNEaten(3);
+	int eaten[3] = { 8,3,7 }, eaten1[3] = { 7,8,3 };
+	move.SetEaten(eaten); move1.SetEaten(eaten1);
+
+	EXPECT_TRUE(move1 == move);
+}
+
+TEST(test_Move, can_SetEaten_if_variable_n_of_parametrs) {
+	Move move;
+	move.SetVarEaten(1, 2, 3, 4, 0);
+	int res[12];
+
+	move.GetEaten(res);
+
+	EXPECT_EQ(move.GetNEaten(), 4);
+	for (int i = 0; i < 4; i++)
+		EXPECT_EQ(i + 1, res[i]);
+}
