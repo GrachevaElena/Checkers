@@ -3,7 +3,6 @@
 #include "BasicFunctions.h"
 #include "iostream"
 using namespace std;
-#include "string.h"
 
 class test_Generate : public testing::Test{
 public:
@@ -492,6 +491,64 @@ TEST_F(test_Generate, position_13) {
 	Generate(white);
 
 	EXPECT_EQ(0, test(n, exp));
+
+	board.Clean();
+	cache.Clean();
+
+}
+
+TEST_F(test_Generate, position_1) {
+	int color = 0;
+	const int nw = 1, nb = 9;
+	int typesw[nw] = { 1 };
+	int typesb[nb] = { 0 };
+	int coordsw[nw] = { 14 };
+	int coordsb[nb] = { 17,19,21,33,35,37,49,51,53 };
+
+	ListOfCheckers white, black;
+	white.GenerateInitialPosition(0, typesw, coordsw, nw);
+	black.GenerateInitialPosition(1, typesb, coordsb, nb);
+
+	board.Set(white, black);
+
+	Generate(white);
+
+	int n = cache.CurPos(); int f=0;
+	for (int i = 0; i < n; i++)
+		if (cache.Pop().GetNEaten() == 9) f = 1;
+
+	EXPECT_TRUE(f);
+
+
+	board.Clean();
+	cache.Clean();
+
+}
+
+TEST_F(test_Generate, position_with_10_eaten) {
+	int color = 0;
+	const int nw = 1, nb = 12;
+	int typesw[nw] = { 1 };
+	int typesb[nb] = { 0 };
+	int coordsw[nw] = { 3 };
+	int coordsb[nb] = { 14,17,19,21,28,33,35,37,42,46,49,51 };
+
+	ListOfCheckers white, black;
+	white.GenerateInitialPosition(0, typesw, coordsw, nw);
+	black.GenerateInitialPosition(1, typesb, coordsb, nb);
+
+	board.Set(white, black);
+
+	Generate(white);
+
+	int n = cache.CurPos(); int f = 0;
+	for (int i = 0; i < n; i++) {
+		Move move= cache.Pop();
+		if (move.GetNEaten() == 10) f = 1;
+	}
+
+	EXPECT_TRUE(f);
+
 
 	board.Clean();
 	cache.Clean();

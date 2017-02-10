@@ -1,8 +1,5 @@
 #include "FunctionsMove.h"
 
-Cache cache(100);
-Board board;
-
 int color; 
 int coord;
 int num;
