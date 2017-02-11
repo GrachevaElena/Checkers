@@ -10,9 +10,8 @@ namespace CheckerInterface
     {
         void SetStatusApplication(StatusApplication st);
         void SetStatusGame(StatusGame st);
-        void SetNewGameTwoPlayers();
-
-        void Set_ii();
+        void SetStartColor(Color color);
+        void FillBoardAndListCheckers();
 
         StatusApplication GetStatusApplication();
 

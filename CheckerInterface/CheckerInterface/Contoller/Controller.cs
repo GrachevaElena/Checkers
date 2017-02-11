@@ -11,28 +11,30 @@ namespace CheckerInterface
     {
         iGame game_model;
         Form1 form_view;
+        iSubject game_observer;
 
-        public Controller(Game_model_observable game)
+        public Controller(Game_model game, iSubject game_observer)
         {
             this.game_model = game;
             form_view = new Form1(this, game);
+            game_observer.registerObserver(form_view);
+
             Application.EnableVisualStyles();
-           // Application.SetCompatibleTextRenderingDefault(false);
+           //Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(form_view);
         }
 
         public void buttonOnePlayer()
         {
             form_view.VisibleButtons(false);
-            form_view.ClearBoard();
         }
         public void buttonTwoPlayers()
         {
             form_view.VisibleButtons(false);
-            form_view.CreateBoard();//можно инкапсулировать в один метод: SetNewGameClassic()
-            form_view.FillBoard();
-
-            game_model.SetNewGameTwoPlayers();
+            form_view.CreateBoard();
+            game_model.FillBoardAndListCheckers();
+            game_model.SetStatusApplication(StatusApplication.game);
+            game_model.SetStartColor(Color.white);      
 
         }
         public void buttonLoadGame()
@@ -48,9 +50,10 @@ namespace CheckerInterface
             form_view.VisibleButtons(false);
         }
 
-        public void ClickCell(Cell cell)
+        public void ClickCell(int x, int y)
         {
-            switch (game_model.GetStatusApplication())
+            MessageBox.Show(x.ToString()+' '+y.ToString());
+           /* switch (game_model.GetStatusApplication())
             {
                 case StatusApplication.game:
                     if (game_model.HumanStep(cell))
@@ -62,7 +65,7 @@ namespace CheckerInterface
                     } break;
                 case StatusApplication.constructor: break;
                 default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
-            }
+            }*/
 
         }
 

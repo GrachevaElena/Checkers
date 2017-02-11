@@ -14,8 +14,8 @@ namespace CheckerInterface
     {
         iController controller;
         iGame game;
-        Board board;
-        public Form1(Controller _contoller, Game_model_observable _game)
+        ViewBoard board;
+        public Form1(Controller _contoller, Game_model _game)
         {
             controller = _contoller;
             game = _game;
@@ -24,9 +24,13 @@ namespace CheckerInterface
             this.KeyDown += new KeyEventHandler(OnKeyDown);
         }
 
-        void iObserver.upDate()
+        void iObserver.updateSetFigure(Color color, Figure figure, int x, int y)
         {
-
+            board[x, y].SetFigure(color, figure);
+        }
+        void iObserver.updateDeleteFigure(int x, int y)
+        {
+            board[x, y].SetEmpty();
         }
         public void VisibleButtons(bool vis)
         {
@@ -41,19 +45,9 @@ namespace CheckerInterface
             panel1.Size = new System.Drawing.Size(8 * 81, 8 * 81);
             if (board == null)
             {
-                board = new Board(controller, 81, panel1);
+                board = new ViewBoard(controller, 81, panel1);
                 Cell.SetImages();
             }
-        }
-        public void FillBoard()
-        {
-            if (board != null)
-                board.Fill();
-        }
-        public void ClearBoard()
-        {
-            if (board != null)
-                board.Clear();
         }
 
         private void button1_Click(object sender, EventArgs e)

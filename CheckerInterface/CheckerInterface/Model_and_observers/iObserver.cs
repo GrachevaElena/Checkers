@@ -8,6 +8,8 @@ namespace CheckerInterface
 {
     public interface iObserver
     {
-        void upDate();
+        void updateSetFigure(Color color, Figure figure, int x, int y);
+        void updateDeleteFigure(int x, int y);
     }
+
 }

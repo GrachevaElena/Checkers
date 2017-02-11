@@ -6,31 +6,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace CheckerInterface
 {
-    public enum Figure
-    {
-        checker,
-        damka,
-        empty
-    }
-    public enum Color
-    {
-        white,
-        black,
-        empty
-    }
-    public enum Backlight
-    {
-        false_,
-        true_
-    }
-
     public class Cell
     {
         private static iController controller;
         private static System.Drawing.Bitmap[,,] imgFigure = new System.Drawing.Bitmap[2, 2, 2];
         private PictureBox body;
-        private Figure figure = Figure.empty;
-        private Color color = Color.empty;
         public readonly int x, y;
 
         public Cell(int sizeCell, int x, int y, Panel panel)
@@ -64,39 +44,27 @@ namespace CheckerInterface
             imgFigure[(int)Color.black, (int)Figure.damka, 0] = Properties.Resources.BlackQueen;
             imgFigure[(int)Color.black, (int)Figure.damka, 1] = Properties.Resources.LightBlackQueen;
         }
-
-        public bool isEmpty() { return (figure == Figure.empty); }
-        public Color GetColor() { return color; }
-
         public void SetEmpty()
         {
-            color = Color.empty;
-            figure = Figure.empty;
             body.Image = Properties.Resources.BlackCell;
         }
-        public void SetOtherColor()
-        {
-            if (color == Color.white) color = Color.black;
-            else if (color == Color.black) color = Color.white;
-        }
+
         public void SetFigure(Color col, Figure fig)
         {
-            color = col;
-            figure = fig;
-            body.Image = imgFigure[(int)color, (int)figure, (int)Backlight.false_];      
+            body.Image = imgFigure[(int)col, (int)fig, 0];      
         }
-        public void BacklightOn()
+        public void BacklightOn(Color col, Figure fig)
         {
-            body.Image = imgFigure[(int)color, (int)figure, (int)Backlight.true_];
+            body.Image = imgFigure[(int)col, (int)fig, 0];
         }
-        public void BacklightOff()
+        public void BacklightOff(Color col, Figure fig)
         {
-            body.Image = imgFigure[(int)color, (int)figure, (int)Backlight.false_];
+            body.Image = imgFigure[(int)col, (int)fig, 1];
         }
 
         public void ClickCell(object sender, EventArgs e)
         {
-            controller.ClickCell(this);
+            controller.ClickCell(x, y);
         }
     }
 }

@@ -46,15 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\Board\Board.cs" />
-    <Compile Include="View\Board\Cell.cs" />
+    <Compile Include="Model_and_observers\Game_step.cs" />
+    <Compile Include="Model_and_observers\LogicBoard\Checker.cs" />
+    <Compile Include="Model_and_observers\LogicBoard\LogicBoard.cs" />
+    <Compile Include="Model_and_observers\LogicBoard\LogicCell.cs" />
+    <Compile Include="View\ViewBoard\ViewBoard.cs" />
+    <Compile Include="View\ViewBoard\Cell.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model_and_observers\Game_model_observable.cs" />
+    <Compile Include="Model_and_observers\Game_start.cs" />
     <Compile Include="Contoller\Controller.cs" />
     <Compile Include="Contoller\iController.cs" />
     <Compile Include="Model_and_observers\iGame.cs" />
