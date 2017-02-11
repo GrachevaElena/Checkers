@@ -8,3 +8,4 @@ extern Cache cache;
 
 extern ListOfCheckers checkers[2];
 
+const int MaxDepth = 4;
