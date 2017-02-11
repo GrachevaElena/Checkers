@@ -10,13 +10,14 @@ namespace CheckerInterface
     {
         void SetStatusApplication(StatusApplication st);
         void SetStatusGame(StatusGame st);
-        void SetStatusPlayer(StatusPlayer st);
         void SetNewGameTwoPlayers();
 
         void Set_ii();
 
         StatusApplication GetStatusApplication();
 
-        void GameStep(Cell cell);
+        bool HumanStep(Cell cell);
+        bool Step();
+        bool NextPlayer();
     }
 }

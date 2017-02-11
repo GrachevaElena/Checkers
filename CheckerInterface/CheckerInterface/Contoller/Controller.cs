@@ -33,6 +33,7 @@ namespace CheckerInterface
             form_view.FillBoard();
 
             game_model.SetNewGameTwoPlayers();
+
         }
         public void buttonLoadGame()
         {
@@ -49,10 +50,16 @@ namespace CheckerInterface
 
         public void ClickCell(Cell cell)
         {
-            //MessageBox.Show(cell.x.ToString() +' '+cell.y.ToString());
             switch (game_model.GetStatusApplication())
             {
-                case StatusApplication.game: break;
+                case StatusApplication.game:
+                    if (game_model.HumanStep(cell))
+                    {
+                        //update
+                        game_model.Step();
+                        game_model.NextPlayer();
+                        //+update
+                    } break;
                 case StatusApplication.constructor: break;
                 default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
             }
