@@ -60,3 +60,22 @@ TEST(test_MakeMove, can_make_and_unmake_move_with_eaten) {
 
 	EXPECT_TRUE(!checkers[1].IsEmpty());
 }
+
+TEST(test_MakeMove, can_make_and_unmake_move_with_changing_type) {
+	int type = 0, coord = 33;
+	checkers[0].GenerateInitialPosition(0, &type, &coord, 1);
+	checkers[1].GenerateInitialPosition(1, 0, 0, 0);
+
+	Move move;
+	move.Set(0, 24, 1, 1);
+
+	board.Set(checkers[0], checkers[1]);
+
+	MakeMove(move);
+
+	EXPECT_EQ(DAMKA, checkers[0][1].GetType());
+
+	UnMakeMove(move);
+
+	EXPECT_EQ(CHECKER, checkers[0][1].GetType());
+}
