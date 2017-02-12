@@ -4,6 +4,17 @@ int color;
 int coord;
 int num;
 
+//для доступа к глобальным переменным (в тестах)
+void SetColor(int _c) {
+	::color = _c;
+}
+void SetCoord(int _c) {
+	::coord = _c;
+}
+void SetNum(int _n) {
+	::num = _n;
+}
+
 int coordEaten;
 int eaten[12]; int nEaten = 0;
 int type_bool;
@@ -68,7 +79,7 @@ Move temp_move;
 inline Move GetMove(int finalCoord) { //только для простой шашки
 	temp_move.SetColor(::color);
 	temp_move.SetNum(::num);
-	temp_move.SetCoord(finalCoord);
+	temp_move.SetFinalCoord(finalCoord);
 	temp_move.SetNEaten(::nEaten);
 	temp_move.SetEaten(::eaten);
 	temp_move.SetType(::type_bool);
@@ -104,7 +115,7 @@ inline void UnMakeMoveDamka(int savedCoord, int savedCoordEaten) {
 
 
 
-//осущесвляю рекурсию, смотрят в 3 направлениях
+//осуществляют рекурсию, смотрят в 3 направлениях
 void SearchEatDamkaInRay(int);
 void SearchEatCheckerInRay(int route)
 {
@@ -154,15 +165,19 @@ void SearchEatDamkaInRay(int route)
 
 
 //смотрят в 4 направлениях, вызывают функции, осущ. рекурсию
-int SearchEatChecker() 
+int SearchEatChecker(Checker& ch)
 {
+	::color = ch.GetColor(); ::coord = ch.GetCoord(); ::num = ch.GetNum(); temp_move.SetStartCoord(::coord);
+
 	for(int j=0; j<4; j++) if (CanEatChecker(direct[j])) SearchEatCheckerInRay(direct[j]);
 
 	return 0;
 }
 
-int SearchEatDamka()
+int SearchEatDamka(Checker& ch)
 {
+	::color = ch.GetColor(); ::coord = ch.GetCoord(); ::num = ch.GetNum(); temp_move.SetStartCoord(::coord);
+
 	for (int j = 0; j<4; j++) if (CanEatDamka(direct[j])) SearchEatDamkaInRay(direct[j]);
 
 	return 0;
@@ -170,8 +185,10 @@ int SearchEatDamka()
 
 
 //возвращают 1, если можно есть
-int SearchMoveChecker()
+int SearchMoveChecker(Checker& ch)
 {
+	::color = ch.GetColor(); ::coord = ch.GetCoord(); ::num = ch.GetNum(); temp_move.SetStartCoord(::coord);
+
 	int j;
 
 	for (j = 0; j<4; j++)
@@ -187,14 +204,16 @@ int SearchMoveChecker()
 	return 0;
 }
 
-int SearchMoveDamka()
+int SearchMoveDamka(Checker& ch)
 {
+	::color = ch.GetColor(); ::coord = ch.GetCoord(); ::num = ch.GetNum(); temp_move.SetStartCoord(::coord);
+
 	int i, j;
 
-	for (int j = 0; j<4; j++)
+	for (j = 0; j<4; j++)
 		if (CanEatDamka(direct[j])) return 1;
 
-	for (int j = 0; j<4; j++)
+	for (j = 0; j<4; j++)
 		for (i = 1; CanMove(::coord + i*direct[j]); i++) cache.Push(GetMove(::coord + i*direct[j]));
 
 	return 0;

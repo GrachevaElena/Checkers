@@ -7,7 +7,7 @@ TEST(test_MakeMove, can_make_and_unmake_simple_move) {
 	checkers[1].GenerateInitialPosition(1, 0, 0, 0);
 
 	Move move;
-	move.Set(0, 19, 1, 0);
+	move.Set(0,28, 19, 1, 0);
 
 	board.Set(checkers[0], checkers[1]);
 
@@ -31,7 +31,7 @@ TEST(test_MakeMove, can_make_and_unmake_move_with_eaten) {
 	checkers[1].GenerateInitialPosition(1, types, coords, 3);
 
 	Move move;
-	move.Set(0, 39, 1, 0);
+	move.Set(0,28, 39, 1, 0);
 	move.SetVarEaten(1, 2, 3, 0);
 
 	board.Set(checkers[0], checkers[1]);
@@ -67,7 +67,7 @@ TEST(test_MakeMove, can_make_and_unmake_move_with_changing_type) {
 	checkers[1].GenerateInitialPosition(1, 0, 0, 0);
 
 	Move move;
-	move.Set(0, 24, 1, 1);
+	move.Set(0,33, 24, 1, 1);
 
 	board.Set(checkers[0], checkers[1]);
 

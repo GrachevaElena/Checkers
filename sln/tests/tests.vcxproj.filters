@@ -66,10 +66,10 @@
     <ClCompile Include="..\..\test\test_Move.cpp">
       <Filter>Файлы исходного кода\classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\test_Generate.cpp">
+    <ClCompile Include="..\..\test\test_MakeMove.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\test_MakeMove.cpp">
+    <ClCompile Include="..\..\test\test_Generate.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>

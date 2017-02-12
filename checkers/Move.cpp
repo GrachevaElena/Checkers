@@ -2,8 +2,8 @@
 
 int operator==(const Move & m1, const Move & m2)
 {
-	if ((m1.move&INVMASK_EATEN) != (m2.move&INVMASK_EATEN)) return 0;
-	int f, coord, n = ((m1.move >> OFFSET_NEATEN) & MASK_NEATEN);
+	if ((m1.move<<42) != (m2.move << 42)) return 0;
+	int f, n = ((m1.move >> OFFSET_NEATEN) & MASK_NEATEN); long long coord;
 	for (int i = 0; i < n; i++) {
 		f = 0;
 		coord = (m1.move >> (OFFSET_EATEN + i * 4))&MASK_NEATEN;
@@ -21,8 +21,8 @@ void Move::SetVarEaten(int n1, ...) {
 	int * p = &n1;
 	int n=0;
 	move = move&INVMASK_EATEN&INVMASK_NEATEN;
-	for (; (*p)&&(n<12); n++, p++) {
-		move = move|((*p) << (n * 4 + OFFSET_EATEN));
+	for (; (*p)&&(n<10); n++, p++) {
+		move = move|((long long)(*p) << (n * 4 + OFFSET_EATEN));
 	}
 	SetNEaten(n);
 }
