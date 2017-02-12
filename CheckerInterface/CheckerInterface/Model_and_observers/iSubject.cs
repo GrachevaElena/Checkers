@@ -10,7 +10,8 @@ namespace CheckerInterface
     {
         void registerObserver(iObserver o);
         void removeObserver(iObserver o);
-        void notifySetFigure(Color color, Figure figure, int x, int y);
+
+        void notifySetFigure(Color color, Figure figure, int x, int y, Light l);
         void notifyDeleteFigure(int x, int y);
     }
 }

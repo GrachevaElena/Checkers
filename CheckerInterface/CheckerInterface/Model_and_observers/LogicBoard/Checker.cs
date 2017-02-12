@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace CheckerInterface
 {
-    class Checker : LogicCell
+    public class Checker : LogicCell
     {
         public int x, y;
         Color color;
         Figure figure;
 
+        public Checker() { }
         public Checker(Color col, Figure fig, int x1, int y1)
         {
             color = col;
@@ -30,6 +31,10 @@ namespace CheckerInterface
         public override Figure GetFigure()
         {
            return figure;
+        }
+        public override Checker GetChecker()
+        {
+            return this;
         }
     }
 }

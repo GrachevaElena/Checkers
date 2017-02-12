@@ -12,14 +12,15 @@ namespace CheckerInterface
         constructor,
         menu
     }
-    public enum StatusGame
-    {
-        wait
-    }
     public enum StatusPlayer
     {
         bot,
         human
+    }
+    public enum Light
+    {
+        off,
+        on
     }
 
     public partial class Game_model : iSubject, iGame
@@ -31,6 +32,7 @@ namespace CheckerInterface
         private Color color;
         private List<iObserver> observers = new List<iObserver>();
         private List<Checker> []checkers = new List<Checker>[2];
+        private List<Checker> selectedCh = new List<Checker>();
 
         public Game_model()
         {
@@ -45,11 +47,10 @@ namespace CheckerInterface
         {
             observers.Remove(o);
         }
-        public void notifySetFigure(Color color, Figure figure, int x, int y)
+        public void notifySetFigure(Color color, Figure figure, int x, int y, Light l)
         {
             foreach (iObserver obs in observers)
-                obs.updateSetFigure(color, figure, x, y);
-            
+                obs.updateSetFigure(color, figure, x, y, l);            
         }
         public void notifyDeleteFigure(int x, int y)
         {
@@ -91,23 +92,37 @@ namespace CheckerInterface
         {
             checkers[(int)(col)].Add(new Checker(col,fig, x, y));
             board[x, y] = checkers[(int)(col)].Last();
-            notifySetFigure(col, fig, x, y);
+            notifySetFigure(col, fig, x, y, Light.off);
         }    
         private void SetFigure(Checker checker)
         {
             board[checker.x, checker.y] = checker;
-            notifySetFigure(checker.GetColor(), checker.GetFigure(), checker.x, checker.y);
+            notifySetFigure(checker.GetColor(), checker.GetFigure(), checker.x, checker.y, Light.off);
+        }
+        private void SelectFigure(Checker checker)
+        {
+            selectedCh.Add(checker);
+            notifySetFigure(checker.GetColor(), checker.GetFigure(), checker.x, checker.y, Light.on);
+        }
+        private void UnselectFigures()
+        {
+            foreach (Checker checker in selectedCh)
+                notifySetFigure(checker.GetColor(), checker.GetFigure(), checker.x, checker.y, Light.off);
+            selectedCh.Clear();
         }
         private void DeleteFigure(Checker checker)
         {
             checkers[(int)checker.GetColor()].Remove(checker);
-
+            notifyDeleteFigure(checker.x, checker.y);
         }
-    
 
         public StatusApplication GetStatusApplication()
         {
             return statusApplication;
         }      
+        public StatusPlayer GetStatusPlayer()
+        {
+            return statusPlayer[(int)color];
+        }
     }
 }

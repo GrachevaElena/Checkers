@@ -24,10 +24,12 @@ namespace CheckerInterface
             this.KeyDown += new KeyEventHandler(OnKeyDown);
         }
 
-        void iObserver.updateSetFigure(Color color, Figure figure, int x, int y)
+        void iObserver.updateSetFigure(Color color, Figure figure, int x, int y, Light l)
         {
-            board[x, y].SetFigure(color, figure);
+            board[x, y].SetFigure(color, figure, l);
         }
+
+
         void iObserver.updateDeleteFigure(int x, int y)
         {
             board[x, y].SetEmpty();

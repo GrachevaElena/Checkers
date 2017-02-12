@@ -22,6 +22,10 @@ namespace CheckerInterface
         {
             return true;
         }
+        public virtual Checker GetChecker()
+        {
+            return new Checker();
+        }
 
     }
 }

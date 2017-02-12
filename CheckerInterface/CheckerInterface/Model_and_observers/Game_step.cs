@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace CheckerInterface
 {
+    public enum StatusGame
+    {
+        wait,
+        isEat
+    }
     public partial class Game_model
     {
         private void ChangeColor()
@@ -29,15 +34,27 @@ namespace CheckerInterface
             ChangeColor();
             return false;
         }
-        public bool HumanStep(Cell cell)
+        public bool HumanStep(int x, int y)
         {
-            if (statusPlayer[(int)color] == StatusPlayer.human)
-            {
                 switch (statusGame)
                 {
                     case StatusGame.wait:
-                        break;
+                    if (board[x,y].GetColor() == color)
+                    {
+                        UnselectFigures();
+                        SelectFigure(board[x, y].GetChecker());
+                    }
+                    else UnselectFigures(); 
+                    break;
                 }
+
+            return false;
+        }
+        public bool isEat()//ищет есть ли взятия
+        {
+            foreach (Checker ch in checkers[(int)color])
+            {
+
             }
             return false;
         }

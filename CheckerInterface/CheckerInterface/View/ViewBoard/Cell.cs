@@ -49,17 +49,9 @@ namespace CheckerInterface
             body.Image = Properties.Resources.BlackCell;
         }
 
-        public void SetFigure(Color col, Figure fig)
+        public void SetFigure(Color col, Figure fig, Light l)
         {
-            body.Image = imgFigure[(int)col, (int)fig, 0];      
-        }
-        public void BacklightOn(Color col, Figure fig)
-        {
-            body.Image = imgFigure[(int)col, (int)fig, 0];
-        }
-        public void BacklightOff(Color col, Figure fig)
-        {
-            body.Image = imgFigure[(int)col, (int)fig, 1];
+            body.Image = imgFigure[(int)col, (int)fig, (int)l];      
         }
 
         public void ClickCell(object sender, EventArgs e)
