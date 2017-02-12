@@ -1,8 +1,8 @@
 #include "Search.h"
 
-int i;
-extern int eaten[12]; 
-extern int color;
+static int i;
+static int eaten[12];
+static int color;
 
 void MakeMove(Move& move) {
 	color = move.GetColor();

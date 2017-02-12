@@ -1,8 +1,8 @@
 #include "FunctionsMove.h"
 
-int color; 
-int coord;
-int num;
+static int color;
+static int coord;
+static int num;
 
 //для доступа к глобальным переменным (в тестах)
 void SetColor(int _c) {
@@ -15,9 +15,9 @@ void SetNum(int _n) {
 	::num = _n;
 }
 
-int coordEaten;
-int eaten[12]; int nEaten = 0;
-int type_bool;
+static int coordEaten;
+static int eaten[12]; static int nEaten = 0;
+static int type_bool;
 
 //вспомогательные функции - условия
 inline int OnBoard(int cell)
@@ -75,7 +75,7 @@ inline int CanEatDamka(int route) //сохраняет координаты шашки, которую можно съ
 
 
 //запись хода
-Move temp_move;
+static Move temp_move;
 inline Move GetMove(int finalCoord) { //только для простой шашки
 	temp_move.SetColor(::color);
 	temp_move.SetNum(::num);
