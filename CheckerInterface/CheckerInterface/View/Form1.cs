@@ -28,12 +28,16 @@ namespace CheckerInterface
         {
             board[x, y].SetFigure(color, figure, l);
         }
-
-
         void iObserver.updateDeleteFigure(int x, int y)
         {
             board[x, y].SetEmpty();
         }
+        public void updateWay(List<Tuple<int, int>> ways)
+        {
+            foreach (Tuple<int, int> cell in ways)
+                board[cell.Item1, cell.Item2].SetWay();
+        }
+
         public void VisibleButtons(bool vis)
         {
             this.button1.Visible = vis;

@@ -57,6 +57,11 @@ namespace CheckerInterface
             foreach (iObserver obs in observers)
                 obs.updateDeleteFigure(x, y);
         }
+        public void notifySetWays(List<Tuple<int, int>> ways)
+        {
+            foreach (iObserver obs in observers)
+                obs.updateWay(ways);
+        }
 
         public void SetStatusApplication(StatusApplication st)
         {

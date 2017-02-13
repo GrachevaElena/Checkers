@@ -12,9 +12,7 @@ namespace CheckerInterface
         private Color color;
         private Figure figure;
         private static int[] dx = { 1, -1 };
-        private static int[] dy = { 1, -1 };
-        private static int[,] forwardLeft = { { -1, 1 }, { -1, -1} };
-        private static int[,] forwardRight = { { 1, 1 }, {  1, -1 } };
+        private static int[] dy = { -1, 1 };
 
         public Checker() { }
         public Checker(Color col, Figure fig, int x1, int y1)
@@ -41,7 +39,7 @@ namespace CheckerInterface
             return this;
         }
 
-        public void SearchWay(List<LogicCell> way, LogicBoard board)
+        public override void SearchWay(List<Tuple<int, int>> way, LogicBoard board)
         {
             switch (GetFigure())
             {
@@ -52,8 +50,8 @@ namespace CheckerInterface
                         int _y = y + dy[(int)color];
                         if (Inside(_x, _y) && board[_x, _y].isEmpty())
                         {
-                            way.Add(board[_x, _y]);
-                            board[_x, _y].SetWay(true);
+                            way.Add(new Tuple <int, int>( _x, _y));
+                            board[_x, _y].SetIsWay(true);
                         }
                     }
                     break;

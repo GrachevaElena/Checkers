@@ -25,12 +25,13 @@ namespace CheckerInterface
         {
             return new Checker();
         }
+        public virtual void SearchWay(List<Tuple<int, int>> way, LogicBoard board) { }
 
-        public void SetWay(bool w)
+        public void SetIsWay(bool w)
         {
             way = w;
         }
-        public bool GetWay()
+        public bool GetIsWay()
         {
             return way;
         }

@@ -12,6 +12,7 @@ namespace CheckerInterface
         void removeObserver(iObserver o);
 
         void notifySetFigure(Color color, Figure figure, int x, int y, Light l);
+        void notifySetWays(List<Tuple<int, int>> way);
         void notifyDeleteFigure(int x, int y);
     }
 }

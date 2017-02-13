@@ -10,6 +10,9 @@ namespace CheckerInterface
     {
         private static iController controller;
         private static System.Drawing.Bitmap[,,] imgFigure = new System.Drawing.Bitmap[2, 2, 2];
+        private static System.Drawing.Bitmap imgEmpty = Properties.Resources.BlackCell;
+        private static System.Drawing.Bitmap imgWay = Properties.Resources.LightBlackCell;
+
         private PictureBox body;
         public readonly int x, y;
 
@@ -46,7 +49,11 @@ namespace CheckerInterface
         }
         public void SetEmpty()
         {
-            body.Image = Properties.Resources.BlackCell;
+            body.Image = imgEmpty;
+        }
+        public void SetWay()
+        {
+            body.Image = imgWay;
         }
 
         public void SetFigure(Color col, Figure fig, Light l)

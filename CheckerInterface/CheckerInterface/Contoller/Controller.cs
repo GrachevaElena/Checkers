@@ -53,12 +53,16 @@ namespace CheckerInterface
 
         public void ClickCell(int x, int y)
         {
-            //MessageBox.Show(x.ToString()+' '+y.ToString());
+            MessageBox.Show(x.ToString()+' '+y.ToString());
             switch (game_model.GetStatusApplication())
             {
                 case StatusApplication.game:
                     if (game_model.GetStatusPlayer() == StatusPlayer.human)
+                    {
+                        //проверка на конец игры?
+                        //проверка на взятие
                         game_model.HumanStep(x, y);
+                    }
                     break;
                 case StatusApplication.constructor: break;
                 default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;

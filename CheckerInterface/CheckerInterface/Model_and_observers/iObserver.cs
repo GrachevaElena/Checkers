@@ -10,6 +10,7 @@ namespace CheckerInterface
     {
         void updateSetFigure(Color color, Figure figure, int x, int y, Light l);
         void updateDeleteFigure(int x, int y);
+        void updateWay(List<Tuple<int, int>> ways);
     }
 
 }

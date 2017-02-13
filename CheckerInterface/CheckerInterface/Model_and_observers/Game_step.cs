@@ -12,7 +12,6 @@ namespace CheckerInterface
     }
     public partial class Game_model
     {
-        private List<Tuple<LogicCell, int, int>> way;
         private List<Checker> eat;
 
         private void ChangeColor()
@@ -41,16 +40,25 @@ namespace CheckerInterface
                 switch (statusGame)
                 {
                     case StatusGame.wait:
-                    if (board[x,y].GetColor() == color)
+                    if (board[x, y].GetColor() == color)
                     {
                         UnselectFigures();
+                        ClearWays();
                         SelectFigure(board[x, y].GetChecker());
+                        board[x, y].SearchWay(way, board);
+                        notifySetWays(way);
+                    }
+                    else if (board[x, y].GetIsWay())
+                    {
 
                     }
-                    else UnselectFigures();
+                    else
+                    {
+                        UnselectFigures();
+                        ClearWays();
+                    }
                     return false;
                 }
-
             return false;
         }
         public bool isEat()//ищет есть ли взятия
@@ -61,15 +69,5 @@ namespace CheckerInterface
             }
             return false;
         }
-
-        void ClearWays()
-        {
-            foreach (Tuple<LogicCell, int, int> cell in way)
-            {
-                cell.Item1.isEmpty();
-                notifyDeleteFigure(cell.Item2, cell.Item3);
-
-            }
-}
     }
 }
