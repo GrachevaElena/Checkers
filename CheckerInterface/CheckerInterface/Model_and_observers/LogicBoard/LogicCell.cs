@@ -8,16 +8,15 @@ namespace CheckerInterface
 {
     public class LogicCell
     {
+        private bool way = false;
         public virtual Color GetColor()
         {
             return Color.empty;
         }
-
         public virtual Figure GetFigure()
         {
             return Figure.empty;
         }
-
         public virtual bool isEmpty()
         {
             return true;
@@ -27,5 +26,13 @@ namespace CheckerInterface
             return new Checker();
         }
 
+        public void SetWay(bool w)
+        {
+            way = w;
+        }
+        public bool GetWay()
+        {
+            return way;
+        }
     }
 }

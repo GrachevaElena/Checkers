@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace CheckerInterface
 {
     public enum StatusGame
@@ -13,6 +12,9 @@ namespace CheckerInterface
     }
     public partial class Game_model
     {
+        private List<Tuple<LogicCell, int, int>> way;
+        private List<Checker> eat;
+
         private void ChangeColor()
         {
             color = (Color)((int)color ^ 1);
@@ -34,7 +36,7 @@ namespace CheckerInterface
             ChangeColor();
             return false;
         }
-        public bool HumanStep(int x, int y)
+        public bool HumanStep(int x, int y) //true если ход закончен
         {
                 switch (statusGame)
                 {
@@ -43,9 +45,10 @@ namespace CheckerInterface
                     {
                         UnselectFigures();
                         SelectFigure(board[x, y].GetChecker());
+
                     }
-                    else UnselectFigures(); 
-                    break;
+                    else UnselectFigures();
+                    return false;
                 }
 
             return false;
@@ -58,5 +61,15 @@ namespace CheckerInterface
             }
             return false;
         }
+
+        void ClearWays()
+        {
+            foreach (Tuple<LogicCell, int, int> cell in way)
+            {
+                cell.Item1.isEmpty();
+                notifyDeleteFigure(cell.Item2, cell.Item3);
+
+            }
+}
     }
 }

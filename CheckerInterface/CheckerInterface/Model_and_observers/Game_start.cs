@@ -113,6 +113,7 @@ namespace CheckerInterface
         private void DeleteFigure(Checker checker)
         {
             checkers[(int)checker.GetColor()].Remove(checker);
+            board[checker.x, checker.y] = new LogicCell();
             notifyDeleteFigure(checker.x, checker.y);
         }
 

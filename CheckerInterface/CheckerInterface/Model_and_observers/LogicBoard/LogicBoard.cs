@@ -18,9 +18,9 @@ namespace CheckerInterface
         black,
         empty
     }
-    class LogicBoard
+    public class LogicBoard
     {
-        private LogicCell[,] cell;
+        public LogicCell[,] cell;
         public LogicBoard()
         {
             cell = new LogicCell[8, 8];
