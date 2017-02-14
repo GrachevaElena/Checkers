@@ -5,14 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 namespace CheckerInterface
 {
-    public enum StatusGame
-    {
-        wait,
-        isEat
-    }
     public partial class Game_model
     {
         private List<Checker> eat;
+        private bool isEat = false;
 
         private void ChangeColor()
         {
@@ -25,7 +21,6 @@ namespace CheckerInterface
                 case StatusPlayer.bot: return true;/*1)конец игры? иначе: 2)вызов dll 3) получение лучшего хода 4)изменение модели 5) запрос на обновление 6 NextPlayer()*/
                 case StatusPlayer.human:
                     //проверка на конец игры
-                    statusGame = StatusGame.wait;
                     return true;
             }
             return true;
@@ -37,31 +32,35 @@ namespace CheckerInterface
         }
         public bool HumanStep(int x, int y) //true если ход закончен
         {
-                switch (statusGame)
-                {
-                    case StatusGame.wait:
-                    if (board[x, y].GetColor() == color)
-                    {
-                        UnselectFigures();
-                        ClearWays();
-                        SelectFigure(board[x, y].GetChecker());
-                        board[x, y].SearchWay(way, board);
-                        notifySetWays(way);
-                    }
-                    else if (board[x, y].GetIsWay())
-                    {
-
-                    }
-                    else
-                    {
-                        UnselectFigures();
-                        ClearWays();
-                    }
-                    return false;
-                }
-            return false;
+            bool isWay = board[x, y].GetIsWay();
+            ClearWays();
+            if (isWay)
+            {
+                //MakeMove
+                return true;
+            }         
+            if (isEat)
+            {
+                //MakeMove
+                return false;
+            }      
+            if (board[x, y].GetColor() == color )
+            {
+                SelectFigureAndSearchWay(x, y);
+                return false;
+            }
+             UnselectFigures();
+             return false;
         }
-        public bool isEat()//ищет есть ли взятия
+        public void SelectFigureAndSearchWay(int x, int y)
+        {
+            if (selectedCheckers.Count() == 1)
+                UnselectFigures();
+            SelectFigure(board[x, y].GetChecker());
+            board[x, y].SearchWay(way, board);
+            notifySetWays(way);
+        }
+        public bool IsEat()//ищет есть ли взятия
         {
             foreach (Checker ch in checkers[(int)color])
             {

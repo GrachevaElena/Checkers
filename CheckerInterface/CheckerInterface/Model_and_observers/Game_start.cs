@@ -6,17 +6,6 @@ using System.Threading.Tasks;
 
 namespace CheckerInterface
 {
-    public enum StatusApplication
-    {
-        game,
-        constructor,
-        menu
-    }
-    public enum StatusPlayer
-    {
-        bot,
-        human
-    }
     public enum Light
     {
         off,
@@ -25,14 +14,11 @@ namespace CheckerInterface
 
     public partial class Game_model : iSubject, iGame
     {
-        private StatusApplication statusApplication = StatusApplication.menu;
-        private StatusGame statusGame;
-        private StatusPlayer []statusPlayer = new StatusPlayer[2];
         private LogicBoard board = new LogicBoard();
         private Color color;
         private List<iObserver> observers = new List<iObserver>();
         private List<Checker> []checkers = new List<Checker>[2];
-        private List<Checker> selectedCh = new List<Checker>();
+        private List<Checker> selectedCheckers = new List<Checker>();
 
         public Game_model()
         {
@@ -63,23 +49,6 @@ namespace CheckerInterface
                 obs.updateWay(ways);
         }
 
-        public void SetStatusApplication(StatusApplication st)
-        {
-            statusApplication = st;
-        }
-        public void SetStatusGame(StatusGame st)
-        {
-            statusGame = st;
-        }
-        public void SetStatusPlayers(StatusPlayer pl1, StatusPlayer pl2)
-        {
-            statusPlayer[0] = pl1;
-            statusPlayer[1] = pl2;
-        }
-        public void SetStartColor(Color col)
-        {
-            color = col;
-        }
         public void FillBoardAndListCheckers()
         {
             for (int x = 0; x < 8; x++)
@@ -106,29 +75,20 @@ namespace CheckerInterface
         }
         private void SelectFigure(Checker checker)
         {
-            selectedCh.Add(checker);
+            selectedCheckers.Add(checker);
             notifySetFigure(checker.GetColor(), checker.GetFigure(), checker.x, checker.y, Light.on);
         }
         private void UnselectFigures()
         {
-            foreach (Checker checker in selectedCh)
+            foreach (Checker checker in selectedCheckers)
                 notifySetFigure(checker.GetColor(), checker.GetFigure(), checker.x, checker.y, Light.off);
-            selectedCh.Clear();
+            selectedCheckers.Clear();
         }
         private void DeleteFigure(Checker checker)
         {
             checkers[(int)checker.GetColor()].Remove(checker);
             board[checker.x, checker.y] = new LogicCell();
             notifyDeleteFigure(checker.x, checker.y);
-        }
-
-        public StatusApplication GetStatusApplication()
-        {
-            return statusApplication;
-        }      
-        public StatusPlayer GetStatusPlayer()
-        {
-            return statusPlayer[(int)color];
         }
     }
 }

@@ -9,7 +9,6 @@ namespace CheckerInterface
     interface iGame
     {
         void SetStatusApplication(StatusApplication st);
-        void SetStatusGame(StatusGame st);
         void SetStatusPlayers(StatusPlayer pl1, StatusPlayer pl2);
         void SetStartColor(Color color);
         void FillBoardAndListCheckers();

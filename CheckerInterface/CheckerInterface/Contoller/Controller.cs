@@ -58,11 +58,7 @@ namespace CheckerInterface
             {
                 case StatusApplication.game:
                     if (game_model.GetStatusPlayer() == StatusPlayer.human)
-                    {
-                        //проверка на конец игры?
-                        //проверка на взятие
                         game_model.HumanStep(x, y);
-                    }
                     break;
                 case StatusApplication.constructor: break;
                 default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;

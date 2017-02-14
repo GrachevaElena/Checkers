@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model_and_observers\Game_status.cs" />
     <Compile Include="Model_and_observers\Game_step.cs" />
     <Compile Include="Model_and_observers\Game_ways.cs" />
     <Compile Include="Model_and_observers\LogicBoard\Checker.cs" />
