@@ -72,5 +72,8 @@
     <ClCompile Include="..\..\test\test_Generate.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\test_Search.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
