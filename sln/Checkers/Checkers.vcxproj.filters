@@ -30,9 +30,6 @@
     <ClInclude Include="..\..\include\Cache.h">
       <Filter>Заголовочные файлы\classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Checker.h">
-      <Filter>Заголовочные файлы\classes</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\ListOfCheckers.h">
       <Filter>Заголовочные файлы\classes</Filter>
     </ClInclude>
@@ -44,6 +41,12 @@
     </ClInclude>
     <ClInclude Include="..\..\include\BasicFunctions.h">
       <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Search.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Checker.h">
+      <Filter>Заголовочные файлы\classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +69,12 @@
       <Filter>Файлы исходного кода\classes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\checkers\Evaluate.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\checkers\MakeMove.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\checkers\Search.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>

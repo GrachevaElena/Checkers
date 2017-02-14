@@ -13,40 +13,25 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы исходного кода\classes">
+      <UniqueIdentifier>{d83cd347-c4c1-4c86-a00d-c13d000d72ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\test\test_main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\test_Checker.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\test\test_ListOfCheckers.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\test_Cache.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\test\test_Board.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\checkers\Board.cpp">
       <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\test\test_Move.cpp">
-      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="..\..\test\test_FunctionsMove.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="..\..\checkers\FunctionsMove.cpp">
       <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\test\test_generate.cpp">
-      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="..\..\checkers\Generate.cpp">
       <Filter>Файлы ресурсов</Filter>
@@ -59,6 +44,33 @@
     </ClCompile>
     <ClCompile Include="..\..\checkers\Evaluate.cpp">
       <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\checkers\MakeMove.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\checkers\Search.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\test_Board.cpp">
+      <Filter>Файлы исходного кода\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\test_Cache.cpp">
+      <Filter>Файлы исходного кода\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\test_Checker.cpp">
+      <Filter>Файлы исходного кода\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\test_ListOfCheckers.cpp">
+      <Filter>Файлы исходного кода\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\test_Move.cpp">
+      <Filter>Файлы исходного кода\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\test_MakeMove.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\test_Generate.cpp">
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

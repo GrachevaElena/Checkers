@@ -162,15 +162,18 @@
     <ClCompile Include="..\..\checkers\FunctionsMove.cpp" />
     <ClCompile Include="..\..\checkers\Generate.cpp" />
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp" />
+    <ClCompile Include="..\..\checkers\MakeMove.cpp" />
     <ClCompile Include="..\..\checkers\Move.cpp" />
+    <ClCompile Include="..\..\checkers\Search.cpp" />
     <ClCompile Include="..\..\test\test_Board.cpp" />
     <ClCompile Include="..\..\test\test_Cache.cpp" />
     <ClCompile Include="..\..\test\test_Checker.cpp" />
     <ClCompile Include="..\..\test\test_Evaluate.cpp" />
     <ClCompile Include="..\..\test\test_FunctionsMove.cpp" />
-    <ClCompile Include="..\..\test\test_generate.cpp" />
+    <ClCompile Include="..\..\test\test_Generate.cpp" />
     <ClCompile Include="..\..\test\test_ListOfCheckers.cpp" />
     <ClCompile Include="..\..\test\test_main.cpp" />
+    <ClCompile Include="..\..\test\test_MakeMove.cpp" />
     <ClCompile Include="..\..\test\test_Move.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

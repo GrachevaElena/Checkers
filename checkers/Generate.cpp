@@ -1,27 +1,22 @@
 #include "BasicFunctions.h"
 #include "FunctionsMove.h"
-#include "..\include\BasicFunctions.h"
 
 ListOfCheckers::iterator it;
 int mustEat;
 Move* saved;
+
 void Generate(ListOfCheckers& list) {
 	mustEat = 0; saved = cache.GetpLast();
-	it = list.begin();
-	color = it->GetColor();
 
-	for (; it && (!mustEat); it++) {
-		coord = it->GetCoord(); num = it->GetNum();
-		mustEat = SearchMove[it->GetType()]();
-	}
+	for (it = list.begin(); it && (!mustEat); it++) 
+		mustEat = SearchMove[it->GetType()](*it);
 
 	if (mustEat) {
 		cache.Rollback(saved);
 		for (it = list.begin(); it; it++) {
-			coord = it->GetCoord(); num = it->GetNum();
-			board[coord] = 0;
-			SearchEat[it->GetType()]();
-			board[coord] = &(*it);
+			board[it->GetCoord()] = 0;
+			SearchEat[it->GetType()](*it);
+			board[it->GetCoord()] = &(*it);
 		}
 	}
 }

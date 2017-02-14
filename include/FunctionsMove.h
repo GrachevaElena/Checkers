@@ -11,13 +11,11 @@ const int forwardLeft[2] = { -9, 9 }, forwardRight[2] = { 7,-7 }, backLeft[2] = 
 const int direct[4] = { 9, -7, -9, 7 }; //круг
 const int forward[2][2] = { {-9,7},{9,-7} };
 
-int SearchMoveChecker();
-int SearchMoveDamka();
-int SearchEatChecker();
-int SearchEatDamka();
+int SearchMoveChecker(Checker& ch);
+int SearchMoveDamka(Checker& ch);
+int SearchEatChecker(Checker& ch);
+int SearchEatDamka(Checker& ch);
 
-typedef int (*pSearch)();
+typedef int (*pSearch)(Checker& ch);
 const pSearch SearchMove[2] = {SearchMoveChecker, SearchMoveDamka };
 const pSearch SearchEat[2] = { SearchEatChecker, SearchEatDamka };
-
-extern int color, coord, num;
