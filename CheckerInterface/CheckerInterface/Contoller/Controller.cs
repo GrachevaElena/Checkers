@@ -35,8 +35,7 @@ namespace CheckerInterface
             game_model.FillBoardAndListCheckers();
             game_model.SetStatusApplication(StatusApplication.game);
             game_model.SetStatusPlayers(StatusPlayer.human, StatusPlayer.human);
-            game_model.SetStartColor(Color.white);      
-
+            game_model.SetStartColor(Color.white);
         }
         public void buttonLoadGame()
         {
@@ -53,12 +52,19 @@ namespace CheckerInterface
 
         public void ClickCell(int x, int y)
         {
-            MessageBox.Show(x.ToString()+' '+y.ToString());
+            //MessageBox.Show(x.ToString()+' '+y.ToString());
             switch (game_model.GetStatusApplication())
             {
                 case StatusApplication.game:
                     if (game_model.GetStatusPlayer() == StatusPlayer.human)
-                        game_model.HumanStep(x, y);
+                    {
+
+                        if (game_model.HumanStep(x, y) == true)
+                        {
+                            game_model.NextPlayer();
+                            game_model.SearchEat();
+                        }
+                    }
                     break;
                 case StatusApplication.constructor: break;
                 default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;

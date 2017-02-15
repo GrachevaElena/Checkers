@@ -60,7 +60,7 @@ namespace CheckerInterface
                     break;
             }
         }
-        public void SerchEat(List<Checker> eat)
+        public override void  SearchEat(List<Checker> eat, LogicBoard board)
         {
             switch (GetFigure())
             {
@@ -72,13 +72,35 @@ namespace CheckerInterface
                     break;
             }
         }
-        public bool IsEat()
+        public override bool IsEat(LogicBoard board)
         {
+            switch (GetFigure())
+            {
+                case Figure.checker:
+                    for (int i = 0; i < 2; i++)
+                        for (int j = 0; j < 2; j++)
+                        {
+                            int _x = x + dx[i];
+                            int _y = y + dy[j];
+                            if (Inside(_x, _y) && Inside(_x + dx[i], _y + dy[j]) && CanBeEaten(board[_x, _y], board[_x + dx[i], _y + dy[j]]))
+                                return true;
+                        }
+                    return false;
+                case Figure.damka:
+
+                    break;
+            }
             return false;
         }            
+
+
         private bool Inside(int x, int y)
         {
             return (x < 8 && y < 8 && x >= 0 && y >= 0);
+        }
+        private bool CanBeEaten(LogicCell checker, LogicCell nextCell)
+        {
+            return (checker.GetColor() != Color.empty && color != checker.GetColor() && nextCell.isEmpty());
         }
     }
 }

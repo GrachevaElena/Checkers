@@ -46,9 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model_and_observers\Objects_obsrvers\Game_object.cs" />
     <Compile Include="Model_and_observers\Game_status.cs" />
     <Compile Include="Model_and_observers\Game_step.cs" />
-    <Compile Include="Model_and_observers\Game_ways.cs" />
     <Compile Include="Model_and_observers\LogicBoard\Checker.cs" />
     <Compile Include="Model_and_observers\LogicBoard\LogicBoard.cs" />
     <Compile Include="Model_and_observers\LogicBoard\LogicCell.cs" />
@@ -64,8 +64,8 @@
     <Compile Include="Contoller\Controller.cs" />
     <Compile Include="Contoller\iController.cs" />
     <Compile Include="Model_and_observers\iGame.cs" />
-    <Compile Include="Model_and_observers\iSubject.cs" />
-    <Compile Include="Model_and_observers\iObserver.cs" />
+    <Compile Include="Model_and_observers\Objects_obsrvers\iSubject.cs" />
+    <Compile Include="Model_and_observers\Objects_obsrvers\iObserver.cs" />
     <Compile Include="mainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="View\Form1.resx">

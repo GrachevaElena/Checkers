@@ -26,6 +26,8 @@ namespace CheckerInterface
             return new Checker();
         }
         public virtual void SearchWay(List<Tuple<int, int>> way, LogicBoard board) { }
+        public virtual void SearchEat(List<Checker> eat, LogicBoard board) { }
+        public virtual bool IsEat(LogicBoard board) { return false; }
 
         public void SetIsWay(bool w)
         {

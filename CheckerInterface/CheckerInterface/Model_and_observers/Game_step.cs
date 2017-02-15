@@ -5,15 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 namespace CheckerInterface
 {
-    public partial class Game_model
+    public partial class Game_model : iSubject, iGame
     {
-        private List<Checker> eat;
+        private List<Checker> eaten = new List<Checker>();
+        private List<Tuple<int, int>> way = new List<Tuple<int, int>>();
         private bool isEat = false;
-
-        private void ChangeColor()
+        
+        public void SearchFiguresWhoCanEat()
         {
-            color = (Color)((int)color ^ 1);
+            isEat = false;
+            foreach (Checker checker in checkers[(int)color])
+            {
+                if (checker.IsEat(board))
+                {
+                    checker.IsEat(board);
+                    isEat = true;
+                    selectedCheckers.Add(checker);
+                }
+            } 
+                    
         }
+
         public bool Step()
         {
             switch (statusPlayer[(int)color])
@@ -25,20 +37,24 @@ namespace CheckerInterface
             }
             return true;
         }
-        public bool NextPlayer()
+        public void NextPlayer()
         {
-            ChangeColor();
-            return false;
+            color = (Color)((int)color ^ 1);            
         }
         public bool HumanStep(int x, int y) //true если ход закончен
         {
             bool isWay = board[x, y].GetIsWay();
             ClearWays();
-            if (isWay)
+            if (isWay && !isEat)
+            {
+                MakeMove(selectedCheckers.Last(), x, y);                
+                return true;
+            }  
+            if (isWay && isEat)
             {
                 //MakeMove
-                return true;
-            }         
+                //return true or false
+            }       
             if (isEat)
             {
                 //MakeMove
@@ -60,13 +76,35 @@ namespace CheckerInterface
             board[x, y].SearchWay(way, board);
             notifySetWays(way);
         }
+        public void MakeMove(Checker checker, int x, int y)
+        {
+            notifyDeleteFigure(checker.x, checker.y);
+            SetFigure(checker, x , y);
+            ClearWays();
+            UnselectFigures();
+        }
+        public void MakeEat(Checker checker, int x, int y)
+        {
+
+        }
         public bool IsEat()//ищет есть ли взятия
         {
-            foreach (Checker ch in checkers[(int)color])
+            foreach (Checker checker in checkers[(int)color])
             {
-
+                if (checker.IsEat(board))
+                    return true;
             }
             return false;
+        }
+
+        void ClearWays()
+        {
+            foreach (Tuple<int, int> cell in way)
+            {
+                board[cell.Item1, cell.Item2].isEmpty();
+                notifyDeleteFigure(cell.Item1, cell.Item2);
+            }
+            way.Clear();
         }
     }
 }

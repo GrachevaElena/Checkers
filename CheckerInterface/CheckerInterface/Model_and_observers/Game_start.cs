@@ -25,29 +25,6 @@ namespace CheckerInterface
             checkers[0] = new List<Checker>();
             checkers[1] = new List<Checker>();
         }
-        public void registerObserver(iObserver o)
-        {
-            observers.Add(o);
-        }
-        public void removeObserver(iObserver o)
-        {
-            observers.Remove(o);
-        }
-        public void notifySetFigure(Color color, Figure figure, int x, int y, Light l)
-        {
-            foreach (iObserver obs in observers)
-                obs.updateSetFigure(color, figure, x, y, l);            
-        }
-        public void notifyDeleteFigure(int x, int y)
-        {
-            foreach (iObserver obs in observers)
-                obs.updateDeleteFigure(x, y);
-        }
-        public void notifySetWays(List<Tuple<int, int>> ways)
-        {
-            foreach (iObserver obs in observers)
-                obs.updateWay(ways);
-        }
 
         public void FillBoardAndListCheckers()
         {
@@ -68,16 +45,20 @@ namespace CheckerInterface
             board[x, y] = checkers[(int)(col)].Last();
             notifySetFigure(col, fig, x, y, Light.off);
         }    
-        private void SetFigure(Checker checker)
+        private void SetFigure(Checker checker, int x, int y)
         {
-            board[checker.x, checker.y] = checker;
-            notifySetFigure(checker.GetColor(), checker.GetFigure(), checker.x, checker.y, Light.off);
+            board[checker.x, checker.y] = new LogicCell();
+            board[x, y] = checker;
+            checker.x = x;
+            checker.y = y;
+            notifySetFigure(checker.GetColor(), checker.GetFigure(), x, y, Light.off);
         }
         private void SelectFigure(Checker checker)
         {
             selectedCheckers.Add(checker);
             notifySetFigure(checker.GetColor(), checker.GetFigure(), checker.x, checker.y, Light.on);
         }
+
         private void UnselectFigures()
         {
             foreach (Checker checker in selectedCheckers)
