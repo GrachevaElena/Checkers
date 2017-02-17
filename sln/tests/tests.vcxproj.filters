@@ -25,9 +25,6 @@
     <Filter Include="Файлы исходного кода\Search for testing">
       <UniqueIdentifier>{2a33e6b3-697d-492b-b0f2-e8be7afd46a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Заголовочные файлы\Search for testing">
-      <UniqueIdentifier>{aff36b9c-0572-431e-90e0-6c0ca6e75cc1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Файлы исходного кода\tests for Search\tests for TestSearch">
       <UniqueIdentifier>{06ca996d-cd4c-4fdc-99e9-088a21ebff1a}</UniqueIdentifier>
     </Filter>
@@ -93,10 +90,11 @@
     <ClCompile Include="..\..\test\functions for testing\TestSearch.cpp">
       <Filter>Файлы исходного кода\Search for testing</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\test\functions for testing\include\TestSearch.h">
-      <Filter>Заголовочные файлы\Search for testing</Filter>
-    </ClInclude>
+    <ClCompile Include="..\..\..\test\test_TestSearch.cpp">
+      <Filter>Файлы исходного кода\tests for Search\tests for TestSearch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\test\test_TestSearchAlphaBeta.cpp">
+      <Filter>Файлы исходного кода\tests for Search\tests for TestSearch</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
