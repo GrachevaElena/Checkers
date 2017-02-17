@@ -19,11 +19,14 @@
     <Filter Include="Файлы исходного кода\classes">
       <UniqueIdentifier>{ba6919b6-001f-4a71-b2c5-122f570b640a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Заголовочные файлы\BasicFunctions">
+      <UniqueIdentifier>{c59cdd76-387e-4aa5-b2af-798b28217e89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\BasicFunctions">
+      <UniqueIdentifier>{bb47201b-0552-4047-8cd2-3c363b3ba567}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\FunctionsMove.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Board.h">
       <Filter>Заголовочные файлы\classes</Filter>
     </ClInclude>
@@ -39,20 +42,20 @@
     <ClInclude Include="..\..\include\CheckCall.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\BasicFunctions.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Search.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Checker.h">
       <Filter>Заголовочные файлы\classes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\FunctionsMove.h">
+      <Filter>Заголовочные файлы\BasicFunctions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\BasicFunctions.h">
+      <Filter>Заголовочные файлы\BasicFunctions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\checkers\FunctionsMove.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\checkers\Board.cpp">
       <Filter>Файлы исходного кода\classes</Filter>
     </ClCompile>
@@ -62,20 +65,23 @@
     <ClCompile Include="CheckCall.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\checkers\Generate.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\checkers\Move.cpp">
       <Filter>Файлы исходного кода\classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\checkers\Evaluate.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\checkers\MakeMove.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\checkers\Search.cpp">
       <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\checkers\Evaluate.cpp">
+      <Filter>Файлы исходного кода\BasicFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\checkers\FunctionsMove.cpp">
+      <Filter>Файлы исходного кода\BasicFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\checkers\Generate.cpp">
+      <Filter>Файлы исходного кода\BasicFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\checkers\MakeMove.cpp">
+      <Filter>Файлы исходного кода\BasicFunctions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
