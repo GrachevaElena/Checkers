@@ -9,10 +9,10 @@ namespace CheckerInterface
     public class Moves
     {
         public List<Tuple<int, int>> []way = new List<Tuple<int, int>>[4]; //шашка может идти в 4 направлениях
-        public Checker []eaten = new Checker[4];//за 1 шаг шашка съест не более 1 шашки из 1, 2, 3 или 4 возможных 
+        public Checker []canBeEaten = new Checker[4];//за 1 шаг шашка съест не более 1 шашки из 1, 2, 3 или 4 возможных 
         public Checker selectedChecker;
         public List<Checker> preDeleteChecker = new List<Checker>();
-        List<Checker> canEat = new List<Checker>();
+        public List<Checker> canEat = new List<Checker>();
         public Moves()
         {
             for (int i = 0; i<4; i++)
@@ -22,13 +22,18 @@ namespace CheckerInterface
         {
             way[FindIndex(x, y)].Add(new Tuple<int, int>(x, y));
         }
-        public void AddEat(Checker ch)
+        public void AddCanBeEaten(Checker ch)
         {
-            eaten[FindIndex(ch.x, ch.y)] = ch;
+            canBeEaten[FindIndex(ch.x, ch.y)] = ch;
+        }
+        public void AddPreDelete(int x, int y)
+        {
+            preDeleteChecker.Add(canBeEaten[FindIndex(x,y)]);
+            preDeleteChecker.Last().ChangeColor();
         }
         public Checker GetEatenChecker(int x, int y)
         {
-            return eaten[FindIndex(x, y)];
+            return canBeEaten[FindIndex(x, y)];
         }
         public void AddCanEat(Checker checker)
         {          

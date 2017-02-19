@@ -10,8 +10,6 @@ namespace CheckerInterface
     {
         public static LogicBoard board = new LogicBoard();
         public static Moves moves = new Moves();
-        public static bool isEat = false;
-        public bool processingEat = false;
 
         private Color color;
         private List<iObserver> observers = new List<iObserver>();
@@ -61,11 +59,6 @@ namespace CheckerInterface
             board[checker.x, checker.y] = new LogicCell();
             notifyDeleteCheckerOrWay(checker.x, checker.y);
         }
-        public void PreDeleteChecker(Checker checker)
-        {
-            moves.preDeleteChecker.Add(checker);
-            checker.ChangeColor();
-        }
 
         public bool SearchAnyMove()
         {
@@ -76,13 +69,13 @@ namespace CheckerInterface
             }
             return false;
         }
-        public void SearchBeatingAndWriteToMove()//ищет есть ли взятия
+        public void SearchEatingAndWriteToMove()//ищет есть ли взятия
         {
             foreach (Checker checker in checkers[(int)color])
             {
                 if (checker.CanEat())
                 {
-                    isEat = true;
+                    statusGame = StatusGame.waitEat;
                     checker.SetLight(true);
                     moves.AddCanEat(checker);
                     notifySetChecker(checker);
@@ -92,70 +85,62 @@ namespace CheckerInterface
         private void SelectCheckerAndSearchWay(int x, int y)
         {
             Checker ch = board[x, y].GetChecker();
-            if (moves.selectedChecker != null && moves.selectedChecker != ch)
-                Miss();
+            moves.selectedChecker = ch;
+            ch.SetLight(true);//поставили подсветку
+            notifySetChecker(ch);//обновили на форме
+            ch.SearchWay();//нашли пути
 
-            if (!isEat || isEat && ch.GetIsLight()) //(если нет взятий) или (есть взятия и шашка может есть)
-            {
-                moves.selectedChecker = ch;
-                ch.SetLight(true);
-                notifySetChecker(ch);
-                if (isEat && ch.GetIsLight())
-                    ch.SearchEat();
-                else
-                    ch.SearchWay();
-
-                for (int i = 0; i < 4; i++)
-                    {
-                        foreach (Tuple<int, int> cell in moves.way[i])
-                            board[cell.Item1, cell.Item2].SetIsWay(true);
-                        notifySetWays(moves.way[i]);
-                    }
-
-            }
+            for (int i = 0; i < 4; i++)//отобразили пути
+                notifySetWays(moves.way[i]);
         }
-        private void MakeMove(Checker ch, int x, int y)
+        private void SelectCheckerAndSearchEat(int x, int y)
         {
-            MoveChecker(ch, x, y);
-            Miss();
+            Checker ch = board[x, y].GetChecker();
+            moves.selectedChecker = ch;
+            ch.SetLight(true);//поставили подсветку
+            notifySetChecker(ch);//обновили на форме
+            ch.SearchEat();//нашли пути
+
+            for (int i = 0; i < 4; i++)//отобразили пути
+                notifySetWays(moves.way[i]);
         }
         private bool MakeEat(Checker checker, int x, int y)
         {
-            processingEat = true;
-            PreDeleteChecker(moves.GetEatenChecker(x, y));
-            MoveChecker(checker, x, y);
-            if (checker.CanEat())
-            {
-                SelectCheckerAndSearchWay(x, y);            
+            moves.AddPreDelete(x, y);
+            MoveChecker(checker, x, y);        
+            if (checker.CanEat())      
                 return false;
-            }
             foreach (Checker ch in moves.preDeleteChecker)
-            {
                 DeleteChecker(ch);
-            }
-            processingEat = false;
-            isEat = false;
+            moves.preDeleteChecker.Clear();
             return true;
         }
-        private void Miss()//графическая и логическая обработка, когда при нажатии на клетку произошел "промах" - нажатие на пустую клетку или шашку противника
-        {      
-            if (!processingEat)     
-                for (int i = 0; i < 4; i++)
-                {
-                    foreach (Tuple<int, int> cell in moves.way[i])
-                    {
-                        board[cell.Item1, cell.Item2].SetIsWay(false);
-                        if (board[cell.Item1, cell.Item2].isEmpty())
-                            notifyDeleteCheckerOrWay(cell.Item1, cell.Item2);
-                    }
-                    moves.way[i].Clear();
-                }
-            if (!isEat && moves.selectedChecker != null)
+        public void ClearWays()
+        {
+            for (int i = 0; i < 4; i++)
             {
-                moves.selectedChecker.SetLight(false);
-                notifySetChecker(moves.selectedChecker);
+                foreach (Tuple<int, int> cell in moves.way[i])//очищаем все пути
+                {
+                    board[cell.Item1, cell.Item2].SetIsWay(false);
+                    if (board[cell.Item1, cell.Item2].isEmpty())
+                        notifyDeleteCheckerOrWay(cell.Item1, cell.Item2);
+                }
+                moves.way[i].Clear();
             }
         }
-
+        public void ClearSelectedCanEat()
+        {
+            foreach(Checker ch in moves.canEat)
+            {
+                ch.SetLight(false);
+                notifySetChecker(ch);
+            }
+            moves.canEat.Clear();
+        }
+        public void ClearSelected()
+        {
+            moves.selectedChecker.SetLight(false);
+            notifySetChecker(moves.selectedChecker);
+        }
     }
 }

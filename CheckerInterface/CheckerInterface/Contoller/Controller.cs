@@ -63,7 +63,7 @@ namespace CheckerInterface
                         {
                             game_model.NextPlayer();
                             if (game_model.SearchAnyMove())
-                                game_model.SearchBeatingAndWriteToMove();
+                                game_model.SearchEatingAndWriteToMove();
                             else
                             {
                                 //game over

@@ -45,11 +45,11 @@ namespace CheckerInterface
 
         public             int GetLight()
         {
-            return Convert.ToInt32(GetIsWay());
+            return Convert.ToInt32(base.GetIsWay());
         }
         public Color GetOtherColor()
         {
-            return color = (Color)((int)color ^ 3);
+            return color = (Color)((int)color ^ 1);
         }
         public      void SetLight(bool f)
         {
@@ -57,7 +57,7 @@ namespace CheckerInterface
         }
         public void ChangeColor()
         {
-            color = (Color)((int)color ^ 3);
+            color = (Color)((int)color ^ 1);
         }
         public            void SetDamka()
         {
@@ -74,7 +74,10 @@ namespace CheckerInterface
                         int x1 = x + dx[i];
                         int y1 = y + dy[(int)color];
                         if (Inside(x1, y1) && IsEmpty(x1, y1))
-                            Game.moves.AddWay(x1,y1);
+                        {
+                            Game.moves.AddWay(x1, y1);
+                            Game.board[x1, y1].SetIsWay(true);
+                        }
                     }
                     break;
                 case Figure.damka:
@@ -94,8 +97,9 @@ namespace CheckerInterface
                             int y1 = y + dy[j];
                             if (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx[i], y1 + dy[j]]))
                             {
-                                Game.moves.AddEat(Game.board[x1, y1].GetChecker());
+                                Game.moves.AddCanBeEaten(Game.board[x1, y1].GetChecker());
                                 Game.moves.AddWay(x1 + dx[i], y1 + dy[j]);
+                                Game.board[x1 + +dx[i], y1 + dy[j]].SetIsWay(true);
                             }
                         }
                     break;

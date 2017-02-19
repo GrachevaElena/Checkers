@@ -17,12 +17,6 @@ namespace CheckerInterface
         bot,
         human
     }
-   /* public enum StatusGame
-    {
-        wait,
-        selected,
-        isEat
-    }*/
     public partial class Game : iSubject, iGame
     {
         private StatusApplication statusApplication = StatusApplication.menu;
