@@ -56,9 +56,9 @@ namespace CheckerInterface
             body.Image = imgWay;
         }
 
-        public void SetFigure(Color col, Figure fig, Light l)
+        public void SetChecker(Checker ch)
         {
-            body.Image = imgFigure[(int)col, (int)fig, (int)l];      
+            body.Image = imgFigure[(int)ch.GetColor(), (int)ch.GetFigure(), ch.GetLight()];      
         }
 
         public void ClickCell(object sender, EventArgs e)

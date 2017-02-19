@@ -23,7 +23,7 @@ namespace CheckerInterface
         selected,
         isEat
     }*/
-    public partial class Game_model : iSubject, iGame
+    public partial class Game : iSubject, iGame
     {
         private StatusApplication statusApplication = StatusApplication.menu;
         private StatusPlayer[] statusPlayer = new StatusPlayer[2];

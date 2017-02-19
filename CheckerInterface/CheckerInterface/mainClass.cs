@@ -16,7 +16,7 @@ namespace CheckerInterface
         static void Main()
         {
             Application.SetCompatibleTextRenderingDefault(false);
-            Game_model game = new Game_model();
+            Game game = new Game();
             iController controller = new Controller(game, game);
             /*Application.EnableVisualStyles();                   //для проверки, а не запорол ли запуск программы)
             Application.SetCompatibleTextRenderingDefault(false);

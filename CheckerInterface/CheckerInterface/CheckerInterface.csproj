@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model_and_observers\Moves.cs" />
     <Compile Include="Model_and_observers\Objects_obsrvers\Game_object.cs" />
     <Compile Include="Model_and_observers\Game_status.cs" />
     <Compile Include="Model_and_observers\Game_step.cs" />
@@ -60,7 +61,7 @@
     <Compile Include="View\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model_and_observers\Game_start.cs" />
+    <Compile Include="Model_and_observers\Game_instruments.cs" />
     <Compile Include="Contoller\Controller.cs" />
     <Compile Include="Contoller\iController.cs" />
     <Compile Include="Model_and_observers\iGame.cs" />

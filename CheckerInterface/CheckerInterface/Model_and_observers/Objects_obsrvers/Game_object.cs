@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CheckerInterface
 {
-    public partial class Game_model : iSubject, iGame
+    public partial class Game : iSubject, iGame
     {
         public void registerObserver(iObserver o)
         {
@@ -16,15 +16,15 @@ namespace CheckerInterface
         {
             observers.Remove(o);
         }
-        public void notifySetFigure(Color color, Figure figure, int x, int y, Light l)
+        public void notifySetChecker(Checker ch)
         {
             foreach (iObserver obs in observers)
-                obs.updateSetFigure(color, figure, x, y, l);
+                obs.updateSetChecker(ch);
         }
-        public void notifyDeleteFigure(int x, int y)
+        public void notifyDeleteCheckerOrWay(int x, int y)
         {
             foreach (iObserver obs in observers)
-                obs.updateDeleteFigure(x, y);
+                obs.updateDeleteChecker(x, y);
         }
         public void notifySetWays(List<Tuple<int, int>> ways)
         {

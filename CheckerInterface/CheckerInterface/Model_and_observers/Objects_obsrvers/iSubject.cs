@@ -11,8 +11,8 @@ namespace CheckerInterface
         void registerObserver(iObserver o);
         void removeObserver(iObserver o);
 
-        void notifySetFigure(Color color, Figure figure, int x, int y, Light l);
+        void notifySetChecker(Checker ch);
         void notifySetWays(List<Tuple<int, int>> way);
-        void notifyDeleteFigure(int x, int y);
+        void notifyDeleteCheckerOrWay(int x, int y);
     }
 }

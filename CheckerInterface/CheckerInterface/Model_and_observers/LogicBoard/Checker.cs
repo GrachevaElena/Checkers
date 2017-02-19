@@ -38,21 +38,43 @@ namespace CheckerInterface
         {
             return this;
         }
+        public override bool GetIsWay()
+        {
+            return false;
+        }
 
-        public override void SearchWay(List<Tuple<int, int>> way, LogicBoard board)
+        public             int GetLight()
+        {
+            return Convert.ToInt32(GetIsWay());
+        }
+        public Color GetOtherColor()
+        {
+            return color = (Color)((int)color ^ 3);
+        }
+        public      void SetLight(bool f)
+        {
+            SetIsWay(f);
+        }
+        public void ChangeColor()
+        {
+            color = (Color)((int)color ^ 3);
+        }
+        public            void SetDamka()
+        {
+            figure = Figure.damka;
+        }      
+
+        public override void SearchWay()
         {
             switch (GetFigure())
             {
                 case Figure.checker:
                     for (int i = 0; i < 2; i++)
                     {
-                        int _x = x + dx[i];
-                        int _y = y + dy[(int)color];
-                        if (Inside(_x, _y) && board[_x, _y].isEmpty())
-                        {
-                            way.Add(new Tuple <int, int>( _x, _y));
-                            board[_x, _y].SetIsWay(true);
-                        }
+                        int x1 = x + dx[i];
+                        int y1 = y + dy[(int)color];
+                        if (Inside(x1, y1) && IsEmpty(x1, y1))
+                            Game.moves.AddWay(x1,y1);
                     }
                     break;
                 case Figure.damka:
@@ -60,19 +82,7 @@ namespace CheckerInterface
                     break;
             }
         }
-        public override void  SearchEat(List<Checker> eat, LogicBoard board)
-        {
-            switch (GetFigure())
-            {
-                case Figure.checker:
-
-                    break;
-                case Figure.damka:
-
-                    break;
-            }
-        }
-        public override bool IsEat(LogicBoard board)
+        public override void  SearchEat()
         {
             switch (GetFigure())
             {
@@ -80,9 +90,32 @@ namespace CheckerInterface
                     for (int i = 0; i < 2; i++)
                         for (int j = 0; j < 2; j++)
                         {
-                            int _x = x + dx[i];
-                            int _y = y + dy[j];
-                            if (Inside(_x, _y) && Inside(_x + dx[i], _y + dy[j]) && CanBeEaten(board[_x, _y], board[_x + dx[i], _y + dy[j]]))
+                            int x1 = x + dx[i];
+                            int y1 = y + dy[j];
+                            if (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx[i], y1 + dy[j]]))
+                            {
+                                Game.moves.AddEat(Game.board[x1, y1].GetChecker());
+                                Game.moves.AddWay(x1 + dx[i], y1 + dy[j]);
+                            }
+                        }
+                    break;
+                case Figure.damka:
+
+                    break;
+            }
+        }
+
+        public bool CanEat()
+        {
+            switch (GetFigure())
+            {
+                case Figure.checker:
+                    for (int i = 0; i < 2; i++)
+                        for (int j = 0; j < 2; j++)
+                        {
+                            int x1 = x + dx[i];
+                            int y1 = y + dy[j];
+                            if (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx[i], y1 + dy[j]]))
                                 return true;
                         }
                     return false;
@@ -92,11 +125,36 @@ namespace CheckerInterface
             }
             return false;
         }            
+        public bool SearchAnyMove()
+        {
+            switch (GetFigure())
+            {
+                case Figure.checker:
+                    for (int i = 0; i < 2; i++)
+                        for (int j = 0; j < 2; j++)
+                        {
+                            int x1 = x + dx[i];
+                            int y1 = y + dy[j];
+                            if (Inside(x1, y1) && Game.board[x1, y1].isEmpty())
+                                return true;
+                            if (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx[i], y1 + dy[j]]))
+                                return true;
+                        }
+                    return false;
+                case Figure.damka:
 
+                    break;
+            }
+            return false;
+        }
 
         private bool Inside(int x, int y)
         {
             return (x < 8 && y < 8 && x >= 0 && y >= 0);
+        }
+        private bool IsEmpty(int x, int y)
+        {
+            return (Game.board[x, y].isEmpty());
         }
         private bool CanBeEaten(LogicCell checker, LogicCell nextCell)
         {

@@ -15,7 +15,7 @@ namespace CheckerInterface
         iController controller;
         iGame game;
         ViewBoard board;
-        public Form1(Controller _contoller, Game_model _game)
+        public Form1(Controller _contoller, Game _game)
         {
             controller = _contoller;
             game = _game;
@@ -24,11 +24,11 @@ namespace CheckerInterface
             this.KeyDown += new KeyEventHandler(OnKeyDown);
         }
 
-        void iObserver.updateSetFigure(Color color, Figure figure, int x, int y, Light l)
+        void iObserver.updateSetChecker(Checker ch)
         {
-            board[x, y].SetFigure(color, figure, l);
+            board[ch.x, ch.y].SetChecker(ch);
         }
-        void iObserver.updateDeleteFigure(int x, int y)
+        void iObserver.updateDeleteChecker(int x, int y)
         {
             board[x, y].SetEmpty();
         }

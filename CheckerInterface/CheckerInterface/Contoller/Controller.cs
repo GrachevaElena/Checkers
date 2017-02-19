@@ -13,7 +13,7 @@ namespace CheckerInterface
         Form1 form_view;
         iSubject game_observer;
 
-        public Controller(Game_model game, iSubject game_observer)
+        public Controller(Game game, iSubject game_observer)
         {
             this.game_model = game;
             form_view = new Form1(this, game);
@@ -62,7 +62,12 @@ namespace CheckerInterface
                         if (game_model.HumanStep(x, y) == true)
                         {
                             game_model.NextPlayer();
-                            game_model.SearchEat();
+                            if (game_model.SearchAnyMove())
+                                game_model.SearchBeatingAndWriteToMove();
+                            else
+                            {
+                                //game over
+                            }
                         }
                     }
                     break;
