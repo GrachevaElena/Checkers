@@ -104,7 +104,23 @@ namespace CheckerInterface
                         }
                     break;
                 case Figure.damka:
-
+                    for (int i = 0; i < 2; i++)
+                        for (int j = 0; j < 2; j++)
+                        {
+                            int x1 = x + dx[i];
+                            int y1 = y + dy[j];
+                            while (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && IsEmptyInBoard(x1, y1))
+                            {
+                                x1 += dx[i];
+                                y1 = y + dy[j];
+                            }
+                                if (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx[i], y1 + dy[j]]))
+                                {
+                                    Game.moves.AddCanBeEaten(Game.board[x1, y1].GetChecker());
+                                    Game.moves.AddWay(x1 + dx[i], y1 + dy[j]);
+                                    Game.board[x1 + +dx[i], y1 + dy[j]].SetIsWay(true);
+                                }
+                        }
                     break;
             }
         }
@@ -124,8 +140,20 @@ namespace CheckerInterface
                         }
                     return false;
                 case Figure.damka:
-
-                    break;
+                    for (int i = 0; i < 2; i++)
+                        for (int j = 0; j < 2; j++)
+                        {
+                            int x1 = x + dx[i];
+                            int y1 = y + dy[j];
+                            while (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && IsEmptyInBoard(x1, y1))
+                            {
+                                x1 += dx[i];
+                                y1 = y + dy[j];
+                            }
+                            if (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx[i], y1 + dy[j]]))
+                                return true;
+                        }
+                    return false;
             }
             return false;
         }            
