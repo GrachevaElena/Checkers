@@ -73,7 +73,7 @@ namespace CheckerInterface
                     {
                         int x1 = x + dx[i];
                         int y1 = y + dy[(int)color];
-                        if (Inside(x1, y1) && IsEmpty(x1, y1))
+                        if (Inside(x1, y1) && IsEmptyInBoard(x1, y1))
                         {
                             Game.moves.AddWay(x1, y1);
                             Game.board[x1, y1].SetIsWay(true);
@@ -156,7 +156,7 @@ namespace CheckerInterface
         {
             return (x < 8 && y < 8 && x >= 0 && y >= 0);
         }
-        private bool IsEmpty(int x, int y)
+        private bool IsEmptyInBoard(int x, int y)
         {
             return (Game.board[x, y].isEmpty());
         }
