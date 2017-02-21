@@ -29,7 +29,7 @@ extern "C" __declspec(dllexport) int __stdcall CallBot(int* w_coords, int* w_typ
 		int eaten[MaxEaten]; bestMove.GetEaten(eaten);
 		//записываются справа-налево, как все остальное
 		for (int i = 0; i < bestMove.GetNEaten(); i++) {
-			res |= 1 << (14+eaten[i]);
+			res |= 1 << (14+eaten[i]-1);
 		}
 	}
 
