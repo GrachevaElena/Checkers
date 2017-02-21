@@ -46,10 +46,13 @@ int SearchAlphaBeta(int color, int depth, int alpha, int beta, Move * bestMove) 
 		tmp = -SearchAlphaBeta(!color, depth - 1, -beta, -alpha, 0);
 		UnMakeMove(*pmove);
 		
-		if (tmp > alpha) alpha = tmp;
+		if (tmp > alpha) {
+			alpha = tmp;
+			if (bestMove) *bestMove = *pmove;
+		}
 		if (alpha>=beta){
 			cache.Rollback(saved);
-			return beta;//вернуть неизмененное alpha
+			return alpha;//вернуть то, что меньше, чтобы не перезаписал
 		}
 	}
 
