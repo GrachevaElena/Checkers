@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\checkers\Board.cpp" />
+    <ClCompile Include="..\..\checkers\Bot.cpp" />
     <ClCompile Include="..\..\checkers\Evaluate.cpp" />
     <ClCompile Include="..\..\checkers\FunctionsMove.cpp" />
     <ClCompile Include="..\..\checkers\Generate.cpp" />

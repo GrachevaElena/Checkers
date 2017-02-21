@@ -96,5 +96,8 @@
     <ClCompile Include="..\..\test\test_TestSearch.cpp">
       <Filter>Файлы исходного кода\tests for Search\tests for TestSearch</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\checkers\Bot.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
