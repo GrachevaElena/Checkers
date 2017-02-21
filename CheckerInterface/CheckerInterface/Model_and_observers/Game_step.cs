@@ -18,7 +18,7 @@ namespace CheckerInterface
     }
     public partial class Game : iSubject, iGame
     {
-        [DllImport("C:/Users/Alyona/Documents/Visual Studio 2015/Project/Serious projects/Checkers/CheckerInterface/Checkers/bin/Debug/Checkers.dll")] 
+        [DllImport(@"Checkers.dll")] 
         static extern int CallBot(int[] w_coords, int[] w_types, int w_n, int[] b_coords, int[] b_types, int b_n, int color);
 
 
@@ -29,7 +29,7 @@ namespace CheckerInterface
             int[] _null = new int[1];
             _null[0] = 0;
             res = CallBot(_null, _null, 0, _null, _null, 0, (int)color);
-            if ((res&1)==0) MessageBox.Show("Game Over");
+            if ((res&1)==1) MessageBox.Show("Game Over");
             return false;
         }
         public void NextPlayer()
