@@ -16,50 +16,50 @@ void SetCoord(int);
 void SetNum(int);
 
 TEST(test_functions_move, OnBoard) {
-	ASSERT_TRUE(OnBoard(0));
-	ASSERT_TRUE(OnBoard(63));
-	ASSERT_FALSE(OnBoard(-1));
-	ASSERT_FALSE(OnBoard(64));
+	EXPECT_TRUE(OnBoard(0));
+	EXPECT_TRUE(OnBoard(63));
+	EXPECT_FALSE(OnBoard(-1));
+	EXPECT_FALSE(OnBoard(64));
 }
 
 TEST(test_functions_move, IsBlack) {
-	ASSERT_TRUE(IsBlack(1));
-	ASSERT_TRUE(IsBlack(26));
-	ASSERT_FALSE(IsBlack(0));
-	ASSERT_FALSE(IsBlack(27));
+	EXPECT_TRUE(IsBlack(1));
+	EXPECT_TRUE(IsBlack(26));
+	EXPECT_FALSE(IsBlack(0));
+	EXPECT_FALSE(IsBlack(27));
 }
 
 TEST(test_functions_move, Inside) {
-	ASSERT_TRUE(Inside(1));
-	ASSERT_TRUE(Inside(62));
-	ASSERT_FALSE(Inside(0));
-	ASSERT_FALSE(Inside(-100));
-	ASSERT_FALSE(Inside(32));
+	EXPECT_TRUE(Inside(1));
+	EXPECT_TRUE(Inside(62));
+	EXPECT_FALSE(Inside(0));
+	EXPECT_FALSE(Inside(-100));
+	EXPECT_FALSE(Inside(32));
 }
 
 TEST(test_functions_move, OnLastRow) {
 	SetColor (WHITE);
-	ASSERT_TRUE(OnLastRow(8));
-	ASSERT_FALSE(OnLastRow(23));
+	EXPECT_TRUE(OnLastRow(8));
+	EXPECT_FALSE(OnLastRow(23));
 	SetColor(BLACK);
-	ASSERT_TRUE(OnLastRow(23));
-	ASSERT_FALSE(OnLastRow(8));
+	EXPECT_TRUE(OnLastRow(23));
+	EXPECT_FALSE(OnLastRow(8));
 }
 
 TEST(test_functions_move, Perp) {
-	ASSERT_TRUE(7 == Perp(9));
-	ASSERT_TRUE(-7 == Perp(-9));
-	ASSERT_TRUE(-9 == Perp(-7));
-	ASSERT_TRUE(9 == Perp(7));
+	EXPECT_TRUE(7 == Perp(9));
+	EXPECT_TRUE(-7 == Perp(-9));
+	EXPECT_TRUE(-9 == Perp(-7));
+	EXPECT_TRUE(9 == Perp(7));
 }
 
 TEST(test_functions_move, CanMove) {
 	int coord = 5;
 
-	ASSERT_TRUE(CanMove(coord+forwardRight[0]));
-	ASSERT_TRUE(CanMove(coord+forwardRight[0]));
-	ASSERT_TRUE(CanMove(coord+backRight[0]));
-	ASSERT_FALSE(CanMove(coord+forwardLeft[0]));
+	EXPECT_TRUE(CanMove(coord+forwardRight[0]));
+	EXPECT_TRUE(CanMove(coord+forwardRight[0]));
+	EXPECT_TRUE(CanMove(coord+backRight[0]));
+	EXPECT_FALSE(CanMove(coord+forwardLeft[0]));
 }
 
 TEST(test_functions_move, CanEatChecker) {
@@ -74,14 +74,14 @@ TEST(test_functions_move, CanEatChecker) {
 	board[17]->SetColor(BLACK);
 	board[44]->SetColor(WHITE);
 
-	ASSERT_TRUE(CanEatChecker(backLeft[WHITE]));
-	ASSERT_FALSE(CanEatChecker(forwardRight[WHITE]));
-	ASSERT_FALSE(CanEatChecker(forwardLeft[WHITE]));
-	ASSERT_FALSE(CanEatChecker(backRight[WHITE]));
+	EXPECT_TRUE(CanEatChecker(backLeft[WHITE]));
+	EXPECT_FALSE(CanEatChecker(forwardRight[WHITE]));
+	EXPECT_FALSE(CanEatChecker(forwardLeft[WHITE]));
+	EXPECT_FALSE(CanEatChecker(backRight[WHITE]));
 
 	board[14] = &(ch[0]);
 	board[28] = NULL;
-	ASSERT_FALSE(CanEatChecker(backLeft[WHITE]));
+	EXPECT_FALSE(CanEatChecker(backLeft[WHITE]));
 
 	board.Clean();
 }
@@ -98,10 +98,10 @@ TEST(test_functions_move, CanEatDamka) {
 	board[8]->SetColor(BLACK);
 	board[28]->SetColor(WHITE);
 
-	ASSERT_TRUE(CanEatDamka(backRight[WHITE]));
-	ASSERT_FALSE(CanEatDamka(forwardRight[WHITE]));
-	ASSERT_FALSE(CanEatDamka(forwardLeft[WHITE]));
-	ASSERT_FALSE(CanEatDamka(backLeft[WHITE]));
+	EXPECT_TRUE(CanEatDamka(backRight[WHITE]));
+	EXPECT_FALSE(CanEatDamka(forwardRight[WHITE]));
+	EXPECT_FALSE(CanEatDamka(forwardLeft[WHITE]));
+	EXPECT_FALSE(CanEatDamka(backLeft[WHITE]));
 
 	board.Clean();
 }
@@ -113,7 +113,7 @@ TEST(test_functions_move, SearchMoveChecker_return_1_if_can_eat)
 	Checker ch; ch.SetColor(BLACK);
 	board[44] = &ch;
 
-	ASSERT_TRUE(SearchMoveChecker(ch1));
+	EXPECT_TRUE(SearchMoveChecker(ch1));
 
 	board.Clean();
 }
@@ -124,7 +124,7 @@ TEST(test_functions_move, SearchMoveDamka_return_1_if_can_eat)
 	Checker ch; ch.SetColor(BLACK);
 	board[53] = &ch;
 
-	ASSERT_TRUE(SearchMoveDamka(ch1));
+	EXPECT_TRUE(SearchMoveDamka(ch1));
 
 	board.Clean();
 }
@@ -136,7 +136,7 @@ TEST(test_functions_move, SearchMoveChecker_saves_moves) {
 
 	SearchMoveChecker(ch1);
 
-	ASSERT_EQ(1, cache.CurPos());
+	EXPECT_EQ(1, cache.CurPos());
 
 	board.Clean();
 	cache.Clean();
@@ -149,7 +149,7 @@ TEST(test_functions_move, SearchMoveDamka_saves_moves) {
 
 	SearchMoveDamka(ch1);
 
-	ASSERT_EQ(10, cache.CurPos());
+	EXPECT_EQ(10, cache.CurPos());
 	
 	board.Clean();
 	cache.Clean();
@@ -165,7 +165,7 @@ TEST(test_functions_move, SearchEatChecker_saves_moves) {
 
 	SearchEatChecker(ch1);
 
-	ASSERT_EQ(3, cache.CurPos());
+	EXPECT_EQ(3, cache.CurPos());
 
 	board.Clean();
 	cache.Clean();
@@ -181,7 +181,7 @@ TEST(test_functions_move, SearchEatDamka_saves_moves) {
 
 	SearchEatDamka(ch1);
 
-	ASSERT_EQ(5, cache.CurPos());
+	EXPECT_EQ(5, cache.CurPos());
 
 	board.Clean();
 	cache.Clean();
@@ -193,8 +193,8 @@ TEST(test_functions_move, SearchMoveChecker_become_damka) {
 
 	SearchMoveChecker(ch1);
 
-	ASSERT_EQ(2, cache.CurPos());
-	ASSERT_TRUE(cache.Pop().GetType());
+	EXPECT_EQ(2, cache.CurPos());
+	EXPECT_TRUE(cache.Pop().GetType());
 
 	board.Clean();
 	cache.Clean();
@@ -208,8 +208,8 @@ TEST(test_functions_move, SearchEatChecker_become_damka) {
 
 	SearchEatChecker(ch1);
 
-	ASSERT_EQ(1, cache.CurPos());
-	ASSERT_TRUE(cache.Pop().GetType());
+	EXPECT_EQ(1, cache.CurPos());
+	EXPECT_TRUE(cache.Pop().GetType());
 
 	board.Clean();
 	cache.Clean();
@@ -223,10 +223,10 @@ TEST(test_functions_move, SearchEatChecker_become_damka_if_in_corner) {
 
 	SearchEatChecker(ch1);
 
-	ASSERT_EQ(1, cache.CurPos());
+	EXPECT_EQ(1, cache.CurPos());
 	Move move = cache.Pop();
-	ASSERT_TRUE(move.GetType());
-	ASSERT_EQ(move.GetFinalCoord(), 56);
+	EXPECT_TRUE(move.GetType());
+	EXPECT_EQ(move.GetFinalCoord(), 56);
 
 	board.Clean();
 	cache.Clean();
@@ -241,10 +241,10 @@ TEST(test_functions_move, SearchEatChecker_become_damka_and_continue) {
 
 	SearchEatChecker(ch1);
 
-	ASSERT_EQ(1, cache.CurPos());
+	EXPECT_EQ(1, cache.CurPos());
 	Move move = cache.Pop();
-	ASSERT_TRUE(move.GetType());
-	ASSERT_EQ(move.GetFinalCoord(),5);
+	EXPECT_TRUE(move.GetType());
+	EXPECT_EQ(move.GetFinalCoord(),5);
 
 	board.Clean();
 	cache.Clean();
@@ -262,10 +262,10 @@ TEST(test_functions_move, SearchEatChecker_SearchEatDamka_with_black_checker) {
 
 	SearchEatChecker(ch1);
 
-	ASSERT_EQ(1, cache.CurPos());
+	EXPECT_EQ(1, cache.CurPos());
 	Move move = cache.Pop();
-	ASSERT_TRUE(move.GetType());
-	ASSERT_EQ(move.GetFinalCoord(),24);
+	EXPECT_TRUE(move.GetType());
+	EXPECT_EQ(move.GetFinalCoord(),24);
 
 	board.Clean();
 	cache.Clean();

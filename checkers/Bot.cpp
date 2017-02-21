@@ -34,7 +34,8 @@ extern "C" __declspec(dllexport) int __stdcall CallBot(int* w_coords, int* w_typ
 	}
 
 	//очистка
-	//checkers[WHITE].Clean();checkers[BLACK].Clean();
+	checkers[WHITE].Clean();
+	checkers[BLACK].Clean();
 	board.Clean();
 
 	return res;
