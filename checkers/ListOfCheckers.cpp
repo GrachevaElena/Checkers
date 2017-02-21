@@ -17,10 +17,12 @@ ListOfCheckers::ListOfCheckers()
 
 void ListOfCheckers::GenerateInitialPosition(int color, int * types, int * coords, int n)
 {
+	List[0].SetNextNum(1);
 	for (int i = 1; i <= n; i++) {
 		List[i].SetColor(color);
 		List[i].SetCoord(coords[i-1]);
 		List[i].SetType(types[i-1]);
+		List[i].SetNextNum(i + 1);
 	}
 	List[n].SetNextNum(0);
 }

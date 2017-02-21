@@ -9,7 +9,7 @@ const int DamkaPrice = 7;
 
 void Generate(ListOfCheckers&);
 
-int Evaluate(ListOfCheckers& , ListOfCheckers& );
+int Evaluate(int color);
 
 void MakeMove(Move&);
 void UnMakeMove(Move&);
