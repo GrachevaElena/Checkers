@@ -157,8 +157,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\test\test_TestSearch.cpp" />
-    <ClCompile Include="..\..\..\test\test_TestSearchAlphaBeta.cpp" />
     <ClCompile Include="..\..\checkers\Board.cpp" />
     <ClCompile Include="..\..\checkers\Evaluate.cpp" />
     <ClCompile Include="..\..\checkers\FunctionsMove.cpp" />
@@ -178,6 +176,8 @@
     <ClCompile Include="..\..\test\test_main.cpp" />
     <ClCompile Include="..\..\test\test_MakeMove.cpp" />
     <ClCompile Include="..\..\test\test_Move.cpp" />
+    <ClCompile Include="..\..\test\test_TestSearch.cpp" />
+    <ClCompile Include="..\..\test\test_TestSearchAlphaBeta.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

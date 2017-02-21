@@ -90,10 +90,10 @@
     <ClCompile Include="..\..\test\functions for testing\TestSearch.cpp">
       <Filter>Файлы исходного кода\Search for testing</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\test\test_TestSearch.cpp">
+    <ClCompile Include="..\..\test\test_TestSearchAlphaBeta.cpp">
       <Filter>Файлы исходного кода\tests for Search\tests for TestSearch</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\test\test_TestSearchAlphaBeta.cpp">
+    <ClCompile Include="..\..\test\test_TestSearch.cpp">
       <Filter>Файлы исходного кода\tests for Search\tests for TestSearch</Filter>
     </ClCompile>
   </ItemGroup>
