@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Checkers.Properties
+namespace CheckerInterface.Properties
 {
 
 

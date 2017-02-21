@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C9A4205E-E777-4F7C-8BF5-36CCB61FB438}</ProjectGuid>
+    <ProjectGuid>{C396A0BF-850E-4575-9DA5-2D37B38EB8E7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Checkers</RootNamespace>
-    <AssemblyName>Checkers</AssemblyName>
+    <RootNamespace>CheckerInterface</RootNamespace>
+    <AssemblyName>CheckerInterface</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,14 +46,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Model_and_observers\Moves.cs" />
+    <Compile Include="Model_and_observers\Objects_obsrvers\Game_object.cs" />
+    <Compile Include="Model_and_observers\Game_status.cs" />
+    <Compile Include="Model_and_observers\Game_step.cs" />
+    <Compile Include="Model_and_observers\LogicBoard\Checker.cs" />
+    <Compile Include="Model_and_observers\LogicBoard\LogicBoard.cs" />
+    <Compile Include="Model_and_observers\LogicBoard\LogicCell.cs" />
+    <Compile Include="View\ViewBoard\ViewBoard.cs" />
+    <Compile Include="View\ViewBoard\Cell.cs" />
+    <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="View\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Model_and_observers\Game_instruments.cs" />
+    <Compile Include="Contoller\Controller.cs" />
+    <Compile Include="Contoller\iController.cs" />
+    <Compile Include="Model_and_observers\iGame.cs" />
+    <Compile Include="Model_and_observers\Objects_obsrvers\iSubject.cs" />
+    <Compile Include="Model_and_observers\Objects_obsrvers\iObserver.cs" />
+    <Compile Include="mainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="View\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -64,6 +82,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
