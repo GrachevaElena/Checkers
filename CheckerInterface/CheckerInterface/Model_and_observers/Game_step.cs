@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Runtime.InteropServices;
+
 namespace CheckerInterface
 {
     enum StatusGame
@@ -15,21 +18,24 @@ namespace CheckerInterface
     }
     public partial class Game : iSubject, iGame
     {
+        [DllImport("C:/Users/Alyona/Documents/Visual Studio 2015/Project/Serious projects/Checkers/CheckerInterface/Checkers/bin/Debug/Checkers.dll")] 
+        static extern int CallBot(int[] w_coords, int[] w_types, int w_n, int[] b_coords, int[] b_types, int b_n, int color);
+
+
         private StatusGame statusGame = StatusGame.wait;
-        /*public bool Step()
+        public bool BotStep()
         {
-            switch (statusPlayer[(int)color])
-            {
-                case StatusPlayer.bot: return true;/*1)конец игры? иначе: 2)вызов dll 3) получение лучшего хода 4)изменение модели 5) запрос на обновление 6 NextPlayer()*/
-               /* case StatusPlayer.human:
-                    //проверка на конец игры
-                    return true;
-            }
-            return true;
-        }*/
+            int res=0;
+            int[] _null = new int[1];
+            _null[0] = 0;
+            res = CallBot(_null, _null, 0, _null, _null, 0, (int)color);
+            if ((res&1)==0) MessageBox.Show("Game Over");
+            return false;
+        }
         public void NextPlayer()
         {
-            color = (Color)((int)color ^ 1);            
+            color = (Color)((int)color ^ 1);  
+           //автоматически меняется StatusPlayer
         }
         public bool HumanStep(int x, int y) //true если ход закончен
         {

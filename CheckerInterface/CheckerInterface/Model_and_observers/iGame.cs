@@ -17,6 +17,7 @@ namespace CheckerInterface
         StatusPlayer GetStatusPlayer();
 
         bool HumanStep(int x, int y);
+        bool BotStep();
         void SearchEatingAndWriteToMove();
         bool SearchAnyMove();
         void NextPlayer();

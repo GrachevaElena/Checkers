@@ -11,7 +11,6 @@ namespace CheckerInterface
     {
         iGame game_model;
         Form1 form_view;
-        iSubject game_observer;
 
         public Controller(Game game, iSubject game_observer)
         {
@@ -27,6 +26,11 @@ namespace CheckerInterface
         public void buttonOnePlayer()
         {
             form_view.VisibleButtons(false);
+            form_view.CreateBoard();
+            game_model.FillBoardAndListCheckers();
+            game_model.SetStatusApplication(StatusApplication.game);
+            game_model.SetStatusPlayers(StatusPlayer.human, StatusPlayer.bot);
+            game_model.SetStartColor(Color.white);
         }
         public void buttonTwoPlayers()
         {
@@ -62,11 +66,34 @@ namespace CheckerInterface
                         if (game_model.HumanStep(x, y) == true)
                         {
                             game_model.NextPlayer();
-                            if (game_model.SearchAnyMove())
-                                game_model.SearchEatingAndWriteToMove();
-                            else
+                            if (game_model.GetStatusPlayer() == StatusPlayer.human)
                             {
-                                //game over
+                                if (game_model.SearchAnyMove())
+                                    game_model.SearchEatingAndWriteToMove();
+                                else
+                                {
+                                    //game over
+                                }
+                            }
+                            if (game_model.GetStatusPlayer() == StatusPlayer.bot)
+                            {
+                                if (game_model.BotStep()==false)
+                                {
+                                    //game over
+                                }
+                                else
+                                {
+                                    game_model.NextPlayer();
+                                    if (game_model.GetStatusPlayer() == StatusPlayer.human)
+                                    {
+                                        if (game_model.SearchAnyMove())
+                                            game_model.SearchEatingAndWriteToMove();
+                                        else
+                                        {
+                                            //game over
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
