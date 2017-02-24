@@ -66,34 +66,22 @@ namespace CheckerInterface
                         if (game_model.HumanStep(x, y) == true)
                         {
                             game_model.NextPlayer();
-                            if (game_model.GetStatusPlayer() == StatusPlayer.human)
-                            {
-                                if (game_model.SearchAnyMove())
-                                    game_model.SearchEatingAndWriteToMove();
-                                else
-                                {
-                                    //game over
-                                }
-                            }
+
                             if (game_model.GetStatusPlayer() == StatusPlayer.bot)
                             {
-                                if (game_model.BotStep()==false)
+                                if (game_model.BotStep() == false)
                                 {
-                                    //game over
+                                    MessageBox.Show("Game over");
+                                    return;
                                 }
-                                else
-                                {
-                                    game_model.NextPlayer();
-                                    if (game_model.GetStatusPlayer() == StatusPlayer.human)
-                                    {
-                                        if (game_model.SearchAnyMove())
-                                            game_model.SearchEatingAndWriteToMove();
-                                        else
-                                        {
-                                            //game over
-                                        }
-                                    }
-                                }
+                                else game_model.NextPlayer();
+                            }
+                            if (game_model.SearchAnyMove())
+                                game_model.SearchEatingAndWriteToMove();
+                            else
+                            {
+                                MessageBox.Show("Game over");
+                                return;
                             }
                         }
                     }

@@ -17,19 +17,19 @@ extern "C" __declspec(dllexport) int __stdcall CallBot(int* w_coords, int* w_typ
 	Move bestMove;
 	SearchAlphaBeta(color, MaxDepth, -INF, INF, &bestMove);
 
-	//преобразование bestMove в res: конец ли игры(1бит)->стартовые координаты шашки(6)->конечные координаты шашки(6)->
+	//преобразование bestMove в res: конец ли игры(1бит)->номер шашки(4)->конечные координаты шашки(6)->
 	//->изменился ли вид(1)->съеденные шашки(12)
 	int res=0;
 	Move emptyMove;
 	if (bestMove == emptyMove) res |= 1;
 	else {
-		res |= bestMove.GetStartCoord() << 1;
-		res |= bestMove.GetFinalCoord() << 7;
-		res |= bestMove.GetType() << 13;
+		res |= (bestMove.GetNum()-1) << 1;
+		res |= bestMove.GetFinalCoord() << 5;
+		res |= bestMove.GetType() << 11;
 		int eaten[MaxEaten]; bestMove.GetEaten(eaten);
 		//записываются справа-налево, как все остальное
 		for (int i = 0; i < bestMove.GetNEaten(); i++) {
-			res |= 1 << (14+eaten[i]-1);
+			res |= 1 << (12+eaten[i]-1);
 		}
 	}
 

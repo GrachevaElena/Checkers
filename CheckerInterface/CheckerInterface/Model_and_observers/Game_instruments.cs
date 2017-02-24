@@ -41,7 +41,7 @@ namespace CheckerInterface
             board[ch.x, ch.y] = ch;
             notifySetChecker(ch);
         }    
-        private void MoveChecker(Checker checker, int x, int y)//перемещение шашки и контроль за становлением дамки
+        private void MoveChecker(Checker checker, int x, int y, int type=0)//перемещение шашки и контроль за становлением дамки
         {
             board[checker.x, checker.y] = new LogicCell();
             notifyDeleteCheckerOrWay(checker.x, checker.y);
@@ -49,7 +49,8 @@ namespace CheckerInterface
             checker.x = x;
             checker.y = y;
             checker.SetLight(false);
-            if (y == ((int)checker.GetColor()) * 7) //контроль за становлением дамки
+            if (type==1) checker.SetDamka();
+            else if (y == ((int)checker.GetColor()) * 7) //контроль за становлением дамки
                 checker.SetDamka();
             notifySetChecker(checker);
         }
