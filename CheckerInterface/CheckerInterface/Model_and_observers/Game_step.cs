@@ -14,7 +14,8 @@ namespace CheckerInterface
         waitStep,
         waitEat,
         waitEatSelect,
-        eating
+        eating,
+        endEating 
     }
     public partial class Game : iSubject, iGame
     {
@@ -34,18 +35,55 @@ namespace CheckerInterface
                     SetArraysForBotStep();
                     int res = CallBot(w_coords, w_types, w_n, b_coords, b_types, b_n, (int)color);
                     DecipherRes(res);
-    
+
                     if (botMove.end == 1) return true;
-                    ShowBotWay();
-                    statusGame = StatusGame.waitStep;
-                    return false;
+
+                    switch (botMove.eaten.Count)
+                    {
+                        case 0:
+                            ShowBotWay(botMove.x, botMove.y);
+                            statusGame = StatusGame.waitStep;
+                            return false;
+                        case 1:
+                            ShowBotWay(botMove.x, botMove.y);
+                            statusGame = StatusGame.endEating;
+                            return false;
+                        default:
+                            botMove.numEaten = 0;
+                            SearchInterm();
+                            ShowBotWay(botMove.interm.Item1, botMove.interm.Item2);
+                            statusGame = StatusGame.eating;
+                            return false;
+
+                    }
 
                 case StatusGame.waitStep:
-                    MoveChecker(botMove.selectedChecker, botMove.way[0].Item1, botMove.way[0].Item2, botMove.becomeDamka);
-                    int count = botMove.eaten.Count;
-                    for (int i = 0; i < count; i++)
-                        DeleteChecker(botMove.eaten[i]);
+                    MoveChecker(botMove.selectedChecker, botMove.x, botMove.y);
+                    botMove.Clear();
+                    statusGame = StatusGame.wait;
+                    return true;
 
+                case StatusGame.eating:
+                    MoveChecker(botMove.selectedChecker, botMove.interm.Item1, botMove.interm.Item2);
+                    botMove.numEaten++;
+                    if (botMove.numEaten + 1 != botMove.eaten.Count)
+                    {
+                        SearchInterm();
+                        ShowBotWay(botMove.interm.Item1, botMove.interm.Item2);
+                    }
+                    else
+                    {
+                        ShowBotWay(botMove.x, botMove.y);
+                        statusGame = StatusGame.endEating;
+                    }
+                    return false;
+
+                case StatusGame.endEating:
+                    MoveChecker(botMove.selectedChecker, botMove.x, botMove.y);
+                    foreach (Checker ch in botMove.eaten)
+                        if (ch.GetColor() != color) ch.ChangeColor();
+                    foreach (Checker ch in botMove.eaten)
+                        DeleteChecker(ch);
                     botMove.Clear();
                     statusGame = StatusGame.wait;
                     return true;

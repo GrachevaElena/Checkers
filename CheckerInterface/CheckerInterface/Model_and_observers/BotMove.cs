@@ -10,27 +10,31 @@ namespace CheckerInterface
     {
         public int end=new int();
         public Checker selectedChecker;
-        public List<Tuple<int, int>> way;
+        public int x, y;
         public int becomeDamka = new int();
         public List<Checker> eaten;
+        public Tuple<int, int> interm;
+        public int numEaten = 0;
 
         public BotMove()
         {
-            way = new List<Tuple<int, int>>();
             eaten = new List<Checker>();
             end = becomeDamka = 0;
         }
-        public void SetWay(int x, int y)
+        public void SetWay(int _x, int _y)
         {
-            way.Add(new Tuple<int, int>(x,y));
+            x = _x; y = _y;
+        }
+        public void SetInterm(int x, int y)
+        {
+            interm=new Tuple<int, int>(x, y);
         }
         public void AddEaten(Checker ch)
         {
             eaten.Add(ch);
         }
         public void Clear()
-        {
-            way.Clear();
+        { 
             eaten.Clear();
         }
     }

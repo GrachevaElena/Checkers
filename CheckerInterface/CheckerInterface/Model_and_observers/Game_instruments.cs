@@ -13,10 +13,10 @@ namespace CheckerInterface
 
         private Color color;
         private List<iObserver> observers = new List<iObserver>();
-        private List<Checker> []checkers = new List<Checker>[2];
+        private List<Checker>[] checkers = new List<Checker>[2];
         private List<Checker> selectedCheckers = new List<Checker>();
 
-        public static BotMove botMove=new BotMove();
+        public static BotMove botMove = new BotMove();
 
         public Game()
         {
@@ -36,14 +36,14 @@ namespace CheckerInterface
                         CreateChecker(new Checker(Color.white, Figure.checker, x, y));
             }
         }
-             
+
         private void CreateChecker(Checker ch)
         {
             checkers[(int)(ch.GetColor())].Add(ch);
             board[ch.x, ch.y] = ch;
             notifySetChecker(ch);
-        }    
-        private void MoveChecker(Checker checker, int x, int y, int type=0)//перемещение шашки и контроль за становлением дамки
+        }
+        private void MoveChecker(Checker checker, int x, int y)//перемещение шашки и контроль за становлением дамки
         {
             board[checker.x, checker.y] = new LogicCell();
             notifyDeleteCheckerOrWay(checker.x, checker.y);
@@ -51,16 +51,13 @@ namespace CheckerInterface
             checker.x = x;
             checker.y = y;
             checker.SetLight(false);
-            if (type==1) checker.SetDamka();
-            else if (y == ((int)checker.GetColor()) * 7) //контроль за становлением дамки
+            if (y == ((int)checker.GetColor()) * 7) //контроль за становлением дамки
                 checker.SetDamka();
             notifySetChecker(checker);
         }
         private void DeleteChecker(Checker checker)
         {
-            if(statusPlayer[(int)color]==StatusPlayer.human)
-                checkers[(int)checker.GetOtherColor()].Remove(checker);
-            else checkers[(int)checker.GetColor()].Remove(checker);
+            checkers[(int)checker.GetOtherColor()].Remove(checker);
             board[checker.x, checker.y] = new LogicCell();
             notifyDeleteCheckerOrWay(checker.x, checker.y);
         }
@@ -85,8 +82,8 @@ namespace CheckerInterface
                     f = true;
                     checker.SetLight(true);
                     moves.AddCanEat(checker);
-                    notifySetChecker(checker);                   
-                }              
+                    notifySetChecker(checker);
+                }
             }
             return f;
         }
@@ -115,8 +112,8 @@ namespace CheckerInterface
         private bool MakeEat(Checker checker, int x, int y)
         {
             moves.AddPreDelete(x, y);
-            MoveChecker(checker, x, y);        
-            if (checker.CanEat())      
+            MoveChecker(checker, x, y);
+            if (checker.CanEat())
                 return false;
             foreach (Checker ch in moves.preDeleteChecker)
                 DeleteChecker(ch);
@@ -138,7 +135,7 @@ namespace CheckerInterface
         }
         public void ClearSelectedCanEat()
         {
-            foreach(Checker ch in moves.canEat)
+            foreach (Checker ch in moves.canEat)
             {
                 ch.SetLight(false);
                 notifySetChecker(ch);
@@ -175,21 +172,52 @@ namespace CheckerInterface
         void DecipherRes(int res)
         {
             // _.._(12eaten)_(type1)______(f_c 6)______(num 4)_(end1)
-            botMove.end=(res & 1);
+            botMove.end = (res & 1);
             botMove.SetWay((res >> 8) & 7, (res >> 5) & 7);
             botMove.selectedChecker = checkers[(int)color][(res >> 1) & 15];
-            botMove.becomeDamka=((res >> 11) & 1);
+            botMove.becomeDamka = ((res >> 11) & 1);
 
-            res =res >> 12;
+            res = res >> 12;
             for (int i = 0; i < 12; i++)
                 if (((res >> i) & 1) == 1)
                     botMove.AddEaten(checkers[(int)(color == Color.black ? Color.white : Color.black)][i]);
         }
-        private void ShowBotWay()
+        private void ShowBotWay(int x, int y)
         {
             botMove.selectedChecker.SetLight(true);//поставили подсветку
             notifySetChecker(botMove.selectedChecker);//обновили на форме
-            notifySetWays(botMove.way);          //отобразили путь
+
+            List<Tuple<int, int>> tmp = new List<Tuple<int, int>>();
+            tmp.Add(new Tuple<int, int>(x, y));
+
+            notifySetWays(tmp);          //отобразили путь
+        }
+        private void SearchInterm()
+        {
+            switch (botMove.selectedChecker.GetFigure())
+            {
+                case Figure.checker:
+                    Checker ch=new Checker();
+                    int dx=0, dy=0;
+                    bool f = false;
+                    int count = botMove.eaten.Count;
+                    for (int i = 0; i < count; i++)
+                        if (botMove.eaten[i].GetColor() != color)
+                        {
+                            dx = botMove.eaten[i].x - botMove.selectedChecker.x;
+                            dy = botMove.eaten[i].y - botMove.selectedChecker.y;
+                            if (((dx == 1) | (dx == -1)) && ((dy == 1) | (dy == -1)))
+                            {
+                                f = true;
+                                botMove.eaten[i].ChangeColor();
+                                ch = botMove.eaten[i];
+                                break;
+                            }
+                        }
+                    if (f) botMove.SetInterm(ch.x + dx, ch.y + dy);
+                    break;
+                case Figure.damka: break;
+            }
         }
     }
 }
