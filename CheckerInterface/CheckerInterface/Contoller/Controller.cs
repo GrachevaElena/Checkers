@@ -67,15 +67,14 @@ namespace CheckerInterface
                         {
                             game_model.NextPlayer();
 
+                            
                             if (game_model.GetStatusPlayer() == StatusPlayer.bot)
                             {
-                                if (game_model.BotStep() == false)
-                                {
-                                    MessageBox.Show("Game over");
-                                    return;
-                                }
-                                else game_model.NextPlayer();
+                                form_view.timer.Enabled = true;
+                                //form_view.timer.Interval = 1000;
+                                return;
                             }
+
                             if (game_model.SearchAnyMove())
                                 game_model.SearchEatingAndWriteToMove();
                             else
@@ -83,6 +82,8 @@ namespace CheckerInterface
                                 MessageBox.Show("Game over");
                                 return;
                             }
+
+
                         }
                     }
                     break;
@@ -90,6 +91,33 @@ namespace CheckerInterface
                 default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
             }
 
+        }
+
+        public void Time()
+        {
+            if (game_model.GetStatusPlayer() == StatusPlayer.bot)
+            {
+
+                if (game_model.BotStep() == true)
+                {
+                    game_model.NextPlayer();
+
+                    if (game_model.GetStatusPlayer() == StatusPlayer.human)
+                    {
+
+                        if (game_model.SearchAnyMove())
+                            game_model.SearchEatingAndWriteToMove();
+                        else
+                        {
+                            MessageBox.Show("Game over");
+                        }
+                        form_view.timer.Enabled = false;
+                    }
+                    //else form_view.timer.Interval = 1000;
+
+                }
+                //else form_view.timer.Interval = 300;
+            }
         }
 
         public void keyEsc()

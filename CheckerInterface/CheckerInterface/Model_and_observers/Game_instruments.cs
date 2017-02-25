@@ -16,6 +16,8 @@ namespace CheckerInterface
         private List<Checker> []checkers = new List<Checker>[2];
         private List<Checker> selectedCheckers = new List<Checker>();
 
+        public static BotMove botMove=new BotMove();
+
         public Game()
         {
             checkers[0] = new List<Checker>();
@@ -56,7 +58,9 @@ namespace CheckerInterface
         }
         private void DeleteChecker(Checker checker)
         {
-            checkers[(int)checker.GetOtherColor()].Remove(checker);
+            if(statusPlayer[(int)color]==StatusPlayer.human)
+                checkers[(int)checker.GetOtherColor()].Remove(checker);
+            else checkers[(int)checker.GetColor()].Remove(checker);
             board[checker.x, checker.y] = new LogicCell();
             notifyDeleteCheckerOrWay(checker.x, checker.y);
         }
@@ -142,6 +146,47 @@ namespace CheckerInterface
         {
             moves.selectedChecker.SetLight(false);
             notifySetChecker(moves.selectedChecker);
+        }
+
+
+        public void SetArraysForBotStep()
+        {
+            w_n = checkers[0].Count;
+            w_coords = new int[w_n];
+            w_types = new int[w_n];
+            b_n = checkers[1].Count;
+            b_coords = new int[b_n];
+            b_types = new int[b_n];
+
+            for (int i = 0; i < w_n; i++)
+            {
+                w_coords[i] = (checkers[0][i].x << 3) | checkers[0][i].y;
+                w_types[i] = (int)checkers[0][i].GetFigure();
+            }
+            for (int i = 0; i < b_n; i++)
+            {
+                b_coords[i] = (checkers[1][i].x << 3) | checkers[1][i].y;
+                b_types[i] = (int)checkers[1][i].GetFigure();
+            }
+        }
+        void DecipherRes(int res)
+        {
+            // _.._(12)_(type1)______(f_c 6)______(num 4)_(end1)
+            botMove.end=(res & 1);
+            botMove.SetWay((res >> 8) & 7, (res >> 5) & 7);
+            botMove.selectedChecker = checkers[(int)color][(res >> 1) & 15];
+            botMove.becomeDamka=((res >> 11) & 1);
+
+            res =res >> 12;
+            for (int i = 0; i < 12; i++)
+                if (((res >> i) & 1) == 1)
+                    botMove.AddEaten(checkers[(int)(color == Color.black ? Color.white : Color.black)][i]);
+        }
+        private void ShowBotWay()
+        {
+            botMove.selectedChecker.SetLight(true);//поставили подсветку
+            notifySetChecker(botMove.selectedChecker);//обновили на форме
+            notifySetWays(botMove.way);          //отобразили путь
         }
     }
 }

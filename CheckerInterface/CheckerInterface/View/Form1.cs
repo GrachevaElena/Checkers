@@ -15,8 +15,15 @@ namespace CheckerInterface
         iController controller;
         iGame game;
         ViewBoard board;
+
+        public Timer timer;
+
         public Form1(Controller _contoller, Game _game)
         {
+            timer = new Timer();
+            timer.Interval = 600;
+            timer.Tick += Time;
+
             controller = _contoller;
             game = _game;
             InitializeComponent();
@@ -89,5 +96,11 @@ namespace CheckerInterface
                 controller.keyEsc();
             }
         }
+
+        public void Time(object sender, EventArgs e)
+        {
+            controller.Time();
+        }
+
     }
 }

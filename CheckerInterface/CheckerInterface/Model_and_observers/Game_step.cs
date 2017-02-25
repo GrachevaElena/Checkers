@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace CheckerInterface
 {
@@ -20,45 +21,36 @@ namespace CheckerInterface
         [DllImport(@"Checkers.dll")] 
         static extern int CallBot(int[] w_coords, int[] w_types, int w_n, int[] b_coords, int[] b_types, int b_n, int color);
 
-
         private StatusGame statusGame = StatusGame.wait;
+
+        int w_n, b_n;
+        int[] w_types, b_types;
+        int[] w_coords, b_coords;
         public bool BotStep()
         {
-            int w_n=checkers[0].Count;
-            int[] w_coords=new int [w_n];
-            int[] w_types = new int[w_n];
-            int b_n = checkers[1].Count;
-            int[] b_coords = new int[b_n];
-            int[] b_types = new int[b_n];
-
-            for(int i=0; i<w_n; i++)
+            switch (statusGame)
             {
-                w_coords[i] = (checkers[0][i].x << 3) | checkers[0][i].y;
-                w_types[i] =(int) checkers[0][i].GetFigure();
+                case StatusGame.wait:
+                    SetArraysForBotStep();
+                    int res = CallBot(w_coords, w_types, w_n, b_coords, b_types, b_n, (int)color);
+                    DecipherRes(res);
+    
+                    if (botMove.end == 1) return true;
+                    ShowBotWay();
+                    statusGame = StatusGame.waitStep;
+                    return false;
+
+                case StatusGame.waitStep:
+                    MoveChecker(botMove.selectedChecker, botMove.way[0].Item1, botMove.way[0].Item2, botMove.becomeDamka);
+                    int count = botMove.eaten.Count;
+                    for (int i = 0; i < count; i++)
+                        DeleteChecker(botMove.eaten[i]);
+
+                    botMove.Clear();
+                    statusGame = StatusGame.wait;
+                    return true;
             }
-            for (int i = 0; i < b_n; i++)
-            {
-                b_coords[i] = (checkers[1][i].x << 3) | checkers[1][i].y;
-                b_types[i] = (int)checkers[1][i].GetFigure();
-            }
-
-            // _.._(12)_(type1)______(f_c 6)______(num 4)_(end1)
-            int res = CallBot(w_coords, w_types, w_n, b_coords, b_types, b_n, (int)color);
-
-            if ((res & 1) == 1) return false;
-
-            int num=(res>>1)&15;
-            int finalX= (res >> 8) & 7, finalY = (res >> 5) & 7;
-            int type=((res >> 11) & 1);
-
-            MoveChecker(checkers[(int)color][num], finalX, finalY, type);
-
-            res = res >> 12;
-            for(int i=0; i<12; i++)
-                if (((res >> i) & 1) == 1)
-                    DeleteChecker(checkers[(int)(color == Color.black ? Color.white : Color.black)][i]);
-
-            return true;
+            return false;
         }
         public void NextPlayer()
         {
