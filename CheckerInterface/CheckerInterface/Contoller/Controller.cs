@@ -62,28 +62,30 @@ namespace CheckerInterface
                 case StatusApplication.game:
                     if (game_model.GetStatusPlayer() == StatusPlayer.human)
                     {
-
                         if (game_model.HumanStep(x, y) == true)
                         {
                             game_model.NextPlayer();
 
-                            
-                            if (game_model.GetStatusPlayer() == StatusPlayer.bot)
-                            {
-                                form_view.timer.Enabled = true;
-                                //form_view.timer.Interval = 1000;
-                                return;
-                            }
+                            if (game_model.SearchAnyMove()) //есть ходы?
+                                switch (game_model.GetStatusPlayer()) //да
+                                {
+                                    case StatusPlayer.human:
+                                        // надо ли есть?
+                                        if (game_model.SearchEatingAndWriteToMove())
+                                            game_model.SetStatusGame(StatusGame.waitEat);
+                                        return;
 
-                            if (game_model.SearchAnyMove())
-                                game_model.SearchEatingAndWriteToMove();
+                                    case StatusPlayer.bot:
+                                        //включили таймер
+                                        form_view.timer.Enabled = true;
+                                        return;
+                                }
                             else
                             {
+                                //нет: конец игры
                                 MessageBox.Show("Game over");
                                 return;
                             }
-
-
                         }
                     }
                     break;
@@ -97,27 +99,32 @@ namespace CheckerInterface
         {
             if (game_model.GetStatusPlayer() == StatusPlayer.bot)
             {
-
                 if (game_model.BotStep() == true)
                 {
                     game_model.NextPlayer();
 
-                    if (game_model.GetStatusPlayer() == StatusPlayer.human)
-                    {
-
-                        if (game_model.SearchAnyMove())
-                            game_model.SearchEatingAndWriteToMove();
-                        else
+                    if (game_model.SearchAnyMove()) //есть ходы?
+                        switch (game_model.GetStatusPlayer()) //да
                         {
-                            MessageBox.Show("Game over");
-                        }
-                        form_view.timer.Enabled = false;
-                    }
-                    //else form_view.timer.Interval = 1000;
+                            case StatusPlayer.human:
+                                //выключили таймер
+                                form_view.timer.Enabled = false;
+                                // надо ли есть?
+                                if (game_model.SearchEatingAndWriteToMove())
+                                    game_model.SetStatusGame(StatusGame.waitEat);
+                                return;
 
+                            //если бот, то ничего не делаем
+                        }
+                    else
+                    {
+                        //нет: конец игры
+                        MessageBox.Show("Game over");
+                        return;
+                    }
                 }
-                //else form_view.timer.Interval = 300;
             }
+
         }
 
         public void keyEsc()

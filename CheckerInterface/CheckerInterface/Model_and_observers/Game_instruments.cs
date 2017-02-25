@@ -74,18 +74,21 @@ namespace CheckerInterface
             }
             return false;
         }
-        public void SearchEatingAndWriteToMove()//ищет есть ли взятия
+        public bool SearchEatingAndWriteToMove()//ищет есть ли взятия
         {
+            bool f = false;
             foreach (Checker checker in checkers[(int)color])
             {
                 if (checker.CanEat())
                 {
-                    statusGame = StatusGame.waitEat;
+                    //statusGame = StatusGame.waitEat;
+                    f = true;
                     checker.SetLight(true);
                     moves.AddCanEat(checker);
-                    notifySetChecker(checker);
-                }
+                    notifySetChecker(checker);                   
+                }              
             }
+            return f;
         }
         private void SelectCheckerAndSearchWay(int x, int y)
         {
@@ -171,7 +174,7 @@ namespace CheckerInterface
         }
         void DecipherRes(int res)
         {
-            // _.._(12)_(type1)______(f_c 6)______(num 4)_(end1)
+            // _.._(12eaten)_(type1)______(f_c 6)______(num 4)_(end1)
             botMove.end=(res & 1);
             botMove.SetWay((res >> 8) & 7, (res >> 5) & 7);
             botMove.selectedChecker = checkers[(int)color][(res >> 1) & 15];

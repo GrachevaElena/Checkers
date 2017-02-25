@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace CheckerInterface
 {
-    enum StatusGame
+    public enum StatusGame
     {
         wait,
         waitStep,

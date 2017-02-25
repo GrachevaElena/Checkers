@@ -10,6 +10,7 @@ namespace CheckerInterface
     {
         void SetStatusApplication(StatusApplication st);
         void SetStatusPlayers(StatusPlayer pl1, StatusPlayer pl2);
+        void SetStatusGame(StatusGame statusGame);
         void SetStartColor(Color color);
         void FillBoardAndListCheckers();
 
@@ -18,7 +19,7 @@ namespace CheckerInterface
 
         bool HumanStep(int x, int y);
         bool BotStep();
-        void SearchEatingAndWriteToMove();
+        bool SearchEatingAndWriteToMove();
         bool SearchAnyMove();
         void NextPlayer();
     }
