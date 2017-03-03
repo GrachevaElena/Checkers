@@ -10,9 +10,10 @@ namespace CheckerInterface
     {
         public int end=new int();
         public Checker selectedChecker;
-        public int x, y;
+        public List<Tuple<int, int>> move;
         public int becomeDamka = new int();
         public List<Checker> eaten;
+        public List<Tuple<int, int>> allInterm;
         public Tuple<int, int> interm;
         public int numEaten = 0;
 
@@ -20,10 +21,12 @@ namespace CheckerInterface
         {
             eaten = new List<Checker>();
             end = becomeDamka = 0;
+            move = new List<Tuple<int, int>>();
+            allInterm = new List<Tuple<int, int>>();
         }
         public void SetWay(int _x, int _y)
         {
-            x = _x; y = _y;
+            move.Add(new Tuple<int,int>(_x, _y));
         }
         public void SetInterm(int x, int y)
         {

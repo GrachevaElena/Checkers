@@ -41,11 +41,11 @@ namespace CheckerInterface
                     switch (botMove.eaten.Count)
                     {
                         case 0:
-                            ShowBotWay(botMove.x, botMove.y);
+                            ShowBotWay(botMove.move[0].Item1, botMove.move[0].Item2);
                             statusGame = StatusGame.waitStep;
                             return false;
                         case 1:
-                            ShowBotWay(botMove.x, botMove.y);
+                            ShowBotWay(botMove.move[0].Item1, botMove.move[0].Item2);
                             statusGame = StatusGame.endEating;
                             return false;
                         default:
@@ -58,7 +58,7 @@ namespace CheckerInterface
                     }
 
                 case StatusGame.waitStep:
-                    MoveChecker(botMove.selectedChecker, botMove.x, botMove.y);
+                    MoveChecker(botMove.selectedChecker, botMove.move[0].Item1, botMove.move[0].Item2);
                     botMove.Clear();
                     statusGame = StatusGame.wait;
                     return true;
@@ -73,13 +73,13 @@ namespace CheckerInterface
                     }
                     else
                     {
-                        ShowBotWay(botMove.x, botMove.y);
+                        ShowBotWay(botMove.move[0].Item1, botMove.move[0].Item1);
                         statusGame = StatusGame.endEating;
                     }
                     return false;
 
                 case StatusGame.endEating:
-                    MoveChecker(botMove.selectedChecker, botMove.x, botMove.y);
+                    MoveChecker(botMove.selectedChecker, botMove.move[0].Item1, botMove.move[0].Item2);
                     foreach (Checker ch in botMove.eaten)
                         if (ch.GetColor() != color) ch.ChangeColor();
                     foreach (Checker ch in botMove.eaten)
@@ -90,11 +90,13 @@ namespace CheckerInterface
             }
             return false;
         }
+
         public void NextPlayer()
         {
             color = (Color)((int)color ^ 1);  
            //автоматически меняется StatusPlayer
         }
+
         public bool HumanStep(int x, int y) //true если ход закончен
         {
             bool isWay = board[x, y].GetIsWay();

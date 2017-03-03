@@ -87,12 +87,16 @@ namespace CheckerInterface
             }
             return f;
         }
+        private void SelectChecker(Checker ch)
+        {
+            ch.SetLight(true);//поставили подсветку
+            notifySetChecker(ch);//обновили на форме
+        }
         private void SelectCheckerAndSearchWay(int x, int y)
         {
             Checker ch = board[x, y].GetChecker();
             moves.selectedChecker = ch;
-            ch.SetLight(true);//поставили подсветку
-            notifySetChecker(ch);//обновили на форме
+            SelectChecker(ch);
             ch.SearchWay();//нашли пути
 
             for (int i = 0; i < 4; i++)//отобразили пути
@@ -187,10 +191,15 @@ namespace CheckerInterface
             botMove.selectedChecker.SetLight(true);//поставили подсветку
             notifySetChecker(botMove.selectedChecker);//обновили на форме
 
-            List<Tuple<int, int>> tmp = new List<Tuple<int, int>>();
-            tmp.Add(new Tuple<int, int>(x, y));
+            notifySetWays(botMove.move);          //отобразили путь
+        }
+        private void SearchAllInterm()
+        {
+            int _x = botMove.selectedChecker.x;
+            int _y = botMove.selectedChecker.y;
+            Checker ch = botMove.selectedChecker;
+            //int eatench = ch.FindCanEaten();
 
-            notifySetWays(tmp);          //отобразили путь
         }
         private void SearchInterm()
         {

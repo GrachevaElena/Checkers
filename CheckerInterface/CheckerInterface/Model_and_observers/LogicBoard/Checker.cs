@@ -14,6 +14,10 @@ namespace CheckerInterface
         private static int[] dx = { 1, -1 };
         private static int[] dy = { -1, 1 };
 
+        //промежуточные переменные, нужны для общения между функциями
+        private int way_x, way_y;
+        private int eaten_x, eaten_y;
+
         public Checker() { }
         public Checker(Color col, Figure fig, int x1, int y1)
         {
@@ -24,7 +28,7 @@ namespace CheckerInterface
         }
         public override bool isEmpty()
         {
-           return false;
+            return false;
         }
         public override Color GetColor()
         {
@@ -32,7 +36,7 @@ namespace CheckerInterface
         }
         public override Figure GetFigure()
         {
-           return figure;
+            return figure;
         }
         public override Checker GetChecker()
         {
@@ -43,7 +47,7 @@ namespace CheckerInterface
             return false;
         }
 
-        public             int GetLight()
+        public int GetLight()
         {
             return Convert.ToInt32(base.GetIsWay());
         }
@@ -51,7 +55,7 @@ namespace CheckerInterface
         {
             return color = (Color)((int)color ^ 1);
         }
-        public      void SetLight(bool f)
+        public void SetLight(bool f)
         {
             SetIsWay(f);
         }
@@ -59,124 +63,113 @@ namespace CheckerInterface
         {
             color = (Color)((int)color ^ 1);
         }
-        public            void SetDamka()
+        public void SetDamka()
         {
             figure = Figure.damka;
-        }      
+        }
 
+
+        public bool CanMoveInRay(int dx, int dy/*orts of ray*/)
+        //+сохраняет съеденную шашку в way_x, way_y
+        {
+            switch (GetFigure())
+            {
+                case Figure.checker:
+                    if (Checker.dy[(int)color] != dy) return false;
+                    int x1 = x + dx;
+                    int y1 = y + dy;
+                    if (Inside(x1, y1) && Game.board[x1, y1].isEmpty())
+                    {
+                        way_x = x1;
+                        way_y = y1;
+                        return true;
+                    }
+                    return false;
+
+                case Figure.damka:
+                    way_x = -1;
+                    way_y = -1;
+                    return false;
+            }
+            return false;
+        }
+
+        public bool CanEatInRay(int dx, int dy/*orts of ray*/)
+        //+сохраняет съеденную шашку в eaten_x, eaten_y
+        {
+            int x1 = x + dx;
+            int y1 = y + dy;
+            switch (GetFigure())
+            {
+                case Figure.checker:
+                    if (Inside(x1, y1) && Inside(x1 + dx, y1 + dy) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx, y1 + dy]))
+                    {
+                        eaten_x = x1;
+                        eaten_y = y1;
+                        return true;
+                    }
+                    return false;
+
+                case Figure.damka:
+                    while (Inside(x1, y1) && Inside(x1 + dx, y1 + dy) && IsEmptyInBoard(x1, y1))
+                    {
+                        x1 += dx;
+                        y1 = y + dy;
+                    }
+                    if (Inside(x1, y1) && Inside(x1 + dx, y1 + dy) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx, y1 + dy]))
+                    {
+                        eaten_x = x1;
+                        eaten_y = y1;
+                        return true;
+                    }
+                    return false;
+            }
+            return false;
+        }
+
+        //разбила функции на 2 см выше
         public override void SearchWay()
         {
-            switch (GetFigure())
-            {
-                case Figure.checker:
-                    for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 2; i++)
+                for (int j = 0; j < 2; j++)
+                {
+                    if (CanMoveInRay(dx[i], dy[j]))
                     {
-                        int x1 = x + dx[i];
-                        int y1 = y + dy[(int)color];
-                        if (Inside(x1, y1) && IsEmptyInBoard(x1, y1))
-                        {
-                            Game.moves.AddWay(x1, y1);
-                            Game.board[x1, y1].SetIsWay(true);
-                        }
+                        if (way_x == -1) return;//временно
+                        Game.moves.AddWay(way_x, way_y);
+                        Game.board[way_x, way_y].SetIsWay(true);
                     }
-                    break;
-                case Figure.damka:
+                }
 
-                    break;
-            }
         }
-        public override void  SearchEat()
+        public override void SearchEat()
         {
-            switch (GetFigure())
-            {
-                case Figure.checker:
-                    for (int i = 0; i < 2; i++)
-                        for (int j = 0; j < 2; j++)
-                        {
-                            int x1 = x + dx[i];
-                            int y1 = y + dy[j];
-                            if (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx[i], y1 + dy[j]]))
-                            {
-                                Game.moves.AddCanBeEaten(Game.board[x1, y1].GetChecker());
-                                Game.moves.AddWay(x1 + dx[i], y1 + dy[j]);
-                                Game.board[x1 + +dx[i], y1 + dy[j]].SetIsWay(true);
-                            }
-                        }
-                    break;
-                case Figure.damka:
-                    for (int i = 0; i < 2; i++)
-                        for (int j = 0; j < 2; j++)
-                        {
-                            int x1 = x + dx[i];
-                            int y1 = y + dy[j];
-                            while (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && IsEmptyInBoard(x1, y1))
-                            {
-                                x1 += dx[i];
-                                y1 = y + dy[j];
-                            }
-                                if (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx[i], y1 + dy[j]]))
-                                {
-                                    Game.moves.AddCanBeEaten(Game.board[x1, y1].GetChecker());
-                                    Game.moves.AddWay(x1 + dx[i], y1 + dy[j]);
-                                    Game.board[x1 + +dx[i], y1 + dy[j]].SetIsWay(true);
-                                }
-                        }
-                    break;
-            }
+            for (int i = 0; i < 2; i++)
+                for (int j = 0; j < 2; j++)
+                {
+                    if (CanEatInRay(dx[i], dy[j]))
+                    {
+                        Game.moves.AddCanBeEaten(Game.board[eaten_x, eaten_y].GetChecker());
+                        Game.moves.AddWay(eaten_x + dx[i], eaten_y + dy[j]);
+                        Game.board[eaten_x + +dx[i], eaten_y + dy[j]].SetIsWay(true);
+                    }
+                }
         }
 
         public bool CanEat()
         {
-            switch (GetFigure())
-            {
-                case Figure.checker:
-                    for (int i = 0; i < 2; i++)
-                        for (int j = 0; j < 2; j++)
-                        {
-                            int x1 = x + dx[i];
-                            int y1 = y + dy[j];
-                            if (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx[i], y1 + dy[j]]))
-                                return true;
-                        }
-                    return false;
-                case Figure.damka:
-                    for (int i = 0; i < 2; i++)
-                        for (int j = 0; j < 2; j++)
-                        {
-                            int x1 = x + dx[i];
-                            int y1 = y + dy[j];
-                            while (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && IsEmptyInBoard(x1, y1))
-                            {
-                                x1 += dx[i];
-                                y1 = y + dy[j];
-                            }
-                            if (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx[i], y1 + dy[j]]))
-                                return true;
-                        }
-                    return false;
-            }
+            for (int i = 0; i < 2; i++)
+                for (int j = 0; j < 2; j++)
+                    if (CanEatInRay(dx[i], dy[j])) return true;
             return false;
-        }            
+        }
+
         public bool SearchAnyMove()
         {
-            switch (GetFigure())
-            {
-                case Figure.checker:
-                    for (int i = 0; i < 2; i++)
-                        for (int j = 0; j < 2; j++)
-                        {
-                            int x1 = x + dx[i];
-                            int y1 = y + dy[j];
-                            if (Inside(x1, y1) && Game.board[x1, y1].isEmpty())
-                                return true;
-                            if (Inside(x1, y1) && Inside(x1 + dx[i], y1 + dy[j]) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx[i], y1 + dy[j]]))
-                                return true;
-                        }
-                    return false;
-                case Figure.damka:
-
-                    break;
-            }
+            for (int i = 0; i < 2; i++)
+                for (int j = 0; j < 2; j++)
+                    if (CanMoveInRay(dx[i], dy[j])) return true;
+                    else if (CanEatInRay(dx[i], dy[j])) return true;
             return false;
         }
 
