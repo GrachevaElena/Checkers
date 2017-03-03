@@ -89,7 +89,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../gtest;../../include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../gtest;../../include;../../test/functions for testing/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -106,7 +106,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../include;../../gtest</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../gtest;../../include;../../test/functions for testing/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,15 +158,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\checkers\Board.cpp" />
+    <ClCompile Include="..\..\checkers\Evaluate.cpp" />
     <ClCompile Include="..\..\checkers\FunctionsMove.cpp" />
+    <ClCompile Include="..\..\checkers\Generate.cpp" />
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp" />
+    <ClCompile Include="..\..\checkers\MakeMove.cpp" />
+    <ClCompile Include="..\..\checkers\Move.cpp" />
+    <ClCompile Include="..\..\checkers\Search.cpp" />
+    <ClCompile Include="..\..\test\functions for testing\TestSearch.cpp" />
     <ClCompile Include="..\..\test\test_Board.cpp" />
     <ClCompile Include="..\..\test\test_Cache.cpp" />
     <ClCompile Include="..\..\test\test_Checker.cpp" />
+    <ClCompile Include="..\..\test\test_Evaluate.cpp" />
     <ClCompile Include="..\..\test\test_FunctionsMove.cpp" />
+    <ClCompile Include="..\..\test\test_Generate.cpp" />
     <ClCompile Include="..\..\test\test_ListOfCheckers.cpp" />
     <ClCompile Include="..\..\test\test_main.cpp" />
+    <ClCompile Include="..\..\test\test_MakeMove.cpp" />
     <ClCompile Include="..\..\test\test_Move.cpp" />
+    <ClCompile Include="..\..\test\test_TestSearch.cpp" />
+    <ClCompile Include="..\..\test\test_TestSearchAlphaBeta.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

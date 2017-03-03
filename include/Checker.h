@@ -36,6 +36,7 @@ protected:
 	int GetNextNum() { return  (Check & 3840) >> 8; }
 	int GetPrevNum() { return  (Check & 61440) >> 12; }
 
+public:
 	void SetNum(int num) { Check = Check | (num << 28); } //устанавливается 1 раз
 };
 
