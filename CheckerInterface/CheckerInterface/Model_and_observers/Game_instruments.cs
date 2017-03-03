@@ -87,11 +87,6 @@ namespace CheckerInterface
             }
             return f;
         }
-        private void SelectChecker(Checker ch)
-        {
-            ch.SetLight(true);//поставили подсветку
-            notifySetChecker(ch);//обновили на форме
-        }
         private void SelectCheckerAndSearchWay(int x, int y)
         {
             Checker ch = board[x, y].GetChecker();
@@ -106,8 +101,7 @@ namespace CheckerInterface
         {
             Checker ch = board[x, y].GetChecker();
             moves.selectedChecker = ch;
-            ch.SetLight(true);//поставили подсветку
-            notifySetChecker(ch);//обновили на форме
+            SelectChecker(ch);
             ch.SearchEat();//нашли пути
 
             for (int i = 0; i < 4; i++)//отобразили пути
@@ -123,6 +117,12 @@ namespace CheckerInterface
                 DeleteChecker(ch);
             moves.preDeleteChecker.Clear();
             return true;
+        }
+
+        private void SelectChecker(Checker ch)
+        {
+            ch.SetLight(true);//поставили подсветку
+            notifySetChecker(ch);//обновили на форме
         }
         public void ClearWays()
         {
@@ -188,19 +188,20 @@ namespace CheckerInterface
         }
         private void ShowBotWay(int x, int y)
         {
-            botMove.selectedChecker.SetLight(true);//поставили подсветку
-            notifySetChecker(botMove.selectedChecker);//обновили на форме
-
+            SelectChecker(botMove.selectedChecker);
             notifySetWays(botMove.move);          //отобразили путь
         }
-        private void SearchAllInterm()
+        
+       /* private void SearchAllInterm()
         {
             int _x = botMove.selectedChecker.x;
             int _y = botMove.selectedChecker.y;
             Checker ch = botMove.selectedChecker;
             //int eatench = ch.FindCanEaten();
 
-        }
+        }*/
+
+        //don't look:it's dull
         private void SearchInterm()
         {
             switch (botMove.selectedChecker.GetFigure())
