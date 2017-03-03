@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Board.h" />
+    <ClInclude Include="..\..\include\Bot.h" />
     <ClInclude Include="..\..\include\Cache.h" />
     <ClInclude Include="..\..\include\CheckCall.h" />
     <ClInclude Include="..\..\include\Checker.h" />
@@ -31,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\checkers\Board.cpp" />
+    <ClCompile Include="..\..\checkers\Bot.cpp" />
     <ClCompile Include="..\..\checkers\Evaluate.cpp" />
     <ClCompile Include="..\..\checkers\FunctionsMove.cpp" />
     <ClCompile Include="..\..\checkers\Generate.cpp" />
@@ -98,7 +100,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Configuration)\..\Checkers\bin\Debug</OutDir>
+    <OutDir>$(SolutionDir)$(Configuration)\..\..\CheckerInterface\CheckerInterface\bin\Debug</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>

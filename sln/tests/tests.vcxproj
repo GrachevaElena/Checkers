@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\checkers\Board.cpp" />
+    <ClCompile Include="..\..\checkers\Bot.cpp" />
     <ClCompile Include="..\..\checkers\Evaluate.cpp" />
     <ClCompile Include="..\..\checkers\FunctionsMove.cpp" />
     <ClCompile Include="..\..\checkers\Generate.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="..\..\test\functions for testing\TestSearch.cpp" />
     <ClCompile Include="..\..\test\test_Board.cpp" />
     <ClCompile Include="..\..\test\test_Cache.cpp" />
+    <ClCompile Include="..\..\test\test_CallBot.cpp" />
     <ClCompile Include="..\..\test\test_Checker.cpp" />
     <ClCompile Include="..\..\test\test_Evaluate.cpp" />
     <ClCompile Include="..\..\test\test_FunctionsMove.cpp" />

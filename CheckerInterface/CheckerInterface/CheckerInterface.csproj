@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model_and_observers\BotMove.cs" />
     <Compile Include="Model_and_observers\Moves.cs" />
     <Compile Include="Model_and_observers\Objects_obsrvers\Game_object.cs" />
     <Compile Include="Model_and_observers\Game_status.cs" />

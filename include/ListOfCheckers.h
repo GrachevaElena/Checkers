@@ -39,6 +39,9 @@ public:
 	int IsEmpty() { if (List[0].GetNextNum() == 0) return 1; return 0; }
 	Checker& operator[] (int i) { return List[i]; }
 
+	void Clean() { List[0].SetNextNum(0); List[0].SetPrevNum(0); }
+	void Bind(int n);
+
 	typedef LChIterator iterator;
 	iterator begin() { return iterator(&(List[List[0].GetNextNum()]),List); }
 	iterator end() { return iterator(List, List); }

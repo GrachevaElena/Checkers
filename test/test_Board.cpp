@@ -2,7 +2,7 @@
 #include "gtest.h"
 
 TEST(test_Board, can_create) {
-	ListOfCheckers white, black;
+	ListOfCheckers white, black; white.Bind(12); black.Bind(12);
 	white[4].SetCoord(3);
 	black[8].SetCoord(48);
 	black[8].SetType(DAMKA);
@@ -19,7 +19,7 @@ TEST(test_Board, can_create) {
 }
 
 TEST(test_Board, can_set) {
-	ListOfCheckers white, black;
+	ListOfCheckers white, black; white.Bind(12); black.Bind(12);
 	black[8].SetCoord(48);
 	Board board(white, black);
 	black[8].SetCoord(62);
@@ -31,11 +31,11 @@ TEST(test_Board, can_set) {
 }
 
 TEST(test_Board, can_check_if_is_empty) {
-	Board board;
+	Board board; 
 
 	EXPECT_TRUE(board.IsEmpty(3));
 
-	ListOfCheckers white, black;
+	ListOfCheckers white, black; white.Bind(12); black.Bind(12);
 	white[9].SetCoord(3);
 	board.Set(white, black);
 

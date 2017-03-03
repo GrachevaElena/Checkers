@@ -2,34 +2,98 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using System.Threading;
+
 namespace CheckerInterface
 {
-    enum StatusGame
+    public enum StatusGame
     {
         wait,
         waitStep,
         waitEat,
         waitEatSelect,
-        eating
+        eating,
+        endEating 
     }
     public partial class Game : iSubject, iGame
     {
+        [DllImport(@"Checkers.dll")] 
+        static extern int CallBot(int[] w_coords, int[] w_types, int w_n, int[] b_coords, int[] b_types, int b_n, int color);
+
         private StatusGame statusGame = StatusGame.wait;
-        /*public bool Step()
+
+        int w_n, b_n;
+        int[] w_types, b_types;
+        int[] w_coords, b_coords;
+        public bool BotStep()
         {
-            switch (statusPlayer[(int)color])
+            switch (statusGame)
             {
-                case StatusPlayer.bot: return true;/*1)конец игры? иначе: 2)вызов dll 3) получение лучшего хода 4)изменение модели 5) запрос на обновление 6 NextPlayer()*/
-               /* case StatusPlayer.human:
-                    //проверка на конец игры
+                case StatusGame.wait:
+                    SetArraysForBotStep();
+                    int res = CallBot(w_coords, w_types, w_n, b_coords, b_types, b_n, (int)color);
+                    DecipherRes(res);
+
+                    if (botMove.end == 1) return true;
+
+                    switch (botMove.eaten.Count)
+                    {
+                        case 0:
+                            ShowBotWay(botMove.x, botMove.y);
+                            statusGame = StatusGame.waitStep;
+                            return false;
+                        case 1:
+                            ShowBotWay(botMove.x, botMove.y);
+                            statusGame = StatusGame.endEating;
+                            return false;
+                        default:
+                            botMove.numEaten = 0;
+                            SearchInterm();
+                            ShowBotWay(botMove.interm.Item1, botMove.interm.Item2);
+                            statusGame = StatusGame.eating;
+                            return false;
+
+                    }
+
+                case StatusGame.waitStep:
+                    MoveChecker(botMove.selectedChecker, botMove.x, botMove.y);
+                    botMove.Clear();
+                    statusGame = StatusGame.wait;
+                    return true;
+
+                case StatusGame.eating:
+                    MoveChecker(botMove.selectedChecker, botMove.interm.Item1, botMove.interm.Item2);
+                    botMove.numEaten++;
+                    if (botMove.numEaten + 1 != botMove.eaten.Count)
+                    {
+                        SearchInterm();
+                        ShowBotWay(botMove.interm.Item1, botMove.interm.Item2);
+                    }
+                    else
+                    {
+                        ShowBotWay(botMove.x, botMove.y);
+                        statusGame = StatusGame.endEating;
+                    }
+                    return false;
+
+                case StatusGame.endEating:
+                    MoveChecker(botMove.selectedChecker, botMove.x, botMove.y);
+                    foreach (Checker ch in botMove.eaten)
+                        if (ch.GetColor() != color) ch.ChangeColor();
+                    foreach (Checker ch in botMove.eaten)
+                        DeleteChecker(ch);
+                    botMove.Clear();
+                    statusGame = StatusGame.wait;
                     return true;
             }
-            return true;
-        }*/
+            return false;
+        }
         public void NextPlayer()
         {
-            color = (Color)((int)color ^ 1);            
+            color = (Color)((int)color ^ 1);  
+           //автоматически меняется StatusPlayer
         }
         public bool HumanStep(int x, int y) //true если ход закончен
         {

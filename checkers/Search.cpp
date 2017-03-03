@@ -1,11 +1,6 @@
 #include "Search.h"
 
-const int MaxCache = 1000;
 Cache cache(MaxCache);
-Board board;
-
-ListOfCheckers checkers[2];
-
 
 static int tmp;
 int Search(int color, int depth, Move* bestMove) {
