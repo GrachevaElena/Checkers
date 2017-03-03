@@ -11,7 +11,6 @@ namespace CheckerInterface
     {
         iGame game_model;
         Form1 form_view;
-        iSubject game_observer;
 
         public Controller(Game game, iSubject game_observer)
         {
@@ -27,6 +26,11 @@ namespace CheckerInterface
         public void buttonOnePlayer()
         {
             form_view.VisibleButtons(false);
+            form_view.CreateBoard();
+            game_model.FillBoardAndListCheckers();
+            game_model.SetStatusApplication(StatusApplication.game);
+            game_model.SetStatusPlayers(StatusPlayer.human, StatusPlayer.bot);
+            game_model.SetStartColor(Color.white);
         }
         public void buttonTwoPlayers()
         {
@@ -58,21 +62,67 @@ namespace CheckerInterface
                 case StatusApplication.game:
                     if (game_model.GetStatusPlayer() == StatusPlayer.human)
                     {
-
                         if (game_model.HumanStep(x, y) == true)
                         {
                             game_model.NextPlayer();
-                            if (game_model.SearchAnyMove())
-                                game_model.SearchEatingAndWriteToMove();
+
+                            if (game_model.SearchAnyMove()) //есть ходы?
+                                switch (game_model.GetStatusPlayer()) //да
+                                {
+                                    case StatusPlayer.human:
+                                        // надо ли есть?
+                                        if (game_model.SearchEatingAndWriteToMove())
+                                            game_model.SetStatusGame(StatusGame.waitEat);
+                                        return;
+
+                                    case StatusPlayer.bot:
+                                        //включили таймер
+                                        form_view.timer.Enabled = true;
+                                        return;
+                                }
                             else
                             {
-                                //game over
+                                //нет: конец игры
+                                MessageBox.Show("Game over");
+                                return;
                             }
                         }
                     }
                     break;
                 case StatusApplication.constructor: break;
                 default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
+            }
+
+        }
+
+        public void Time()
+        {
+            if (game_model.GetStatusPlayer() == StatusPlayer.bot)
+            {
+                if (game_model.BotStep() == true)
+                {
+                    game_model.NextPlayer();
+
+                    if (game_model.SearchAnyMove()) //есть ходы?
+                        switch (game_model.GetStatusPlayer()) //да
+                        {
+                            case StatusPlayer.human:
+                                //выключили таймер
+                                form_view.timer.Enabled = false;
+                                // надо ли есть?
+                                if (game_model.SearchEatingAndWriteToMove())
+                                    game_model.SetStatusGame(StatusGame.waitEat);
+                                return;
+
+                            //если бот, то ничего не делаем
+                        }
+                    else
+                    {
+                        //нет: конец игры
+                        MessageBox.Show("Game over");
+                        return;
+                    }
+                }
             }
 
         }

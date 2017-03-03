@@ -20,17 +20,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Board.h" />
+    <ClInclude Include="..\..\include\Bot.h" />
     <ClInclude Include="..\..\include\Cache.h" />
     <ClInclude Include="..\..\include\CheckCall.h" />
     <ClInclude Include="..\..\include\Checker.h" />
     <ClInclude Include="..\..\include\FunctionsMove.h" />
+    <ClInclude Include="..\..\include\BasicFunctions.h" />
     <ClInclude Include="..\..\include\ListOfCheckers.h" />
     <ClInclude Include="..\..\include\Move.h" />
+    <ClInclude Include="..\..\include\Search.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\checkers\Board.cpp" />
+    <ClCompile Include="..\..\checkers\Bot.cpp" />
+    <ClCompile Include="..\..\checkers\Evaluate.cpp" />
     <ClCompile Include="..\..\checkers\FunctionsMove.cpp" />
+    <ClCompile Include="..\..\checkers\Generate.cpp" />
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp" />
+    <ClCompile Include="..\..\checkers\MakeMove.cpp" />
+    <ClCompile Include="..\..\checkers\Move.cpp" />
+    <ClCompile Include="..\..\checkers\Search.cpp" />
     <ClCompile Include="CheckCall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -91,7 +100,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Configuration)\..\Checkers\bin\Debug</OutDir>
+    <OutDir>$(SolutionDir)$(Configuration)\..\..\CheckerInterface\CheckerInterface\bin\Debug</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>

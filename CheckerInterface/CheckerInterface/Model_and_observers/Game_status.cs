@@ -31,6 +31,10 @@ namespace CheckerInterface
             statusPlayer[0] = pl1;
             statusPlayer[1] = pl2;
         }
+        public void SetStatusGame(StatusGame statusGame)
+        {
+            this.statusGame = statusGame;
+        }
         public void SetStartColor(Color col)
         {
             color = col;
