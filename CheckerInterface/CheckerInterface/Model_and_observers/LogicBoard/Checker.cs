@@ -67,6 +67,10 @@ namespace CheckerInterface
         {
             figure = Figure.damka;
         }
+        public void SetChecker()
+        {
+            figure = Figure.checker;
+        }
 
 
         public bool CanMoveInRay(int dx, int dy/*orts of ray*/)
@@ -128,7 +132,7 @@ namespace CheckerInterface
         }
 
         //разбила функции на 2 см выше
-        public override void SearchWay()
+        public void SearchWay(Moves m)
         {
             for (int i = 0; i < 2; i++)
                 for (int j = 0; j < 2; j++)
@@ -136,26 +140,33 @@ namespace CheckerInterface
                     if (CanMoveInRay(dx[i], dy[j]))
                     {
                         if (way_x == -1) return;//временно
-                        Game.moves.AddWay(way_x, way_y);
+                        m.AddWay(way_x, way_y);
                         Game.board[way_x, way_y].SetIsWay(true);
                     }
                 }
 
         }
-        public override void SearchEat()
+        public void SearchEat(Moves m)
         {
             for (int i = 0; i < 2; i++)
                 for (int j = 0; j < 2; j++)
                 {
                     if (CanEatInRay(dx[i], dy[j]))
                     {
-                        Game.moves.AddCanBeEaten(Game.board[eaten_x, eaten_y].GetChecker());
-                        Game.moves.AddWay(eaten_x + dx[i], eaten_y + dy[j]);
+                        m.AddCanBeEaten(Game.board[eaten_x, eaten_y].GetChecker());
+                        m.AddWay(eaten_x + dx[i], eaten_y + dy[j]);
                         Game.board[eaten_x + +dx[i], eaten_y + dy[j]].SetIsWay(true);
                     }
                 }
         }
-
+        public override void SearchWay()
+        {
+            SearchWay(Game.moves);
+        }
+        public override void SearchEat()
+        {
+            SearchEat(Game.moves);
+        }
         public bool CanEat()
         {
             for (int i = 0; i < 2; i++)

@@ -38,53 +38,40 @@ namespace CheckerInterface
 
                     if (botMove.end == 1) return true;
 
-                    switch (botMove.eaten.Count)
+                    if (botMove.eaten.Count == 0)
                     {
-                        case 0:
-                            ShowBotWay(botMove.move[0].Item1, botMove.move[0].Item2);
-                            statusGame = StatusGame.waitStep;
-                            return false;
-                        case 1:
-                            ShowBotWay(botMove.move[0].Item1, botMove.move[0].Item2);
-                            statusGame = StatusGame.endEating;
-                            return false;
-                        default:
-                            botMove.numEaten = 0;
-                            SearchInterm();
-                            ShowBotWay(botMove.interm.Item1, botMove.interm.Item2);
-                            statusGame = StatusGame.eating;
-                            return false;
-
+                        ShowBotWay(botMove.way[0].Item1, botMove.way[0].Item2);
+                        statusGame = StatusGame.waitStep;
                     }
+                    else
+                    {
+                        botMove.SearchInterm();
+                        ShowBotWay(botMove.interm[0].Item1, botMove.interm[0].Item2);
+                        if (botMove.eaten.Count>1) statusGame = StatusGame.eating;
+                        else statusGame = StatusGame.endEating;
+                    }
+                    return false;
 
                 case StatusGame.waitStep:
-                    MoveChecker(botMove.selectedChecker, botMove.move[0].Item1, botMove.move[0].Item2);
+                    MoveChecker(botMove.selectedChecker, botMove.way[0].Item1, botMove.way[0].Item2);
                     botMove.Clear();
+                    moves.Clear();
                     statusGame = StatusGame.wait;
                     return true;
 
                 case StatusGame.eating:
-                    MoveChecker(botMove.selectedChecker, botMove.interm.Item1, botMove.interm.Item2);
-                    botMove.numEaten++;
-                    if (botMove.numEaten + 1 != botMove.eaten.Count)
-                    {
-                        SearchInterm();
-                        ShowBotWay(botMove.interm.Item1, botMove.interm.Item2);
-                    }
-                    else
-                    {
-                        ShowBotWay(botMove.move[0].Item1, botMove.move[0].Item1);
-                        statusGame = StatusGame.endEating;
-                    }
+                    MoveChecker(botMove.selectedChecker, botMove.interm[0].Item1, botMove.interm[0].Item2);
+                    botMove.interm.Remove(botMove.interm[0]);
+                    ShowBotWay(botMove.interm[0].Item1, botMove.interm[0].Item2);
+                    if (botMove.interm[0] == botMove.way[0]) statusGame = StatusGame.endEating;
                     return false;
 
                 case StatusGame.endEating:
-                    MoveChecker(botMove.selectedChecker, botMove.move[0].Item1, botMove.move[0].Item2);
-                    foreach (Checker ch in botMove.eaten)
-                        if (ch.GetColor() != color) ch.ChangeColor();
+                    MoveChecker(botMove.selectedChecker, botMove.way[0].Item1, botMove.way[0].Item2);
                     foreach (Checker ch in botMove.eaten)
                         DeleteChecker(ch);
                     botMove.Clear();
+                    moves.Clear();
                     statusGame = StatusGame.wait;
                     return true;
             }

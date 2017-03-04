@@ -31,6 +31,11 @@ namespace CheckerInterface
             preDeleteChecker.Add(canBeEaten[FindIndex(x,y)]);
             preDeleteChecker.Last().ChangeColor();
         }
+        public void CancelLastPreDelete()
+        {
+            preDeleteChecker.Last().ChangeColor();
+            preDeleteChecker.Remove(preDeleteChecker.Last());
+        }
         public Checker GetEatenChecker(int x, int y)
         {
             return canBeEaten[FindIndex(x, y)];
@@ -48,6 +53,18 @@ namespace CheckerInterface
             if (x - selectedChecker.x < 0 && y - selectedChecker.y < 0)
                 return 2;
             return 3;
+        }
+        public void ClearWays()
+        {
+            for (int i = 0; i < 4; i++)
+                way[i].Clear();
+        }
+
+        public void Clear()
+        {
+            ClearWays();
+            preDeleteChecker.Clear();
+            canEat.Clear();
         }
     }
 }

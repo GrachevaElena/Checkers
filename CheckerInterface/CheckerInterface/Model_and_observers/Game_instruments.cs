@@ -57,7 +57,7 @@ namespace CheckerInterface
         }
         private void DeleteChecker(Checker checker)
         {
-            checkers[(int)checker.GetOtherColor()].Remove(checker);
+            checkers[(int)checker.GetColor()].Remove(checker);
             board[checker.x, checker.y] = new LogicCell();
             notifyDeleteCheckerOrWay(checker.x, checker.y);
         }
@@ -114,7 +114,10 @@ namespace CheckerInterface
             if (checker.CanEat())
                 return false;
             foreach (Checker ch in moves.preDeleteChecker)
+            {
+                ch.ChangeColor();
                 DeleteChecker(ch);
+            }
             moves.preDeleteChecker.Clear();
             return true;
         }
@@ -151,8 +154,7 @@ namespace CheckerInterface
             moves.selectedChecker.SetLight(false);
             notifySetChecker(moves.selectedChecker);
         }
-
-
+       
         public void SetArraysForBotStep()
         {
             w_n = checkers[0].Count;
@@ -189,45 +191,12 @@ namespace CheckerInterface
         private void ShowBotWay(int x, int y)
         {
             SelectChecker(botMove.selectedChecker);
-            notifySetWays(botMove.move);          //отобразили путь
+            List<Tuple<int, int>> tmp = new List<Tuple<int,int>>();
+            tmp.Add(new Tuple<int, int>(x, y));
+            notifySetWays(tmp);          //отобразили путь
         }
-        
-       /* private void SearchAllInterm()
-        {
-            int _x = botMove.selectedChecker.x;
-            int _y = botMove.selectedChecker.y;
-            Checker ch = botMove.selectedChecker;
-            //int eatench = ch.FindCanEaten();
+      
 
-        }*/
 
-        //don't look:it's dull
-        private void SearchInterm()
-        {
-            switch (botMove.selectedChecker.GetFigure())
-            {
-                case Figure.checker:
-                    Checker ch=new Checker();
-                    int dx=0, dy=0;
-                    bool f = false;
-                    int count = botMove.eaten.Count;
-                    for (int i = 0; i < count; i++)
-                        if (botMove.eaten[i].GetColor() != color)
-                        {
-                            dx = botMove.eaten[i].x - botMove.selectedChecker.x;
-                            dy = botMove.eaten[i].y - botMove.selectedChecker.y;
-                            if (((dx == 1) | (dx == -1)) && ((dy == 1) | (dy == -1)))
-                            {
-                                f = true;
-                                botMove.eaten[i].ChangeColor();
-                                ch = botMove.eaten[i];
-                                break;
-                            }
-                        }
-                    if (f) botMove.SetInterm(ch.x + dx, ch.y + dy);
-                    break;
-                case Figure.damka: break;
-            }
-        }
     }
 }
