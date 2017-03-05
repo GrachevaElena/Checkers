@@ -32,6 +32,7 @@ namespace CheckerInterface
             game_model.SetStatusApplication(StatusApplication.game);
             game_model.SetStatusPlayers(StatusPlayer.human, StatusPlayer.bot);
             game_model.SetStartColor(Color.white);
+            game_model.SetStatusGame(StatusGame.wait);
         }
         public void buttonTwoPlayers()
         {
@@ -42,6 +43,7 @@ namespace CheckerInterface
             game_model.SetStatusApplication(StatusApplication.game);
             game_model.SetStatusPlayers(StatusPlayer.human, StatusPlayer.human);
             game_model.SetStartColor(Color.white);
+            game_model.SetStatusGame(StatusGame.wait);
         }
         public void buttonLoadGame()
         {
