@@ -51,6 +51,7 @@ namespace CheckerInterface
             Game.board.ReturnCheckerIntoBoard(selectedChecker);//вернули на доску
             AddInterm(way[0]);
         }
+        //don't look
         private bool SearchIntermRecursion(Moves m, int c)
         {
             for (int i = 0; i < 4; i++)
