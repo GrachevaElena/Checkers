@@ -48,6 +48,8 @@ namespace CheckerInterface
         public void buttonConstrutor()
         {
             form_view.VisibleButtons(false);
+            game_model.ClearResource();
+            form_view.CreateBoard();
         }
         public void buttonSetting()
         {

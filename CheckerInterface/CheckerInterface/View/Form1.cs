@@ -14,7 +14,7 @@ namespace CheckerInterface
     {
         iController controller;
         iGame game;
-        ViewBoard board;
+        public ViewBoard board;
 
         public Timer timer;
 
@@ -61,6 +61,8 @@ namespace CheckerInterface
                 board = new ViewBoard(controller, 81, panel1);
                 Cell.SetImages();
             }
+            else
+                board.ClearCell();
         }
 
         private void button1_Click(object sender, EventArgs e)
