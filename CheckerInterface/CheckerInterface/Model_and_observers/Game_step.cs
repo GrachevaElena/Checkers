@@ -177,7 +177,6 @@ namespace CheckerInterface
                         return false;
             }
             return false;
-        }        
-        
+        }                
     }
 }

@@ -22,5 +22,6 @@ namespace CheckerInterface
         bool SearchEatingAndWriteToMove();
         bool SearchAnyMove();
         void NextPlayer();
+        void ClearResource();
     }
 }

@@ -195,8 +195,16 @@ namespace CheckerInterface
             tmp.Add(new Tuple<int, int>(x, y));
             notifySetWays(tmp);          //отобразили путь
         }
-      
 
+        public void ClearResource()
+        {
+            board = new LogicBoard();
+            moves = new Moves();
+            foreach (List<Checker> l in checkers)
+                l.Clear();
+            selectedCheckers.Clear();
+            botMove = new BotMove();
+        }
 
     }
 }

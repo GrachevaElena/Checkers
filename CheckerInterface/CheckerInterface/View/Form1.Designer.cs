@@ -122,7 +122,7 @@
         private System.Windows.Forms.Button button3;               
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.Panel panel1;
     }
 }
 
