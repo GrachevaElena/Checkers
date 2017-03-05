@@ -13,9 +13,11 @@ namespace CheckerInterface
         void SetStatusGame(StatusGame statusGame);
         void SetStartColor(Color color);
         void FillBoardAndListCheckers();
+        void CreateChecker(Checker ch);
 
         StatusApplication GetStatusApplication();
         StatusPlayer GetStatusPlayer();
+        Color GetColor();
 
         bool HumanStep(int x, int y);
         bool BotStep();

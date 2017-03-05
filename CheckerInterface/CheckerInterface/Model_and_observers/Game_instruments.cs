@@ -37,7 +37,7 @@ namespace CheckerInterface
             }
         }
 
-        private void CreateChecker(Checker ch)
+        public void CreateChecker(Checker ch)
         {
             checkers[(int)(ch.GetColor())].Add(ch);
             board[ch.x, ch.y] = ch;

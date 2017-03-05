@@ -104,5 +104,30 @@ namespace CheckerInterface
             controller.Time();
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            controller.buttonAddChecker();
+        }
+
+
+        private void WhiteRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            controller.buttonAddChecker();
+        }
+
+        private void BlackRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            controller.buttonAddChecker();
+        }
+
+        private void CheckerRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            controller.buttonAddChecker();
+        }
+
+        private void DamkaRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            controller.buttonAddChecker();
+        }
     }
 }

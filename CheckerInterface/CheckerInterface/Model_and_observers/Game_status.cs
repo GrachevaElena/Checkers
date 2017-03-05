@@ -48,5 +48,9 @@ namespace CheckerInterface
         {
             return statusPlayer[(int)color];
         }
+        public Color GetColor()
+        {
+            return color;
+        }
     }
 }

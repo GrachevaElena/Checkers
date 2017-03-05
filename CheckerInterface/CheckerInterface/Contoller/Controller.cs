@@ -53,11 +53,34 @@ namespace CheckerInterface
         {
             form_view.VisibleButtons(false);
             game_model.ClearResource();
+            game_model.SetStartColor(Color.empty);
             form_view.CreateBoard();
+            game_model.SetStatusApplication(StatusApplication.constructor);
+            form_view.panel2.Visible = true;
         }
         public void buttonSetting()
         {
             form_view.VisibleButtons(false);
+        }
+        Figure fig;
+        public void buttonAddChecker()
+        {
+            if (game_model.GetStatusApplication() == StatusApplication.constructor)
+                if ((form_view.WhiteRadioButton.Checked || form_view.BlackRadioButton.Checked) && (form_view.DamkaRadioButton.Checked || form_view.CheckerRadioButton.Checked))
+                {
+                    form_view.button6.BackColor = System.Drawing.Color.Gray;
+                    if (form_view.WhiteRadioButton.Checked) game_model.SetStartColor(Color.white);
+                    if (form_view.BlackRadioButton.Checked) game_model.SetStartColor(Color.black);
+                    if (form_view.CheckerRadioButton.Checked) fig = Figure.checker;
+                    if (form_view.DamkaRadioButton.Checked) fig = Figure.damka;
+                }
+                else
+                {
+                    form_view.button6.BackColor = System.Drawing.Color.White;
+                    game_model.SetStartColor(Color.empty);
+                }
+                    
+
         }
 
         public void ClickCell(int x, int y)
@@ -95,7 +118,10 @@ namespace CheckerInterface
                         }
                     }
                     break;
-                case StatusApplication.constructor: break;
+                case StatusApplication.constructor:
+                    if (game_model.GetColor() != Color.empty && ((x + y) % 2 == 1))
+                        game_model.CreateChecker(new Checker(game_model.GetColor(), fig, x, y));
+                    break;
                 default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
             }
 
@@ -136,6 +162,7 @@ namespace CheckerInterface
         public void keyEsc()
         {
             form_view.VisibleButtons(true);
+            form_view.panel2.Visible = false;
         }
     }
 }
