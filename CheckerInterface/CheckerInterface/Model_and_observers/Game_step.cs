@@ -36,7 +36,11 @@ namespace CheckerInterface
                     int res = CallBot(w_coords, w_types, w_n, b_coords, b_types, b_n, (int)color);
                     DecipherRes(res);
 
-                    if (botMove.end == 1) return true;
+                    if (botMove.end == 1)
+                    {
+                        MessageBox.Show("Bot thinks, game over");
+                        return true;
+                    }
 
                     if (botMove.eaten.Count == 0)
                     {

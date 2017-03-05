@@ -26,6 +26,7 @@ namespace CheckerInterface
         public void buttonOnePlayer()
         {
             form_view.VisibleButtons(false);
+            game_model.ClearResource();
             form_view.CreateBoard();
             game_model.FillBoardAndListCheckers();
             game_model.SetStatusApplication(StatusApplication.game);
@@ -35,6 +36,7 @@ namespace CheckerInterface
         public void buttonTwoPlayers()
         {
             form_view.VisibleButtons(false);
+            game_model.ClearResource();
             form_view.CreateBoard();
             game_model.FillBoardAndListCheckers();
             game_model.SetStatusApplication(StatusApplication.game);
