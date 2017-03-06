@@ -15,7 +15,7 @@
 
 extern Board board;
 extern Cache cache;
-const int MaxCache = 1000;
+const int MaxCache = 10000;
 
 extern ListOfCheckers checkers[2];
 

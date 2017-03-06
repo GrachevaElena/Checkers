@@ -179,6 +179,7 @@
     <ClCompile Include="..\..\test\test_main.cpp" />
     <ClCompile Include="..\..\test\test_MakeMove.cpp" />
     <ClCompile Include="..\..\test\test_Move.cpp" />
+    <ClCompile Include="..\..\test\Test_Search.cpp" />
     <ClCompile Include="..\..\test\test_TestSearch.cpp" />
     <ClCompile Include="..\..\test\test_TestSearchAlphaBeta.cpp" />
   </ItemGroup>
