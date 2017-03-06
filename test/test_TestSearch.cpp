@@ -21,7 +21,7 @@ TEST(test_TestSearch, position14_amputation_depth_is_2) {
 
 	int nVertices = 0; Move bestMove;
 
-	EXPECT_EQ(27, TestSearch(0, 2, nVertices,0, move, 2, &bestMove));
+	EXPECT_EQ(4 * DamkaPrice - CheckerPrice, TestSearch(0, 2, nVertices,0, move, 2, &bestMove));
 	EXPECT_EQ(move[0], bestMove);
 	EXPECT_EQ(nVertices, 7);
 
@@ -46,7 +46,7 @@ TEST(test_TestSearch, position15_amputation_depth_is_3) {
 
 	int nVertices = 0; Move bestMove;
 
-	EXPECT_EQ(-5, TestSearch(0, 3, nVertices, 0, move, 2, &bestMove));
+	EXPECT_EQ(-5* CheckerPrice, TestSearch(0, 3, nVertices, 0, move, 2, &bestMove));
 	EXPECT_EQ(move[0], bestMove);
 	EXPECT_EQ(nVertices, 11);
 

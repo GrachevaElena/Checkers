@@ -8,7 +8,7 @@ TEST(test_Evaluate, can_evaluate_with_checkers_only) {
 	checkers[0].GenerateInitialPosition(0, types, coords, 5);
 	checkers[1].GenerateInitialPosition(1, types, coords, 7);
 
-	EXPECT_EQ(-2, Evaluate(0));
+	EXPECT_EQ(-2*CheckerPrice, Evaluate(0));
 }
 
 TEST(test_Evaluate, can_evaluate_with_damkas) {
@@ -17,5 +17,5 @@ TEST(test_Evaluate, can_evaluate_with_damkas) {
 	checkers[0].GenerateInitialPosition(0, types, coords, 7);
 	checkers[1].GenerateInitialPosition(1, types, coords, 5);
 
-	EXPECT_EQ(14, Evaluate(0));
+	EXPECT_EQ(2*DamkaPrice, Evaluate(0));
 }

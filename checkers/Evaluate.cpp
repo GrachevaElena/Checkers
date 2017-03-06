@@ -13,3 +13,8 @@ int Evaluate(int color)
 		sum -= Price[it->GetType()];
 	return sum;
 }
+
+int SmartEvaluate(int color)
+{
+	return 0;
+}

@@ -40,6 +40,7 @@
     <ClCompile Include="..\..\checkers\MakeMove.cpp" />
     <ClCompile Include="..\..\checkers\Move.cpp" />
     <ClCompile Include="..\..\checkers\Search.cpp" />
+    <ClCompile Include="..\..\checkers\SearchForBot.cpp" />
     <ClCompile Include="CheckCall.cpp" />
   </ItemGroup>
   <ItemGroup>

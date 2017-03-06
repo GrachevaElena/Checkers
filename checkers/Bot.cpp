@@ -4,8 +4,16 @@
 Board board;
 ListOfCheckers checkers[2];
 
+int Encrypt(Move bestMove);
+
 //надо передавать шашки по порядку номеров, т.к. будут возвращены номера съеденных шашек
-extern "C" __declspec(dllexport) int __stdcall CallBot(int* w_coords, int* w_types, int w_n, int* b_coords, int* b_types, int b_n, int color) {
+extern "C" __declspec(dllexport) int __stdcall CallBot(
+	int* w_coords, int* w_types, int w_n, //white checkers
+	int* b_coords, int* b_types, int b_n,  //black checkers
+	int color,
+	int type_search, int max_depth //parametrs
+) 
+{
 	
 	//расстановка шашек
 	checkers[WHITE].GenerateInitialPosition(WHITE, w_types, w_coords, w_n);
@@ -14,29 +22,32 @@ extern "C" __declspec(dllexport) int __stdcall CallBot(int* w_coords, int* w_typ
 	board.Set(checkers[WHITE], checkers[BLACK]);
 
 	//вызов Search
-	Move bestMove;
-	SearchAlphaBeta(color, MaxDepth, -INF, INF, &bestMove);
-
-	//преобразование bestMove в res: конец ли игры(1бит)->номер шашки(4)->конечные координаты шашки(6)->
-	//->изменился ли вид(1)->съеденные шашки(12)
-	int res=0;
-	Move emptyMove;
-	if (bestMove == emptyMove) res |= 1;
-	else {
-		res |= (bestMove.GetNum()-1) << 1;
-		res |= bestMove.GetFinalCoord() << 5;
-		res |= bestMove.GetType() << 11;
-		int eaten[MaxEaten]; bestMove.GetEaten(eaten);
-		//записываются справа-налево, как все остальное
-		for (int i = 0; i < bestMove.GetNEaten(); i++) {
-			res |= 1 << (12+eaten[i]-1);
-		}
-	}
+	Move bestMove=Search(color,type_search, max_depth);
 
 	//очистка
 	checkers[WHITE].Clean();
 	checkers[BLACK].Clean();
 	board.Clean();
 
+	return Encrypt(bestMove);
+}
+
+
+int Encrypt(Move bestMove) {
+	//преобразование bestMove в res: конец ли игры(1бит)->номер шашки(4)->конечные координаты шашки(6)->
+	//->изменился ли вид(1)->съеденные шашки(12)
+	int res = 0;
+	Move emptyMove;
+	if (bestMove == emptyMove) res |= 1;
+	else {
+		res |= (bestMove.GetNum() - 1) << 1;
+		res |= bestMove.GetFinalCoord() << 5;
+		res |= bestMove.GetType() << 11;
+		int eaten[MaxEaten]; bestMove.GetEaten(eaten);
+		//записываются справа-налево, как все остальное
+		for (int i = 0; i < bestMove.GetNEaten(); i++) {
+			res |= 1 << (12 + eaten[i] - 1);
+		}
+	}
 	return res;
 }
