@@ -43,6 +43,7 @@
             this.CheckerRadioButton = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -91,7 +92,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(686, 578);
             this.panel1.TabIndex = 3;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button5
             // 
@@ -194,13 +194,14 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button8);
             this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.button6);
             this.panel2.Location = new System.Drawing.Point(729, 62);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(176, 388);
+            this.panel2.Size = new System.Drawing.Size(176, 455);
             this.panel2.TabIndex = 8;
             this.panel2.Visible = false;
             // 
@@ -214,6 +215,17 @@
             this.button7.Text = "Delete";
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.White;
+            this.button8.Location = new System.Drawing.Point(21, 361);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(119, 65);
+            this.button8.TabIndex = 9;
+            this.button8.Text = "Play";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // Form1
             // 
@@ -252,6 +264,7 @@
         public System.Windows.Forms.RadioButton CheckerRadioButton;
         public System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.Button button7;
+        public System.Windows.Forms.Button button8;
     }
 }
 

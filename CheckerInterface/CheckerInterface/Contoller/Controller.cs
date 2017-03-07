@@ -79,8 +79,7 @@ namespace CheckerInterface
                 {
                     form_view.button6.BackColor = System.Drawing.Color.Gray;
                     game_model.SetStartColor(Color.empty);
-                }
-                    
+                }                    
 
         }
         public void buttonDeleteChecker()
@@ -92,6 +91,16 @@ namespace CheckerInterface
             form_view.DamkaRadioButton.Checked = false;
             form_view.CheckerRadioButton.Checked = false;
             game_model.SetStartColor(Color.empty);
+        }
+        public void buttonPlayInConstructor()
+        {
+            form_view.panel2.Visible = false;
+            game_model.SetStatusApplication(StatusApplication.game);
+            game_model.SetStatusPlayers(StatusPlayer.human, StatusPlayer.human);
+            game_model.SetStartColor(Color.white);
+            game_model.SetStatusGame(StatusGame.wait);
+            if (game_model.SearchEatingAndWriteToMove())
+                game_model.SetStatusGame(StatusGame.waitEat);
         }
 
         public void ClickCell(int x, int y)

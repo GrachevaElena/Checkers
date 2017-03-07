@@ -85,10 +85,6 @@ namespace CheckerInterface
             controller.buttonSetting();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
         public void OnKeyDown(object sender, KeyEventArgs e)
         {
             MessageBox.Show(e.KeyCode.ToString(), "Key pressed!");
@@ -132,6 +128,11 @@ namespace CheckerInterface
         private void button7_Click(object sender, EventArgs e)
         {
             controller.buttonDeleteChecker();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            controller.buttonPlayInConstructor();
         }
     }
 }
