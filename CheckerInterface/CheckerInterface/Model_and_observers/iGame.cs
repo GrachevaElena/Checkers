@@ -14,6 +14,7 @@ namespace CheckerInterface
         void SetStartColor(Color color);
         void FillBoardAndListCheckers();
         void CreateChecker(Checker ch);
+        void DeleteChecker(int x, int y);
 
         StatusApplication GetStatusApplication();
         StatusPlayer GetStatusPlayer();

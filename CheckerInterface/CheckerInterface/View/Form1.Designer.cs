@@ -42,6 +42,7 @@
             this.DamkaRadioButton = new System.Windows.Forms.RadioButton();
             this.CheckerRadioButton = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -193,6 +194,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.button6);
@@ -201,6 +203,17 @@
             this.panel2.Size = new System.Drawing.Size(176, 388);
             this.panel2.TabIndex = 8;
             this.panel2.Visible = false;
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.White;
+            this.button7.Location = new System.Drawing.Point(21, 280);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(119, 65);
+            this.button7.TabIndex = 8;
+            this.button7.Text = "Delete";
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // Form1
             // 
@@ -238,6 +251,7 @@
         public System.Windows.Forms.RadioButton DamkaRadioButton;
         public System.Windows.Forms.RadioButton CheckerRadioButton;
         public System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.Button button7;
     }
 }
 

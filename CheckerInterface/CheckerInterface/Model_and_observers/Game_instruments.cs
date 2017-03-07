@@ -55,11 +55,15 @@ namespace CheckerInterface
                 checker.SetDamka();
             notifySetChecker(checker);
         }
-        private void DeleteChecker(Checker checker)
+        public void DeleteChecker(int x, int y)
         {
-            checkers[(int)checker.GetColor()].Remove(checker);
-            board[checker.x, checker.y] = new LogicCell();
-            notifyDeleteCheckerOrWay(checker.x, checker.y);
+            if (!board[x, y].isEmpty() && board[x, y].GetChecker() != null)
+            {
+                Checker checker = board[x, y].GetChecker();
+                checkers[(int)checker.GetColor()].Remove(checker);
+                board[checker.x, checker.y] = new LogicCell();
+                notifyDeleteCheckerOrWay(checker.x, checker.y);
+            }
         }
 
         public bool SearchAnyMove()
@@ -116,7 +120,7 @@ namespace CheckerInterface
             foreach (Checker ch in moves.preDeleteChecker)
             {
                 ch.ChangeColor();
-                DeleteChecker(ch);
+                DeleteChecker(ch.x, ch.y);
             }
             moves.preDeleteChecker.Clear();
             return true;

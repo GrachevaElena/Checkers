@@ -15,7 +15,6 @@ namespace CheckerInterface
         iController controller;
         iGame game;
         public ViewBoard board;
-
         public Timer timer;
 
         public Form1(Controller _contoller, Game _game)
@@ -128,6 +127,11 @@ namespace CheckerInterface
         private void DamkaRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             controller.buttonAddChecker();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            controller.buttonDeleteChecker();
         }
     }
 }

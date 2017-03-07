@@ -68,7 +68,8 @@ namespace CheckerInterface
             if (game_model.GetStatusApplication() == StatusApplication.constructor)
                 if ((form_view.WhiteRadioButton.Checked || form_view.BlackRadioButton.Checked) && (form_view.DamkaRadioButton.Checked || form_view.CheckerRadioButton.Checked))
                 {
-                    form_view.button6.BackColor = System.Drawing.Color.Gray;
+                    form_view.button6.BackColor = System.Drawing.Color.White;
+                    form_view.button7.BackColor = System.Drawing.Color.Gray;
                     if (form_view.WhiteRadioButton.Checked) game_model.SetStartColor(Color.white);
                     if (form_view.BlackRadioButton.Checked) game_model.SetStartColor(Color.black);
                     if (form_view.CheckerRadioButton.Checked) fig = Figure.checker;
@@ -76,11 +77,21 @@ namespace CheckerInterface
                 }
                 else
                 {
-                    form_view.button6.BackColor = System.Drawing.Color.White;
+                    form_view.button6.BackColor = System.Drawing.Color.Gray;
                     game_model.SetStartColor(Color.empty);
                 }
                     
 
+        }
+        public void buttonDeleteChecker()
+        {
+            form_view.button6.BackColor = System.Drawing.Color.Gray;
+            form_view.button7.BackColor = System.Drawing.Color.White;
+            form_view.WhiteRadioButton.Checked = false;
+            form_view.BlackRadioButton.Checked = false;
+            form_view.DamkaRadioButton.Checked = false;
+            form_view.CheckerRadioButton.Checked = false;
+            game_model.SetStartColor(Color.empty);
         }
 
         public void ClickCell(int x, int y)
@@ -119,8 +130,16 @@ namespace CheckerInterface
                     }
                     break;
                 case StatusApplication.constructor:
-                    if (game_model.GetColor() != Color.empty && ((x + y) % 2 == 1))
-                        game_model.CreateChecker(new Checker(game_model.GetColor(), fig, x, y));
+                    if (form_view.button6.BackColor == System.Drawing.Color.White)
+                    {
+                        if ((x + y) % 2 == 1)
+                        {
+                            game_model.DeleteChecker(x, y);
+                            game_model.CreateChecker(new Checker(game_model.GetColor(), fig, x, y));
+                        }
+                    }
+                    else if (form_view.button7.BackColor == System.Drawing.Color.White)
+                        game_model.DeleteChecker(x, y);
                     break;
                 default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
             }

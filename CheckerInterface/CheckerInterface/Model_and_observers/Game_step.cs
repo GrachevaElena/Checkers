@@ -73,7 +73,7 @@ namespace CheckerInterface
                 case StatusGame.endEating:
                     MoveChecker(botMove.selectedChecker, botMove.way[0].Item1, botMove.way[0].Item2);
                     foreach (Checker ch in botMove.eaten)
-                        DeleteChecker(ch);
+                        DeleteChecker(ch.x, ch.y);
                     botMove.Clear();
                     moves.Clear();
                     statusGame = StatusGame.wait;
