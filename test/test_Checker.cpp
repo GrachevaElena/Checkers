@@ -34,6 +34,13 @@ TEST_F(test_Checker, can_set_and_get_coord)
 	ASSERT_EQ(GetCoord(), 24);
 }
 
+TEST_F(test_Checker, can_set_and_get_inv_coord)
+{
+	SetCoord(33);
+
+	ASSERT_EQ(GetInvCoord(), 12);
+}
+
 TEST_F(test_Checker, can_set_and_get_next_num)
 {
 	SetNextNum(11);

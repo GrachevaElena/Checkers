@@ -18,7 +18,7 @@ TEST(test_AlphaBetaSearch, performance) {
 	board.Set(checkers[0], checkers[1]);
 
 	int t1 = clock();
-	SearchAlphaBeta(1, 14, -INF, INF);
+	SearchAlphaBeta(1, 5, -INF, INF);
 	int t2 = clock();
 
 	std::cout << t2 - t1 << std::endl;

@@ -21,6 +21,7 @@ public:
 	int GetColor() { return  Check & 1; }
 	int GetType() { return  (Check & 2) >> 1; }
 	int GetCoord() { return  (Check & 252) >> 2; }
+	int GetInvCoord() { return ((GetCoord() & 7)<<3) | (GetCoord() >> 3); }
 	int GetNum() { return (Check >> 28) & 15; }
 
 	void ChangeColor() { Check = Check ^ 1; }
