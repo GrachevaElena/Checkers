@@ -64,6 +64,45 @@ namespace CheckerInterface
                 board.ClearCell();
         }
 
+        bool isCheckedButtonDelete = false;
+
+        public bool RadiosButtonsIsChecked()
+        {
+            return ((WhiteRadioButton.Checked || BlackRadioButton.Checked) && (DamkaRadioButton.Checked || CheckerRadioButton.Checked));
+        }
+        public Color GetChosenColor()
+        {
+            if (WhiteRadioButton.Checked) return Color.white;
+            if (BlackRadioButton.Checked) return Color.black;
+            return Color.empty;
+        }
+        public Figure GetChosenFigure()
+        {
+            if (CheckerRadioButton.Checked) return Figure.checker;
+            if (DamkaRadioButton.Checked) return Figure.damka;
+            return Figure.empty;
+        }
+        public void SetColorButton(System.Drawing.Color colButtonAdd, System.Drawing.Color colButtonDelete)
+        {
+            buttonAdd.BackColor = colButtonAdd;
+            buttonDelete.BackColor = colButtonDelete;
+        }
+        public void SetEmptyRadioButtons()
+        {
+            WhiteRadioButton.Checked = false;
+            BlackRadioButton.Checked = false;
+            DamkaRadioButton.Checked = false;
+            CheckerRadioButton.Checked = false;
+        }
+        public void SetCheckedButDelete(bool f)
+        {
+            isCheckedButtonDelete = f;
+        }
+        public bool IsCheckedButtonDelete()
+        {
+            return isCheckedButtonDelete;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             controller.buttonOnePlayer();
@@ -99,38 +138,31 @@ namespace CheckerInterface
             controller.Time();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void buttonAddCh_Click(object sender, EventArgs e)
         {
             controller.buttonAddChecker();
         }
-
-
-        private void WhiteRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void WhiteRadioBut_CheckedChanged(object sender, EventArgs e)
         {
             controller.buttonAddChecker();
         }
-
-        private void BlackRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void BlackRadioBut_CheckedChanged(object sender, EventArgs e)
         {
             controller.buttonAddChecker();
         }
-
-        private void CheckerRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void ChRadioBut_CheckedChanged(object sender, EventArgs e)
         {
             controller.buttonAddChecker();
         }
-
         private void DamkaRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             controller.buttonAddChecker();
         }
-
-        private void button7_Click(object sender, EventArgs e)
+        private void buttonDeleteChecker_Click(object sender, EventArgs e)
         {
             controller.buttonDeleteChecker();
         }
-
-        private void button8_Click(object sender, EventArgs e)
+        private void buttonPlay_Click(object sender, EventArgs e)
         {
             controller.buttonPlayInConstructor();
         }

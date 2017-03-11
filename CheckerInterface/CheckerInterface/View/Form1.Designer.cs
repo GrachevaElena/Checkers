@@ -34,7 +34,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BlackRadioButton = new System.Windows.Forms.RadioButton();
             this.WhiteRadioButton = new System.Windows.Forms.RadioButton();
@@ -42,8 +42,8 @@
             this.DamkaRadioButton = new System.Windows.Forms.RadioButton();
             this.CheckerRadioButton = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonPlay = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -115,14 +115,14 @@
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(21, 37);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(119, 65);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Add";
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.buttonAdd.BackColor = System.Drawing.Color.White;
+            this.buttonAdd.Location = new System.Drawing.Point(21, 37);
+            this.buttonAdd.Name = "button6";
+            this.buttonAdd.Size = new System.Drawing.Size(119, 65);
+            this.buttonAdd.TabIndex = 5;
+            this.buttonAdd.Text = "Add";
+            this.buttonAdd.UseVisualStyleBackColor = false;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAddCh_Click);
             // 
             // groupBox1
             // 
@@ -145,7 +145,7 @@
             this.BlackRadioButton.TabStop = true;
             this.BlackRadioButton.Text = "Black";
             this.BlackRadioButton.UseVisualStyleBackColor = true;
-            this.BlackRadioButton.CheckedChanged += new System.EventHandler(this.BlackRadioButton_CheckedChanged);
+            this.BlackRadioButton.CheckedChanged += new System.EventHandler(this.BlackRadioBut_CheckedChanged);
             // 
             // WhiteRadioButton
             // 
@@ -156,7 +156,7 @@
             this.WhiteRadioButton.TabStop = true;
             this.WhiteRadioButton.Text = "White";
             this.WhiteRadioButton.UseVisualStyleBackColor = true;
-            this.WhiteRadioButton.CheckedChanged += new System.EventHandler(this.WhiteRadioButton_CheckedChanged);
+            this.WhiteRadioButton.CheckedChanged += new System.EventHandler(this.WhiteRadioBut_CheckedChanged);
             // 
             // groupBox2
             // 
@@ -190,15 +190,15 @@
             this.CheckerRadioButton.TabStop = true;
             this.CheckerRadioButton.Text = "Checker";
             this.CheckerRadioButton.UseVisualStyleBackColor = true;
-            this.CheckerRadioButton.CheckedChanged += new System.EventHandler(this.CheckerRadioButton_CheckedChanged);
+            this.CheckerRadioButton.CheckedChanged += new System.EventHandler(this.ChRadioBut_CheckedChanged);
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button8);
-            this.panel2.Controls.Add(this.button7);
+            this.panel2.Controls.Add(this.buttonPlay);
+            this.panel2.Controls.Add(this.buttonDelete);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Controls.Add(this.button6);
+            this.panel2.Controls.Add(this.buttonAdd);
             this.panel2.Location = new System.Drawing.Point(729, 62);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(176, 455);
@@ -207,25 +207,25 @@
             // 
             // button7
             // 
-            this.button7.BackColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(21, 280);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(119, 65);
-            this.button7.TabIndex = 8;
-            this.button7.Text = "Delete";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.buttonDelete.BackColor = System.Drawing.Color.White;
+            this.buttonDelete.Location = new System.Drawing.Point(21, 280);
+            this.buttonDelete.Name = "button7";
+            this.buttonDelete.Size = new System.Drawing.Size(119, 65);
+            this.buttonDelete.TabIndex = 8;
+            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDeleteChecker_Click);
             // 
             // button8
             // 
-            this.button8.BackColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(21, 361);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(119, 65);
-            this.button8.TabIndex = 9;
-            this.button8.Text = "Play";
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.buttonPlay.BackColor = System.Drawing.Color.White;
+            this.buttonPlay.Location = new System.Drawing.Point(21, 361);
+            this.buttonPlay.Name = "button8";
+            this.buttonPlay.Size = new System.Drawing.Size(119, 65);
+            this.buttonPlay.TabIndex = 9;
+            this.buttonPlay.Text = "Play";
+            this.buttonPlay.UseVisualStyleBackColor = false;
+            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
             // 
             // Form1
             // 
@@ -254,17 +254,17 @@
         private System.Windows.Forms.Button button3;               
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        public System.Windows.Forms.Panel panel1;
-        public System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.GroupBox groupBox1;
-        public System.Windows.Forms.RadioButton BlackRadioButton;
-        public System.Windows.Forms.RadioButton WhiteRadioButton;
+        private System.Windows.Forms.RadioButton BlackRadioButton;
+        private System.Windows.Forms.RadioButton WhiteRadioButton;
         private System.Windows.Forms.GroupBox groupBox2;
-        public System.Windows.Forms.RadioButton DamkaRadioButton;
-        public System.Windows.Forms.RadioButton CheckerRadioButton;
+        private System.Windows.Forms.RadioButton DamkaRadioButton;
+        private System.Windows.Forms.RadioButton CheckerRadioButton;
         public System.Windows.Forms.Panel panel2;
-        public System.Windows.Forms.Button button7;
-        public System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button buttonPlay;
     }
 }
 
