@@ -14,7 +14,7 @@ int UsualSearch(int color, int depth, Move* bestMove, int ev_num = 0) {
 
 	for (Move* pmove = saved; pmove < cache.GetpLast(); pmove++) {
 		MakeMove(*pmove);
-		tmp = -UsualSearch(!color, depth - 1, 0);
+		tmp = -UsualSearch(!color, depth - 1,0, ev_num);
 		UnMakeMove(*pmove);
 		if (score < tmp) {
 			score = tmp;
@@ -37,7 +37,7 @@ int SearchAlphaBeta(int color, int depth, int alpha, int beta, Move * bestMove, 
 
 	for (Move* pmove = saved; pmove < cache.GetpLast(); pmove++) {
 		MakeMove(*pmove);
-		tmp = -SearchAlphaBeta(!color, depth - 1, -beta, -alpha, 0);
+		tmp = -SearchAlphaBeta(!color, depth - 1, -beta, -alpha,0, ev_num);
 		UnMakeMove(*pmove);
 		
 		if (tmp > alpha) {

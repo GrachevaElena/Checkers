@@ -19,6 +19,6 @@ const int MaxCache = 10000;
 
 extern ListOfCheckers checkers[2];
 
-const int MaxDepth = 8;
+const int MaxDepth = 4;
 
 Move Search(int color, int type_search, int max_depth);

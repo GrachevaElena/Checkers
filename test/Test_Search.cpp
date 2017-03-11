@@ -23,5 +23,25 @@ TEST(test_AlphaBetaSearch, performance) {
 
 	std::cout << t2 - t1 << std::endl;
 
-	ASSERT_TRUE(1);
+	EXPECT_TRUE(1);
+
+	board.Clean();
+}
+
+TEST(test_AlphaBetaSearch_Smart, can_evaluate_normally) {
+	const int nb = 2;
+	int typesb[nb] = { 0 };
+	int coordsb[nb] = { 24,58 };
+
+	checkers[0].GenerateInitialPosition(0, 0, 0, 0);
+	checkers[1].GenerateInitialPosition(1, typesb, coordsb, nb);
+
+	board.Set(checkers[0], checkers[1]);
+
+	Move bestMove;
+	SearchAlphaBeta(1, 1, -INF, INF, &bestMove, 1);
+
+	EXPECT_EQ(bestMove.GetFinalCoord(), 51);
+
+	board.Clean();
 }
