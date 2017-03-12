@@ -65,7 +65,7 @@ namespace CheckerInterface
                 board.ClearCell();
         }
 
-        bool isCheckedButtonDelete = false;
+        private bool isCheckedButtonDelete = false;
 
         public bool RadiosButtonsIsChecked()
         {

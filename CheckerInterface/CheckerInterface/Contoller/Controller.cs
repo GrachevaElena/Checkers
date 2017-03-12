@@ -59,6 +59,7 @@ namespace CheckerInterface
         {
             form_view.VisibleButtons(false);
             game_model.ClearResource();
+            game_model.ClearResource();
             game_model.SetStartColor(Color.empty);
             form_view.CreateBoard();
             game_model.SetStatusApplication(StatusApplication.constructor);
@@ -88,6 +89,7 @@ namespace CheckerInterface
             settingForm = new SettingForm(this);
             settingForm.Show();
             //реализация окна заполнения настроек
+
            /* game_model.SetStatusApplication(StatusApplication.game);
             game_model.SetStatusPlayers(StatusPlayer.human, StatusPlayer.human);
             game_model.SetStartColor(Color.white);
@@ -122,7 +124,6 @@ namespace CheckerInterface
 
         public void ClickCell(int x, int y)
         {
-            //MessageBox.Show(x.ToString()+' '+y.ToString());
             switch (game_model.GetStatusApplication())
             {
                 case StatusApplication.game:

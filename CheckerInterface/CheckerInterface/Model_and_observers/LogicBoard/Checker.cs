@@ -46,7 +46,6 @@ namespace CheckerInterface
         {
             return false;
         }
-
         public int GetLight()
         {
             return Convert.ToInt32(base.GetIsWay());
@@ -72,32 +71,55 @@ namespace CheckerInterface
             figure = Figure.checker;
         }
 
-
         public bool CanMoveInRay(int dx, int dy/*orts of ray*/)
-        //+сохраняет съеденную шашку в way_x, way_y
+        //+сохраняет путь в way_x, way_y
         {
             switch (GetFigure())
             {
                 case Figure.checker:
-                    if (Checker.dy[(int)color] != dy) return false;
-                    int x1 = x + dx;
-                    int y1 = y + dy;
-                    if (Inside(x1, y1) && Game.board[x1, y1].isEmpty())
                     {
-                        way_x = x1;
-                        way_y = y1;
-                        return true;
+                        if (Checker.dy[(int)color] != dy) return false;
+                        int x1 = x + dx;
+                        int y1 = y + dy;
+                        if (Inside(x1, y1) && Game.board[x1, y1].isEmpty())
+                        {
+                            way_x = x1;
+                            way_y = y1;
+                            return true;
+                        }
+                        return false;
                     }
-                    return false;
 
                 case Figure.damka:
-                    way_x = -1;
-                    way_y = -1;
-                    return false;
+                    {
+                        int x1 = x + dx;
+                        int y1 = y + dy;
+                        if (Inside(x1, y1) && Game.board[x1, y1].isEmpty())
+                        {
+                            way_x = x1;
+                            way_y = y1;
+                            return true;
+                        }
+                        return false;
+                    }
             }
             return false;
         }
-
+        public bool DamkaCanEatInRay(int dx, int dy, int x1, int y1)
+        {
+            while (Inside(x1, y1) && Inside(x1 + dx, y1 + dy) && IsEmptyInBoard(x1, y1))
+            {
+                x1 += dx;
+                y1 += dy;
+            }
+            if (Inside(x1, y1) && Inside(x1 + dx, y1 + dy) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx, y1 + dy]))
+            {
+                eaten_x = x1;
+                eaten_y = y1;
+                return true;
+            }
+            return false;
+        }
         public bool CanEatInRay(int dx, int dy/*orts of ray*/)
         //+сохраняет съеденную шашку в eaten_x, eaten_y
         {
@@ -118,7 +140,7 @@ namespace CheckerInterface
                     while (Inside(x1, y1) && Inside(x1 + dx, y1 + dy) && IsEmptyInBoard(x1, y1))
                     {
                         x1 += dx;
-                        y1 = y + dy;
+                        y1 += dy;
                     }
                     if (Inside(x1, y1) && Inside(x1 + dx, y1 + dy) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx, y1 + dy]))
                     {
@@ -139,9 +161,15 @@ namespace CheckerInterface
                 {
                     if (CanMoveInRay(dx[i], dy[j]))
                     {
-                        if (way_x == -1) return;//временно
+                        //if (way_x == -1) return;//временно                       
                         m.AddWay(way_x, way_y);
-                        Game.board[way_x, way_y].SetIsWay(true);
+                        if (m.selectedChecker.GetFigure() == Figure.damka)
+                            while (Inside(way_x + dx[i], way_y + dy[j]) && IsEmptyInBoard(way_x + dx[i], way_y + dy[j]))
+                            {
+                                way_x += dx[i];
+                                way_y += dy[j];
+                                m.AddWay(way_x, way_y);
+                            }
                     }
                 }
 
@@ -154,9 +182,35 @@ namespace CheckerInterface
                     if (CanEatInRay(dx[i], dy[j]))
                     {
                         m.AddCanBeEaten(Game.board[eaten_x, eaten_y].GetChecker());
-                        m.AddWay(eaten_x + dx[i], eaten_y + dy[j]);
-                        Game.board[eaten_x + +dx[i], eaten_y + dy[j]].SetIsWay(true);
-                    }
+                        if (m.selectedChecker.GetFigure() == Figure.damka)
+                        {
+                            int dx1 = dx[i], x1 = eaten_x;
+                            int dy1 = dy[j], y1 = eaten_y;
+                            bool f = false;
+                            while (Inside(x1 + dx1, y1 + dy1) && IsEmptyInBoard(x1 + dx1, y1 + dy1))
+                            {
+                                x1 += dx1;
+                                y1 += dy1;
+                                for (int k = 0; k < 2; k++)
+                                    for (int n = 0; n < 2; n++)
+                                    {
+                                        if ((k != i || n != j) && DamkaCanEatInRay(dx[k], dy[n], x1, y1))
+                                        {
+                                            m.AddWay(x1, y1);
+                                            f = true;
+                                        }
+                                    }
+                            }
+                            if (f == true) continue;
+                            while (Inside(eaten_x + dx[i], eaten_y + dy[j]) && IsEmptyInBoard(eaten_x + dx[i], eaten_y + dy[j]))
+                            {
+                                eaten_x += dx[i];
+                                eaten_y += dy[j];
+                                m.AddWay(eaten_x, eaten_y);
+                            }
+                        }
+                        else m.AddWay(eaten_x + dx[i], eaten_y + dy[j]);
+                    }                  
                 }
         }
         public override void SearchWay()
