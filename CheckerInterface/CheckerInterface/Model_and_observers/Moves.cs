@@ -20,6 +20,7 @@ namespace CheckerInterface
         }
         public void AddWay(int x, int y)
         {
+            Game.board[x, y].SetIsWay(true);
             way[FindIndex(x, y)].Add(new Tuple<int, int>(x, y));
         }
         public void AddCanBeEaten(Checker ch)
@@ -53,18 +54,6 @@ namespace CheckerInterface
             if (x - selectedChecker.x < 0 && y - selectedChecker.y < 0)
                 return 2;
             return 3;
-        }
-        public void ClearWays()
-        {
-            for (int i = 0; i < 4; i++)
-                way[i].Clear();
-        }
-
-        public void Clear()
-        {
-            ClearWays();
-            preDeleteChecker.Clear();
-            canEat.Clear();
         }
     }
 }

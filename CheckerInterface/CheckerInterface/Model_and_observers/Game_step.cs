@@ -59,7 +59,6 @@ namespace CheckerInterface
                 case StatusGame.waitStep:
                     MoveChecker(botMove.selectedChecker, botMove.way[0].Item1, botMove.way[0].Item2);
                     botMove.Clear();
-                    moves.Clear();
                     statusGame = StatusGame.wait;
                     return true;
 
@@ -75,7 +74,6 @@ namespace CheckerInterface
                     foreach (Checker ch in botMove.eaten)
                         DeleteChecker(ch.x, ch.y);
                     botMove.Clear();
-                    moves.Clear();
                     statusGame = StatusGame.wait;
                     return true;
             }
