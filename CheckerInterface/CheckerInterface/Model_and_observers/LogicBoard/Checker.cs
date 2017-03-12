@@ -190,7 +190,7 @@ namespace CheckerInterface
                                 for (int k = 0; k < 2; k++)
                                     for (int n = 0; n < 2; n++)
                                     {
-                                        if ((k != i || n != j) && DamkaCanEatInRay(dx[k], dy[n], x1, y1))
+                                        if ((dx[k] != -dx[i] || dy[n] != -dy[j]) && DamkaCanEatInRay(dx[k], dy[n], x1, y1))
                                         {
                                             m.AddWay(x1, y1);
                                             f = true;
