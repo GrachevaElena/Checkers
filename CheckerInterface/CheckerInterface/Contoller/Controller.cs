@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CheckerInterface.View;
 
 namespace CheckerInterface
 {
@@ -11,6 +12,7 @@ namespace CheckerInterface
     {
         iGame game_model;
         Form1 form_view;
+        SettingForm settingForm;
 
         public Controller(Game game, iSubject game_observer)
         {
@@ -78,12 +80,29 @@ namespace CheckerInterface
         public void buttonPlayInConstructor()
         {
             form_view.panel2.Visible = false;
-            game_model.SetStatusApplication(StatusApplication.game);
+            //реализация окна заполнения настроек
+            settingForm = new SettingForm(this);
+            settingForm.Show();
+            //реализация окна заполнения настроек
+           /* game_model.SetStatusApplication(StatusApplication.game);
             game_model.SetStatusPlayers(StatusPlayer.human, StatusPlayer.human);
             game_model.SetStartColor(Color.white);
             game_model.SetStatusGame(StatusGame.wait);
             if (game_model.SearchEatingAndWriteToMove())
-                game_model.SetStatusGame(StatusGame.waitEat);
+                game_model.SetStatusGame(StatusGame.waitEat);*/
+        }
+        public void buttonPlaySetting()
+        {
+           if (settingForm.CanStartGame())
+            {
+                game_model.SetStatusApplication(StatusApplication.game);
+                game_model.SetStartColor(settingForm.GetColorPlayer1());
+                game_model.SetStatusPlayers(settingForm.GetStatusPl1(), settingForm.GetStatusPl2());
+                game_model.SetStatusGame(StatusGame.wait);
+                if (game_model.SearchEatingAndWriteToMove())
+                    game_model.SetStatusGame(StatusGame.waitEat);
+                settingForm.Close();
+            }
         }
 
         public void ClickCell(int x, int y)

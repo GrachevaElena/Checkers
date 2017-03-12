@@ -54,11 +54,11 @@
     <Compile Include="Model_and_observers\LogicBoard\Checker.cs" />
     <Compile Include="Model_and_observers\LogicBoard\LogicBoard.cs" />
     <Compile Include="Model_and_observers\LogicBoard\LogicCell.cs" />
-    <Compile Include="View\setting_bot.cs">
+    <Compile Include="View\SettingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\setting_bot.Designer.cs">
-      <DependentUpon>setting_bot.cs</DependentUpon>
+    <Compile Include="View\SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ViewBoard\ViewBoard.cs" />
     <Compile Include="View\ViewBoard\Cell.cs" />
@@ -89,8 +89,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="View\setting_bot.resx">
-      <DependentUpon>setting_bot.cs</DependentUpon>
+    <EmbeddedResource Include="View\SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
