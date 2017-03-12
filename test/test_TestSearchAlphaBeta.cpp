@@ -23,7 +23,7 @@ TEST(test_TestAlphaBetaSearch0, position14_amputation_depth_is_2) {
 
 	int nVertices = 0; Move bestMove;
 
-	EXPECT_EQ(27, TestSearchAlphaBeta0(0, 2,-INF, INF, nVertices, 0, move, 2, &bestMove));
+	EXPECT_EQ(4 * DamkaPrice - CheckerPrice, TestSearchAlphaBeta0(0, 2,-INF, INF, nVertices, 0, move, 2, &bestMove));
 	EXPECT_EQ(move[0], bestMove);
 	EXPECT_EQ(nVertices, 6);
 
@@ -48,7 +48,7 @@ TEST(test_TestAlphaBetaSearch1, position14_amputation_depth_is_2) {
 
 	int nVertices = 0; Move bestMove;
 
-	EXPECT_EQ(27, TestSearchAlphaBeta1(0, 2, INF, nVertices, 0, move, 2, &bestMove));
+	EXPECT_EQ(4 * DamkaPrice - CheckerPrice, TestSearchAlphaBeta1(0, 2, INF, nVertices, 0, move, 2, &bestMove));
 	EXPECT_EQ(move[0], bestMove);
 	EXPECT_EQ(nVertices, 6);
 
@@ -73,7 +73,7 @@ TEST(test_TestAlphaBetaSearch2, position14_amputation_depth_is_2) {
 
 	int nVertices = 0; Move bestMove;
 
-	EXPECT_EQ(27, TestSearchAlphaBeta2(0, 2, INF, nVertices, 0, move, 2, &bestMove));
+	EXPECT_EQ(4*DamkaPrice-CheckerPrice, TestSearchAlphaBeta2(0, 2, INF, nVertices, 0, move, 2, &bestMove));
 	EXPECT_EQ(move[0], bestMove);
 	EXPECT_EQ(nVertices, 6);
 
@@ -101,7 +101,7 @@ TEST(test_TestAlphaBetaSearch0, position15_amputation_depth_is_3) {
 
 	int nVertices = 0; Move bestMove;
 
-	EXPECT_EQ(-5, TestSearchAlphaBeta0(0, 3, -INF, INF, nVertices, 0, move, 2, &bestMove));
+	EXPECT_EQ(-5*CheckerPrice, TestSearchAlphaBeta0(0, 3, -INF, INF, nVertices, 0, move, 2, &bestMove));
 	EXPECT_EQ(move[0], bestMove);
 	EXPECT_EQ(nVertices, 8);
 
@@ -126,7 +126,7 @@ TEST(test_TestAlphaBetaSearch1, position15_amputation_depth_is_3) {
 
 	int nVertices = 0; Move bestMove;
 
-	EXPECT_EQ(-5, TestSearchAlphaBeta1(0, 3, INF, nVertices, 0, move, 2, &bestMove));
+	EXPECT_EQ(-5 * CheckerPrice, TestSearchAlphaBeta1(0, 3, INF, nVertices, 0, move, 2, &bestMove));
 	EXPECT_EQ(move[0], bestMove);
 	EXPECT_EQ(nVertices, 8);
 
@@ -151,7 +151,7 @@ TEST(test_TestAlphaBetaSearch2, position15_amputation_depth_is_3) {
 
 	int nVertices = 0; Move bestMove;
 
-	EXPECT_EQ(-5, TestSearchAlphaBeta2(0, 3, INF, nVertices, 0, move, 2, &bestMove));
+	EXPECT_EQ(-5 * CheckerPrice, TestSearchAlphaBeta2(0, 3, INF, nVertices, 0, move, 2, &bestMove));
 	EXPECT_EQ(move[0], bestMove);
 	EXPECT_EQ(nVertices, 8);
 

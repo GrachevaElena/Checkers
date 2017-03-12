@@ -4,12 +4,16 @@
 
 #define NULL 0
 
-const int CheckerPrice = 1;
-const int DamkaPrice = 7;
-
 void Generate(ListOfCheckers&);
 
+const int CheckerPrice = 10;
+const int DamkaPrice = 70;
+
 int Evaluate(int color);
+int SmartEvaluate(int color);
+
+typedef int(*Evaluate_) (int);
+const Evaluate_ evaluate[2] = { Evaluate,SmartEvaluate };
 
 void MakeMove(Move&);
 void UnMakeMove(Move&);

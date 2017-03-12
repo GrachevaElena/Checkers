@@ -57,11 +57,11 @@
     <ClInclude Include="..\..\include\BasicFunctions.h">
       <Filter>Заголовочные файлы\Search\BasicFunctions</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Bot.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Search.h">
       <Filter>Заголовочные файлы\Search</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Bot.h">
+      <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +93,9 @@
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="..\..\checkers\Search.cpp">
+      <Filter>Файлы исходного кода\Search</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\checkers\SearchForBot.cpp">
       <Filter>Файлы исходного кода\Search</Filter>
     </ClCompile>
   </ItemGroup>
