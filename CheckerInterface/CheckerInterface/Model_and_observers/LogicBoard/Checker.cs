@@ -113,11 +113,7 @@ namespace CheckerInterface
                 y1 += dy;
             }
             if (Inside(x1, y1) && Inside(x1 + dx, y1 + dy) && CanBeEaten(Game.board[x1, y1], Game.board[x1 + dx, y1 + dy]))
-            {
-                eaten_x = x1;
-                eaten_y = y1;
                 return true;
-            }
             return false;
         }
         public bool CanEatInRay(int dx, int dy/*orts of ray*/)
