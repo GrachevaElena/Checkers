@@ -22,6 +22,19 @@ namespace CheckerInterface
         private StatusApplication statusApplication = StatusApplication.menu;
         private StatusPlayer[] statusPlayer = new StatusPlayer[2];
 
+        public void SetGame(StatusApplication st, Color startColor, StatusPlayer pl1, StatusPlayer pl2, StatusGame statusGame)
+        {
+            statusApplication = st;
+            color = startColor;
+            statusPlayer[0] = pl1;
+            statusPlayer[1] = pl2;
+            this.statusGame = statusGame;
+        }
+        public void StartGame()
+        {
+            if (this.GetStatusPlayer() == StatusPlayer.bot)
+                notifyEnableTimer();
+        }
         public void SetStatusApplication(StatusApplication st)
         {
             statusApplication = st;

@@ -51,6 +51,7 @@ namespace CheckerInterface
             this.button3.Visible = vis;
             this.button4.Visible = vis;
             this.button5.Visible = vis;
+            this.button6.Visible = vis;
         }
         public void CreateBoard()
         {
@@ -133,6 +134,10 @@ namespace CheckerInterface
             }
         }
 
+        void iObserver.updateEnableTimer()
+        {
+            timer.Enabled = true;
+        }
         public void Time(object sender, EventArgs e)
         {
             controller.Time();
@@ -165,6 +170,11 @@ namespace CheckerInterface
         private void buttonPlay_Click(object sender, EventArgs e)
         {
             controller.buttonPlayInConstructor();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            controller.buttonBotVSBot();
         }
     }
 }

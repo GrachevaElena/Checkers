@@ -31,10 +31,12 @@ namespace CheckerInterface
             game_model.ClearResource();
             form_view.CreateBoard();
             game_model.FillBoardAndListCheckers();
-            game_model.SetStatusApplication(StatusApplication.game);
+            game_model.SetGame(StatusApplication.game, Color.white, StatusPlayer.human, StatusPlayer.bot, StatusGame.wait);
+            /*game_model.SetStatusApplication(StatusApplication.game);
             game_model.SetStatusPlayers(StatusPlayer.human, StatusPlayer.bot);
             game_model.SetStartColor(Color.white);
-            game_model.SetStatusGame(StatusGame.wait);
+            game_model.SetStatusGame(StatusGame.wait);*/
+            game_model.StartGame();
         }
         public void buttonTwoPlayers()
         {
@@ -42,10 +44,12 @@ namespace CheckerInterface
             game_model.ClearResource();
             form_view.CreateBoard();
             game_model.FillBoardAndListCheckers();
-            game_model.SetStatusApplication(StatusApplication.game);
+            game_model.SetGame(StatusApplication.game, Color.white, StatusPlayer.human, StatusPlayer.human, StatusGame.wait);
+            /*game_model.SetStatusApplication(StatusApplication.game);
             game_model.SetStatusPlayers(StatusPlayer.human, StatusPlayer.human);
             game_model.SetStartColor(Color.white);
-            game_model.SetStatusGame(StatusGame.wait);
+            game_model.SetStatusGame(StatusGame.wait);*/
+            game_model.StartGame();
         }
         public void buttonLoadGame()
         {
@@ -95,14 +99,25 @@ namespace CheckerInterface
         {
            if (settingForm.CanStartGame())
             {
-                game_model.SetStatusApplication(StatusApplication.game);
+                game_model.SetGame(StatusApplication.game, settingForm.GetColorPlayer1(), settingForm.GetStatusPl1(), settingForm.GetStatusPl2(), StatusGame.wait);
+                /*game_model.SetStatusApplication(StatusApplication.game);
                 game_model.SetStartColor(settingForm.GetColorPlayer1());
                 game_model.SetStatusPlayers(settingForm.GetStatusPl1(), settingForm.GetStatusPl2());
-                game_model.SetStatusGame(StatusGame.wait);
-                if (game_model.SearchEatingAndWriteToMove())
+                game_model.SetStatusGame(StatusGame.wait);*/
+                if ((game_model.GetStatusPlayer()==StatusPlayer.human)&&(game_model.SearchEatingAndWriteToMove()))
                     game_model.SetStatusGame(StatusGame.waitEat);
                 settingForm.Close();
+                game_model.StartGame();
             }
+        }
+        public void buttonBotVSBot()
+        {
+            form_view.VisibleButtons(false);
+            game_model.ClearResource();
+            form_view.CreateBoard();
+            game_model.FillBoardAndListCheckers();
+            game_model.SetGame(StatusApplication.game, Color.white, StatusPlayer.bot, StatusPlayer.bot, StatusGame.wait);
+            game_model.StartGame();
         }
 
         public void ClickCell(int x, int y)

@@ -31,6 +31,10 @@ namespace CheckerInterface
             foreach (iObserver obs in observers)
                 obs.updateWay(ways);
         }
-
+        public void notifyEnableTimer()
+        {
+            foreach (iObserver obs in observers)
+                obs.updateEnableTimer();
+        }  
     }
 }

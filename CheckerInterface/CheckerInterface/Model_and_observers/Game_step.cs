@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Threading;
 
 namespace CheckerInterface
 {
@@ -19,6 +18,7 @@ namespace CheckerInterface
     }
     public partial class Game : iSubject, iGame
     {
+
         [DllImport(@"Checkers.dll")] 
         static extern int CallBot(int[] w_coords, int[] w_types, int w_n, int[] b_coords, int[] b_types, int b_n, int color);
 

@@ -8,6 +8,7 @@ namespace CheckerInterface
 {
     public interface iController
     {
+        void buttonBotVSBot();
         void buttonOnePlayer();
         void buttonTwoPlayers();
         void buttonLoadGame();
