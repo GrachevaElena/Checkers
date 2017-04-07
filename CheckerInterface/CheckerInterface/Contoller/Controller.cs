@@ -103,6 +103,12 @@ namespace CheckerInterface
             }
         }     //stting
 
+        private void GameEnd()
+        {
+            game_model.SetStartColor(Color.empty);
+            game_model.SetStatusApplication(StatusApplication.menu);
+            form_view.timer.Enabled = false;
+        }
         public void ClickCell(int x, int y)
         {
             switch (game_model.GetStatusApplication())
@@ -131,6 +137,7 @@ namespace CheckerInterface
                             else
                             {
                                 //нет: конец игры
+                                GameEnd();
                                 MessageBox.Show("Game over");
                                 return;
                             }
@@ -146,7 +153,7 @@ namespace CheckerInterface
                             game_model.CreateChecker(new Checker(form_view.GetChosenColor(), form_view.GetChosenFigure(), x, y));
                         }
                     }
-                    else if (form_view.IsCheckedButtonDelete())
+                    else if (form_view.IsCheckedButtonDelete())//если выбрана кнопка delete - удаляй шашку. 
                         game_model.DeleteChecker(x, y);
                     break;
                 default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
@@ -178,6 +185,7 @@ namespace CheckerInterface
                     else
                     {
                         //нет: конец игры
+                        GameEnd();
                         MessageBox.Show("Game over");
                         return;
                     }
@@ -188,16 +196,20 @@ namespace CheckerInterface
 
         public void keyEsc()
         {
-            if (form_view.checkESC == false)
+            if (game_model.GetStatusApplication() == StatusApplication.menu) //если мы в меню ...
             {
-                form_view.VisibleButtons(true);
-                // form_view.panel2.Visible = false;
-                form_view.checkESC = true;
+                //do nothing =)
             } 
-            else
+            else if (form_view.ESC_on == false)//если на esc не нажимали - открой меню
+            {
+                form_view.ESC_on = true;
+                form_view.VisibleButtons(true);
+            }
+            else //если на esc нажимали - закрой меню
             {
                 form_view.VisibleButtons(false);
-            }         
+                form_view.ESC_on = false;
+            }     
         }
     }
 }

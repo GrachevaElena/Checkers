@@ -16,7 +16,7 @@ namespace CheckerInterface
         iGame game;
         public ViewBoard board;
         public Timer timer;
-        public bool checkESC = false;
+        public bool ESC_on = false;
 
         public Form1(Controller _contoller, Game _game)
         {
