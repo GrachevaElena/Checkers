@@ -15,7 +15,8 @@ namespace CheckerInterface
     public enum StatusPlayer
     {
         bot,
-        human
+        human,
+        empty
     }
     public partial class Game : iSubject, iGame
     {

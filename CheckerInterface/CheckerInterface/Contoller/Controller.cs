@@ -28,6 +28,9 @@ namespace CheckerInterface
         private void buttonClear()//очищает все ресурсы, вызывается после нажатия кнопок главного меню
         {
             form_view.VisibleButtons(false);
+            form_view.ESC_on = false;
+            form_view.timer.Enabled = false;
+            game_model.SetStatusPlayers(StatusPlayer.empty, StatusPlayer.empty);
             game_model.ClearResource();
         }
         public void buttonOnePlayer()
@@ -49,7 +52,6 @@ namespace CheckerInterface
         public void buttonLoadGame()
         {
             buttonClear();
-            form_view.VisibleButtons(false);
         }
         public void buttonConstrutor()
         {
@@ -64,8 +66,7 @@ namespace CheckerInterface
         }
         public void buttonBotVSBot()
         {
-            form_view.VisibleButtons(false);
-            game_model.ClearResource();
+            buttonClear();
             form_view.CreateBoard();
             game_model.FillBoardAndListCheckers();
             game_model.SetGame(Color.white, StatusPlayer.bot, StatusPlayer.bot, StatusGame.wait);
@@ -106,6 +107,7 @@ namespace CheckerInterface
         private void GameEnd()
         {
             game_model.SetStartColor(Color.empty);
+            game_model.SetStatusPlayers(StatusPlayer.empty, StatusPlayer.empty);
             game_model.SetStatusApplication(StatusApplication.menu);
             form_view.timer.Enabled = false;
         }
@@ -199,6 +201,7 @@ namespace CheckerInterface
             if (game_model.GetStatusApplication() == StatusApplication.menu) //если мы в меню ...
             {
                 //do nothing =)
+                form_view.VisibleButtons(true);
             } 
             else if (form_view.ESC_on == false)//если на esc не нажимали - открой меню
             {
