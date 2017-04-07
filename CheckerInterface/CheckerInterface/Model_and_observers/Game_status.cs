@@ -22,9 +22,9 @@ namespace CheckerInterface
         private StatusApplication statusApplication = StatusApplication.menu;
         private StatusPlayer[] statusPlayer = new StatusPlayer[2];
 
-        public void SetGame(StatusApplication st, Color startColor, StatusPlayer pl1, StatusPlayer pl2, StatusGame statusGame)
+        public void SetGame(Color startColor, StatusPlayer pl1, StatusPlayer pl2, StatusGame statusGame)
         {
-            statusApplication = st;
+            statusApplication = StatusApplication.game;
             color = startColor;
             statusPlayer[0] = pl1;
             statusPlayer[1] = pl2;

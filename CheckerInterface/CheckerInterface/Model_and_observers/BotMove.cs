@@ -78,8 +78,7 @@ namespace CheckerInterface
                                 f = true;
                                 interm.Insert(0,m.way[i][j]);//надо вставлять в обратном порядке
                                 break;
-                            }
-                            selectedChecker.SetChecker();//уть, а что это функция делает?
+                            }                       
                         }
 
                         selectedChecker.x = x_;//подвинули обратно

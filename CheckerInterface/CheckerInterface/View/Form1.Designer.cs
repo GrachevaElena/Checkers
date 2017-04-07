@@ -32,6 +32,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonPlay = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -59,7 +59,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "One player";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.but1Play1_Click);
             // 
             // button2
             // 
@@ -69,7 +69,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Two players";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.but2Play2_Click);
             // 
             // button3
             // 
@@ -79,7 +79,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "Load game";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.but3Load_Click);
             // 
             // panel1
             // 
@@ -95,6 +95,16 @@
             this.panel1.Size = new System.Drawing.Size(686, 578);
             this.panel1.TabIndex = 3;
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(223, 48);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(367, 73);
+            this.button6.TabIndex = 5;
+            this.button6.Text = "Bot VS Bot";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.but0botVSbot_Click);
+            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(223, 443);
@@ -103,7 +113,7 @@
             this.button5.TabIndex = 4;
             this.button5.Text = "Setting";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.but5Setting_Click);
             // 
             // button4
             // 
@@ -113,7 +123,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "Constructor";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.but4Constr_Click);
             // 
             // buttonAdd
             // 
@@ -201,9 +211,9 @@
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.buttonAdd);
-            this.panel2.Location = new System.Drawing.Point(729, 62);
+            this.panel2.Location = new System.Drawing.Point(744, 62);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(176, 455);
+            this.panel2.Size = new System.Drawing.Size(161, 455);
             this.panel2.TabIndex = 8;
             this.panel2.Visible = false;
             // 
@@ -228,16 +238,6 @@
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = false;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDeleteChecker_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(223, 48);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(367, 73);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Bot VS Bot";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form1
             // 

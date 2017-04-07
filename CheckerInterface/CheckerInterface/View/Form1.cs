@@ -16,6 +16,7 @@ namespace CheckerInterface
         iGame game;
         public ViewBoard board;
         public Timer timer;
+        public bool checkESC = false;
 
         public Form1(Controller _contoller, Game _game)
         {
@@ -104,23 +105,23 @@ namespace CheckerInterface
             return isCheckedButtonDelete;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void but1Play1_Click(object sender, EventArgs e)
         {
             controller.buttonOnePlayer();
         }
-        private void button2_Click(object sender, EventArgs e)
+        private void but2Play2_Click(object sender, EventArgs e)
         {
             controller.buttonTwoPlayers();
         }
-        private void button3_Click(object sender, EventArgs e)
+        private void but3Load_Click(object sender, EventArgs e)
         {
             controller.buttonLoadGame();
         }
-        private void button4_Click(object sender, EventArgs e)
+        private void but4Constr_Click(object sender, EventArgs e)
         {
             controller.buttonConstrutor();
         }
-        private void button5_Click(object sender, EventArgs e)
+        private void but5Setting_Click(object sender, EventArgs e)
         {
             controller.buttonSetting();
         }
@@ -171,8 +172,7 @@ namespace CheckerInterface
         {
             controller.buttonPlayInConstructor();
         }
-
-        private void button6_Click(object sender, EventArgs e)
+        private void but0botVSbot_Click(object sender, EventArgs e)
         {
             controller.buttonBotVSBot();
         }
