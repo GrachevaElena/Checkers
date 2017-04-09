@@ -132,8 +132,18 @@ namespace CheckerInterface
                                         return;
 
                                     case StatusPlayer.bot:
-                                        //включили таймер
+                                        //включили таймер                                     
                                         form_view.timer.Enabled = true;
+
+                                        //######
+                                        //game_model.CallBot               - включаем поиск хода
+                                        //как только нашли ход:
+                                        //form_view.timer.Enabled = true;  - включаем таймер, вызывается Time, там вызываем BotStep, отрисовываем пути
+                                        //В Time когда отрисовали путь делаем:
+                                        //  отключаем таймер
+                                        //  NextPlayer()
+                                        //  ClickCell(0,0) - цикл продолжается
+                                        //######
                                         return;
                                 }
                             else
@@ -147,12 +157,12 @@ namespace CheckerInterface
                     }
                     break;
                 case StatusApplication.constructor:
-                    if (form_view.RadiosButtonsIsChecked() && !form_view.IsCheckedButtonDelete())
+                    if (form_view.RadiosButtonsIsChecked() && !form_view.IsCheckedButtonDelete())//если выбраны настройки для шашки и не выбран Delete
                     {
                         if ((x + y) % 2 == 1)
                         {
-                            game_model.DeleteChecker(x, y);
-                            game_model.CreateChecker(new Checker(form_view.GetChosenColor(), form_view.GetChosenFigure(), x, y));
+                            game_model.DeleteChecker(x, y);//удаляй старую шашку
+                            game_model.CreateChecker(new Checker(form_view.GetChosenColor(), form_view.GetChosenFigure(), x, y));//вставляй новую
                         }
                     }
                     else if (form_view.IsCheckedButtonDelete())//если выбрана кнопка delete - удаляй шашку. 
