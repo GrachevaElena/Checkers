@@ -14,7 +14,8 @@ namespace CheckerInterface
         waitEat,
         waitEatSelect,
         eating,
-        endEating 
+        endEating,
+        gameOver
     }
     public partial class Game : iSubject, iGame
     {
@@ -38,7 +39,8 @@ namespace CheckerInterface
 
                     if (botMove.end == 1)
                     {
-                        MessageBox.Show("Bot thinks, game over");
+                        statusGame = StatusGame.gameOver;
+                        MessageBox.Show("Bot thinks, game over");                      
                         return true;
                     }
 
@@ -75,6 +77,8 @@ namespace CheckerInterface
                         DeleteChecker(ch.x, ch.y);
                     botMove.Clear();
                     statusGame = StatusGame.wait;
+                    return true;
+                case StatusGame.gameOver:
                     return true;
             }
             return false;

@@ -19,6 +19,7 @@ namespace CheckerInterface
         void DeleteChecker(int x, int y);
 
         StatusApplication GetStatusApplication();
+        StatusGame GetStatusGame();
         StatusPlayer GetStatusPlayer();
         Color GetColor();
 

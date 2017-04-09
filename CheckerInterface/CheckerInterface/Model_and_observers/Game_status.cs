@@ -58,6 +58,10 @@ namespace CheckerInterface
         {
             return statusApplication;
         }
+        public StatusGame GetStatusGame()
+        {
+            return statusGame;
+        }
         public StatusPlayer GetStatusPlayer()
         {
             return statusPlayer[(int)color];

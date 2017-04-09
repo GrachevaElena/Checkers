@@ -106,10 +106,10 @@ namespace CheckerInterface
 
         private void GameEnd()
         {
+            form_view.timer.Enabled = false;
             game_model.SetStartColor(Color.empty);
             game_model.SetStatusPlayers(StatusPlayer.empty, StatusPlayer.empty);
-            game_model.SetStatusApplication(StatusApplication.menu);
-            form_view.timer.Enabled = false;
+            game_model.SetStatusApplication(StatusApplication.menu);          
         }
         public void ClickCell(int x, int y)
         {
@@ -118,7 +118,7 @@ namespace CheckerInterface
                 case StatusApplication.game:
                     if (game_model.GetStatusPlayer() == StatusPlayer.human)
                     {
-                        if (game_model.HumanStep(x, y) == true)
+                        if (game_model.HumanStep(x, y) == true)//если человек сходил
                         {
                             game_model.NextPlayer();
 
@@ -169,9 +169,15 @@ namespace CheckerInterface
             {
                 if (game_model.BotStep() == true)
                 {
+                    if (game_model.GetStatusGame() == StatusGame.gameOver)
+                    {
+                        GameEnd();
+                        return;
+                    }
                     game_model.NextPlayer();
 
                     if (game_model.SearchAnyMove()) //есть ходы?
+                    {
                         switch (game_model.GetStatusPlayer()) //да
                         {
                             case StatusPlayer.human:
@@ -182,8 +188,9 @@ namespace CheckerInterface
                                     game_model.SetStatusGame(StatusGame.waitEat);
                                 return;
 
-                            //если бот, то ничего не делаем
+                                //если бот, то ничего не делаем
                         }
+                    }
                     else
                     {
                         //нет: конец игры
