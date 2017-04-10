@@ -134,16 +134,6 @@ namespace CheckerInterface
                                     case StatusPlayer.bot:
                                         //включили таймер                                     
                                         form_view.timer.Enabled = true;
-
-                                        //######
-                                        //game_model.CallBot               - включаем поиск хода
-                                        //как только нашли ход:
-                                        //form_view.timer.Enabled = true;  - включаем таймер, вызывается Time, там вызываем BotStep, отрисовываем пути
-                                        //В Time когда отрисовали путь делаем:
-                                        //  отключаем таймер
-                                        //  NextPlayer()
-                                        //  ClickCell(0,0) - цикл продолжается
-                                        //######
                                         return;
                                 }
                             else

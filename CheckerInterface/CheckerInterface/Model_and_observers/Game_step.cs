@@ -15,6 +15,7 @@ namespace CheckerInterface
         waitEatSelect,
         eating,
         endEating,
+        сalculating,
         gameOver
     }
     public partial class Game : iSubject, iGame
@@ -33,6 +34,7 @@ namespace CheckerInterface
             switch (statusGame)
             {
                 case StatusGame.wait:
+                    statusGame = StatusGame.сalculating;
                     SetArraysForBotStep();
                     int res = CallBot(w_coords, w_types, w_n, b_coords, b_types, b_n, (int)color);
                     DecipherRes(res);
@@ -80,6 +82,8 @@ namespace CheckerInterface
                     return true;
                 case StatusGame.gameOver:
                     return true;
+                case StatusGame.сalculating:
+                    return false;
             }
             return false;
         }
