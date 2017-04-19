@@ -7,19 +7,26 @@ using System.Windows.Forms;
 
 namespace CheckerInterface
 {
-    class ViewBoard
+    public class ViewBoard
     {
         private int sizeCell;
         private Cell [,]cell;
 
         public ViewBoard(iController controller, int sizeCell, Panel panel)
-        {    
+        {   
             Cell.SetController(controller);
             this.sizeCell = sizeCell;
             cell = new Cell[8,8];
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
-                    cell[i,j] = new Cell(sizeCell, i, j, panel); 
+                    cell[i,j] = new Cell(sizeCell, i, j, panel);
+        }
+        public void ClearCell()
+        {
+            for (int i = 0; i < 8; i++)
+                for (int j = 0; j < 8; j++)
+                    if ((i + j) % 2 == 1)
+                    cell[i, j].SetEmpty();
         }
         public Cell this [int index1, int index2]
         {

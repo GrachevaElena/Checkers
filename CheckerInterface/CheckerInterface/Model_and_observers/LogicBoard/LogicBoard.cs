@@ -32,6 +32,14 @@ namespace CheckerInterface
         {
             get { return cell[index1, index2]; }
             set { cell[index1, index2] = value; }
-        }       
+        }
+        public void DeleteCheckerFromBoard(int x,int y)
+        {
+            cell[x, y] = new LogicCell();
+        }
+        public void ReturnCheckerIntoBoard(Checker ch)
+        {
+            cell[ch.x, ch.y] = ch;
+        }
     }
 }

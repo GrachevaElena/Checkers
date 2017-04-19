@@ -14,5 +14,7 @@ namespace CheckerInterface
         void notifySetChecker(Checker ch);
         void notifySetWays(List<Tuple<int, int>> way);
         void notifyDeleteCheckerOrWay(int x, int y);
+
+        void notifyEnableTimer();
     }
 }

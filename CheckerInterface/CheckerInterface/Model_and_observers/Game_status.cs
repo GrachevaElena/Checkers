@@ -15,13 +15,27 @@ namespace CheckerInterface
     public enum StatusPlayer
     {
         bot,
-        human
+        human,
+        empty
     }
     public partial class Game : iSubject, iGame
     {
         private StatusApplication statusApplication = StatusApplication.menu;
         private StatusPlayer[] statusPlayer = new StatusPlayer[2];
 
+        public void SetGame(Color startColor, StatusPlayer pl1, StatusPlayer pl2, StatusGame statusGame)
+        {
+            statusApplication = StatusApplication.game;
+            color = startColor;
+            statusPlayer[0] = pl1;
+            statusPlayer[1] = pl2;
+            this.statusGame = statusGame;
+        }
+        public void StartGame()
+        {
+            if (this.GetStatusPlayer() == StatusPlayer.bot)
+                notifyEnableTimer();
+        }
         public void SetStatusApplication(StatusApplication st)
         {
             statusApplication = st;
@@ -44,9 +58,17 @@ namespace CheckerInterface
         {
             return statusApplication;
         }
+        public StatusGame GetStatusGame()
+        {
+            return statusGame;
+        }
         public StatusPlayer GetStatusPlayer()
         {
             return statusPlayer[(int)color];
+        }
+        public Color GetColor()
+        {
+            return color;
         }
     }
 }

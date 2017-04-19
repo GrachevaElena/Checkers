@@ -37,7 +37,7 @@ namespace CheckerInterface
             }
         }
 
-        private void CreateChecker(Checker ch)
+        public void CreateChecker(Checker ch)
         {
             checkers[(int)(ch.GetColor())].Add(ch);
             board[ch.x, ch.y] = ch;
@@ -55,11 +55,15 @@ namespace CheckerInterface
                 checker.SetDamka();
             notifySetChecker(checker);
         }
-        private void DeleteChecker(Checker checker)
+        public void DeleteChecker(int x, int y)
         {
-            checkers[(int)checker.GetOtherColor()].Remove(checker);
-            board[checker.x, checker.y] = new LogicCell();
-            notifyDeleteCheckerOrWay(checker.x, checker.y);
+            if (!board[x, y].isEmpty() && board[x, y].GetChecker() != null)
+            {
+                Checker checker = board[x, y].GetChecker();
+                checkers[(int)checker.GetColor()].Remove(checker);
+                board[checker.x, checker.y] = new LogicCell();
+                notifyDeleteCheckerOrWay(checker.x, checker.y);
+            }
         }
 
         public bool SearchAnyMove()
@@ -91,8 +95,7 @@ namespace CheckerInterface
         {
             Checker ch = board[x, y].GetChecker();
             moves.selectedChecker = ch;
-            ch.SetLight(true);//поставили подсветку
-            notifySetChecker(ch);//обновили на форме
+            SelectChecker(ch);
             ch.SearchWay();//нашли пути
 
             for (int i = 0; i < 4; i++)//отобразили пути
@@ -102,8 +105,7 @@ namespace CheckerInterface
         {
             Checker ch = board[x, y].GetChecker();
             moves.selectedChecker = ch;
-            ch.SetLight(true);//поставили подсветку
-            notifySetChecker(ch);//обновили на форме
+            SelectChecker(ch);
             ch.SearchEat();//нашли пути
 
             for (int i = 0; i < 4; i++)//отобразили пути
@@ -116,9 +118,18 @@ namespace CheckerInterface
             if (checker.CanEat())
                 return false;
             foreach (Checker ch in moves.preDeleteChecker)
-                DeleteChecker(ch);
+            {
+                ch.ChangeColor();
+                DeleteChecker(ch.x, ch.y);
+            }
             moves.preDeleteChecker.Clear();
             return true;
+        }
+
+        private void SelectChecker(Checker ch)
+        {
+            ch.SetLight(true);//поставили подсветку
+            notifySetChecker(ch);//обновили на форме
         }
         public void ClearWays()
         {
@@ -147,8 +158,7 @@ namespace CheckerInterface
             moves.selectedChecker.SetLight(false);
             notifySetChecker(moves.selectedChecker);
         }
-
-
+       
         public void SetArraysForBotStep()
         {
             w_n = checkers[0].Count;
@@ -184,40 +194,21 @@ namespace CheckerInterface
         }
         private void ShowBotWay(int x, int y)
         {
-            botMove.selectedChecker.SetLight(true);//поставили подсветку
-            notifySetChecker(botMove.selectedChecker);//обновили на форме
-
-            List<Tuple<int, int>> tmp = new List<Tuple<int, int>>();
+            SelectChecker(botMove.selectedChecker);
+            List<Tuple<int, int>> tmp = new List<Tuple<int,int>>();
             tmp.Add(new Tuple<int, int>(x, y));
-
             notifySetWays(tmp);          //отобразили путь
         }
-        private void SearchInterm()
+
+        public void ClearResource()
         {
-            switch (botMove.selectedChecker.GetFigure())
-            {
-                case Figure.checker:
-                    Checker ch=new Checker();
-                    int dx=0, dy=0;
-                    bool f = false;
-                    int count = botMove.eaten.Count;
-                    for (int i = 0; i < count; i++)
-                        if (botMove.eaten[i].GetColor() != color)
-                        {
-                            dx = botMove.eaten[i].x - botMove.selectedChecker.x;
-                            dy = botMove.eaten[i].y - botMove.selectedChecker.y;
-                            if (((dx == 1) | (dx == -1)) && ((dy == 1) | (dy == -1)))
-                            {
-                                f = true;
-                                botMove.eaten[i].ChangeColor();
-                                ch = botMove.eaten[i];
-                                break;
-                            }
-                        }
-                    if (f) botMove.SetInterm(ch.x + dx, ch.y + dy);
-                    break;
-                case Figure.damka: break;
-            }
+            board = new LogicBoard();
+            moves = new Moves();
+            foreach (List<Checker> l in checkers)
+                l.Clear();
+            selectedCheckers.Clear();
+            botMove = new BotMove();
         }
+
     }
 }

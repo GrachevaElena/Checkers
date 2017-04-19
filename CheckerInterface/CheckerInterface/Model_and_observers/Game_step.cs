@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Threading;
 
 namespace CheckerInterface
 {
@@ -15,10 +14,13 @@ namespace CheckerInterface
         waitEat,
         waitEatSelect,
         eating,
-        endEating 
+        endEating,
+        сalculating,
+        gameOver
     }
     public partial class Game : iSubject, iGame
     {
+
         [DllImport(@"Checkers.dll")] 
         static extern int CallBot(int[] w_coords, int[] w_types, int w_n, int[] b_coords, int[] b_types, int b_n, int color);
 
@@ -32,69 +34,66 @@ namespace CheckerInterface
             switch (statusGame)
             {
                 case StatusGame.wait:
+                    statusGame = StatusGame.сalculating;
                     SetArraysForBotStep();
                     int res = CallBot(w_coords, w_types, w_n, b_coords, b_types, b_n, (int)color);
                     DecipherRes(res);
 
-                    if (botMove.end == 1) return true;
-
-                    switch (botMove.eaten.Count)
+                    if (botMove.end == 1)
                     {
-                        case 0:
-                            ShowBotWay(botMove.x, botMove.y);
-                            statusGame = StatusGame.waitStep;
-                            return false;
-                        case 1:
-                            ShowBotWay(botMove.x, botMove.y);
-                            statusGame = StatusGame.endEating;
-                            return false;
-                        default:
-                            botMove.numEaten = 0;
-                            SearchInterm();
-                            ShowBotWay(botMove.interm.Item1, botMove.interm.Item2);
-                            statusGame = StatusGame.eating;
-                            return false;
-
+                        statusGame = StatusGame.gameOver;
+                        MessageBox.Show("Bot thinks, game over");                      
+                        return true;
                     }
 
+                    if (botMove.eaten.Count == 0)
+                    {
+                        ShowBotWay(botMove.way[0].Item1, botMove.way[0].Item2);
+                        statusGame = StatusGame.waitStep;
+                    }
+                    else
+                    {
+                        botMove.SearchInterm();
+                        ShowBotWay(botMove.interm[0].Item1, botMove.interm[0].Item2);
+                        if (botMove.eaten.Count>1) statusGame = StatusGame.eating;
+                        else statusGame = StatusGame.endEating;
+                    }
+                    return false;
+
                 case StatusGame.waitStep:
-                    MoveChecker(botMove.selectedChecker, botMove.x, botMove.y);
+                    MoveChecker(botMove.selectedChecker, botMove.way[0].Item1, botMove.way[0].Item2);
                     botMove.Clear();
                     statusGame = StatusGame.wait;
                     return true;
 
                 case StatusGame.eating:
-                    MoveChecker(botMove.selectedChecker, botMove.interm.Item1, botMove.interm.Item2);
-                    botMove.numEaten++;
-                    if (botMove.numEaten + 1 != botMove.eaten.Count)
-                    {
-                        SearchInterm();
-                        ShowBotWay(botMove.interm.Item1, botMove.interm.Item2);
-                    }
-                    else
-                    {
-                        ShowBotWay(botMove.x, botMove.y);
-                        statusGame = StatusGame.endEating;
-                    }
+                    MoveChecker(botMove.selectedChecker, botMove.interm[0].Item1, botMove.interm[0].Item2);
+                    botMove.interm.Remove(botMove.interm[0]);
+                    ShowBotWay(botMove.interm[0].Item1, botMove.interm[0].Item2);
+                    if (botMove.interm[0] == botMove.way[0]) statusGame = StatusGame.endEating;
                     return false;
 
                 case StatusGame.endEating:
-                    MoveChecker(botMove.selectedChecker, botMove.x, botMove.y);
+                    MoveChecker(botMove.selectedChecker, botMove.way[0].Item1, botMove.way[0].Item2);
                     foreach (Checker ch in botMove.eaten)
-                        if (ch.GetColor() != color) ch.ChangeColor();
-                    foreach (Checker ch in botMove.eaten)
-                        DeleteChecker(ch);
+                        DeleteChecker(ch.x, ch.y);
                     botMove.Clear();
                     statusGame = StatusGame.wait;
                     return true;
+                case StatusGame.gameOver:
+                    return true;
+                case StatusGame.сalculating:
+                    return false;
             }
             return false;
         }
+
         public void NextPlayer()
         {
             color = (Color)((int)color ^ 1);  
            //автоматически меняется StatusPlayer
         }
+
         public bool HumanStep(int x, int y) //true если ход закончен
         {
             bool isWay = board[x, y].GetIsWay();
@@ -188,7 +187,6 @@ namespace CheckerInterface
                         return false;
             }
             return false;
-        }        
-        
+        }                
     }
 }

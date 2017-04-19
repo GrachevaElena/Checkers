@@ -20,6 +20,7 @@ namespace CheckerInterface
         }
         public void AddWay(int x, int y)
         {
+            Game.board[x, y].SetIsWay(true);
             way[FindIndex(x, y)].Add(new Tuple<int, int>(x, y));
         }
         public void AddCanBeEaten(Checker ch)
@@ -30,6 +31,11 @@ namespace CheckerInterface
         {
             preDeleteChecker.Add(canBeEaten[FindIndex(x,y)]);
             preDeleteChecker.Last().ChangeColor();
+        }
+        public void CancelLastPreDelete()
+        {
+            preDeleteChecker.Last().ChangeColor();
+            preDeleteChecker.Remove(preDeleteChecker.Last());
         }
         public Checker GetEatenChecker(int x, int y)
         {

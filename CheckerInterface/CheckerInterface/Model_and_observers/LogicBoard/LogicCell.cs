@@ -23,9 +23,8 @@ namespace CheckerInterface
         }
         public virtual Checker GetChecker()
         {
-            return new Checker();
+            return null;
         }
-        public virtual void SearchWay(List<Tuple<int, int>> way, LogicBoard board) { }
         public virtual void SearchEat() { }
         public virtual void SearchWay() { }
         public bool GetIsLight()
