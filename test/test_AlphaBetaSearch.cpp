@@ -1,5 +1,6 @@
 #include "gtest.h"
 #include "Search.h"
+int SearchAlphaBeta(int, int, int, int, Move*, int =0);
 
 TEST(test_AlphaBetaSearch, end_of_game) {
 	const int nw = 6, nb = 1;

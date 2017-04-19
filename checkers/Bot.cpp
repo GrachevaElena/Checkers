@@ -10,8 +10,8 @@ int Encrypt(Move bestMove);
 extern "C" __declspec(dllexport) int __stdcall CallBot(
 	int* w_coords, int* w_types, int w_n, //white checkers
 	int* b_coords, int* b_types, int b_n,  //black checkers
-	int color//,
-	//int type_search, int max_depth //parametrs
+	int color,
+	int type_search, int max_depth //parametrs
 ) 
 {
 	
@@ -22,7 +22,7 @@ extern "C" __declspec(dllexport) int __stdcall CallBot(
 	board.Set(checkers[WHITE], checkers[BLACK]);
 
 	//вызов Search
-	Move bestMove=Search(color,ALPHA_BETA_SEARCH_SMART, MaxDepth);
+	Move bestMove=Search(color,type_search, max_depth);
 
 	//очистка
 	checkers[WHITE].Clean();

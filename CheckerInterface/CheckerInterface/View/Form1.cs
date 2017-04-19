@@ -49,9 +49,9 @@ namespace CheckerInterface
         {
             this.button1.Visible = vis;
             this.button2.Visible = vis;
-            this.button3.Visible = vis;
+            //this.button3.Visible = vis;
             this.button4.Visible = vis;
-            this.button5.Visible = vis;
+            //this.button5.Visible = vis;
             this.button6.Visible = vis;
         }
         public void CreateBoard()
@@ -84,11 +84,12 @@ namespace CheckerInterface
             if (DamkaRadioButton.Checked) return Figure.damka;
             return Figure.empty;
         }
-        public void SetColorButton(System.Drawing.Color colButtonAdd, System.Drawing.Color colButtonDelete)
+        public void SetForeColorButton(System.Drawing.Color colButtonAdd, System.Drawing.Color colButtonDelete)
         {
-            buttonAdd.BackColor = colButtonAdd;
-            buttonDelete.BackColor = colButtonDelete;
+            buttonAdd.ForeColor = colButtonAdd;
+            buttonDelete.ForeColor = colButtonDelete;
         }
+
         public void SetEmptyRadioButtons()
         {
             WhiteRadioButton.Checked = false;
@@ -96,6 +97,27 @@ namespace CheckerInterface
             DamkaRadioButton.Checked = false;
             CheckerRadioButton.Checked = false;
         }
+
+        public void SelectAddChecker()
+        {
+            buttonAdd.FlatStyle = FlatStyle.Standard;
+        }
+
+        public void SelectDeleteChecker()
+        {
+            buttonAdd.FlatStyle = FlatStyle.Standard;
+        }
+
+        public void HideAddChecker()
+        {
+            buttonAdd.FlatStyle = FlatStyle.Popup;
+        }
+
+        public void HideDeleteChecker()
+        {
+            buttonAdd.FlatStyle = FlatStyle.Popup;
+        }
+
         public void SetCheckedButDelete(bool f)
         {
             isCheckedButtonDelete = f;
@@ -128,7 +150,7 @@ namespace CheckerInterface
 
         public void OnKeyDown(object sender, KeyEventArgs e)
         {
-            MessageBox.Show(e.KeyCode.ToString(), "Key pressed!");
+           // MessageBox.Show(e.KeyCode.ToString(), "Key pressed!");
             if (e.KeyCode.ToString() == "Escape")
             {            
                 controller.keyEsc();

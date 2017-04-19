@@ -76,15 +76,23 @@ namespace CheckerInterface
         //contructor menu
         public void buttonAddChecker()
         {
+            form_view.HideDeleteChecker();
             form_view.SetCheckedButDelete(false);
             if (form_view.RadiosButtonsIsChecked())
-                form_view.SetColorButton(System.Drawing.Color.White, System.Drawing.Color.Gray);
-            else form_view.SetColorButton(System.Drawing.Color.Gray, System.Drawing.Color.Gray);
+            {
+                form_view.SetForeColorButton(System.Drawing.Color.Black, System.Drawing.Color.Black);
+                form_view.SelectAddChecker();
+            }
+            else form_view.SetForeColorButton(System.Drawing.Color.Gray, System.Drawing.Color.Black);
         }
         public void buttonDeleteChecker()
         {
+            form_view.HideAddChecker();
             form_view.SetCheckedButDelete(true);
-            form_view.SetColorButton(System.Drawing.Color.Gray, System.Drawing.Color.White);
+            if (form_view.RadiosButtonsIsChecked())
+                form_view.SetForeColorButton(System.Drawing.Color.Black, System.Drawing.Color.Black);
+            else form_view.SetForeColorButton(System.Drawing.Color.Gray, System.Drawing.Color.Black);
+            form_view.SelectDeleteChecker();
         }
         public void buttonPlayInConstructor()
         {
