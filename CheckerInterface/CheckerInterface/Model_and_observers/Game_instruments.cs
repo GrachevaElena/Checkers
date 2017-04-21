@@ -44,11 +44,12 @@ namespace CheckerInterface
             }
         }
 
-        public void CreateChecker(Checker ch)
+        public int CreateChecker(Checker ch)
         {
             checkers[(int)(ch.GetColor())].Add(ch);
             board[ch.x, ch.y] = ch;
             notifySetChecker(ch);
+            return 1;
         }
         private void MoveChecker(Checker checker, int x, int y)//перемещение шашки и контроль за становлением дамки
         {
@@ -62,15 +63,17 @@ namespace CheckerInterface
                 checker.SetDamka();
             notifySetChecker(checker);
         }
-        public void DeleteChecker(int x, int y)
+        public int DeleteChecker(int x, int y) //удаляет только шашки, с путями не работает
         {
-            if (!board[x, y].isEmpty() && board[x, y].GetChecker() != null)
+            if (!board[x, y].isEmpty() && board[x, y].GetChecker() != null) //если клетка не пустая и на ней есть шашка
             {
                 Checker checker = board[x, y].GetChecker();
                 checkers[(int)checker.GetColor()].Remove(checker);
                 board[checker.x, checker.y] = new LogicCell();
                 notifyDeleteCheckerOrWay(checker.x, checker.y);
+                return -1;
             }
+            return 0;
         }
 
         public bool SearchAnyMove()

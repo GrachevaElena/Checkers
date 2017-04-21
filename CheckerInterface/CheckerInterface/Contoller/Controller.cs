@@ -21,7 +21,7 @@ namespace CheckerInterface
             game_observer.registerObserver(form_view);
 
             Application.EnableVisualStyles();
-           //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(form_view);
         }
         //main menu
@@ -92,10 +92,10 @@ namespace CheckerInterface
         }
         public void buttonPlaySetting()
         {
-           if (settingForm.CanStartGame())
+            if (settingForm.CanStartGame())
             {
                 game_model.SetGame(settingForm.GetColorPlayer1(), settingForm.GetStatusPl1(), settingForm.GetStatusPl2(), StatusGame.wait);
-                if ((game_model.GetStatusPlayer()==StatusPlayer.human)&&(game_model.SearchEatingAndWriteToMove()))
+                if ((game_model.GetStatusPlayer() == StatusPlayer.human) && (game_model.SearchEatingAndWriteToMove()))
                     game_model.SetStatusGame(StatusGame.waitEat);
                 form_view.CreateBoard(StatusApplication.game);
                 game_model.FillBoardOnForm();
@@ -109,7 +109,7 @@ namespace CheckerInterface
             form_view.timer.Enabled = false;
             game_model.SetStartColor(Color.empty);
             game_model.SetStatusPlayers(StatusPlayer.empty, StatusPlayer.empty);
-            game_model.SetStatusApplication(StatusApplication.menu);          
+            game_model.SetStatusApplication(StatusApplication.menu);
         }
         public void ClickCell(int x, int y)
         {
@@ -160,7 +160,7 @@ namespace CheckerInterface
                     else if (form_view.IsCheckedButtonDelete())//если выбрана кнопка delete - удаляй шашку. 
                         game_model.DeleteChecker(x, y);
                     break;
-                //default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
+                    //default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
             }
 
         }
@@ -211,7 +211,7 @@ namespace CheckerInterface
             {
                 //do nothing =)
                 form_view.VisibleButtons(true);
-            } 
+            }
             else if (form_view.ESC_on == false)//если на esc не нажимали - открой меню
             {
                 form_view.ESC_on = true;
@@ -221,7 +221,7 @@ namespace CheckerInterface
             {
                 form_view.VisibleButtons(false);
                 form_view.ESC_on = false;
-            }     
+            }
         }
     }
 }

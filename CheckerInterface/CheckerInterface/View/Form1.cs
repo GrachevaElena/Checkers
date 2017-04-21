@@ -17,6 +17,7 @@ namespace CheckerInterface
         public ViewBoard board;
         public Timer timer;
         public bool ESC_on = false;
+        public int count = 0;
 
         public Form1(Controller _contoller, Game _game)
         {
