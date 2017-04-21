@@ -53,22 +53,38 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(263, 263);
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Peru;
+            this.button1.FlatAppearance.BorderSize = 2;
+            this.button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.button1.Location = new System.Drawing.Point(273, 263);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(367, 73);
             this.button1.TabIndex = 0;
             this.button1.Text = "One player";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.but1Play1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(263, 355);
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Peru;
+            this.button2.FlatAppearance.BorderSize = 2;
+            this.button2.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.button2.Location = new System.Drawing.Point(273, 355);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(367, 73);
             this.button2.TabIndex = 1;
             this.button2.Text = "Two players";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.but2Play2_Click);
             // 
             // panel1
@@ -83,22 +99,38 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(263, 174);
+            this.button6.BackColor = System.Drawing.Color.White;
+            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Peru;
+            this.button6.FlatAppearance.BorderSize = 2;
+            this.button6.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button6.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.button6.Location = new System.Drawing.Point(273, 174);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(367, 73);
             this.button6.TabIndex = 5;
             this.button6.Text = "Bot VS Bot";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.but0botVSbot_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(263, 444);
+            this.button4.BackColor = System.Drawing.Color.White;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Peru;
+            this.button4.FlatAppearance.BorderSize = 2;
+            this.button4.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button4.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.button4.Location = new System.Drawing.Point(273, 444);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(367, 73);
             this.button4.TabIndex = 3;
             this.button4.Text = "Constructor";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.but4Constr_Click);
             // 
             // groupBox1
@@ -226,7 +258,7 @@
             this.panelBackground.Controls.Add(this.button2);
             this.panelBackground.Controls.Add(this.button6);
             this.panelBackground.Controls.Add(this.panel1);
-            this.panelBackground.Location = new System.Drawing.Point(0, 0);
+            this.panelBackground.Location = new System.Drawing.Point(-1, -2);
             this.panelBackground.Name = "panelBackground";
             this.panelBackground.Size = new System.Drawing.Size(919, 683);
             this.panelBackground.TabIndex = 9;
@@ -238,8 +270,9 @@
             this.ClientSize = new System.Drawing.Size(917, 683);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelBackground);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Русские шашки";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
