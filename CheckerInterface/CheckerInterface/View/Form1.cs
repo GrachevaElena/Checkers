@@ -84,11 +84,11 @@ namespace CheckerInterface
             if (DamkaRadioButton.Checked) return Figure.damka;
             return Figure.empty;
         }
-        public void SetForeColorButton(System.Drawing.Color colButtonAdd, System.Drawing.Color colButtonDelete)
+       /* public void SetForeColorButton(System.Drawing.Color colButtonAdd, System.Drawing.Color colButtonDelete)
         {
             buttonAdd.ForeColor = colButtonAdd;
             buttonDelete.ForeColor = colButtonDelete;
-        }
+        }*/ //not used
 
         public void SetEmptyRadioButtons()
         {
