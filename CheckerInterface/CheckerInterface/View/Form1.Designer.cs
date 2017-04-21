@@ -106,7 +106,7 @@
             this.buttonAdd.BackColor = System.Drawing.Color.White;
             this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAdd.ForeColor = System.Drawing.Color.Gray;
+            this.buttonAdd.ForeColor = System.Drawing.Color.Black;
             this.buttonAdd.Location = new System.Drawing.Point(21, 37);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(119, 65);
@@ -133,13 +133,13 @@
             this.BlackRadioButton.Name = "BlackRadioButton";
             this.BlackRadioButton.Size = new System.Drawing.Size(52, 17);
             this.BlackRadioButton.TabIndex = 1;
-            this.BlackRadioButton.TabStop = true;
             this.BlackRadioButton.Text = "Black";
             this.BlackRadioButton.UseVisualStyleBackColor = true;
             this.BlackRadioButton.CheckedChanged += new System.EventHandler(this.BlackRadioBut_CheckedChanged);
             // 
             // WhiteRadioButton
             // 
+            this.WhiteRadioButton.Checked = true;
             this.WhiteRadioButton.Location = new System.Drawing.Point(6, 19);
             this.WhiteRadioButton.Name = "WhiteRadioButton";
             this.WhiteRadioButton.Size = new System.Drawing.Size(85, 17);
@@ -167,13 +167,13 @@
             this.DamkaRadioButton.Name = "DamkaRadioButton";
             this.DamkaRadioButton.Size = new System.Drawing.Size(59, 17);
             this.DamkaRadioButton.TabIndex = 1;
-            this.DamkaRadioButton.TabStop = true;
             this.DamkaRadioButton.Text = "Damka";
             this.DamkaRadioButton.UseVisualStyleBackColor = true;
             this.DamkaRadioButton.CheckedChanged += new System.EventHandler(this.DamkaRadioButton_CheckedChanged);
             // 
             // CheckerRadioButton
             // 
+            this.CheckerRadioButton.Checked = true;
             this.CheckerRadioButton.Location = new System.Drawing.Point(6, 19);
             this.CheckerRadioButton.Name = "CheckerRadioButton";
             this.CheckerRadioButton.Size = new System.Drawing.Size(85, 17);

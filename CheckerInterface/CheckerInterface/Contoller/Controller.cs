@@ -77,22 +77,14 @@ namespace CheckerInterface
         public void buttonAddChecker()
         {
             form_view.HideDeleteChecker();
+            form_view.SelectAddChecker();
             form_view.SetCheckedButDelete(false);
-            if (form_view.RadiosButtonsIsChecked())
-            {
-                form_view.SetForeColorButton(System.Drawing.Color.Black, System.Drawing.Color.Black);
-                form_view.SelectAddChecker();
-            }
-            else form_view.SetForeColorButton(System.Drawing.Color.Gray, System.Drawing.Color.Black);
         }
         public void buttonDeleteChecker()
         {
             form_view.HideAddChecker();
-            form_view.SetCheckedButDelete(true);
-            if (form_view.RadiosButtonsIsChecked())
-                form_view.SetForeColorButton(System.Drawing.Color.Black, System.Drawing.Color.Black);
-            else form_view.SetForeColorButton(System.Drawing.Color.Gray, System.Drawing.Color.Black);
             form_view.SelectDeleteChecker();
+            form_view.SetCheckedButDelete(true);
         }
         public void buttonPlayInConstructor()
         {
@@ -154,8 +146,10 @@ namespace CheckerInterface
                         }
                     }
                     break;
+
+
                 case StatusApplication.constructor:
-                    if (form_view.RadiosButtonsIsChecked() && !form_view.IsCheckedButtonDelete())//если выбраны настройки для шашки и не выбран Delete
+                    if (/*form_view.RadiosButtonsIsChecked() &&*/ !form_view.IsCheckedButtonDelete())//если выбраны настройки для шашки и не выбран Delete
                     {
                         if ((x + y) % 2 == 1)
                         {
