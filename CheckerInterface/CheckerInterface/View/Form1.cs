@@ -17,6 +17,7 @@ namespace CheckerInterface
         public ViewBoard board;
         public Timer timer;
         public bool ESC_on = false;
+        public int count = 0;
 
         public Form1(Controller _contoller, Game _game)
         {
@@ -143,10 +144,6 @@ namespace CheckerInterface
         {
             controller.buttonConstrutor();
         }
-        private void but5Setting_Click(object sender, EventArgs e)
-        {
-            controller.buttonSetting();
-        }
 
         public void OnKeyDown(object sender, KeyEventArgs e)
         {
@@ -198,6 +195,11 @@ namespace CheckerInterface
         private void but0botVSbot_Click(object sender, EventArgs e)
         {
             controller.buttonBotVSBot();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

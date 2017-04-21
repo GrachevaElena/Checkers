@@ -40,7 +40,7 @@ namespace CheckerInterface.View
         }
         private void buttonPlay_Click(object sender, EventArgs e)
         {
-            controller.buttonPlaySetting();
+            
         }
     }
 }

@@ -28,6 +28,7 @@ namespace CheckerInterface
         private void buttonClear()//очищает все ресурсы, вызывается после нажатия кнопок главного меню
         {
             form_view.VisibleButtons(false);
+            form_view.count = 0;
             form_view.ESC_on = false;
             form_view.timer.Enabled = false;
             game_model.SetStatusPlayers(StatusPlayer.empty, StatusPlayer.empty);
@@ -59,10 +60,6 @@ namespace CheckerInterface
             form_view.CreateBoard();
             game_model.SetStatusApplication(StatusApplication.constructor);
             form_view.panel2.Visible = true;
-        }
-        public void buttonSetting()
-        {
-            buttonClear();
         }
         public void buttonBotVSBot()
         {
@@ -153,12 +150,16 @@ namespace CheckerInterface
                     {
                         if ((x + y) % 2 == 1)
                         {
-                            game_model.DeleteChecker(x, y);//удаляй старую шашку
-                            game_model.CreateChecker(new Checker(form_view.GetChosenColor(), form_view.GetChosenFigure(), x, y));//вставляй новую
+
+                            form_view.count += game_model.DeleteChecker(x, y);//удаляй старую шашку
+                            if (form_view.count < 12)
+                                form_view.count += game_model.CreateChecker(new Checker(form_view.GetChosenColor(), form_view.GetChosenFigure(), x, y));//вставляй новую
                         }
                     }
                     else if (form_view.IsCheckedButtonDelete())//если выбрана кнопка delete - удаляй шашку. 
-                        game_model.DeleteChecker(x, y);
+                    {
+                        form_view.count += game_model.DeleteChecker(x, y);
+                    }
                     break;
                 default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
             }

@@ -13,11 +13,9 @@ namespace CheckerInterface
         void buttonTwoPlayers();
         void buttonLoadGame();
         void buttonConstrutor();
-        void buttonSetting();
         void buttonAddChecker();
         void buttonDeleteChecker();
         void buttonPlayInConstructor();
-        void buttonPlaySetting();
         void keyEsc();
 
         void ClickCell(int x, int y);
