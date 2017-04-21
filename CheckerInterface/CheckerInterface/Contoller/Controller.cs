@@ -17,6 +17,8 @@ namespace CheckerInterface
         public Controller(Game game, iSubject game_observer)
         {
             this.game_model = game;
+            //form_view.count[0]=new int();
+            //form_view.count[1] = new int();
             form_view = new Form1(this, game);
             game_observer.registerObserver(form_view);
 
@@ -27,6 +29,9 @@ namespace CheckerInterface
         //main menu
         private void buttonClear()//очищает все ресурсы, вызывается после нажатия кнопок главного меню
         {
+            if (game_model.GetStatusApplication() == StatusApplication.constructor)
+                form_view.panel2.Visible = false;
+            form_view.count[0] = form_view.count[1] = 0;
             form_view.VisibleButtons(false);
             form_view.ESC_on = false;
             form_view.timer.Enabled = false;
@@ -55,7 +60,7 @@ namespace CheckerInterface
         }
         public void buttonConstrutor()
         {
-            buttonClear();
+            buttonClear();   
             form_view.CreateBoard(StatusApplication.constructor);
             game_model.SetStatusApplication(StatusApplication.constructor);
             form_view.panel2.Visible = true;
@@ -148,17 +153,24 @@ namespace CheckerInterface
                     break;
 
 
-                case StatusApplication.constructor:
+                case StatusApplication.constructor:                  
                     if (form_view.IsCheckedButtonAdd())//если выбраны настройки для шашки и не выбран Delete
-                    {
+                    {                        
                         if ((x + y) % 2 == 1)
                         {
-                            game_model.DeleteChecker(x, y);//удаляй старую шашку
-                            game_model.CreateChecker(new Checker(form_view.GetChosenColor(), form_view.GetChosenFigure(), x, y));//вставляй новую
+                            Color col = form_view.GetChosenColor();
+                            if (form_view.count[(int)col] < 12 || col == game_model.GetColOfCh(x, y))
+                                form_view.count[(int)game_model.GetColOfCh(x,y)] += game_model.DeleteChecker(x, y);//удаляй старую шашку
+                            if (form_view.count[(int)col] < 12)
+                                form_view.count[(int)col] += game_model.CreateChecker(new Checker(col, form_view.GetChosenFigure(), x, y));//вставляй новую
                         }
                     }
                     else if (form_view.IsCheckedButtonDelete())//если выбрана кнопка delete - удаляй шашку. 
-                        game_model.DeleteChecker(x, y);
+                    {
+                        form_view.count[(int)game_model.GetColOfCh(x, y)] += game_model.DeleteChecker(x, y);
+                    }
+                    if (form_view.count[0] > 0 && form_view.count[1] > 0) form_view.SetButtonPlayEnabled(true);
+                    else form_view.SetButtonPlayEnabled(false);
                     break;
                     //default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
             }

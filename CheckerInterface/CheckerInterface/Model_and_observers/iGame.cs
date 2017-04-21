@@ -23,6 +23,7 @@ namespace CheckerInterface
         StatusGame GetStatusGame();
         StatusPlayer GetStatusPlayer();
         Color GetColor();
+        Color GetColOfCh(int x, int y);
 
         bool HumanStep(int x, int y);
         bool BotStep();

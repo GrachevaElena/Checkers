@@ -137,19 +137,24 @@
             // 
             this.groupBox1.Controls.Add(this.BlackRadioButton);
             this.groupBox1.Controls.Add(this.WhiteRadioButton);
-            this.groupBox1.Location = new System.Drawing.Point(21, 122);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox1.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.groupBox1.Location = new System.Drawing.Point(21, 109);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(119, 63);
+            this.groupBox1.Size = new System.Drawing.Size(119, 75);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Color";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // BlackRadioButton
             // 
             this.BlackRadioButton.AutoSize = true;
-            this.BlackRadioButton.Location = new System.Drawing.Point(6, 46);
+            this.BlackRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BlackRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(56)))), ((int)(((byte)(2)))));
+            this.BlackRadioButton.Location = new System.Drawing.Point(6, 50);
             this.BlackRadioButton.Name = "BlackRadioButton";
-            this.BlackRadioButton.Size = new System.Drawing.Size(52, 17);
+            this.BlackRadioButton.Size = new System.Drawing.Size(60, 21);
             this.BlackRadioButton.TabIndex = 1;
             this.BlackRadioButton.Text = "Black";
             this.BlackRadioButton.UseVisualStyleBackColor = true;
@@ -158,9 +163,11 @@
             // WhiteRadioButton
             // 
             this.WhiteRadioButton.Checked = true;
-            this.WhiteRadioButton.Location = new System.Drawing.Point(6, 19);
+            this.WhiteRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WhiteRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(56)))), ((int)(((byte)(2)))));
+            this.WhiteRadioButton.Location = new System.Drawing.Point(6, 22);
             this.WhiteRadioButton.Name = "WhiteRadioButton";
-            this.WhiteRadioButton.Size = new System.Drawing.Size(85, 17);
+            this.WhiteRadioButton.Size = new System.Drawing.Size(85, 25);
             this.WhiteRadioButton.TabIndex = 0;
             this.WhiteRadioButton.TabStop = true;
             this.WhiteRadioButton.Text = "White";
@@ -171,9 +178,11 @@
             // 
             this.groupBox2.Controls.Add(this.DamkaRadioButton);
             this.groupBox2.Controls.Add(this.CheckerRadioButton);
-            this.groupBox2.Location = new System.Drawing.Point(21, 201);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(56)))), ((int)(((byte)(2)))));
+            this.groupBox2.Location = new System.Drawing.Point(21, 193);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(119, 63);
+            this.groupBox2.Size = new System.Drawing.Size(119, 75);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Type";
@@ -181,9 +190,11 @@
             // DamkaRadioButton
             // 
             this.DamkaRadioButton.AutoSize = true;
-            this.DamkaRadioButton.Location = new System.Drawing.Point(6, 46);
+            this.DamkaRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DamkaRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(56)))), ((int)(((byte)(2)))));
+            this.DamkaRadioButton.Location = new System.Drawing.Point(6, 50);
             this.DamkaRadioButton.Name = "DamkaRadioButton";
-            this.DamkaRadioButton.Size = new System.Drawing.Size(59, 17);
+            this.DamkaRadioButton.Size = new System.Drawing.Size(70, 21);
             this.DamkaRadioButton.TabIndex = 1;
             this.DamkaRadioButton.Text = "Damka";
             this.DamkaRadioButton.UseVisualStyleBackColor = true;
@@ -192,9 +203,11 @@
             // CheckerRadioButton
             // 
             this.CheckerRadioButton.Checked = true;
-            this.CheckerRadioButton.Location = new System.Drawing.Point(6, 19);
+            this.CheckerRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CheckerRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(56)))), ((int)(((byte)(2)))));
+            this.CheckerRadioButton.Location = new System.Drawing.Point(6, 22);
             this.CheckerRadioButton.Name = "CheckerRadioButton";
-            this.CheckerRadioButton.Size = new System.Drawing.Size(85, 17);
+            this.CheckerRadioButton.Size = new System.Drawing.Size(85, 25);
             this.CheckerRadioButton.TabIndex = 0;
             this.CheckerRadioButton.TabStop = true;
             this.CheckerRadioButton.Text = "Checker";
@@ -203,12 +216,16 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(242)))), ((int)(((byte)(200)))));
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.buttonDelete);
             this.panel2.Controls.Add(this.buttonAdd);
             this.panel2.Controls.Add(this.buttonPlay);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Location = new System.Drawing.Point(744, 101);
+            this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.panel2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.panel2.Location = new System.Drawing.Point(721, 100);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(161, 455);
             this.panel2.TabIndex = 8;
@@ -217,7 +234,10 @@
             // buttonDelete
             // 
             this.buttonDelete.BackColor = System.Drawing.Color.White;
-            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDelete.FlatAppearance.BorderColor = System.Drawing.Color.DarkRed;
+            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(93)))), ((int)(((byte)(5)))));
             this.buttonDelete.Location = new System.Drawing.Point(21, 280);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(119, 68);
@@ -229,8 +249,10 @@
             // buttonAdd
             // 
             this.buttonAdd.BackColor = System.Drawing.Color.White;
-            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonAdd.Location = new System.Drawing.Point(21, 40);
+            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(83)))), ((int)(((byte)(5)))));
+            this.buttonAdd.Location = new System.Drawing.Point(21, 29);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(119, 65);
             this.buttonAdd.TabIndex = 0;
@@ -240,8 +262,12 @@
             // 
             // buttonPlay
             // 
-            this.buttonPlay.BackColor = System.Drawing.Color.LightYellow;
-            this.buttonPlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonPlay.BackColor = System.Drawing.Color.NavajoWhite;
+            this.buttonPlay.Enabled = false;
+            this.buttonPlay.FlatAppearance.BorderColor = System.Drawing.Color.DarkRed;
+            this.buttonPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonPlay.ForeColor = System.Drawing.Color.DarkRed;
             this.buttonPlay.Location = new System.Drawing.Point(21, 366);
             this.buttonPlay.Name = "buttonPlay";
             this.buttonPlay.Size = new System.Drawing.Size(119, 65);
@@ -253,12 +279,13 @@
             // panelBackground
             // 
             this.panelBackground.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelBackground.BackgroundImage")));
+            this.panelBackground.Controls.Add(this.panel2);
             this.panelBackground.Controls.Add(this.button4);
             this.panelBackground.Controls.Add(this.button1);
             this.panelBackground.Controls.Add(this.button2);
             this.panelBackground.Controls.Add(this.button6);
             this.panelBackground.Controls.Add(this.panel1);
-            this.panelBackground.Location = new System.Drawing.Point(-1, -2);
+            this.panelBackground.Location = new System.Drawing.Point(-1, -1);
             this.panelBackground.Name = "panelBackground";
             this.panelBackground.Size = new System.Drawing.Size(919, 683);
             this.panelBackground.TabIndex = 9;
@@ -268,7 +295,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(917, 683);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelBackground);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -300,8 +326,8 @@
         private System.Windows.Forms.Button buttonPlay;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button buttonDelete;
-        private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Panel panelBackground;
+        private System.Windows.Forms.Button buttonAdd;
     }
 }
 

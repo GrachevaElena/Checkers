@@ -219,5 +219,10 @@ namespace CheckerInterface
             selectedCheckers.Clear();
             botMove = new BotMove();
         }
+
+        public Color GetColOfCh(int x, int y)
+        {
+            return board[x, y].GetColor();
+        }
     }
 }

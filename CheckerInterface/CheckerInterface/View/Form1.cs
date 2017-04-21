@@ -17,7 +17,6 @@ namespace CheckerInterface
         public ViewBoard board;
         public Timer timer;
         public bool ESC_on = false;
-        public int count = 0;
 
         public Form1(Controller _contoller, Game _game)
         {
@@ -91,6 +90,8 @@ namespace CheckerInterface
         private bool isCheckedButtonDelete = false;
         private bool isCheckedButtonAdd = false;
 
+        public int[] count = {0, 0, 0};
+        
         /*public bool RadiosButtonsIsChecked()
         {
             return ((WhiteRadioButton.Checked || BlackRadioButton.Checked) && (DamkaRadioButton.Checked || CheckerRadioButton.Checked));
@@ -126,7 +127,10 @@ namespace CheckerInterface
             panel1.Enabled = true;
             panel1.Visible = true;
             panelBackground.BackColor = System.Drawing.Color.Transparent;
-            //panelBackground.BackgroundImageLayout=
+        }
+        public void SetButtonPlayEnabled(bool f)
+        {
+            buttonPlay.Enabled = f;
         }
         public void SelectAddChecker()
         {
@@ -206,7 +210,7 @@ namespace CheckerInterface
         }
         private void WhiteRadioBut_CheckedChanged(object sender, EventArgs e)
         {
-            //controller.buttonAddChecker();
+            controller.buttonAddChecker();
         }
         private void BlackRadioBut_CheckedChanged(object sender, EventArgs e)
         {
@@ -214,7 +218,7 @@ namespace CheckerInterface
         }
         private void ChRadioBut_CheckedChanged(object sender, EventArgs e)
         {
-           // controller.buttonAddChecker();
+           controller.buttonAddChecker();
         }
         private void DamkaRadioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -228,6 +232,11 @@ namespace CheckerInterface
         private void buttonPlay_Click(object sender, EventArgs e)
         {
             controller.buttonPlayInConstructor();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
