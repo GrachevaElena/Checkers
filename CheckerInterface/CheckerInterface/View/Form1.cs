@@ -67,11 +67,12 @@ namespace CheckerInterface
         }
 
         private bool isCheckedButtonDelete = false;
+        private bool isCheckedButtonAdd = false;
 
-        public bool RadiosButtonsIsChecked()
+        /*public bool RadiosButtonsIsChecked()
         {
             return ((WhiteRadioButton.Checked || BlackRadioButton.Checked) && (DamkaRadioButton.Checked || CheckerRadioButton.Checked));
-        }
+        }*/ //not used
         public Color GetChosenColor()
         {
             if (WhiteRadioButton.Checked) return Color.white;
@@ -98,56 +99,67 @@ namespace CheckerInterface
             CheckerRadioButton.Checked = false;
         }*/ //not used
 
+        private void ChangePanels()
+        {
+            panel1.Enabled = true;
+            panel1.Visible = true;
+            panelBackground.BackColor = System.Drawing.Color.Transparent;
+            //panelBackground.BackgroundImageLayout=
+        }
         public void SelectAddChecker()
         {
-            buttonAdd.FlatStyle = FlatStyle.Standard;
+            isCheckedButtonAdd = true;
+            buttonAdd.BackColor = System.Drawing.Color.Snow;
         }
 
         public void SelectDeleteChecker()
         {
-            buttonAdd.FlatStyle = FlatStyle.Standard;
+            isCheckedButtonDelete = true;
+            buttonDelete.BackColor = System.Drawing.Color.Snow;
         }
 
         public void HideAddChecker()
         {
-            buttonAdd.FlatStyle = FlatStyle.Popup;
+            isCheckedButtonAdd = false;
+            buttonAdd.BackColor = System.Drawing.Color.White;
         }
 
         public void HideDeleteChecker()
         {
-            buttonAdd.FlatStyle = FlatStyle.Popup;
+            isCheckedButtonDelete = false;
+            buttonDelete.BackColor = System.Drawing.Color.White;
         }
 
-        public void SetCheckedButDelete(bool f)
-        {
-            isCheckedButtonDelete = f;
-        }
         public bool IsCheckedButtonDelete()
         {
             return isCheckedButtonDelete;
         }
 
+        public bool IsCheckedButtonAdd()
+        {
+            return isCheckedButtonAdd;
+        }
+
         private void but1Play1_Click(object sender, EventArgs e)
         {
+            ChangePanels();
             controller.buttonOnePlayer();
         }
         private void but2Play2_Click(object sender, EventArgs e)
         {
+            ChangePanels();
             controller.buttonTwoPlayers();
-        }
-        private void but3Load_Click(object sender, EventArgs e)
-        {
-            controller.buttonLoadGame();
         }
         private void but4Constr_Click(object sender, EventArgs e)
         {
+            ChangePanels();
             controller.buttonConstrutor();
         }
-        private void but5Setting_Click(object sender, EventArgs e)
+        private void but0botVSbot_Click(object sender, EventArgs e)
         {
-            controller.buttonSetting();
+            ChangePanels();
+            controller.buttonBotVSBot();
         }
-
         public void OnKeyDown(object sender, KeyEventArgs e)
         {
            // MessageBox.Show(e.KeyCode.ToString(), "Key pressed!");
@@ -172,19 +184,19 @@ namespace CheckerInterface
         }
         private void WhiteRadioBut_CheckedChanged(object sender, EventArgs e)
         {
-            controller.buttonAddChecker();
+            //controller.buttonAddChecker();
         }
         private void BlackRadioBut_CheckedChanged(object sender, EventArgs e)
         {
-            controller.buttonAddChecker();
+            //controer.buttonAddChecker();
         }
         private void ChRadioBut_CheckedChanged(object sender, EventArgs e)
         {
-            controller.buttonAddChecker();
+           // controller.buttonAddChecker();
         }
         private void DamkaRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            controller.buttonAddChecker();
+            //controer.buttonAddChecker();
         }
         
         private void buttonDeleteChecker_Click(object sender, EventArgs e)
@@ -194,10 +206,6 @@ namespace CheckerInterface
         private void buttonPlay_Click(object sender, EventArgs e)
         {
             controller.buttonPlayInConstructor();
-        }
-        private void but0botVSbot_Click(object sender, EventArgs e)
-        {
-            controller.buttonBotVSBot();
         }
     }
 }

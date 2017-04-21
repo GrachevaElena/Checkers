@@ -78,13 +78,11 @@ namespace CheckerInterface
         {
             form_view.HideDeleteChecker();
             form_view.SelectAddChecker();
-            form_view.SetCheckedButDelete(false);
         }
         public void buttonDeleteChecker()
         {
             form_view.HideAddChecker();
             form_view.SelectDeleteChecker();
-            form_view.SetCheckedButDelete(true);
         }
         public void buttonPlayInConstructor()
         {
@@ -149,7 +147,7 @@ namespace CheckerInterface
 
 
                 case StatusApplication.constructor:
-                    if (/*form_view.RadiosButtonsIsChecked() &&*/ !form_view.IsCheckedButtonDelete())//если выбраны настройки для шашки и не выбран Delete
+                    if (form_view.IsCheckedButtonAdd())//если выбраны настройки для шашки и не выбран Delete
                     {
                         if ((x + y) % 2 == 1)
                         {

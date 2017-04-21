@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.buttonAdd = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BlackRadioButton = new System.Windows.Forms.RadioButton();
             this.WhiteRadioButton = new System.Windows.Forms.RadioButton();
@@ -42,16 +42,18 @@
             this.CheckerRadioButton = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonPlay = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.panelBackground = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panelBackground.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(223, 215);
+            this.button1.Location = new System.Drawing.Point(263, 263);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(367, 73);
             this.button1.TabIndex = 0;
@@ -61,7 +63,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(223, 310);
+            this.button2.Location = new System.Drawing.Point(263, 355);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(367, 73);
             this.button2.TabIndex = 1;
@@ -71,19 +73,17 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Window;
-            this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(16, 11);
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Enabled = false;
+            this.panel1.Location = new System.Drawing.Point(38, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(686, 578);
             this.panel1.TabIndex = 3;
+            this.panel1.Visible = false;
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(223, 118);
+            this.button6.Location = new System.Drawing.Point(263, 174);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(367, 73);
             this.button6.TabIndex = 5;
@@ -93,27 +93,13 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(223, 404);
+            this.button4.Location = new System.Drawing.Point(263, 444);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(367, 73);
             this.button4.TabIndex = 3;
             this.button4.Text = "Constructor";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.but4Constr_Click);
-            // 
-            // buttonAdd
-            // 
-            this.buttonAdd.BackColor = System.Drawing.Color.White;
-            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAdd.ForeColor = System.Drawing.Color.Black;
-            this.buttonAdd.Location = new System.Drawing.Point(21, 37);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(119, 65);
-            this.buttonAdd.TabIndex = 5;
-            this.buttonAdd.Text = "Add";
-            this.buttonAdd.UseVisualStyleBackColor = false;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAddCh_Click);
             // 
             // groupBox1
             // 
@@ -185,11 +171,11 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.buttonPlay);
             this.panel2.Controls.Add(this.buttonDelete);
+            this.panel2.Controls.Add(this.buttonAdd);
+            this.panel2.Controls.Add(this.buttonPlay);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Controls.Add(this.buttonAdd);
             this.panel2.Location = new System.Drawing.Point(744, 62);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(161, 455);
@@ -198,9 +184,9 @@
             // 
             // buttonPlay
             // 
-            this.buttonPlay.BackColor = System.Drawing.Color.White;
+            this.buttonPlay.BackColor = System.Drawing.Color.LightYellow;
             this.buttonPlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonPlay.Location = new System.Drawing.Point(21, 361);
+            this.buttonPlay.Location = new System.Drawing.Point(21, 366);
             this.buttonPlay.Name = "buttonPlay";
             this.buttonPlay.Size = new System.Drawing.Size(119, 65);
             this.buttonPlay.TabIndex = 9;
@@ -208,18 +194,42 @@
             this.buttonPlay.UseVisualStyleBackColor = false;
             this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
             // 
+            // buttonAdd
+            // 
+            this.buttonAdd.BackColor = System.Drawing.Color.White;
+            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonAdd.Location = new System.Drawing.Point(21, 40);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(119, 65);
+            this.buttonAdd.TabIndex = 0;
+            this.buttonAdd.Text = "Add";
+            this.buttonAdd.UseVisualStyleBackColor = false;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAddCh_Click);
+            // 
             // buttonDelete
             // 
             this.buttonDelete.BackColor = System.Drawing.Color.White;
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonDelete.ForeColor = System.Drawing.Color.Black;
             this.buttonDelete.Location = new System.Drawing.Point(21, 280);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(119, 65);
-            this.buttonDelete.TabIndex = 8;
+            this.buttonDelete.Size = new System.Drawing.Size(119, 68);
+            this.buttonDelete.TabIndex = 0;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = false;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDeleteChecker_Click);
+            // 
+            // panelBackground
+            // 
+            this.panelBackground.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelBackground.BackgroundImage")));
+            this.panelBackground.Controls.Add(this.button4);
+            this.panelBackground.Controls.Add(this.button1);
+            this.panelBackground.Controls.Add(this.button2);
+            this.panelBackground.Controls.Add(this.button6);
+            this.panelBackground.Controls.Add(this.panel1);
+            this.panelBackground.Location = new System.Drawing.Point(0, 0);
+            this.panelBackground.Name = "panelBackground";
+            this.panelBackground.Size = new System.Drawing.Size(919, 683);
+            this.panelBackground.TabIndex = 9;
             // 
             // Form1
             // 
@@ -227,15 +237,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(917, 683);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelBackground);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panelBackground.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -247,7 +257,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton BlackRadioButton;
         private System.Windows.Forms.RadioButton WhiteRadioButton;
@@ -255,9 +264,11 @@
         private System.Windows.Forms.RadioButton DamkaRadioButton;
         private System.Windows.Forms.RadioButton CheckerRadioButton;
         public System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonPlay;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Panel panelBackground;
     }
 }
 
