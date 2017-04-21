@@ -24,6 +24,13 @@ namespace CheckerInterface
             checkers[1] = new List<Checker>();
         }
 
+        public void FillBoardOnForm()
+        {
+            for (int i = 0; i < 8; i++)
+                for (int j = 0; j < 8; j++)
+                    if (board[i, j].GetChecker() != null)
+                        notifySetChecker(board[i, j].GetChecker());
+        }
         public void FillBoardAndListCheckers()
         {
             for (int x = 0; x < 8; x++)
@@ -209,6 +216,5 @@ namespace CheckerInterface
             selectedCheckers.Clear();
             botMove = new BotMove();
         }
-
     }
 }

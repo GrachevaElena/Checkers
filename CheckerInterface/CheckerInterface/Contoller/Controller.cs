@@ -36,7 +36,7 @@ namespace CheckerInterface
         public void buttonOnePlayer()
         {
             buttonClear();
-            form_view.CreateBoard();
+            form_view.CreateBoard(StatusApplication.game);
             game_model.FillBoardAndListCheckers();
             game_model.SetGame(Color.white, StatusPlayer.human, StatusPlayer.bot, StatusGame.wait);
             game_model.StartGame();
@@ -44,7 +44,7 @@ namespace CheckerInterface
         public void buttonTwoPlayers()
         {
             buttonClear();
-            form_view.CreateBoard();
+            form_view.CreateBoard(StatusApplication.game);
             game_model.FillBoardAndListCheckers();
             game_model.SetGame(Color.white, StatusPlayer.human, StatusPlayer.human, StatusGame.wait);
             game_model.StartGame();
@@ -56,7 +56,7 @@ namespace CheckerInterface
         public void buttonConstrutor()
         {
             buttonClear();
-            form_view.CreateBoard();
+            form_view.CreateBoard(StatusApplication.constructor);
             game_model.SetStatusApplication(StatusApplication.constructor);
             form_view.panel2.Visible = true;
         }
@@ -67,7 +67,7 @@ namespace CheckerInterface
         public void buttonBotVSBot()
         {
             buttonClear();
-            form_view.CreateBoard();
+            form_view.CreateBoard(StatusApplication.game);
             game_model.FillBoardAndListCheckers();
             game_model.SetGame(Color.white, StatusPlayer.bot, StatusPlayer.bot, StatusGame.wait);
             game_model.StartGame();
@@ -97,6 +97,8 @@ namespace CheckerInterface
                 game_model.SetGame(settingForm.GetColorPlayer1(), settingForm.GetStatusPl1(), settingForm.GetStatusPl2(), StatusGame.wait);
                 if ((game_model.GetStatusPlayer()==StatusPlayer.human)&&(game_model.SearchEatingAndWriteToMove()))
                     game_model.SetStatusGame(StatusGame.waitEat);
+                form_view.CreateBoard(StatusApplication.game);
+                game_model.FillBoardOnForm();
                 settingForm.Close();
                 game_model.StartGame();
             }
@@ -158,7 +160,7 @@ namespace CheckerInterface
                     else if (form_view.IsCheckedButtonDelete())//если выбрана кнопка delete - удаляй шашку. 
                         game_model.DeleteChecker(x, y);
                     break;
-                default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
+                //default: MessageBox.Show("Error, status != game or constructor, status == "+ game_model.GetStatusApplication().ToString()); break;
             }
 
         }

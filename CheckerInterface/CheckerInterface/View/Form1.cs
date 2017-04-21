@@ -54,17 +54,38 @@ namespace CheckerInterface
             //this.button5.Visible = vis;
             this.button6.Visible = vis;
         }
-        public void CreateBoard()
+
+        /*public void ChangeLocationOfBoard(int x, int y)
         {
-            panel1.Size = new System.Drawing.Size(8 * 81, 8 * 81);
+            panel1.Location = new Point(x,y);
+        }*/
+        public void CreateBoard(StatusApplication appl)
+        {
+            int sizeCell = 0;
+            if (appl == StatusApplication.game)
+            {
+                sizeCell = 81;
+                panel1.Location = new Point((919 - sizeCell * 8) / 2, 12);
+                panel1.Size = new System.Drawing.Size(8 * sizeCell, 8 * sizeCell);
+            }
+            else
+            {
+                sizeCell = 70;
+                panel1.Location = new Point(90, 62);
+                panel1.Size = new System.Drawing.Size(8 * sizeCell, 8 * sizeCell);
+            }
             if (board == null)
             {
-                board = new ViewBoard(controller, 81, panel1);
                 Cell.SetImages();
             }
             else
-                board.ClearCell();
+            {
+                board.Delete(panel1);
+            }
+            board = new ViewBoard(controller, sizeCell, panel1);
         }
+
+
 
         private bool isCheckedButtonDelete = false;
         private bool isCheckedButtonAdd = false;

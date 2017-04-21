@@ -14,6 +14,7 @@ namespace CheckerInterface
         void SetStatusPlayers(StatusPlayer pl1, StatusPlayer pl2);
         void SetStatusGame(StatusGame statusGame);
         void SetStartColor(Color color);
+        void FillBoardOnForm();
         void FillBoardAndListCheckers();
         void CreateChecker(Checker ch);
         void DeleteChecker(int x, int y);

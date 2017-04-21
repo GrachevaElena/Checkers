@@ -41,9 +41,9 @@
             this.DamkaRadioButton = new System.Windows.Forms.RadioButton();
             this.CheckerRadioButton = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.buttonPlay = new System.Windows.Forms.Button();
-            this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonPlay = new System.Windows.Forms.Button();
             this.panelBackground = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -75,7 +75,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Enabled = false;
-            this.panel1.Location = new System.Drawing.Point(38, 12);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(686, 578);
             this.panel1.TabIndex = 3;
@@ -176,23 +176,23 @@
             this.panel2.Controls.Add(this.buttonPlay);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Location = new System.Drawing.Point(744, 62);
+            this.panel2.Location = new System.Drawing.Point(744, 101);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(161, 455);
             this.panel2.TabIndex = 8;
             this.panel2.Visible = false;
             // 
-            // buttonPlay
+            // buttonDelete
             // 
-            this.buttonPlay.BackColor = System.Drawing.Color.LightYellow;
-            this.buttonPlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonPlay.Location = new System.Drawing.Point(21, 366);
-            this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(119, 65);
-            this.buttonPlay.TabIndex = 9;
-            this.buttonPlay.Text = "Play";
-            this.buttonPlay.UseVisualStyleBackColor = false;
-            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
+            this.buttonDelete.BackColor = System.Drawing.Color.White;
+            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDelete.Location = new System.Drawing.Point(21, 280);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(119, 68);
+            this.buttonDelete.TabIndex = 0;
+            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDeleteChecker_Click);
             // 
             // buttonAdd
             // 
@@ -206,17 +206,17 @@
             this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAddCh_Click);
             // 
-            // buttonDelete
+            // buttonPlay
             // 
-            this.buttonDelete.BackColor = System.Drawing.Color.White;
-            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonDelete.Location = new System.Drawing.Point(21, 280);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(119, 68);
-            this.buttonDelete.TabIndex = 0;
-            this.buttonDelete.Text = "Delete";
-            this.buttonDelete.UseVisualStyleBackColor = false;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDeleteChecker_Click);
+            this.buttonPlay.BackColor = System.Drawing.Color.LightYellow;
+            this.buttonPlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonPlay.Location = new System.Drawing.Point(21, 366);
+            this.buttonPlay.Name = "buttonPlay";
+            this.buttonPlay.Size = new System.Drawing.Size(119, 65);
+            this.buttonPlay.TabIndex = 9;
+            this.buttonPlay.Text = "Play";
+            this.buttonPlay.UseVisualStyleBackColor = false;
+            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
             // 
             // panelBackground
             // 
