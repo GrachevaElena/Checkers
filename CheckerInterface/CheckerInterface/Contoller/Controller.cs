@@ -91,15 +91,19 @@ namespace CheckerInterface
         }
         public void buttonPlayInConstructor()
         {
-            form_view.panel2.Visible = false;
             settingForm = new SettingForm(this);
             settingForm.Show();
+        }
+        public void CloseSettings()
+        {
+            settingForm.Close();
         }
         public void buttonPlaySetting()
         {
             if (settingForm.CanStartGame())
             {
-                game_model.SetGame(settingForm.GetColorPlayer1(), settingForm.GetStatusPl1(), settingForm.GetStatusPl2(), StatusGame.wait);
+                form_view.panel2.Visible = false;
+                game_model.SetGame(Color.white, settingForm.GetStatusPl1(), settingForm.GetStatusPl2(), StatusGame.wait);
                 if ((game_model.GetStatusPlayer() == StatusPlayer.human) && (game_model.SearchEatingAndWriteToMove()))
                     game_model.SetStatusGame(StatusGame.waitEat);
                 form_view.CreateBoard(StatusApplication.game);

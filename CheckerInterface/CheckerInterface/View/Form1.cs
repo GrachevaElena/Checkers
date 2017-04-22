@@ -108,19 +108,6 @@ namespace CheckerInterface
             if (DamkaRadioButton.Checked) return Figure.damka;
             return Figure.empty;
         }
-       /* public void SetForeColorButton(System.Drawing.Color colButtonAdd, System.Drawing.Color colButtonDelete)
-        {
-            buttonAdd.ForeColor = colButtonAdd;
-            buttonDelete.ForeColor = colButtonDelete;
-        }*/ //not used
-
-        /*public void SetEmptyRadioButtons()
-        {
-            WhiteRadioButton.Checked = false;
-            BlackRadioButton.Checked = false;
-            DamkaRadioButton.Checked = false;
-            CheckerRadioButton.Checked = false;
-        }*/ //not used
 
         private void ChangePanels()
         {
@@ -131,23 +118,40 @@ namespace CheckerInterface
         public void SetButtonPlayEnabled(bool f)
         {
             buttonPlay.Enabled = f;
+            if (f)
+            {
+                buttonPlay.FlatStyle = FlatStyle.Flat;
+                buttonPlay.FlatAppearance.BorderColor = System.Drawing.Color.DarkRed;
+                buttonPlay.BackColor = System.Drawing.Color.NavajoWhite;
+            }
+            else
+            {
+                buttonPlay.FlatStyle = FlatStyle.Standard;
+                buttonPlay.BackColor = System.Drawing.Color.WhiteSmoke;
+            }
         }
         public void SelectAddChecker()
         {
             isCheckedButtonAdd = true;
-            buttonAdd.BackColor = System.Drawing.Color.Snow;
+            buttonAdd.BackColor = System.Drawing.Color.WhiteSmoke;
+            buttonAdd.FlatAppearance.BorderSize = 1;
+
+            groupBox1.Enabled = groupBox2.Enabled = true;
         }
 
         public void SelectDeleteChecker()
         {
             isCheckedButtonDelete = true;
-            buttonDelete.BackColor = System.Drawing.Color.Snow;
+            buttonDelete.BackColor = System.Drawing.Color.WhiteSmoke;
         }
 
         public void HideAddChecker()
         {
             isCheckedButtonAdd = false;
             buttonAdd.BackColor = System.Drawing.Color.White;
+            buttonAdd.FlatAppearance.BorderSize = 1;
+
+            groupBox1.Enabled = groupBox2.Enabled = false;
         }
 
         public void HideDeleteChecker()
@@ -210,7 +214,7 @@ namespace CheckerInterface
         }
         private void WhiteRadioBut_CheckedChanged(object sender, EventArgs e)
         {
-            controller.buttonAddChecker();
+            buttonAdd.FlatAppearance.BorderSize = 2;
         }
         private void BlackRadioBut_CheckedChanged(object sender, EventArgs e)
         {
@@ -218,7 +222,7 @@ namespace CheckerInterface
         }
         private void ChRadioBut_CheckedChanged(object sender, EventArgs e)
         {
-           controller.buttonAddChecker();
+            buttonAdd.FlatAppearance.BorderSize = 2;
         }
         private void DamkaRadioButton_CheckedChanged(object sender, EventArgs e)
         {

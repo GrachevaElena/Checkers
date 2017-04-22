@@ -18,6 +18,7 @@ namespace CheckerInterface
         void buttonDeleteChecker();
         void buttonPlayInConstructor();
         void buttonPlaySetting();
+        void CloseSettings();
         void keyEsc();
 
         void ClickCell(int x, int y);
