@@ -17,6 +17,9 @@ namespace CheckerInterface.View
         {
             InitializeComponent();
             controller = contr;
+
+            comboBox1color.SelectedIndex = 1;
+            comboBox1color.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
         }
         public bool CanStartGame()
         {
@@ -30,12 +33,12 @@ namespace CheckerInterface.View
         }*/
         public StatusPlayer GetStatusPl1()
         {
-            if (radioButtonWhiteBot.Checked) return StatusPlayer.bot;
+           // if (radioButtonWhiteBot.Checked) return StatusPlayer.bot;
             return StatusPlayer.human;
         }
         public StatusPlayer GetStatusPl2()
         {
-            if (radioButtonBlackBot.Checked) return StatusPlayer.bot;
+            //if (radioButtonBlackBot.Checked) return StatusPlayer.bot;
             return StatusPlayer.human;
         }
         private void buttonPlay_Click(object sender, EventArgs e)
@@ -56,6 +59,11 @@ namespace CheckerInterface.View
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             controller.CloseSettings();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

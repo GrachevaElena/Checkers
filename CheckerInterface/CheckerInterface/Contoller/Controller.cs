@@ -64,6 +64,7 @@ namespace CheckerInterface
             form_view.CreateBoard(StatusApplication.constructor);
             game_model.SetStatusApplication(StatusApplication.constructor);
             form_view.panel2.Visible = true;
+            form_view.SelectAddChecker();
         }
         public void buttonSetting()
         {
@@ -91,12 +92,16 @@ namespace CheckerInterface
         }
         public void buttonPlayInConstructor()
         {
-            settingForm = new SettingForm(this);
-            settingForm.Show();
+            if (settingForm == null)
+            {
+                settingForm = new SettingForm(this);
+                settingForm.Show();
+            }
         }
         public void CloseSettings()
         {
             settingForm.Close();
+            settingForm = null;
         }
         public void buttonPlaySetting()
         {
@@ -109,6 +114,7 @@ namespace CheckerInterface
                 form_view.CreateBoard(StatusApplication.game);
                 game_model.FillBoardOnForm();
                 settingForm.Close();
+                settingForm = null;
                 game_model.StartGame();
             }
         }     //stting
