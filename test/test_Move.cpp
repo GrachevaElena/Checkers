@@ -51,9 +51,9 @@ TEST(test_Move, can_set_get_eaten) {
 }
 
 TEST(test_Move, can_set_get) {
-	int arr[10] = { 12,5,7,9,10,3,2,1,8,4 }, arrres[10];
+	int arr[10] = { 12,5 }, arrres[10];
 	Move move;
-	move.SetColor(BLACK);
+	/*move.SetColor(BLACK);
 	EXPECT_EQ(BLACK, move.GetColor());
 
 	move.SetType(1);
@@ -67,10 +67,10 @@ TEST(test_Move, can_set_get) {
 
 	move.SetFinalCoord(4);
 	EXPECT_EQ(4, move.GetFinalCoord());
-
-	move.SetNEaten(12);
-	EXPECT_EQ(12, move.GetNEaten());
-
+	*/
+	move.SetNEaten(2);
+	ASSERT_EQ(2, move.GetNEaten());
+	
 	move.SetEaten(arr);
 	move.GetEaten(arrres);
 	for (int i = 0; i < 10; i++)
@@ -91,22 +91,24 @@ TEST(test_Move, can_set_get_eaten_in_arr) {
 }
 
 TEST(test_Move, can_set_get_in_general) {
-	int arr[10] = { 12,5,7,9,10,3,2,1,8,4 }, arrres[10];
+	int arr[10] = { 1,2,3, 0, 0, 0, 0, 0 , 0, 0/*,9,10,3,2,1,8,4*/ }, arrres[10];
 	Move move;
 	move.SetColor(BLACK);
 	move.SetStartCoord(1);
 	move.SetFinalCoord(4);
 	move.SetNum(3);
-	move.SetNEaten(12);
+	move.SetNEaten(10);
 	move.SetType(1);
 	move.SetEaten(arr);
+	move.GetEaten(arrres);
+	int t = move.GetNEaten();
 
 	EXPECT_EQ(BLACK, move.GetColor());
 	EXPECT_EQ(1, move.GetType());
 	EXPECT_EQ(3, move.GetNum());
 	EXPECT_EQ(1, move.GetStartCoord());
 	EXPECT_EQ(4, move.GetFinalCoord());
-	EXPECT_EQ(12, move.GetNEaten());
+	EXPECT_EQ(10, move.GetNEaten());
 
 	move.GetEaten(arrres);
 	for (int i = 0; i < 10; i++)
