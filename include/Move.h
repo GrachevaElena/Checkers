@@ -36,7 +36,7 @@
 const int MaxEaten = 10;
 
 class Move {
-	long long move;
+	unsigned long long move;
 public:
 	Move() { move = 0; }
 	Move(int n) { move = n; }
