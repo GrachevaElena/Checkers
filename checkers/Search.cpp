@@ -54,16 +54,19 @@ int SearchAlphaBeta(int color, int depth, int alpha, int beta, Move * bestMove, 
 	return alpha;
 }
 
-int Quies(int color, int alpha, int beta, int ev_num = 0) 
+int QuiesCapt(int color, int alpha, int beta, int ev_num = 0) 
 {
 	Move* savedF = cache.GetpLast();
-	GenerateForcing(checkers[color]); //GenerataForcing можно сделать так, чтобы GenerateForcing возвращала на какую глубину форсировать									  
+	GenerateCaptures(checkers[color]); //GenerataForcing можно сделать так, чтобы GenerateCaptures возвращала на какую глубину форсировать									  
 
-	if (cache.GetpLast()-savedF <=0) return evaluate[ev_num](color);
+	if (cache.GetpLast() - savedF <= 0) {
+		int k = evaluate[ev_num](color);
+		return	evaluate[ev_num](color);
 
+	}
 	for (Move* pmove = savedF; pmove < cache.GetpLast(); pmove++) {
 		MakeMove(*pmove);
-		tmp = -Quies(!color, -beta, -alpha,  ev_num); //запускаем рекурсивно, глубину можно брать из Move
+		tmp = -QuiesCapt(!color, -beta, -alpha,  ev_num); //запускаем рекурсивно, глубину можно брать из Move
 		UnMakeMove(*pmove);
 
 		if (tmp > alpha) {
@@ -83,7 +86,7 @@ int AlphaBetaForcing(int color, int depth, int alpha, int beta, Move * bestMove,
 {
 	if (depth == 0)						   //если на мах глубине, запускаем форсирование
 	{
-		return Quies(color, alpha, beta, ev_num);
+		return QuiesCapt(color, alpha, beta, ev_num);
 	}
 
 	Move* saved = cache.GetpLast();
@@ -106,8 +109,4 @@ int AlphaBetaForcing(int color, int depth, int alpha, int beta, Move * bestMove,
 
 	cache.Rollback(saved);
 	return alpha;
-}
-void GenerateForcing(ListOfCheckers& list)
-{
-
 }
