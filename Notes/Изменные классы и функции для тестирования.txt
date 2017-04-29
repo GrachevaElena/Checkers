@@ -1,0 +1,6 @@
+Изменные классы и функции для тестирования: 
+
+Cache:
+	int TEST_MAX_SIZE
+	int GET_MAX_SIZE()
+	inline void TEST_UPDATE()
