@@ -1,13 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Checkers", "Checkers\Checkers.vcxproj", "{C51582E5-D11E-4A3C-9549-281E8F0741D9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtest", "gtest\gtest.vcxproj", "{4AAA3E26-C172-4843-9611-26E01A0686AF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests", "tests\tests.vcxproj", "{7626AB66-2CB2-4CCC-873F-F374C4A9FB67}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C51582E5-D11E-4A3C-9549-281E8F0741D9} = {C51582E5-D11E-4A3C-9549-281E8F0741D9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
