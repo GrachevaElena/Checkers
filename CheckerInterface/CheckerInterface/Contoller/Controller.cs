@@ -43,7 +43,8 @@ namespace CheckerInterface
             buttonClear();
             form_view.CreateBoard(StatusApplication.game);
             game_model.FillBoardAndListCheckers();
-            game_model.SetGame(Color.white, StatusPlayer.human, StatusPlayer.bot, StatusGame.wait);
+            game_model.SetGame(Color.white, StatusPlayer.human, StatusPlayer.bot,4,5,
+                Search.AlphaBetaSearch, Search.AlphaBetaSearch, Evaluate.SmartEvaluate, Evaluate.SmartEvaluate,StatusGame.wait);
             game_model.StartGame();
         }
         public void buttonTwoPlayers()
@@ -51,7 +52,8 @@ namespace CheckerInterface
             buttonClear();
             form_view.CreateBoard(StatusApplication.game);
             game_model.FillBoardAndListCheckers();
-            game_model.SetGame(Color.white, StatusPlayer.human, StatusPlayer.human, StatusGame.wait);
+            game_model.SetGame(Color.white, StatusPlayer.human, StatusPlayer.human, 4, 5,
+                Search.AlphaBetaSearch, Search.AlphaBetaSearch, Evaluate.SmartEvaluate, Evaluate.SmartEvaluate, StatusGame.wait);
             game_model.StartGame();
         }
         public void buttonLoadGame()
@@ -75,7 +77,8 @@ namespace CheckerInterface
             buttonClear();
             form_view.CreateBoard(StatusApplication.game);
             game_model.FillBoardAndListCheckers();
-            game_model.SetGame(Color.white, StatusPlayer.bot, StatusPlayer.bot, StatusGame.wait);
+            game_model.SetGame(Color.white, StatusPlayer.bot, StatusPlayer.bot, 4, 5,
+                Search.AlphaBetaSearch, Search.AlphaBetaSearch, Evaluate.SmartEvaluate, Evaluate.SmartEvaluate, StatusGame.wait);
             game_model.StartGame();
         }
 
@@ -108,7 +111,8 @@ namespace CheckerInterface
             if (settingForm.CanStartGame())
             {
                 form_view.panel2.Visible = false;
-                game_model.SetGame(Color.white, settingForm.GetStatusPl1(), settingForm.GetStatusPl2(), StatusGame.wait);
+                game_model.SetGame(settingForm.GetColorPlayer1(), settingForm.GetStatusPl1(), settingForm.GetStatusPl2(), settingForm.GetDepthPl1(), settingForm.GetDepthPl2(),
+                settingForm.GetSearchPl1(), settingForm.GetSearchPl2(), settingForm.GetEvaluatePl1(), settingForm.GetEvaluatePl2(), StatusGame.wait);
                 if ((game_model.GetStatusPlayer() == StatusPlayer.human) && (game_model.SearchEatingAndWriteToMove()))
                     game_model.SetStatusGame(StatusGame.waitEat);
                 form_view.CreateBoard(StatusApplication.game);

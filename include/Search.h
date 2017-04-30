@@ -5,13 +5,15 @@
 
 #define INF (12*DamkaPrice+1)
 
-#define USUAL_SEARCH 0
-#define USUAL_SEARCH_SMART 1
-#define ALPHA_BETA_SEARCH 2
-#define ALPHA_BETA_SEARCH_SMART 3
-
-#define SMART_EVALUATE 1
-#define USUAL_EVALUATE 0
+enum ESearch {
+	EUsualSearch,
+	EAlphaBetaSearch,
+	EForcedSearch
+};
+enum EEvaluate {
+	ESimpleEvaluate,
+	ESmartEvaluate
+};
 
 extern Board board;
 extern Cache cache;
@@ -21,4 +23,4 @@ extern ListOfCheckers checkers[2];
 
 const int MaxDepth = 4;
 
-Move Search(int color, int type_search, int max_depth);
+Move Search(int color,int max_depth,ESearch type_search,EEvaluate type_evaluate);
