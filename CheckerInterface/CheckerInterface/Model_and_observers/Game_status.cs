@@ -22,12 +22,14 @@ namespace CheckerInterface
     {
         FullSearch,
         AlphaBetaSearch,
-        ForcedSearch
+        ForcedSearch,
+        empty
     }
     public enum Evaluate
     {
         SimpleEvaluate,
-        SmartEvaluate
+        SmartEvaluate,
+        empty
     }
     public partial class Game : iSubject, iGame
     {

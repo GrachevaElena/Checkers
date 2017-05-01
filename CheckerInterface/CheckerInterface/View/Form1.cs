@@ -109,7 +109,7 @@ namespace CheckerInterface
             return Figure.empty;
         }
 
-        private void ChangePanels()
+        public void ChangePanels()
         {
             panel1.Enabled = true;
             panel1.Visible = true;
@@ -172,22 +172,18 @@ namespace CheckerInterface
 
         private void but1Play1_Click(object sender, EventArgs e)
         {
-            ChangePanels();
             controller.buttonOnePlayer();
         }
         private void but2Play2_Click(object sender, EventArgs e)
         {
-            ChangePanels();
             controller.buttonTwoPlayers();
         }
         private void but4Constr_Click(object sender, EventArgs e)
         {
-            ChangePanels();
             controller.buttonConstrutor();
         }
         private void but0botVSbot_Click(object sender, EventArgs e)
         {
-            ChangePanels();
             controller.buttonBotVSBot();
         }
         public void OnKeyDown(object sender, KeyEventArgs e)

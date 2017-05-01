@@ -8,6 +8,12 @@ using CheckerInterface.View;
 
 namespace CheckerInterface
 {
+    public enum TypeSettingForm
+    {
+        botVSbot,
+        humanVSbot,
+        constructor
+    } 
     public class Controller : iController
     {
         iGame game_model;
@@ -40,20 +46,20 @@ namespace CheckerInterface
         }
         public void buttonOnePlayer()
         {
-            buttonClear();
-            form_view.CreateBoard(StatusApplication.game);
-            game_model.FillBoardAndListCheckers();
-            game_model.SetGame(Color.white, StatusPlayer.human, StatusPlayer.bot,4,5,
-                Search.AlphaBetaSearch, Search.AlphaBetaSearch, Evaluate.SmartEvaluate, Evaluate.SmartEvaluate,StatusGame.wait);
-            game_model.StartGame();
+            game_model.SetStatusApplication(StatusApplication.game);
+            if (settingForm != null) settingForm.Close();
+            settingForm = new SettingForm(this, TypeSettingForm.humanVSbot);
+            settingForm.Show();
         }
         public void buttonTwoPlayers()
         {
             buttonClear();
+            form_view.ChangePanels();
+            game_model.SetStatusApplication(StatusApplication.game);
             form_view.CreateBoard(StatusApplication.game);
             game_model.FillBoardAndListCheckers();
-            game_model.SetGame(Color.white, StatusPlayer.human, StatusPlayer.human, 4, 5,
-                Search.AlphaBetaSearch, Search.AlphaBetaSearch, Evaluate.SmartEvaluate, Evaluate.SmartEvaluate, StatusGame.wait);
+            game_model.SetGame(Color.white, StatusPlayer.human, StatusPlayer.human,0, 0,
+                Search.empty, Search.empty, Evaluate.empty, Evaluate.empty, StatusGame.wait);
             game_model.StartGame();
         }
         public void buttonLoadGame()
@@ -62,7 +68,8 @@ namespace CheckerInterface
         }
         public void buttonConstrutor()
         {
-            buttonClear();   
+            buttonClear();
+            form_view.ChangePanels();
             form_view.CreateBoard(StatusApplication.constructor);
             game_model.SetStatusApplication(StatusApplication.constructor);
             form_view.panel2.Visible = true;
@@ -74,12 +81,10 @@ namespace CheckerInterface
         }
         public void buttonBotVSBot()
         {
-            buttonClear();
-            form_view.CreateBoard(StatusApplication.game);
-            game_model.FillBoardAndListCheckers();
-            game_model.SetGame(Color.white, StatusPlayer.bot, StatusPlayer.bot, 4, 5,
-                Search.AlphaBetaSearch, Search.AlphaBetaSearch, Evaluate.SmartEvaluate, Evaluate.SmartEvaluate, StatusGame.wait);
-            game_model.StartGame();
+            game_model.SetStatusApplication(StatusApplication.game);
+            if (settingForm != null) settingForm.Close();
+            settingForm = new SettingForm(this, TypeSettingForm.botVSbot);
+            settingForm.Show();
         }
 
         //contructor menu
@@ -95,11 +100,9 @@ namespace CheckerInterface
         }
         public void buttonPlayInConstructor()
         {
-            if (settingForm == null)
-            {
-                settingForm = new SettingForm(this);
-                settingForm.Show();
-            }
+            if (settingForm != null) settingForm.Close();
+            settingForm = new SettingForm(this, TypeSettingForm.constructor);
+            settingForm.Show();
         }
         public void CloseSettings()
         {
@@ -110,13 +113,22 @@ namespace CheckerInterface
         {
             if (settingForm.CanStartGame())
             {
-                form_view.panel2.Visible = false;
+                form_view.CreateBoard(StatusApplication.game);
+                if (game_model.GetStatusApplication() == StatusApplication.constructor)
+                {
+                    game_model.FillBoardOnForm();
+                    form_view.panel2.Visible = false;
+                }
+                else
+                {
+                    buttonClear();
+                    form_view.ChangePanels();
+                    game_model.FillBoardAndListCheckers();
+                }
                 game_model.SetGame(settingForm.GetColorPlayer1(), settingForm.GetStatusPl1(), settingForm.GetStatusPl2(), settingForm.GetDepthPl1(), settingForm.GetDepthPl2(),
-                settingForm.GetSearchPl1(), settingForm.GetSearchPl2(), settingForm.GetEvaluatePl1(), settingForm.GetEvaluatePl2(), StatusGame.wait);
+                    settingForm.GetSearchPl1(), settingForm.GetSearchPl2(), settingForm.GetEvaluatePl1(), settingForm.GetEvaluatePl2(), StatusGame.wait);
                 if ((game_model.GetStatusPlayer() == StatusPlayer.human) && (game_model.SearchEatingAndWriteToMove()))
                     game_model.SetStatusGame(StatusGame.waitEat);
-                form_view.CreateBoard(StatusApplication.game);
-                game_model.FillBoardOnForm();
                 settingForm.Close();
                 settingForm = null;
                 game_model.StartGame();
