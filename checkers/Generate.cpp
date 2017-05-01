@@ -1,5 +1,6 @@
 #include "BasicFunctions.h"
 #include "FunctionsMove.h"
+#include "statistics_func.h"
 
 ListOfCheckers::iterator it;
 int mustEat;
@@ -19,4 +20,5 @@ void Generate(ListOfCheckers& list) {
 			board[it->GetCoord()] = &(*it);
 		}
 	}
+	CalculateAverSizeOfMovie(cache.GetpLast() - saved);
 }

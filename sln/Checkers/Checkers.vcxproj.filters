@@ -31,6 +31,9 @@
     <Filter Include="Заголовочные файлы\Search\BasicFunctions">
       <UniqueIdentifier>{c59cdd76-387e-4aa5-b2af-798b28217e89}</UniqueIdentifier>
     </Filter>
+    <Filter Include="statistics_func">
+      <UniqueIdentifier>{13beb9ff-3a8e-44d2-88f0-1e8e6391836b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Board.h">
@@ -62,6 +65,9 @@
     </ClInclude>
     <ClInclude Include="..\..\include\Bot.h">
       <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\statistics_func.h">
+      <Filter>statistics_func</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="..\..\checkers\SearchForBot.cpp">
       <Filter>Файлы исходного кода\Search</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\statics_func\statistics_func.cpp">
+      <Filter>statistics_func</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
