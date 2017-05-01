@@ -59,19 +59,36 @@ namespace CheckerInterface
         {
             panel1.Location = new Point(x,y);
         }*/
+        Label[,] forBorder;
         public void CreateBoard(StatusApplication appl)
         {
+            panelborder.Controls.Clear();
+            panelborder.Controls.Add(panel1);
+            panelborder.Enabled = true;
+            panelborder.Visible = true;
+            panel1.Enabled = true;
+            panel1.Visible = true;
+            //panelBackground.BackColor = System.Drawing.Color.Transparent;
             int sizeCell = 0;
+            int sizeBorderDivCell = 0;
             if (appl == StatusApplication.game)
             {
-                sizeCell = 81;
-                panel1.Location = new Point((919 - sizeCell * 8) / 2, 12);
+                sizeCell = 73;
+                sizeBorderDivCell = 8;
+                panelborder.Location= new Point((919 - (sizeCell+sizeBorderDivCell) * 8) / 2 , 12);
+                panelborder.Size= new System.Drawing.Size(8 * (sizeCell+sizeBorderDivCell), 8 * (sizeCell + sizeBorderDivCell));
+                SetInBorder(sizeCell, sizeBorderDivCell * 4, panelborder);
+                panel1.Location = new Point(sizeBorderDivCell*4,sizeBorderDivCell*4);
                 panel1.Size = new System.Drawing.Size(8 * sizeCell, 8 * sizeCell);
             }
             else
             {
-                sizeCell = 70;
-                panel1.Location = new Point(90, 62);
+                sizeCell = 63;
+                sizeBorderDivCell = 7;
+                panelborder.Location = new Point(90, 62);
+                panelborder.Size = new System.Drawing.Size(8 * (sizeCell + sizeBorderDivCell), 8 * (sizeCell + sizeBorderDivCell));
+                SetInBorder(sizeCell,sizeBorderDivCell*4, panelborder);
+                panel1.Location = new Point(sizeBorderDivCell * 4, sizeBorderDivCell * 4);
                 panel1.Size = new System.Drawing.Size(8 * sizeCell, 8 * sizeCell);
             }
             if (board == null)
@@ -85,7 +102,35 @@ namespace CheckerInterface
             board = new ViewBoard(controller, sizeCell, panel1);
         }
 
-
+        public void SetInBorder(int sizeCell, int sizeBorder, Panel panel)
+        {
+            forBorder = new Label[4, 8];
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 8; j++)
+                {
+                    forBorder[i, j] = new Label();
+                    panel.Controls.Add(forBorder[i, j]);
+                    //forBorder[i, j].BorderStyle = BorderStyle.FixedSingle;
+                    forBorder[i, j].BackColor = panel.BackColor;
+                    forBorder[i, j].ForeColor = System.Drawing.Color.White;
+                    forBorder[i, j].TextAlign = ContentAlignment.MiddleCenter;
+                    forBorder[i, j].Font = new Font("Arial", 12, FontStyle.Bold);
+                }
+            for (int j = 0; j < 8; j++)
+            {
+                forBorder[0, j].Size = forBorder[1, j].Size = new System.Drawing.Size(sizeCell, sizeBorder);
+                forBorder[0, j].Location = new Point(sizeBorder + j * sizeCell, 0);
+                forBorder[1, j].Location = new Point(sizeBorder + j * sizeCell, sizeCell * 8 + sizeBorder);
+                forBorder[2, j].Size = forBorder[3, j].Size = new System.Drawing.Size(sizeBorder, sizeCell);
+                forBorder[2, j].Location = new Point(0, sizeBorder + j * sizeCell);
+                forBorder[3, j].Location = new Point(sizeCell * 8 + sizeBorder, sizeBorder + j * sizeCell);
+            }
+            for (int j = 7; j >= 0; j--)
+            {
+                forBorder[0, j].Text = forBorder[1, j].Text = ((Char)('A' + j)).ToString();
+                forBorder[2, j].Text = forBorder[3, j].Text = (8 -  j).ToString();
+            }
+        }
 
         private bool isCheckedButtonDelete = false;
         private bool isCheckedButtonAdd = false;
@@ -107,13 +152,6 @@ namespace CheckerInterface
             if (CheckerRadioButton.Checked) return Figure.checker;
             if (DamkaRadioButton.Checked) return Figure.damka;
             return Figure.empty;
-        }
-
-        public void ChangePanels()
-        {
-            panel1.Enabled = true;
-            panel1.Visible = true;
-            panelBackground.BackColor = System.Drawing.Color.Transparent;
         }
         public void SetButtonPlayEnabled(bool f)
         {

@@ -43,6 +43,7 @@ namespace CheckerInterface
             form_view.timer.Enabled = false;
             game_model.SetStatusPlayers(StatusPlayer.empty, StatusPlayer.empty);
             game_model.ClearResource();
+            form_view.panel2.Visible = false;
         }
         public void buttonOnePlayer()
         {
@@ -54,7 +55,7 @@ namespace CheckerInterface
         public void buttonTwoPlayers()
         {
             buttonClear();
-            form_view.ChangePanels();
+            //form_view.ChangePanels();
             game_model.SetStatusApplication(StatusApplication.game);
             form_view.CreateBoard(StatusApplication.game);
             game_model.FillBoardAndListCheckers();
@@ -69,7 +70,7 @@ namespace CheckerInterface
         public void buttonConstrutor()
         {
             buttonClear();
-            form_view.ChangePanels();
+            //form_view.ChangePanels();
             form_view.CreateBoard(StatusApplication.constructor);
             game_model.SetStatusApplication(StatusApplication.constructor);
             form_view.panel2.Visible = true;
@@ -122,7 +123,7 @@ namespace CheckerInterface
                 else
                 {
                     buttonClear();
-                    form_view.ChangePanels();
+                    //form_view.ChangePanels();
                     game_model.FillBoardAndListCheckers();
                 }
                 game_model.SetGame(settingForm.GetColorPlayer1(), settingForm.GetStatusPl1(), settingForm.GetStatusPl2(), settingForm.GetDepthPl1(), settingForm.GetDepthPl2(),
@@ -137,8 +138,9 @@ namespace CheckerInterface
 
         private void GameEnd()
         {
+            game_model.SetStatusGame(StatusGame.wait);
             form_view.timer.Enabled = false;
-            game_model.SetStartColor(Color.empty);
+            //game_model.SetStartColor(Color.empty);
             game_model.SetStatusPlayers(StatusPlayer.empty, StatusPlayer.empty);
             game_model.SetStatusApplication(StatusApplication.menu);
         }
@@ -170,8 +172,13 @@ namespace CheckerInterface
                             else
                             {
                                 //нет: конец игры
+                                if (game_model.GetColor() == Color.black)
+                                    game_model.SetWinner (Color.white);
+                                else game_model.SetWinner (Color.black);
+                                if (game_model.GetWinner() == Color.white)
+                                    MessageBox.Show("Game over. White won");
+                                else MessageBox.Show("Game over. Black won");
                                 GameEnd();
-                                MessageBox.Show("Game over");
                                 return;
                             }
                         }
@@ -212,6 +219,9 @@ namespace CheckerInterface
                     if (game_model.GetStatusGame() == StatusGame.gameOver)
                     {
                         GameEnd();
+                        if (game_model.GetWinner() == Color.white)
+                            MessageBox.Show("Game over. White won");
+                        else MessageBox.Show("Game over. Black won");
                         return;
                     }
                     game_model.NextPlayer();
@@ -233,9 +243,10 @@ namespace CheckerInterface
                     }
                     else
                     {
-                        //нет: конец игры
                         GameEnd();
-                        MessageBox.Show("Game over");
+                        if (game_model.GetColor() == Color.white)
+                            MessageBox.Show("Game over. Black won");
+                        else MessageBox.Show("Game over. White won");
                         return;
                     }
                 }

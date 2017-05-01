@@ -17,6 +17,8 @@ namespace CheckerInterface
         void SetStartColor(Color color);
         void FillBoardOnForm();
         void FillBoardAndListCheckers();
+        Color GetWinner();
+        void SetWinner(Color w);
         int CreateChecker(Checker ch);
         int DeleteChecker(int x, int y);
 
@@ -24,6 +26,7 @@ namespace CheckerInterface
         StatusGame GetStatusGame();
         StatusPlayer GetStatusPlayer();
         Color GetColor();
+        Color GetEnemyColor();
         Color GetColOfCh(int x, int y);
 
         bool HumanStep(int x, int y);

@@ -38,6 +38,16 @@ namespace CheckerInterface
         private Evaluate[] statusEvaluate = new Evaluate[2];
         private Search[] statusSearch = new Search[2];
         private int[] statusDepth = new int[2];
+        private Color winner = new Color();
+
+        public Color GetWinner()
+        {
+            return winner;
+        }
+        public void SetWinner(Color w)
+        {
+            winner=w;
+        }
 
         private Color GetOtherColor(Color color)
         {
@@ -96,6 +106,10 @@ namespace CheckerInterface
         public Color GetColor()
         {
             return color;
+        }
+        public Color GetEnemyColor()
+        {
+            return color == Color.white ? Color.black : Color.white;
         }
     }
 }

@@ -46,6 +46,7 @@ namespace CheckerInterface.View
                     panel2botSettings.Location = panel1botSettings.Location = new Point(5, 76);
                     labelPlayer1.Text = "Bot1(white)";
                     label11.Text = "Bot2(black)";
+                    comboBox1color.SelectedIndex = 0;
                     break;
                 case TypeSettingForm.humanVSbot:
                     panel1.Visible = true;
@@ -55,6 +56,7 @@ namespace CheckerInterface.View
                     label1player.Visible =  comboBox1player.Visible  = false;
                     label1color.Visible = true;
                     labelPlayer1.Text = "Bot";
+                    comboBox1color.SelectedIndex = 1;
                     break;
                 case TypeSettingForm.constructor:
                     panel1.Visible = true;
@@ -65,6 +67,7 @@ namespace CheckerInterface.View
                     panel2botSettings.Location = panel1botSettings.Location = new Point(5, 125);
                     labelPlayer1.Text = "Player1";
                     label11.Text = "Player2";
+                    comboBox1color.SelectedIndex = 0;
                     break;
             }
         }

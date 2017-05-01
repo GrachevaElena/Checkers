@@ -46,7 +46,8 @@ namespace CheckerInterface
                     if (botMove.end == 1)
                     {
                         statusGame = StatusGame.gameOver;
-                        MessageBox.Show("Bot thinks, it lost");                      
+                        if (GetColor() == Color.white) winner = Color.black;
+                        else winner = Color.white;
                         return true;
                     }
 
