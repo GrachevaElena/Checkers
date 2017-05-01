@@ -46,8 +46,6 @@ namespace CheckerInterface
                     if (botMove.end == 1)
                     {
                         statusGame = StatusGame.gameOver;
-                        if (GetColor() == Color.white) winner = Color.black;
-                        else winner = Color.white;
                         return true;
                     }
 
