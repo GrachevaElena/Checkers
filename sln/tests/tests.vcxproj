@@ -171,7 +171,6 @@
     <ClCompile Include="..\..\checkers\Search.cpp" />
     <ClCompile Include="..\..\checkers\SearchForBot.cpp" />
     <ClCompile Include="..\..\test\functions for testing\TestSearch.cpp" />
-    <ClCompile Include="..\..\test\test_AlphaBetaSearch.cpp" />
     <ClCompile Include="..\..\test\test_Board.cpp" />
     <ClCompile Include="..\..\test\test_Cache.cpp" />
     <ClCompile Include="..\..\test\test_CallBot.cpp" />

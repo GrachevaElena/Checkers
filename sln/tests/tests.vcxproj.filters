@@ -57,9 +57,6 @@
     <ClCompile Include="..\..\checkers\MakeMove.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\checkers\Search.cpp">
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\test\test_Board.cpp">
       <Filter>Файлы исходного кода\tests for classes</Filter>
     </ClCompile>
@@ -108,8 +105,8 @@
     <ClCompile Include="..\..\test\Test_Search.cpp">
       <Filter>Файлы исходного кода\tests for Search\tests for Search</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\test_AlphaBetaSearch.cpp">
-      <Filter>Файлы исходного кода</Filter>
+    <ClCompile Include="..\..\checkers\Search.cpp">
+      <Filter>Файлы ресурсов</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
