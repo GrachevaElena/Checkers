@@ -21,4 +21,5 @@ void Generate(ListOfCheckers& list) {
 		}
 	}
 	CalculateAverSizeOfMovie(cache.GetpLast() - saved);
+	CalculateMaxSize(cache.CurPos());
 }

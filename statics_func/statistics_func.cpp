@@ -13,19 +13,25 @@ using namespace std;
 
 static int numStep = 0;
 static int numGame = 0;
+
 double averSizeMovies = 0;
 int numMovies = 0;
+int maxSizeCache = 0;
 
-
-void Clear()
+void ClearStatistics()
 {
 	averSizeMovies = 0;
 	numMovies = 0;
+	maxSizeCache = 0;
 }
 void CalculateAverSizeOfMovie(int sizeMove)
 {
 	averSizeMovies = (averSizeMovies * numMovies + sizeMove) / (numMovies + 1);
 	numMovies++;
+}
+void CalculateMaxSize(int n)
+{
+	maxSizeCache = (n > maxSizeCache ? n : maxSizeCache);
 }
 string IntToStr(int n)
 {
@@ -48,7 +54,7 @@ void Read_num_of_game_step()
 	if (f)
 		fclose(f);
 }
-void PrintStatistics(Cache &c)
+void PrintStatistics()
 {
 	Read_num_of_game_step();
 	string s = "statistics " + IntToStr(numGame) + ".txt";
@@ -57,7 +63,7 @@ void PrintStatistics(Cache &c)
 	f.open(s, std::fstream::app);
 	streambuf *bak = cout.rdbuf(f.rdbuf());
 
-	cout << "\nnum_step_" << numStep <<" max_size_of_cache_" << c.GET_MAX_SIZE();
+	cout << "\nnum_step_" << numStep <<" max_size_of_cache_" << maxSizeCache;
 	cout << " aver_size_of_move_" <<averSizeMovies<<" num_of_clipping_";
 
 	cout.rdbuf(bak);

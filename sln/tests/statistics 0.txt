@@ -1,2 +1,4 @@
 
-num_step_0 max_size_of_cache_144 aver_size_of_move_7.01225 num_of_clipping_
+num_step_0 max_size_of_cache_186 aver_size_of_move_7.08578 num_of_clipping_
+num_step_0 max_size_of_cache_186 aver_size_of_move_7.08578 num_of_clipping_
+num_step_0 max_size_of_cache_186 aver_size_of_move_7.08596 num_of_clipping_

@@ -31,6 +31,9 @@
     <Filter Include="Файлы исходного кода\tests for Search\tests for Search">
       <UniqueIdentifier>{0f729a49-e9a4-44d2-ae42-a2b05d645ae1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы исходного кода\test for stat">
+      <UniqueIdentifier>{a44b4866-acd4-4a19-8edc-10cdb81ac9df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\test\test_main.cpp">
@@ -110,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="..\..\statics_func\statistics_func.cpp">
       <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\test_statistics.cpp">
+      <Filter>Файлы исходного кода\test for stat</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

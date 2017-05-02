@@ -1,5 +1,6 @@
 #pragma once
 #include "Cache.h"
-void Clear();
-void PrintStatistics(Cache &cache);
+void ClearStatistics();
+void PrintStatistics();
 void CalculateAverSizeOfMovie(int sizeMove);
+void CalculateMaxSize(int sizeCache);
