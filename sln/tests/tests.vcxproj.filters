@@ -108,5 +108,8 @@
     <ClCompile Include="..\..\checkers\Search.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\statics_func\statistics_func.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

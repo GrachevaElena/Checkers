@@ -4,3 +4,11 @@ Cache:
 	int TEST_MAX_SIZE
 	int GET_MAX_SIZE()
 	inline void TEST_UPDATE()
+
+statistics_func:	folder - static func
+
+Generate: CalculateAverSizeOfMovie
+
+Тестовая информация в папке: .\Checkers\sln\tests
+
+	

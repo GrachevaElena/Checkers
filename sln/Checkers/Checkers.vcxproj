@@ -29,6 +29,7 @@
     <ClInclude Include="..\..\include\ListOfCheckers.h" />
     <ClInclude Include="..\..\include\Move.h" />
     <ClInclude Include="..\..\include\Search.h" />
+    <ClInclude Include="..\..\include\statistics_func.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\checkers\Board.cpp" />
@@ -41,6 +42,7 @@
     <ClCompile Include="..\..\checkers\Move.cpp" />
     <ClCompile Include="..\..\checkers\Search.cpp" />
     <ClCompile Include="..\..\checkers\SearchForBot.cpp" />
+    <ClCompile Include="..\..\statics_func\statistics_func.cpp" />
     <ClCompile Include="CheckCall.cpp" />
   </ItemGroup>
   <ItemGroup>

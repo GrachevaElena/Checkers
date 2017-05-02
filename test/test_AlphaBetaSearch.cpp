@@ -1,6 +1,7 @@
 #include "gtest.h"
 #include "Search.h"
 #include <stdio.h>
+#include "statistics_func.h"
 int SearchAlphaBeta(int, int, int, int, Move*, int =0);
 
 TEST(test_AlphaBetaSearch, end_of_game) {
@@ -23,7 +24,7 @@ TEST(test_AlphaBetaSearch, end_of_game) {
 	board.Clean();
 }
 
-/*TEST(test_AlphaBetaSearch_MAX_SIZE, MAX_SIZE_3) {
+TEST(test_AlphaBetaSearch_MAX_SIZE, MAX_SIZE_CACHE) {
 	const int nw = 4, nb = 1;
 	int typesw[nw] = { 1,1,1, 1};
 	int typesb[nb] = { 1 };
@@ -38,8 +39,11 @@ TEST(test_AlphaBetaSearch, end_of_game) {
 	Move BestMove, s;
 
 	cache.Clean();
-	SearchAlphaBeta(0, 15, -INF, INF, &BestMove, 1);
+	Clear();
+	SearchAlphaBeta(0, 8, -INF, INF, &BestMove, 1);
 	printf("######## %d #########\n", cache.GET_MAX_SIZE());
+	
+	PrintStatistics(cache);
 
 	board.Clean();
-}*/
+}
