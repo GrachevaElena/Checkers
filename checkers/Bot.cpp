@@ -32,7 +32,7 @@ extern "C" __declspec(dllexport) int __stdcall CallBot(
 
 	if (f)
 	{
-		PrintStatistics(nGame, nStep);
+		PrintStatistics(nGame, nStep, max_depth, type_search, type_evaluate, color);
 	}
 
 	return Encrypt(bestMove);

@@ -20,7 +20,7 @@ TEST(test_AlphaBetaSearch_MAX_SIZE, MAX_SIZE_3) {
 	cache.Clean();
 	ClearStatistics();
 	SearchAlphaBeta(0, 10, -INF, INF, &BestMove, 0);
-	PrintStatistics(0, 0);
+	PrintStatistics(0, 0, 10, 0, 0, 0);
 
 	board.Clean();
 }

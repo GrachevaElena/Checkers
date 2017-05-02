@@ -9,13 +9,15 @@ namespace CheckerInterface
     interface iGame
     {
         void StartGame();
-        void SetNumGameAndClearNumStep();
+
+        void SetNumGameAndClearNumStep(int nGame);
         void SetGame(Color startColor, StatusPlayer pl1, StatusPlayer pl2, int depth1, int depth2, 
             Search s1, Search s2, Evaluate e1, Evaluate e2, StatusGame statusGame);
         void SetStatusApplication(StatusApplication st);
         void SetStatusPlayers(StatusPlayer pl1, StatusPlayer pl2);
         void SetStatusGame(StatusGame statusGame);
         void SetStartColor(Color color);
+
         void FillBoardOnForm();
         void FillBoardAndListCheckers();
         Color GetWinner();

@@ -111,10 +111,10 @@ namespace CheckerInterface
         {
             return color == Color.white ? Color.black : Color.white;
         }
-        public void SetNumGameAndClearNumStep()
+        public void SetNumGameAndClearNumStep(int nGame)
         {
             numStep = 0;
-
+            numGame = nGame;      
         }
     }
 }

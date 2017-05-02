@@ -44,6 +44,11 @@ namespace CheckerInterface
             game_model.SetStatusPlayers(StatusPlayer.empty, StatusPlayer.empty);
             game_model.ClearResource();
             form_view.panel2.Visible = false;
+
+            int n = ReadNumGame();
+            game_model.SetNumGameAndClearNumStep(n);
+            WriteNumGame(n + 1);
+            
         }
         public void buttonOnePlayer()
         {
@@ -270,6 +275,24 @@ namespace CheckerInterface
             {
                 form_view.VisibleButtons(false);
                 form_view.ESC_on = false;
+            }
+        }
+        int ReadNumGame()
+        {
+            int nGame;
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(@"curGame.txt"))
+            {
+                nGame = Convert.ToInt32(reader.ReadLine());
+                reader.Close();
+            }
+            return nGame;
+        } 
+        void WriteNumGame(int n)
+        {
+            using (System.IO.StreamWriter writer = new System.IO.StreamWriter(@"curGame.txt"))
+            {
+                writer.Write(n);
+                writer.Close();
             }
         }
     }

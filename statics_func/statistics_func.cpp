@@ -40,10 +40,11 @@ string IntToStr(int n)
 		s.push_back('0');
 	while (n)
 	{
-		s.push_back(n % 10);
+		s.push_back((n % 10) + '0');
 		n /= 10;
 	}
-	reverse(s.begin(), s.end());
+	for (int i = 0; i < s.length()/2; i++)
+		swap(s[i], s[s.length() - i - 1]);
 	return s;
 }
 /*void Read_num_of_game_step()
@@ -54,18 +55,23 @@ string IntToStr(int n)
 	if (f)
 		fclose(f);
 }*/
-void PrintStatistics(int numGame, int numStep)
+void PrintStatistics(int numGame, int numStep, int depth, int typeSearch, int typeEvalute, int color)
 {
 	//Read_num_of_game_step();
-	string s = "statistics " + IntToStr(numGame) + ".txt";
+	char *col[] = { {" white"}, {" black"} };
+	char *search[] = { { " search" },{ " A_B" }, {" forcing"} };
+	char *ev[] = { { " simple_ev" },{ " smart_ev" } };
+	string s = "statistics " + IntToStr(numGame) + search[typeSearch] + IntToStr(depth) + ".txt";
+	ofstream f(s, fstream::app);
 
-	ofstream f;
-	f.open(s, std::fstream::app);
-	streambuf *bak = cout.rdbuf(f.rdbuf());
+	if (!f.is_open())
+		f = ofstream(s);
 
-	cout << "\nnum_step_" << numStep <<" max_size_of_cache_" << maxSizeCache;
-	cout << " aver_size_of_move_" <<averSizeMovies<<" num_of_clipping_";
+	f << "\nnum_step_" << numStep<<" depth_"<<depth<<" max_size_of_cache_" << maxSizeCache;
+	f << " aver_size_of_move_" <<averSizeMovies<<search[typeSearch]<<ev[typeEvalute]<<col[color];
 
-	cout.rdbuf(bak);
 	f.close();
+	maxSizeCache = 0;
+	numMovies = 0;
+	averSizeMovies = 0;
 }
