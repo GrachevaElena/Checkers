@@ -43,6 +43,7 @@ namespace CheckerInterface
 
         public void SearchInterm()
         {
+            Figure savedCh = selectedChecker.GetFigure();
             Moves m1 = new Moves(); int c = 0;
             m1.selectedChecker = selectedChecker;
             selectedChecker.SearchEat(m1);
@@ -50,6 +51,7 @@ namespace CheckerInterface
             SearchIntermRecursion(m1,c);
             Game.board.ReturnCheckerIntoBoard(selectedChecker);//вернули на доску
             AddInterm(way[0]);
+            if (savedCh == Figure.checker) selectedChecker.SetChecker();
         }
         //don't look
         private bool SearchIntermRecursion(Moves m, int c)

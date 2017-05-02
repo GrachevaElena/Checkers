@@ -93,6 +93,26 @@ namespace CheckerInterface.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BorderForConstructor {
+            get {
+                object obj = ResourceManager.GetObject("BorderForConstructor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BorderForGame {
+            get {
+                object obj = ResourceManager.GetObject("BorderForGame", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LightBlackCell {
             get {
                 object obj = ResourceManager.GetObject("LightBlackCell", resourceCulture);

@@ -11,9 +11,9 @@ int Encrypt(Move bestMove);
 extern "C" __declspec(dllexport) int __stdcall CallBot(
 	int* w_coords, int* w_types, int w_n, //white checkers
 	int* b_coords, int* b_types, int b_n,  //black checkers
-	int color,
-	int type_search, int max_depth, int f = 0, int nGame = 0, int nStep = 0//parametrs
-) 
+	int color, int max_depth,
+	int type_search, int type_evaluate,
+	int f = 0, int nGame = 0, int nStep = 0)//parametrs
 {
 	
 	//расстановка шашек
@@ -23,7 +23,7 @@ extern "C" __declspec(dllexport) int __stdcall CallBot(
 	board.Set(checkers[WHITE], checkers[BLACK]);
 
 	//вызов Search
-	Move bestMove=Search(color,type_search, max_depth);
+	Move bestMove= Search(color,max_depth, (ESearch)type_search,(EEvaluate) type_evaluate);
 
 	//очистка
 	checkers[WHITE].Clean();

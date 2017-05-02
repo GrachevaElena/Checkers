@@ -54,24 +54,93 @@ namespace CheckerInterface
             //this.button5.Visible = vis;
             this.button6.Visible = vis;
         }
-        public void CreateBoard()
+
+        /*public void ChangeLocationOfBoard(int x, int y)
         {
-            panel1.Size = new System.Drawing.Size(8 * 81, 8 * 81);
+            panel1.Location = new Point(x,y);
+        }*/
+        Label[,] forBorder;
+        public void CreateBoard(StatusApplication appl)
+        {
+            panelborder.Controls.Clear();
+            panelborder.Controls.Add(panel1);
+            panelborder.Enabled = true;
+            panelborder.Visible = true;
+            panel1.Enabled = true;
+            panel1.Visible = true;
+            //panelBackground.BackColor = System.Drawing.Color.Transparent;
+            int sizeCell = 0;
+            int sizeBorderDivCell = 0;
+            if (appl == StatusApplication.game)
+            {
+                sizeCell = 73;
+                sizeBorderDivCell = 8;
+                panelborder.Location= new Point((919 - (sizeCell+sizeBorderDivCell) * 8) / 2 , 12);
+                panelborder.Size= new System.Drawing.Size(8 * (sizeCell+sizeBorderDivCell), 8 * (sizeCell + sizeBorderDivCell));
+                SetInBorder(sizeCell, sizeBorderDivCell * 4, panelborder);
+                panel1.Location = new Point(sizeBorderDivCell*4,sizeBorderDivCell*4);
+                panel1.Size = new System.Drawing.Size(8 * sizeCell, 8 * sizeCell);
+            }
+            else
+            {
+                sizeCell = 63;
+                sizeBorderDivCell = 7;
+                panelborder.Location = new Point(90, 62);
+                panelborder.Size = new System.Drawing.Size(8 * (sizeCell + sizeBorderDivCell), 8 * (sizeCell + sizeBorderDivCell));
+                SetInBorder(sizeCell,sizeBorderDivCell*4, panelborder);
+                panel1.Location = new Point(sizeBorderDivCell * 4, sizeBorderDivCell * 4);
+                panel1.Size = new System.Drawing.Size(8 * sizeCell, 8 * sizeCell);
+            }
             if (board == null)
             {
-                board = new ViewBoard(controller, 81, panel1);
                 Cell.SetImages();
             }
             else
-                board.ClearCell();
+            {
+                board.Delete(panel1);
+            }
+            board = new ViewBoard(controller, sizeCell, panel1);
+        }
+
+        public void SetInBorder(int sizeCell, int sizeBorder, Panel panel)
+        {
+            forBorder = new Label[4, 8];
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 8; j++)
+                {
+                    forBorder[i, j] = new Label();
+                    panel.Controls.Add(forBorder[i, j]);
+                    //forBorder[i, j].BorderStyle = BorderStyle.FixedSingle;
+                    forBorder[i, j].BackColor = panel.BackColor;
+                    forBorder[i, j].ForeColor = System.Drawing.Color.White;
+                    forBorder[i, j].TextAlign = ContentAlignment.MiddleCenter;
+                    forBorder[i, j].Font = new Font("Arial", 12, FontStyle.Bold);
+                }
+            for (int j = 0; j < 8; j++)
+            {
+                forBorder[0, j].Size = forBorder[1, j].Size = new System.Drawing.Size(sizeCell, sizeBorder);
+                forBorder[0, j].Location = new Point(sizeBorder + j * sizeCell, 0);
+                forBorder[1, j].Location = new Point(sizeBorder + j * sizeCell, sizeCell * 8 + sizeBorder);
+                forBorder[2, j].Size = forBorder[3, j].Size = new System.Drawing.Size(sizeBorder, sizeCell);
+                forBorder[2, j].Location = new Point(0, sizeBorder + j * sizeCell);
+                forBorder[3, j].Location = new Point(sizeCell * 8 + sizeBorder, sizeBorder + j * sizeCell);
+            }
+            for (int j = 7; j >= 0; j--)
+            {
+                forBorder[0, j].Text = forBorder[1, j].Text = ((Char)('A' + j)).ToString();
+                forBorder[2, j].Text = forBorder[3, j].Text = (8 -  j).ToString();
+            }
         }
 
         private bool isCheckedButtonDelete = false;
+        private bool isCheckedButtonAdd = false;
 
-        public bool RadiosButtonsIsChecked()
+        public int[] count = {0, 0, 0};
+        
+        /*public bool RadiosButtonsIsChecked()
         {
             return ((WhiteRadioButton.Checked || BlackRadioButton.Checked) && (DamkaRadioButton.Checked || CheckerRadioButton.Checked));
-        }
+        }*/ //not used
         public Color GetChosenColor()
         {
             if (WhiteRadioButton.Checked) return Color.white;
@@ -84,47 +153,59 @@ namespace CheckerInterface
             if (DamkaRadioButton.Checked) return Figure.damka;
             return Figure.empty;
         }
-        public void SetForeColorButton(System.Drawing.Color colButtonAdd, System.Drawing.Color colButtonDelete)
+        public void SetButtonPlayEnabled(bool f)
         {
-            buttonAdd.ForeColor = colButtonAdd;
-            buttonDelete.ForeColor = colButtonDelete;
+            buttonPlay.Enabled = f;
+            if (f)
+            {
+                buttonPlay.FlatStyle = FlatStyle.Flat;
+                buttonPlay.FlatAppearance.BorderColor = System.Drawing.Color.DarkRed;
+                buttonPlay.BackColor = System.Drawing.Color.NavajoWhite;
+            }
+            else
+            {
+                buttonPlay.FlatStyle = FlatStyle.Standard;
+                buttonPlay.BackColor = System.Drawing.Color.WhiteSmoke;
+            }
         }
-
-        public void SetEmptyRadioButtons()
-        {
-            WhiteRadioButton.Checked = false;
-            BlackRadioButton.Checked = false;
-            DamkaRadioButton.Checked = false;
-            CheckerRadioButton.Checked = false;
-        }
-
         public void SelectAddChecker()
         {
-            buttonAdd.FlatStyle = FlatStyle.Standard;
+            isCheckedButtonAdd = true;
+            buttonAdd.BackColor = System.Drawing.Color.WhiteSmoke;
+            buttonAdd.FlatAppearance.BorderSize = 1;
+
+            groupBox1.Enabled = groupBox2.Enabled = true;
         }
 
         public void SelectDeleteChecker()
         {
-            buttonAdd.FlatStyle = FlatStyle.Standard;
+            isCheckedButtonDelete = true;
+            buttonDelete.BackColor = System.Drawing.Color.WhiteSmoke;
         }
 
         public void HideAddChecker()
         {
-            buttonAdd.FlatStyle = FlatStyle.Popup;
+            isCheckedButtonAdd = false;
+            buttonAdd.BackColor = System.Drawing.Color.White;
+            buttonAdd.FlatAppearance.BorderSize = 1;
+
+            groupBox1.Enabled = groupBox2.Enabled = false;
         }
 
         public void HideDeleteChecker()
         {
-            buttonAdd.FlatStyle = FlatStyle.Popup;
+            isCheckedButtonDelete = false;
+            buttonDelete.BackColor = System.Drawing.Color.White;
         }
 
-        public void SetCheckedButDelete(bool f)
-        {
-            isCheckedButtonDelete = f;
-        }
         public bool IsCheckedButtonDelete()
         {
             return isCheckedButtonDelete;
+        }
+
+        public bool IsCheckedButtonAdd()
+        {
+            return isCheckedButtonAdd;
         }
 
         private void but1Play1_Click(object sender, EventArgs e)
@@ -135,19 +216,14 @@ namespace CheckerInterface
         {
             controller.buttonTwoPlayers();
         }
-        private void but3Load_Click(object sender, EventArgs e)
-        {
-            controller.buttonLoadGame();
-        }
         private void but4Constr_Click(object sender, EventArgs e)
         {
             controller.buttonConstrutor();
         }
-        private void but5Setting_Click(object sender, EventArgs e)
+        private void but0botVSbot_Click(object sender, EventArgs e)
         {
-            controller.buttonSetting();
+            controller.buttonBotVSBot();
         }
-
         public void OnKeyDown(object sender, KeyEventArgs e)
         {
            // MessageBox.Show(e.KeyCode.ToString(), "Key pressed!");
@@ -172,20 +248,21 @@ namespace CheckerInterface
         }
         private void WhiteRadioBut_CheckedChanged(object sender, EventArgs e)
         {
-            controller.buttonAddChecker();
+            buttonAdd.FlatAppearance.BorderSize = 2;
         }
         private void BlackRadioBut_CheckedChanged(object sender, EventArgs e)
         {
-            controller.buttonAddChecker();
+            //controer.buttonAddChecker();
         }
         private void ChRadioBut_CheckedChanged(object sender, EventArgs e)
         {
-            controller.buttonAddChecker();
+            buttonAdd.FlatAppearance.BorderSize = 2;
         }
         private void DamkaRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            controller.buttonAddChecker();
+            //controer.buttonAddChecker();
         }
+        
         private void buttonDeleteChecker_Click(object sender, EventArgs e)
         {
             controller.buttonDeleteChecker();
@@ -194,9 +271,10 @@ namespace CheckerInterface
         {
             controller.buttonPlayInConstructor();
         }
-        private void but0botVSbot_Click(object sender, EventArgs e)
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
-            controller.buttonBotVSBot();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
