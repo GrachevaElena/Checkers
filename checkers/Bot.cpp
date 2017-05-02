@@ -1,5 +1,6 @@
 #include "Bot.h"
 #include "Search.h"
+#include "statistics_func.h"
 
 Board board;
 ListOfCheckers checkers[2];
@@ -11,7 +12,7 @@ extern "C" __declspec(dllexport) int __stdcall CallBot(
 	int* w_coords, int* w_types, int w_n, //white checkers
 	int* b_coords, int* b_types, int b_n,  //black checkers
 	int color,
-	int type_search, int max_depth //parametrs
+	int type_search, int max_depth, int f = 0, int nGame = 0, int nStep = 0//parametrs
 ) 
 {
 	
@@ -28,6 +29,11 @@ extern "C" __declspec(dllexport) int __stdcall CallBot(
 	checkers[WHITE].Clean();
 	checkers[BLACK].Clean();
 	board.Clean();
+
+	if (f)
+	{
+		PrintStatistics(nGame, nStep);
+	}
 
 	return Encrypt(bestMove);
 }

@@ -11,8 +11,8 @@
 #include <fstream>
 using namespace std;
 
-static int numStep = 0;
-static int numGame = 0;
+//static int numStep = 0;
+//static int numGame = 0;
 
 double averSizeMovies = 0;
 int numMovies = 0;
@@ -46,17 +46,17 @@ string IntToStr(int n)
 	reverse(s.begin(), s.end());
 	return s;
 }
-void Read_num_of_game_step()
+/*void Read_num_of_game_step()
 {
 	FILE *f = freopen("curGame.txt", "r", stdin);
 	cin >> numGame >> numStep;
 	fclose(stdin);
 	if (f)
 		fclose(f);
-}
-void PrintStatistics()
+}*/
+void PrintStatistics(int numGame, int numStep)
 {
-	Read_num_of_game_step();
+	//Read_num_of_game_step();
 	string s = "statistics " + IntToStr(numGame) + ".txt";
 
 	ofstream f;

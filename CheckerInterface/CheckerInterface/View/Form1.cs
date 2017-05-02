@@ -13,7 +13,7 @@ namespace CheckerInterface
     public partial class Form1 : Form, iObserver 
     {
         iController controller;
-        iGame game;
+        iGame game; //под вопросом
         public ViewBoard board;
         public Timer timer;
         public bool ESC_on = false;

@@ -24,7 +24,7 @@ namespace CheckerInterface
         [DllImport(@"Checkers.dll")] 
         static extern int CallBot(int[] w_coords, int[] w_types, int w_n, 
             int[] b_coords, int[] b_types, int b_n, 
-                int color, int type_search, int max_depth);
+                int color, int type_search, int max_depth, int f = 0, int nGame = 0, int nStep = 0);
 
         private StatusGame statusGame = StatusGame.wait;
 
@@ -92,8 +92,7 @@ namespace CheckerInterface
 
         public void NextPlayer()
         {
-            color = (Color)((int)color ^ 1);  
-           //автоматически меняется StatusPlayer
+            color = (Color)((int)color ^ 1);  //автоматически меняется StatusPlayer        
         }
 
         public bool HumanStep(int x, int y) //true если ход закончен
