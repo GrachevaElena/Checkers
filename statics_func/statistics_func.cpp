@@ -17,12 +17,14 @@ using namespace std;
 double averSizeMovies = 0;
 int numMovies = 0;
 int maxSizeCache = 0;
+long long numNodes = 0;
 
 void ClearStatistics()
 {
 	averSizeMovies = 0;
 	numMovies = 0;
 	maxSizeCache = 0;
+	numNodes = 0;
 }
 void CalculateAverSizeOfMovie(int sizeMove)
 {
@@ -32,6 +34,10 @@ void CalculateAverSizeOfMovie(int sizeMove)
 void CalculateMaxSize(int n)
 {
 	maxSizeCache = (n > maxSizeCache ? n : maxSizeCache);
+}
+void CalculateNumNodes(int n)
+{
+	numNodes += n;
 }
 string IntToStr(int n)
 {
@@ -68,7 +74,7 @@ void PrintStatistics(int numGame, int numStep, int depth, int typeSearch, int ty
 		f = ofstream(s);
 
 	f << "\nnum_step_" << numStep<<" depth_"<<depth<<" max_size_of_cache_" << maxSizeCache;
-	f << " aver_size_of_move_" <<averSizeMovies<<search[typeSearch]<<ev[typeEvalute]<<col[color];
+	f << " aver_size_of_move_" <<averSizeMovies<<search[typeSearch]<<" num_nodes_"<<numNodes<<ev[typeEvalute]<<col[color];
 
 	f.close();
 	maxSizeCache = 0;
