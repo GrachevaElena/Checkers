@@ -23,8 +23,9 @@ namespace CheckerInterface
 
         [DllImport(@"Checkers.dll")] 
         static extern int CallBot(int[] w_coords, int[] w_types, int w_n, 
-            int[] b_coords, int[] b_types, int b_n, 
-                int color, int type_search, int max_depth);
+            int[] b_coords, int[] b_types, int b_n,
+            int color, int max_depth,
+            int type_search, int type_evaluate);
 
         private StatusGame statusGame = StatusGame.wait;
 
@@ -38,13 +39,13 @@ namespace CheckerInterface
                 case StatusGame.wait:
                     statusGame = StatusGame.сalculating;
                     SetArraysForBotStep();
-                    int res = CallBot(w_coords, w_types, w_n, b_coords, b_types, b_n, (int)color, 3, 5);
+                    int res = CallBot(w_coords, w_types, w_n, b_coords, b_types, b_n, 
+                        (int)color, statusDepth[(int)color], (int)statusSearch[(int)color],(int)statusEvaluate[(int)color]);
                     DecipherRes(res);
 
                     if (botMove.end == 1)
                     {
                         statusGame = StatusGame.gameOver;
-                        MessageBox.Show("Bot thinks, it lost");                      
                         return true;
                     }
 

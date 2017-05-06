@@ -32,6 +32,10 @@ namespace CheckerInterface
         {
             get { return cell[index1, index2]; }
             set { cell[index1, index2] = value; }
-        }  //индексатор          
+        }  //индексатор  
+        public void Delete(Panel panel)
+        {
+            panel.Controls.Clear();
+        }      
     }
 }
