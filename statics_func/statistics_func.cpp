@@ -53,14 +53,6 @@ string IntToStr(int n)
 		swap(s[i], s[s.length() - i - 1]);
 	return s;
 }
-/*void Read_num_of_game_step()
-{
-	FILE *f = freopen("curGame.txt", "r", stdin);
-	cin >> numGame >> numStep;
-	fclose(stdin);
-	if (f)
-		fclose(f);
-}*/
 void PrintStatistics(int numGame, int numStep, int depth, int typeSearch, int typeEvalute, int color)
 {
 	//Read_num_of_game_step();
@@ -77,7 +69,5 @@ void PrintStatistics(int numGame, int numStep, int depth, int typeSearch, int ty
 	f << " aver_size_of_move_" <<averSizeMovies<<search[typeSearch]<<" num_nodes_"<<numNodes<<ev[typeEvalute]<<col[color];
 
 	f.close();
-	maxSizeCache = 0;
-	numMovies = 0;
-	averSizeMovies = 0;
+	ClearStatistics();
 }

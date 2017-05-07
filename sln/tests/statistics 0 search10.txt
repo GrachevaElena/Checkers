@@ -1,3 +1,4 @@
 
 num_step_0 max_size_of_cache_186 aver_size_of_move_7.08596 search simple_ev white
 num_step_0 depth_10 max_size_of_cache_186 aver_size_of_move_7.08596 search num_nodes_16525016 simple_ev white
+num_step_0 depth_10 max_size_of_cache_186 aver_size_of_move_7.08596 search num_nodes_16525016 simple_ev white
