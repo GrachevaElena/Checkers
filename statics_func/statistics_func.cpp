@@ -55,18 +55,17 @@ string IntToStr(int n)
 }
 void PrintStatistics(int numGame, int numStep, int depth, int typeSearch, int typeEvalute, int color)
 {
-	//Read_num_of_game_step();
 	char *col[] = { {" white"}, {" black"} };
 	char *search[] = { { " search" },{ " A_B" }, {" forcing"} };
 	char *ev[] = { { " simple_ev" },{ " smart_ev" } };
-	string s = "statistics " + IntToStr(numGame) + search[typeSearch] + IntToStr(depth) + ".txt";
+	string s = "statistics " + IntToStr(numGame) + search[typeSearch] + ev[typeEvalute]+ IntToStr(depth) + col[color]+".txt";
 	ofstream f(s, fstream::app);
 
 	if (!f.is_open())
 		f = ofstream(s);
 
-	f << "\nnum_step_" << numStep<<" depth_"<<depth<<" max_size_of_cache_" << maxSizeCache;
-	f << " aver_size_of_move_" <<averSizeMovies<<search[typeSearch]<<" num_nodes_"<<numNodes<<ev[typeEvalute]<<col[color];
+	f << "\nnum_step_" << numStep<<" max_size_of_cache_" << maxSizeCache;
+	f << " aver_size_of_move_" <<averSizeMovies<<" num_nodes_"<<numNodes;
 
 	f.close();
 	ClearStatistics();
