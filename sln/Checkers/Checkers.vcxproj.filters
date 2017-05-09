@@ -92,10 +92,10 @@
     <ClCompile Include="..\..\checkers\Bot.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\checkers\Search.cpp">
+    <ClCompile Include="..\..\checkers\SearchForBot.cpp">
       <Filter>Файлы исходного кода\Search</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\checkers\SearchForBot.cpp">
+    <ClCompile Include="..\..\checkers\Search.cpp">
       <Filter>Файлы исходного кода\Search</Filter>
     </ClCompile>
   </ItemGroup>

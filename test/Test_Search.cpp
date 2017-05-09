@@ -87,3 +87,24 @@ TEST(test_AlphaBetaSearch_forcing, can_force) {
 	board.Clean();
 
 }
+
+TEST(test_AlphaBetaSearch_forcing, can_force_well) {
+	const int nw = 4, nb = 3;
+	int typesw[nw] = { 1,1,0,0 };
+	int typesb[nb] = { 0 };
+	int coordsw[nw] = { 24, 62, 10,12 };
+	int coordsb[nb] = { 17,33,49 };
+
+	checkers[0].GenerateInitialPosition(0, typesw, coordsw, nw);
+	checkers[1].GenerateInitialPosition(1, typesb, coordsb, nb);
+
+	board.Set(checkers[0], checkers[1]);
+
+	Move BestMove;
+	int t = AlphaBetaForcing(0, 2, -INF, INF, &BestMove, 0);
+	int mustRes = 2 * DamkaPrice;
+	EXPECT_EQ(t, mustRes);
+
+	board.Clean();
+
+}
