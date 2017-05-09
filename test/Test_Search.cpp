@@ -106,5 +106,5 @@ TEST(test_AlphaBetaSearch_forcing, can_force_well) {
 	EXPECT_EQ(t, mustRes);
 
 	board.Clean();
-
+	
 }
