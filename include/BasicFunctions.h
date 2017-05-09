@@ -5,6 +5,7 @@
 #define NULL 0
 
 void Generate(ListOfCheckers&);
+void GenerateCaptures(ListOfCheckers& list);
 
 const int CheckerPrice = 50;
 const int DamkaPrice = 350;
