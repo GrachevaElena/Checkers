@@ -20,8 +20,6 @@ namespace CheckerInterface
 
         void FillBoardOnForm();
         void FillBoardAndListCheckers();
-        Color GetWinner();
-        void SetWinner(Color w);
         int CreateChecker(Checker ch);
         int DeleteChecker(int x, int y);
 

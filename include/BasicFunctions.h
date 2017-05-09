@@ -6,8 +6,8 @@
 
 void Generate(ListOfCheckers&);
 
-const int CheckerPrice = 10;
-const int DamkaPrice = 70;
+const int CheckerPrice = 50;
+const int DamkaPrice = 350;
 
 int Evaluate(int color);
 int SmartEvaluate(int color);
