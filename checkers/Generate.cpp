@@ -13,7 +13,7 @@ void Generate(ListOfCheckers& list) {
 
 	if (mustEat) {
 		cache.Rollback(saved);
-		for (it = list.begin(); it; it++) {
+		for (it--; it; it++) {
 			board[it->GetCoord()] = 0;
 			SearchEat[it->GetType()](*it);
 			board[it->GetCoord()] = &(*it);
