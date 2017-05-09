@@ -11,9 +11,6 @@
 #include <fstream>
 using namespace std;
 
-//static int numStep = 0;
-//static int numGame = 0;
-
 double averSizeMovies = 0;
 int numMovies = 0;
 int maxSizeCache = 0;

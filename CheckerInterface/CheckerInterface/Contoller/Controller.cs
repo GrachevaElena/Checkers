@@ -305,11 +305,16 @@ namespace CheckerInterface
         int ReadNumGame()
         {
             int nGame;
-            using (System.IO.StreamReader reader = new System.IO.StreamReader(@"curGame.txt"))
+            if (System.IO.File.Exists(@"curGame.txt"))
             {
-                nGame = Convert.ToInt32(reader.ReadLine());
-                reader.Close();
+                using (System.IO.StreamReader reader = new System.IO.StreamReader(@"curGame.txt"))
+                {
+                    nGame = Convert.ToInt32(reader.ReadLine());
+                    reader.Close();
+                }
             }
+            else nGame = 0;
+
             return nGame;
         } 
         void WriteNumGame(int n)
