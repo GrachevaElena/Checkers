@@ -9,35 +9,38 @@
 
 class Checker
 {
-	unsigned int Check;
+	int Color;
+	int Type;
+	int Coord;
+	int Num;
+	int NextNum;
+	int PrevNum;
 public:
-	Checker() { Check = 0; }
+	Checker(): Color(0), Type(0),Coord(0),Num(0),NextNum(0),PrevNum(0) {  }
 	~Checker() {}
 
-	void SetColor(int color) { Check = Check & (~1) | color; }
-	void SetType(int type) { Check = Check & (~2) | (type << 1); }
-	void SetCoord(int coord) { Check = Check & (~252) | (coord << 2); }
+	void SetColor(int color) { Color = color; }
+	void SetType(int type) { Type=type; }
+	void SetCoord(int coord) { Coord=coord; }
+	void SetNum(int num) { Num = num; } //устанавливается 1 раз
 
-	int GetColor() { return  Check & 1; }
-	int GetType() { return  (Check & 2) >> 1; }
-	int GetCoord() { return  (Check & 252) >> 2; }
-	int GetInvCoord() { return ((GetCoord() & 7)<<3) | (GetCoord() >> 3); }
-	int GetNum() { return (Check >> 28) & 15; }
+	int GetColor() { return  Color; }
+	int GetType() { return  Type; }
+	int GetCoord() { return  Coord; }
+	int GetNum() { return Num; }
 
-	void ChangeColor() { Check = Check ^ 1; }
-	void ChangeType() { Check = Check ^ 2; }
+	void ChangeColor() { Color = Color^1; }
+	void ChangeType() { Type = Type ^ 1; }
 
 	friend class ListOfCheckers;
 	friend class LChIterator;
 
 protected:
-	void SetNextNum(int num) { Check = Check & (~3840) | (num << 8); }
-	void SetPrevNum(int num) { Check = Check & (~61440) | (num << 12); }
+	void SetNextNum(int num) { NextNum=num; }
+	void SetPrevNum(int num) { PrevNum = num; }
 
-	int GetNextNum() { return  (Check & 3840) >> 8; }
-	int GetPrevNum() { return  (Check & 61440) >> 12; }
+	int GetNextNum() { return  NextNum; }
+	int GetPrevNum() { return  PrevNum; }
 
-public:
-	void SetNum(int num) { Check = Check | (num << 28); } //устанавливается 1 раз
 };
 
