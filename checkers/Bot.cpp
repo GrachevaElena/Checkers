@@ -43,7 +43,7 @@ int Encrypt(Move bestMove) {
 		res |= (bestMove.GetNum() - 1) << 1;
 		res |= bestMove.GetFinalCoord() << 5;
 		res |= bestMove.GetType() << 11;
-		int eaten[MaxEaten]; bestMove.GetEaten(eaten);
+		int eaten[MaxNEaten]; bestMove.GetEaten(eaten);
 		//записываются справа-налево, как все остальное
 		for (int i = 0; i < bestMove.GetNEaten(); i++) {
 			res |= 1 << (12 + eaten[i] - 1);
