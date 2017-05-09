@@ -39,7 +39,7 @@ namespace CheckerInterface
         {
             board[x, y].SetEmpty();
         }
-        public void updateWay(List<Tuple<int, int>> ways)
+        void iObserver.updateWay(List<Tuple<int, int>> ways)
         {
             foreach (Tuple<int, int> cell in ways)
                 board[cell.Item1, cell.Item2].SetWay();
@@ -131,16 +131,11 @@ namespace CheckerInterface
                 forBorder[2, j].Text = forBorder[3, j].Text = (8 -  j).ToString();
             }
         }
-
         private bool isCheckedButtonDelete = false;
         private bool isCheckedButtonAdd = false;
 
         public int[] count = {0, 0, 0};
-        
-        /*public bool RadiosButtonsIsChecked()
-        {
-            return ((WhiteRadioButton.Checked || BlackRadioButton.Checked) && (DamkaRadioButton.Checked || CheckerRadioButton.Checked));
-        }*/ //not used
+
         public Color GetChosenColor()
         {
             if (WhiteRadioButton.Checked) return Color.white;
@@ -258,11 +253,12 @@ namespace CheckerInterface
         {
             buttonAdd.FlatAppearance.BorderSize = 2;
         }
+
         private void DamkaRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            //controer.buttonAddChecker();
-        }
-        
+            //controller.buttonAddChecker();
+        }   
+           
         private void buttonDeleteChecker_Click(object sender, EventArgs e)
         {
             controller.buttonDeleteChecker();
@@ -271,7 +267,6 @@ namespace CheckerInterface
         {
             controller.buttonPlayInConstructor();
         }
-
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 

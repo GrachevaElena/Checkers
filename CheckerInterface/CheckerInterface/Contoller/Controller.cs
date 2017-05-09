@@ -70,7 +70,6 @@ namespace CheckerInterface
         public void buttonConstrutor()
         {
             buttonClear();
-            //form_view.ChangePanels();
             form_view.CreateBoard(StatusApplication.constructor);
             game_model.SetStatusApplication(StatusApplication.constructor);
             form_view.panel2.Visible = true;
