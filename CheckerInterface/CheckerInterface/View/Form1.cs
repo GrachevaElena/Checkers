@@ -135,11 +135,7 @@ namespace CheckerInterface
         private bool isCheckedButtonAdd = false;
 
         public int[] count = {0, 0, 0};
-        
-        /*public bool RadiosButtonsIsChecked()
-        {
-            return ((WhiteRadioButton.Checked || BlackRadioButton.Checked) && (DamkaRadioButton.Checked || CheckerRadioButton.Checked));
-        }*/ //not used
+
         public Color GetChosenColor()
         {
             if (WhiteRadioButton.Checked) return Color.white;
@@ -257,11 +253,12 @@ namespace CheckerInterface
         {
             buttonAdd.FlatAppearance.BorderSize = 2;
         }
+
         private void DamkaRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            //controer.buttonAddChecker();
-        }
-        
+            //controller.buttonAddChecker();
+        }   
+           
         private void buttonDeleteChecker_Click(object sender, EventArgs e)
         {
             controller.buttonDeleteChecker();
@@ -270,7 +267,6 @@ namespace CheckerInterface
         {
             controller.buttonPlayInConstructor();
         }
-
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
