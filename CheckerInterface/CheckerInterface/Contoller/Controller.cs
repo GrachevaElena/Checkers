@@ -166,7 +166,7 @@ namespace CheckerInterface
 
                                     case StatusPlayer.bot:
                                         //включили таймер                                     
-                                        form_view.timer.Enabled = true;
+                                        form_view.timer.Enabled = true;                                      
                                         return;
                                 }
                             else
