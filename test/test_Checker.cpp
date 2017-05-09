@@ -6,7 +6,7 @@ class test_Checker: public testing::Test, public Checker {
 	//делается для открытого доступа к protected функциям
 };
 
-TEST_F(test_Checker, created_checker_is_null)
+TEST_F(test_Checker, created_checker_is_NULL)
 {
 	ASSERT_EQ(0, GetType());
 }
