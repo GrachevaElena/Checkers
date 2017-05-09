@@ -24,3 +24,17 @@ void Generate(ListOfCheckers& list) {
 	CalculateNumNodes(cache.GetpLast() - saved);
 	CalculateMaxSize(cache.CurPos());
 }
+
+void GenerateCaptures(ListOfCheckers& list)
+{
+	for (it = list.begin(); it; it++) 
+	{
+		board[it->GetCoord()] = 0;
+		SearchEat[it->GetType()](*it);
+		board[it->GetCoord()] = &(*it);
+
+		CalculateAverSizeOfMovie(cache.GetpLast() - saved);
+		CalculateNumNodes(cache.GetpLast() - saved);
+		CalculateMaxSize(cache.CurPos());
+	}
+}

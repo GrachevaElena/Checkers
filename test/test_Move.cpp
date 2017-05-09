@@ -1,5 +1,5 @@
-#include "Move.h"
 #include "gtest.h"
+#include "Move.h"
 
 TEST(test_Move, can_set_get_color) {
 	Move move;
@@ -43,47 +43,25 @@ TEST(test_Move, can_set_get_neaten) {
 	EXPECT_EQ(5, move.GetNEaten());
 }
 
-TEST(test_Move, can_set_get_eaten) {
-	Move move;
-	move.SetEaten(3);
-
-	EXPECT_EQ(3, move.GetEaten());
-}
-
 TEST(test_Move, can_set_get) {
-	int arr[10] = { 12,5 }, arrres[10];
+	int arr[MaxNEaten] = { 12,5 }, arrres[MaxNEaten];
 	Move move;
-	/*move.SetColor(BLACK);
-	EXPECT_EQ(BLACK, move.GetColor());
-
-	move.SetType(1);
-	EXPECT_EQ(1, move.GetType());
-
-	move.SetNum(3);
-	EXPECT_EQ(3, move.GetNum());
-
-	move.SetStartCoord(1);
-	EXPECT_EQ(1, move.GetStartCoord());
-
-	move.SetFinalCoord(4);
-	EXPECT_EQ(4, move.GetFinalCoord());
-	*/
 	move.SetNEaten(2);
 	ASSERT_EQ(2, move.GetNEaten());
 	
 	move.SetEaten(arr);
 	move.GetEaten(arrres);
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < MaxNEaten; i++)
 		EXPECT_EQ(arrres[i], arr[i]);
 }
 
 TEST(test_Move, can_set_get_eaten_in_arr) {
-	int arr[10] = { 12,5,7,9,10,3,2,1,8,4 };
+	int arr[MaxNEaten] = { 12,5,7,9,10,3,2,1,8,4 };
 	Move move;
 	move.SetNEaten(10);
 	move.SetEaten(arr);
 
-	int arrres[10];
+	int arrres[MaxNEaten];
 	move.GetEaten(arrres);
 
 	for (int i = 0; i < 10; i++)
@@ -91,7 +69,7 @@ TEST(test_Move, can_set_get_eaten_in_arr) {
 }
 
 TEST(test_Move, can_set_get_in_general) {
-	int arr[10] = { 1,2,3, 0, 0, 0, 0, 0 , 0, 0/*,9,10,3,2,1,8,4*/ }, arrres[10];
+	int arr[MaxNEaten] = { 1,2,3, 0, 0, 0, 0, 0 , 0, 0/*,9,10,3,2,1,8,4*/ }, arrres[MaxNEaten];
 	Move move;
 	move.SetColor(BLACK);
 	move.SetStartCoord(1);
@@ -111,7 +89,7 @@ TEST(test_Move, can_set_get_in_general) {
 	EXPECT_EQ(10, move.GetNEaten());
 
 	move.GetEaten(arrres);
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < MaxNEaten; i++)
 		EXPECT_EQ(arrres[i], arr[i]);
 }
 
@@ -134,7 +112,7 @@ TEST(test_Move, can_compare) {
 TEST(test_Move, can_SetEaten_if_variable_n_of_parametrs) {
 	Move move;
 	move.SetVarEaten(1, 2, 3, 4, 0);
-	int res[10];
+	int res[MaxNEaten];
 
 	move.GetEaten(res);
 

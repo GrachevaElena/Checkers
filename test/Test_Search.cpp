@@ -3,6 +3,7 @@
 #include "ctime"
 #include "iostream"
 int SearchAlphaBeta(int color, int depth, int alpha, int beta, Move* bestMove = 0,int type=0);
+int AlphaBetaForcing(int color, int depth, int alpha, int beta, Move * bestMove, int ev_num = 0);
 
 TEST(test_AlphaBetaSearch, performance) {
 	int color = 0;
@@ -62,6 +63,26 @@ TEST(test_AlphaBetaSearch, end_of_game) {
 	SearchAlphaBeta(1, 2, -INF, INF, &BestMove);
 
 	EXPECT_TRUE(BestMove != s);
+
+	board.Clean();
+}
+
+TEST(test_AlphaBetaSearch_forcing, can_force) {
+	const int nw = 1, nb = 5;
+	int typesw[nw] = { 0 };
+	int typesb[nb] = { 0 };
+	int coordsw[nw] = { 30 };
+	int coordsb[nb] = { 21, 37, 35, 51, 33 };
+
+	checkers[0].GenerateInitialPosition(0, typesw, coordsw, nw);
+	checkers[1].GenerateInitialPosition(1, typesb, coordsb, nb);
+
+	board.Set(checkers[0], checkers[1]);
+
+	Move BestMove;
+	int t = AlphaBetaForcing(0, 0, -INF, INF, &BestMove, 0);
+	int mustRes = DamkaPrice - 2 * CheckerPrice;
+	EXPECT_EQ(t, mustRes);
 
 	board.Clean();
 }

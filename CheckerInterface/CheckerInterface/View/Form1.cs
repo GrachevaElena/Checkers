@@ -15,14 +15,15 @@ namespace CheckerInterface
         iController controller;
         iGame game; //под вопросом
         public ViewBoard board;
-        public Timer timer;
+        public System.Timers.Timer timer;
         public bool ESC_on = false;
 
         public Form1(Controller _contoller, Game _game)
         {
-            timer = new Timer();
+            timer = new System.Timers.Timer();
             timer.Interval = 600;
-            timer.Tick += Time;
+            timer.Elapsed += Time;
+            timer.AutoReset = true;
 
             controller = _contoller;
             game = _game;
