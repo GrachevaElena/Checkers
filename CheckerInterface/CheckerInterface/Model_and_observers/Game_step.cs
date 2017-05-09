@@ -39,8 +39,10 @@ namespace CheckerInterface
                 case StatusGame.wait:
                     statusGame = StatusGame.сalculating;
                     SetArraysForBotStep();
-                    int res = CallBot(w_coords, w_types, w_n, b_coords, b_types, b_n, 
-                        (int)color, statusDepth[(int)color], (int)statusSearch[(int)color],(int)statusEvaluate[(int)color]);
+                    int res = CallBot(w_coords, w_types, w_n, 
+                                     b_coords, b_types, b_n, 
+                                     (int)color, statusDepth[(int)color], 
+                                     (int)statusSearch[(int)color], (int)statusEvaluate[(int)color]);
                     DecipherRes(res);
 
                     if (botMove.end == 1)
