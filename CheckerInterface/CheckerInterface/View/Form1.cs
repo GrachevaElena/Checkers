@@ -39,7 +39,7 @@ namespace CheckerInterface
         {
             board[x, y].SetEmpty();
         }
-        public void updateWay(List<Tuple<int, int>> ways)
+        void iObserver.updateWay(List<Tuple<int, int>> ways)
         {
             foreach (Tuple<int, int> cell in ways)
                 board[cell.Item1, cell.Item2].SetWay();
@@ -131,7 +131,6 @@ namespace CheckerInterface
                 forBorder[2, j].Text = forBorder[3, j].Text = (8 -  j).ToString();
             }
         }
-
         private bool isCheckedButtonDelete = false;
         private bool isCheckedButtonAdd = false;
 
