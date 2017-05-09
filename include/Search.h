@@ -17,7 +17,7 @@ enum EEvaluate {
 
 extern Board board;
 extern Cache cache;
-const int MaxCache = 10000;
+const int MaxCache = 1000;
 
 extern ListOfCheckers checkers[2];
 

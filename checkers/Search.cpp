@@ -1,4 +1,5 @@
 #include "Search.h"
+#include "statistics_func.h"
 
 Cache cache(MaxCache);
 
@@ -60,10 +61,14 @@ int QuiesCapt(int color, int alpha, int beta, int ev_num = 0)
 	GenerateCaptures(checkers[color]); //GenerataForcing можно сделать так, чтобы GenerateCaptures возвращала на какую глубину форсировать									  
 
 	if (cache.GetpLast() - savedF <= 0) {
+		ClearForcing();
 		int k = evaluate[ev_num](color);
 		return	evaluate[ev_num](color);
-
 	}
+	CalculateAverNumCaptureMoves(cache.GetpLast() - savedF);
+	CalculateNumNodes(cache.GetpLast() - savedF);
+	CalculateMaxSize(cache.CurPos());
+	UpdateMaxForcing();
 	for (Move* pmove = savedF; pmove < cache.GetpLast(); pmove++) {
 		MakeMove(*pmove);
 		tmp = -QuiesCapt(!color, -beta, -alpha,  ev_num); //запускаем рекурсивно, глубину можно брать из Move

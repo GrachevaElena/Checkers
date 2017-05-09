@@ -32,9 +32,5 @@ void GenerateCaptures(ListOfCheckers& list)
 		board[it->GetCoord()] = 0;
 		SearchEat[it->GetType()](*it);
 		board[it->GetCoord()] = &(*it);
-
-		CalculateAverSizeOfMovie(cache.GetpLast() - saved);
-		CalculateNumNodes(cache.GetpLast() - saved);
-		CalculateMaxSize(cache.CurPos());
 	}
 }
