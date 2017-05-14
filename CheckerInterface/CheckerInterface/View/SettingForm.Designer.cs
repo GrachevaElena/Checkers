@@ -31,6 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingForm));
             this.buttonPlay = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panelcolor = new System.Windows.Forms.Panel();
+            this.comboBox1color = new System.Windows.Forms.ComboBox();
+            this.label1color = new System.Windows.Forms.Label();
+            this.panel1botSettings = new System.Windows.Forms.Panel();
             this.comboBox1evaluate = new System.Windows.Forms.ComboBox();
             this.comboBox1depth = new System.Windows.Forms.ComboBox();
             this.comboBox1search = new System.Windows.Forms.ComboBox();
@@ -39,30 +43,26 @@
             this.label1depth = new System.Windows.Forms.Label();
             this.comboBox1player = new System.Windows.Forms.ComboBox();
             this.label1player = new System.Windows.Forms.Label();
-            this.comboBox1color = new System.Windows.Forms.ComboBox();
-            this.label1color = new System.Windows.Forms.Label();
             this.labelPlayer1 = new System.Windows.Forms.Label();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel2botSettings = new System.Windows.Forms.Panel();
             this.comboBox2evaluate = new System.Windows.Forms.ComboBox();
             this.comboBox2depth = new System.Windows.Forms.ComboBox();
             this.comboBox2search = new System.Windows.Forms.ComboBox();
-            this.comboBox2player = new System.Windows.Forms.ComboBox();
             this.label2search = new System.Windows.Forms.Label();
             this.label2evaluate = new System.Windows.Forms.Label();
             this.label2depth = new System.Windows.Forms.Label();
+            this.comboBox2player = new System.Windows.Forms.ComboBox();
             this.label2player = new System.Windows.Forms.Label();
             this.comboBox2color = new System.Windows.Forms.ComboBox();
             this.label2color = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.panel2botSettings = new System.Windows.Forms.Panel();
-            this.panel1botSettings = new System.Windows.Forms.Panel();
-            this.panelcolor = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.panelcolor.SuspendLayout();
+            this.panel1botSettings.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel2botSettings.SuspendLayout();
-            this.panel1botSettings.SuspendLayout();
-            this.panelcolor.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonPlay
@@ -89,6 +89,49 @@
             this.panel1.TabIndex = 3;
             this.panel1.Visible = false;
             // 
+            // panelcolor
+            // 
+            this.panelcolor.Controls.Add(this.comboBox1color);
+            this.panelcolor.Controls.Add(this.label1color);
+            this.panelcolor.Location = new System.Drawing.Point(12, 44);
+            this.panelcolor.Name = "panelcolor";
+            this.panelcolor.Size = new System.Drawing.Size(262, 36);
+            this.panelcolor.TabIndex = 8;
+            // 
+            // comboBox1color
+            // 
+            this.comboBox1color.Items.AddRange(new object[] {
+            "White",
+            "Black"});
+            this.comboBox1color.Location = new System.Drawing.Point(129, 5);
+            this.comboBox1color.Name = "comboBox1color";
+            this.comboBox1color.Size = new System.Drawing.Size(118, 21);
+            this.comboBox1color.TabIndex = 3;
+            this.comboBox1color.SelectedIndexChanged += new System.EventHandler(this.comboBox1color_SelectedIndexChanged);
+            // 
+            // label1color
+            // 
+            this.label1color.AutoSize = true;
+            this.label1color.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1color.Location = new System.Drawing.Point(4, 5);
+            this.label1color.Name = "label1color";
+            this.label1color.Size = new System.Drawing.Size(42, 18);
+            this.label1color.TabIndex = 2;
+            this.label1color.Text = "Color";
+            // 
+            // panel1botSettings
+            // 
+            this.panel1botSettings.Controls.Add(this.comboBox1evaluate);
+            this.panel1botSettings.Controls.Add(this.comboBox1depth);
+            this.panel1botSettings.Controls.Add(this.comboBox1search);
+            this.panel1botSettings.Controls.Add(this.label1serch);
+            this.panel1botSettings.Controls.Add(this.label1evaluate);
+            this.panel1botSettings.Controls.Add(this.label1depth);
+            this.panel1botSettings.Location = new System.Drawing.Point(5, 94);
+            this.panel1botSettings.Name = "panel1botSettings";
+            this.panel1botSettings.Size = new System.Drawing.Size(270, 136);
+            this.panel1botSettings.TabIndex = 7;
+            // 
             // comboBox1evaluate
             // 
             this.comboBox1evaluate.Items.AddRange(new object[] {
@@ -113,7 +156,9 @@
             "9",
             "10",
             "11",
-            "12"});
+            "12",
+            "13",
+            "14"});
             this.comboBox1depth.Location = new System.Drawing.Point(136, 50);
             this.comboBox1depth.Name = "comboBox1depth";
             this.comboBox1depth.Size = new System.Drawing.Size(118, 21);
@@ -181,27 +226,6 @@
             this.label1player.TabIndex = 4;
             this.label1player.Text = "Player";
             // 
-            // comboBox1color
-            // 
-            this.comboBox1color.Items.AddRange(new object[] {
-            "White",
-            "Black"});
-            this.comboBox1color.Location = new System.Drawing.Point(129, 5);
-            this.comboBox1color.Name = "comboBox1color";
-            this.comboBox1color.Size = new System.Drawing.Size(118, 21);
-            this.comboBox1color.TabIndex = 3;
-            this.comboBox1color.SelectedIndexChanged += new System.EventHandler(this.comboBox1color_SelectedIndexChanged);
-            // 
-            // label1color
-            // 
-            this.label1color.AutoSize = true;
-            this.label1color.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1color.Location = new System.Drawing.Point(4, 5);
-            this.label1color.Name = "label1color";
-            this.label1color.Size = new System.Drawing.Size(42, 18);
-            this.label1color.TabIndex = 2;
-            this.label1color.Text = "Color";
-            // 
             // labelPlayer1
             // 
             this.labelPlayer1.AutoSize = true;
@@ -238,6 +262,19 @@
             this.panel2.TabIndex = 7;
             this.panel2.Visible = false;
             // 
+            // panel2botSettings
+            // 
+            this.panel2botSettings.Controls.Add(this.comboBox2evaluate);
+            this.panel2botSettings.Controls.Add(this.comboBox2depth);
+            this.panel2botSettings.Controls.Add(this.comboBox2search);
+            this.panel2botSettings.Controls.Add(this.label2search);
+            this.panel2botSettings.Controls.Add(this.label2evaluate);
+            this.panel2botSettings.Controls.Add(this.label2depth);
+            this.panel2botSettings.Location = new System.Drawing.Point(5, 125);
+            this.panel2botSettings.Name = "panel2botSettings";
+            this.panel2botSettings.Size = new System.Drawing.Size(270, 136);
+            this.panel2botSettings.TabIndex = 7;
+            // 
             // comboBox2evaluate
             // 
             this.comboBox2evaluate.Items.AddRange(new object[] {
@@ -262,7 +299,9 @@
             "9",
             "10",
             "11",
-            "12"});
+            "12",
+            "13",
+            "14"});
             this.comboBox2depth.Location = new System.Drawing.Point(136, 50);
             this.comboBox2depth.Name = "comboBox2depth";
             this.comboBox2depth.Size = new System.Drawing.Size(118, 21);
@@ -278,17 +317,6 @@
             this.comboBox2search.Name = "comboBox2search";
             this.comboBox2search.Size = new System.Drawing.Size(118, 21);
             this.comboBox2search.TabIndex = 6;
-            // 
-            // comboBox2player
-            // 
-            this.comboBox2player.Items.AddRange(new object[] {
-            "Bot",
-            "Human"});
-            this.comboBox2player.Location = new System.Drawing.Point(141, 91);
-            this.comboBox2player.Name = "comboBox2player";
-            this.comboBox2player.Size = new System.Drawing.Size(118, 21);
-            this.comboBox2player.TabIndex = 5;
-            this.comboBox2player.SelectedIndexChanged += new System.EventHandler(this.comboBox2player_SelectedIndexChanged);
             // 
             // label2search
             // 
@@ -319,6 +347,17 @@
             this.label2depth.Size = new System.Drawing.Size(112, 18);
             this.label2depth.TabIndex = 4;
             this.label2depth.Text = "Recursion depth";
+            // 
+            // comboBox2player
+            // 
+            this.comboBox2player.Items.AddRange(new object[] {
+            "Bot",
+            "Human"});
+            this.comboBox2player.Location = new System.Drawing.Point(141, 91);
+            this.comboBox2player.Name = "comboBox2player";
+            this.comboBox2player.Size = new System.Drawing.Size(118, 21);
+            this.comboBox2player.TabIndex = 5;
+            this.comboBox2player.SelectedIndexChanged += new System.EventHandler(this.comboBox2player_SelectedIndexChanged);
             // 
             // label2player
             // 
@@ -362,41 +401,6 @@
             this.label11.TabIndex = 1;
             this.label11.Text = "Player2";
             // 
-            // panel2botSettings
-            // 
-            this.panel2botSettings.Controls.Add(this.comboBox2evaluate);
-            this.panel2botSettings.Controls.Add(this.comboBox2depth);
-            this.panel2botSettings.Controls.Add(this.comboBox2search);
-            this.panel2botSettings.Controls.Add(this.label2search);
-            this.panel2botSettings.Controls.Add(this.label2evaluate);
-            this.panel2botSettings.Controls.Add(this.label2depth);
-            this.panel2botSettings.Location = new System.Drawing.Point(5, 125);
-            this.panel2botSettings.Name = "panel2botSettings";
-            this.panel2botSettings.Size = new System.Drawing.Size(270, 136);
-            this.panel2botSettings.TabIndex = 7;
-            // 
-            // panel1botSettings
-            // 
-            this.panel1botSettings.Controls.Add(this.comboBox1evaluate);
-            this.panel1botSettings.Controls.Add(this.comboBox1depth);
-            this.panel1botSettings.Controls.Add(this.comboBox1search);
-            this.panel1botSettings.Controls.Add(this.label1serch);
-            this.panel1botSettings.Controls.Add(this.label1evaluate);
-            this.panel1botSettings.Controls.Add(this.label1depth);
-            this.panel1botSettings.Location = new System.Drawing.Point(5, 94);
-            this.panel1botSettings.Name = "panel1botSettings";
-            this.panel1botSettings.Size = new System.Drawing.Size(270, 136);
-            this.panel1botSettings.TabIndex = 7;
-            // 
-            // panelcolor
-            // 
-            this.panelcolor.Controls.Add(this.comboBox1color);
-            this.panelcolor.Controls.Add(this.label1color);
-            this.panelcolor.Location = new System.Drawing.Point(12, 44);
-            this.panelcolor.Name = "panelcolor";
-            this.panelcolor.Size = new System.Drawing.Size(262, 36);
-            this.panelcolor.TabIndex = 8;
-            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,14 +416,14 @@
             this.Text = "Settings";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panelcolor.ResumeLayout(false);
+            this.panelcolor.PerformLayout();
+            this.panel1botSettings.ResumeLayout(false);
+            this.panel1botSettings.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel2botSettings.ResumeLayout(false);
             this.panel2botSettings.PerformLayout();
-            this.panel1botSettings.ResumeLayout(false);
-            this.panel1botSettings.PerformLayout();
-            this.panelcolor.ResumeLayout(false);
-            this.panelcolor.PerformLayout();
             this.ResumeLayout(false);
 
         }
