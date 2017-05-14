@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -28,20 +28,20 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -89,7 +89,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../gtest;../../include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../gtest;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -106,12 +106,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../include;../../gtest;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>../Debug/gtest.lib;</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -124,6 +126,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../include;../../gtest;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,6 +145,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../include;../../gtest;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,10 +160,31 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\checkers\Board.cpp" />
+    <ClCompile Include="..\..\checkers\Bot.cpp" />
+    <ClCompile Include="..\..\checkers\Evaluate.cpp" />
+    <ClCompile Include="..\..\checkers\FunctionsMove.cpp" />
+    <ClCompile Include="..\..\checkers\Generate.cpp" />
     <ClCompile Include="..\..\checkers\ListOfCheckers.cpp" />
+    <ClCompile Include="..\..\checkers\MakeMove.cpp" />
+    <ClCompile Include="..\..\checkers\Move.cpp" />
+    <ClCompile Include="..\..\checkers\Search.cpp" />
+    <ClCompile Include="..\..\checkers\SearchForBot.cpp" />
+    <ClCompile Include="..\..\test\functions for testing\TestSearch.cpp" />
+    <ClCompile Include="..\..\test\test_Board.cpp" />
+    <ClCompile Include="..\..\test\test_Cache.cpp" />
+    <ClCompile Include="..\..\test\test_CallBot.cpp" />
     <ClCompile Include="..\..\test\test_Checker.cpp" />
+    <ClCompile Include="..\..\test\test_Evaluate.cpp" />
+    <ClCompile Include="..\..\test\test_FunctionsMove.cpp" />
+    <ClCompile Include="..\..\test\test_Generate.cpp" />
     <ClCompile Include="..\..\test\test_ListOfCheckers.cpp" />
     <ClCompile Include="..\..\test\test_main.cpp" />
+    <ClCompile Include="..\..\test\test_MakeMove.cpp" />
+    <ClCompile Include="..\..\test\test_Move.cpp" />
+    <ClCompile Include="..\..\test\Test_Search.cpp" />
+    <ClCompile Include="..\..\test\test_TestSearch.cpp" />
+    <ClCompile Include="..\..\test\test_TestSearchAlphaBeta.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

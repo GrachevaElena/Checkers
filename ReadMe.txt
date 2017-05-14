@@ -6,3 +6,5 @@ Please, delete this text later.
 "Notes" is for documents with different ideas.
 ----------------------------------------------------------------------------------------
 There will be also catalogs "include" for headers and "checkers" for realizations.
+------------------------------------------------------------------------------------------
+"Positions/ins" are txt-positions, more in "Notes/ListOfPositions.docx"

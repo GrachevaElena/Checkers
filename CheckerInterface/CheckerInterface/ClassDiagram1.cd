@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CheckerInterface.Game" Collapsed="true">
+    <Position X="0.75" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>CBAIAQAACAMEAkgAEQIBEAAAQBAACAKIIAoADAAQARA=</HashCode>
+      <FileName>Model_and_observers\Game_instruments.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="moves" />
+      <Field Name="board" />
+    </ShowAsAssociation>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Class Name="CheckerInterface.Moves" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgEgAAAAAMAAQABAAAAIAAAAAAAAAAAAAAAAAAIM=</HashCode>
+      <FileName>Model_and_observers\Moves.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="selectedChecker" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CheckerInterface.LogicBoard" Collapsed="true">
+    <Position X="7.75" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model_and_observers\LogicBoard\LogicBoard.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="cell" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CheckerInterface.LogicCell" Collapsed="true">
+    <Position X="11" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAIAAAAAEAAABABAAAAAACQCgAAAAAAAAQAA=</HashCode>
+      <FileName>Model_and_observers\LogicBoard\LogicCell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CheckerInterface.Checker" Collapsed="true">
+    <Position X="13" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAACAIAAEgAAAAAIEJAAAAIACQCgABJhAAAARAA=</HashCode>
+      <FileName>Model_and_observers\LogicBoard\Checker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CheckerInterface.Controller" Collapsed="true">
+    <Position X="4.25" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQgAAAAAAEIAQAQAIAAQAAIAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Contoller\Controller.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="game_model" />
+      <Field Name="form_view" />
+    </ShowAsAssociation>
+    <Lollipop Orientation="Left" Position="0.205" />
+  </Class>
+  <Class Name="CheckerInterface.Form1" Collapsed="true">
+    <Position X="7.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAACQAAAEAAACAEAACAMI4AAkIInAMAQAAAAA=</HashCode>
+      <FileName>View\Form1.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.491" />
+  </Class>
+  <Interface Name="CheckerInterface.iGame" Collapsed="true">
+    <Position X="10.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAIAAAgAEAABAAAAABAAAACAAAIABAAAABA=</HashCode>
+      <FileName>Model_and_observers\iGame.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CheckerInterface.iObserver" Collapsed="true">
+    <Position X="9.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAQAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model_and_observers\Objects_obsrvers\iObserver.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CheckerInterface.iController" Collapsed="true">
+    <Position X="4.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAEAAQAQAAAAQAAIAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Contoller\iController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
