@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CheckerInterface
 {
-    public partial class Form1 : Form, iObserver 
+    public partial class GameForm : Form, iObserver 
     {
         iController controller;
         iGame game;
@@ -18,7 +18,7 @@ namespace CheckerInterface
         public System.Timers.Timer timer;
         public bool ESC_on = false;
 
-        public Form1(Controller _contoller, Game _game)
+        public GameForm(Controller _contoller, Game _game)
         {
             timer = new System.Timers.Timer();
             timer.Interval = 600;

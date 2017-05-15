@@ -63,11 +63,11 @@
     </Compile>
     <Compile Include="View\ViewBoard\ViewBoard.cs" />
     <Compile Include="View\ViewBoard\Cell.cs" />
-    <Compile Include="View\Form1.cs">
+    <Compile Include="View\GameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="View\GameForm.Designer.cs">
+      <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model_and_observers\Game_instruments.cs" />
     <Compile Include="Contoller\Controller.cs" />
@@ -77,8 +77,8 @@
     <Compile Include="Model_and_observers\Objects_obsrvers\iObserver.cs" />
     <Compile Include="mainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="View\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="View\GameForm.resx">
+      <DependentUpon>GameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

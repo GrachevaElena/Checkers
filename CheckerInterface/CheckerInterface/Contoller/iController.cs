@@ -11,7 +11,6 @@ namespace CheckerInterface
         void buttonBotVSBot();
         void buttonOnePlayer();
         void buttonTwoPlayers();
-        void buttonLoadGame();
         void buttonConstrutor();
         void buttonSetting();
         void buttonAddChecker();

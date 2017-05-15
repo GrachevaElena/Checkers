@@ -17,7 +17,7 @@ namespace CheckerInterface
     public class Controller : iController
     {
         iGame game_model;
-        Form1 form_view;
+        GameForm form_view;
         SettingForm settingForm;
 
         public Controller(Game game, iSubject game_observer)
@@ -25,7 +25,7 @@ namespace CheckerInterface
             this.game_model = game;
             //form_view.count[0]=new int();
             //form_view.count[1] = new int();
-            form_view = new Form1(this, game);
+            form_view = new GameForm(this, game);
             game_observer.registerObserver(form_view);
 
             Application.EnableVisualStyles();
@@ -47,6 +47,7 @@ namespace CheckerInterface
         }
         public void buttonOnePlayer()
         {
+            buttonClear();
             game_model.SetStatusApplication(StatusApplication.game);
             if (settingForm != null) settingForm.Close();
             settingForm = new SettingForm(this, TypeSettingForm.humanVSbot);
@@ -62,10 +63,6 @@ namespace CheckerInterface
             game_model.SetGame(Color.white, StatusPlayer.human, StatusPlayer.human,0, 0,
                 Search.empty, Search.empty, Evaluate.empty, Evaluate.empty, StatusGame.wait);
             game_model.StartGame();
-        }
-        public void buttonLoadGame()
-        {
-            buttonClear();
         }
         public void buttonConstrutor()
         {
@@ -135,6 +132,20 @@ namespace CheckerInterface
                 game_model.StartGame();
             }
         }     //stting
+
+        public void buttonPlayAgain()
+        {
+            GameSetting gameSetting =  game_model.SaveSettingGame();
+            buttonClear();
+            game_model.SetGame(Color.white, 
+                gameSetting.statusPlayer[0], gameSetting.statusPlayer[1],
+                (int)gameSetting.statusDepth[0], (int)gameSetting.statusDepth[1],
+                gameSetting.statusSearch[0], gameSetting.statusSearch[1],
+                gameSetting.statusEvaluate[0], gameSetting.statusEvaluate[1],
+                StatusGame.wait
+                );
+            game_model.StartGame();
+        }
 
         private void GameEnd()
         {

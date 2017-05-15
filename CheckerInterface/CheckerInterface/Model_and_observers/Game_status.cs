@@ -31,6 +31,15 @@ namespace CheckerInterface
         SmartEvaluate,
         empty
     }
+
+    public struct GameSetting
+    {
+        public  StatusPlayer[] statusPlayer;
+        public Evaluate[] statusEvaluate;
+        public Search[] statusSearch;
+        public int[] statusDepth;
+    }
+
     public partial class Game : iSubject, iGame
     {
         private StatusApplication statusApplication = StatusApplication.menu;
@@ -38,6 +47,7 @@ namespace CheckerInterface
         private Evaluate[] statusEvaluate = new Evaluate[2];
         private Search[] statusSearch = new Search[2];
         private int[] statusDepth = new int[2];
+        private GameSetting saved;
 
         private Color GetOtherColor(Color color)
         {
@@ -100,6 +110,14 @@ namespace CheckerInterface
         public Color GetEnemyColor()
         {
             return color == Color.white ? Color.black : Color.white;
+        }
+        public GameSetting SaveSettingGame()
+        {
+            saved.statusDepth = statusDepth;
+            saved.statusEvaluate = statusEvaluate;
+            saved.statusPlayer = statusPlayer;
+            saved.statusSearch = statusSearch;
+            return saved;
         }
     }
 }
