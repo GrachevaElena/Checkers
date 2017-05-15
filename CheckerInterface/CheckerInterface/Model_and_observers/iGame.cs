@@ -33,6 +33,6 @@ namespace CheckerInterface
         bool SearchAnyMove();
         void NextPlayer();
         void ClearResource();
-        void SaveSettingGame();
+        GameSetting SaveSettingGame();
     }
 }
