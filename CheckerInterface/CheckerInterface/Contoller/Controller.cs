@@ -138,9 +138,8 @@ namespace CheckerInterface
 
         private void GameEnd()
         {
-            game_model.SetStatusGame(StatusGame.wait);
             form_view.timer.Enabled = false;
-            //game_model.SetStartColor(Color.empty);
+            game_model.SetStartColor(Color.empty);
             game_model.SetStatusPlayers(StatusPlayer.empty, StatusPlayer.empty);
             game_model.SetStatusApplication(StatusApplication.menu);
         }
@@ -172,13 +171,21 @@ namespace CheckerInterface
                             else
                             {
                                 //нет: конец игры
-                                if (game_model.GetColor() == Color.black)
-                                    game_model.SetWinner (Color.white);
-                                else game_model.SetWinner (Color.black);
-                                if (game_model.GetWinner() == Color.white)
-                                    MessageBox.Show("Game over. White won");
-                                else MessageBox.Show("Game over. Black won");
-                                GameEnd();
+                                if (game_model.GetStatusGame() != StatusGame.gameOver)
+                                {
+                                    game_model.SetStatusGame(StatusGame.gameOver);
+                                    if (game_model.GetColor() == Color.white)
+                                    {
+                                        GameEnd();
+                                        MessageBox.Show("Game over. Black won");
+                                    }
+                                    else if (game_model.GetColor() == Color.black)
+                                    {
+                                        GameEnd();
+                                        MessageBox.Show("Game over. White won");
+                                    }
+                                    return;
+                                }
                                 return;
                             }
                         }
@@ -218,14 +225,21 @@ namespace CheckerInterface
                 {
                     if (game_model.GetStatusGame() == StatusGame.gameOver)
                     {
-                        GameEnd();
-                        if (game_model.GetWinner() == Color.white)
+                        //game_model.SetStatusGame(StatusGame.wait);
+                        if (game_model.GetColor() == Color.white)
+                        {
+                            GameEnd();
+                            MessageBox.Show("Game over. Black won");
+                        }
+                        else if (game_model.GetColor() == Color.black)
+                        {
+                            GameEnd();
                             MessageBox.Show("Game over. White won");
-                        else MessageBox.Show("Game over. Black won");
+                        }
                         return;
                     }
-                    game_model.NextPlayer();
 
+                    game_model.NextPlayer();
                     if (game_model.SearchAnyMove()) //есть ходы?
                     {
                         switch (game_model.GetStatusPlayer()) //да
@@ -243,10 +257,21 @@ namespace CheckerInterface
                     }
                     else
                     {
-                        GameEnd();
-                        if (game_model.GetColor() == Color.white)
-                            MessageBox.Show("Game over. Black won");
-                        else MessageBox.Show("Game over. White won");
+                        if (game_model.GetStatusGame() != StatusGame.gameOver)
+                        {
+                            game_model.SetStatusGame(StatusGame.gameOver);
+                            if (game_model.GetColor() == Color.white)
+                            {
+                                GameEnd();
+                                MessageBox.Show("Game over. Black won");
+                            }
+                            else if (game_model.GetColor() == Color.black)
+                            {
+                                GameEnd();
+                                MessageBox.Show("Game over. White won");
+                            }
+                            return;
+                        }
                         return;
                     }
                 }

@@ -32,10 +32,10 @@ TEST(test_SmartEvaluate, can_evaluate_for_white) {
 	checkers[1].GenerateInitialPosition(1, typesb, coordsb, nb);
 
 	int e1 = SmartEvaluate(WHITE);
-	checkers[0][1].SetCoord(14);
+	checkers[0][2].SetCoord(14);
 	int e2 = SmartEvaluate(WHITE);
 
-	EXPECT_EQ(-4, e2 - e1);
+	EXPECT_TRUE(e2 - e1<0);
 
 }
 
@@ -52,13 +52,14 @@ TEST(test_SmartEvaluate, can_evaluate_for_black) {
 
 	int e1 = SmartEvaluate(BLACK);
 	checkers[1][2].SetCoord(55);
+	checkers[1][2].SetType(1);
 	int e2 = SmartEvaluate(BLACK);
 
-	EXPECT_EQ(2, e2 - e1);
+	EXPECT_TRUE(e2 - e1>0);
 
 	e1 = SmartEvaluate(BLACK);
 	checkers[1][1].SetCoord(17);
 	e2 = SmartEvaluate(BLACK);
 
-	EXPECT_EQ(-4, e2 - e1);
+	EXPECT_TRUE(e2 - e1<0);
 }

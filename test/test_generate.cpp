@@ -18,7 +18,7 @@ public:
 					break;
 				}
 			if (!f) {
-				cout << temp.GetColor() << ' ' << temp.GetStartCoord() << ' ' << temp.GetFinalCoord() <<' '<< temp.GetNum() << ' '<<temp.GetType() << "   "<<temp.GetNEaten()<<' '<<temp.GetEaten()<< "   ";
+				cout << temp.GetColor() << ' ' << temp.GetStartCoord() << ' ' << temp.GetFinalCoord() <<' '<< temp.GetNum() << ' '<<temp.GetType() << "   "<<temp.GetNEaten()<<' '<< "   ";
 				int eaten[12];
 				temp.GetEaten(eaten);
 				for (int i = 0; i < temp.GetNEaten(); i++) {

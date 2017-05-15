@@ -252,7 +252,7 @@ TEST(test_functions_move, SearchEatChecker_become_damka_and_continue) {
 
 TEST(test_functions_move, SearchEatChecker_SearchEatDamka_with_black_checker) {
 	Checker ch1; ch1.SetColor(BLACK); ch1.SetCoord(1);
-	Checker ch[5];
+	Checker ch[6];
 	ch[0].SetColor(WHITE); board[10] = &(ch[0]);
 	ch[1].SetColor(WHITE); board[12] = &(ch[1]);
 	ch[2].SetColor(WHITE); board[14] = &(ch[2]);
