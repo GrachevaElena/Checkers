@@ -8,3 +8,4 @@ num_step_0 max_size_of_cache_0 aver_size_of_move_7.08596 num_nodes_16525016 aver
 num_step_0 max_size_of_cache_0 aver_size_of_move_7.08596 num_nodes_16525016 aver_size_of_forc_0
 num_step_0 max_size_of_cache_186 aver_size_of_move_7.08596 num_nodes_16525016 aver_size_of_forc_0 max_deep_forc_0
 num_step_0 max_size_of_cache_186 aver_size_of_move_7.08596 num_nodes_16525016 aver_num_of_capture's_moves_0 max_deep_forc_0
+num_step_;0; max_size_of_cache_;186; aver_size_of_move_;7.08596; num_nodes_;16525016; aver_num_of_capture's_moves_;0; max_deep_forc_;0

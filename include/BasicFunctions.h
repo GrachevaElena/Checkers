@@ -7,8 +7,8 @@
 void Generate(ListOfCheckers&);
 void GenerateCaptures(ListOfCheckers& list);
 
-const int CheckerPrice = 50;
-const int DamkaPrice = 350;
+const int CheckerPrice = 100;
+const int DamkaPrice = 300;
 
 int Evaluate(int color);
 int SmartEvaluate(int color);

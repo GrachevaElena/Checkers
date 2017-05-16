@@ -91,9 +91,9 @@ void PrintStatistics(int numGame, int numStep, int depth, int typeSearch, int ty
 	if (!f.is_open())
 		f = ofstream(s);
 
-	f << "\nnum_step_" << numStep<<" max_size_of_cache_" << maxSizeCache;
-	f << " aver_size_of_move_" <<averSizeMovies<<" num_nodes_"<<numNodes;
-	f << " aver_num_of_capture's_moves_" << averNumCaptureMoves << " max_deep_forc_"<<maxDeepForc;
+	f << "\nnum_step_;" << numStep << "; max_size_of_cache_;" << maxSizeCache;
+	f << "; aver_size_of_move_;" << averSizeMovies << "; num_nodes_;" << numNodes;
+	f << "; aver_num_of_capture's_moves_;" << averNumCaptureMoves << "; max_deep_forc_;" << maxDeepForc;
 
 	f.close();
 	ClearStatistics();

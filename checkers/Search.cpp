@@ -62,7 +62,6 @@ int QuiesCapt(int color, int alpha, int beta, int ev_num = 0)
 
 	if (cache.GetpLast() - savedF <= 0) {
 		ClearForcing();
-		int k = evaluate[ev_num](color);
 		return	evaluate[ev_num](color);
 	}
 	CalculateAverNumCaptureMoves(cache.GetpLast() - savedF);
