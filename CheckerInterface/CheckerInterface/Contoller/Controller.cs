@@ -47,7 +47,6 @@ namespace CheckerInterface
         }
         public void buttonOnePlayer()
         {
-            buttonClear();
             game_model.SetStatusApplication(StatusApplication.game);
             if (settingForm != null) settingForm.Close();
             settingForm = new SettingForm(this, TypeSettingForm.humanVSbot);
@@ -109,7 +108,7 @@ namespace CheckerInterface
         }
         public void buttonPlaySetting()
         {
-            if (settingForm.CanStartGame())
+           // if (settingForm.CanStartGame())
             {
                 form_view.CreateBoard(StatusApplication.game);
                 if (game_model.GetStatusApplication() == StatusApplication.constructor)
@@ -137,6 +136,9 @@ namespace CheckerInterface
         {
             GameSetting gameSetting =  game_model.SaveSettingGame();
             buttonClear();
+            game_model.SetStatusApplication(StatusApplication.game);
+            form_view.CreateBoard(StatusApplication.game);
+            game_model.FillBoardAndListCheckers();
             game_model.SetGame(Color.white, 
                 gameSetting.statusPlayer[0], gameSetting.statusPlayer[1],
                 (int)gameSetting.statusDepth[0], (int)gameSetting.statusDepth[1],

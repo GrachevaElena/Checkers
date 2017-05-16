@@ -277,5 +277,10 @@ namespace CheckerInterface
         {
 
         }
+
+        private void replay_Click(object sender, EventArgs e)
+        {
+            controller.buttonPlayAgain();
+        }
     }
 }

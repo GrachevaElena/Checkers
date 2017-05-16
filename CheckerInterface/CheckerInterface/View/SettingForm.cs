@@ -71,10 +71,10 @@ namespace CheckerInterface.View
                     break;
             }
         }
-        public bool CanStartGame()
+       /* public bool CanStartGame()
         {
             return true;
-        }
+        }*/
         public Color GetColorPlayer1()
         {
             if (id == TypeSettingForm.constructor) return (Color) comboBox1color.SelectedIndex;

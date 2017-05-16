@@ -17,6 +17,7 @@ namespace CheckerInterface
         void buttonDeleteChecker();
         void buttonPlayInConstructor();
         void buttonPlaySetting();
+        void buttonPlayAgain();
         void CloseSettings();
         void keyEsc();
 

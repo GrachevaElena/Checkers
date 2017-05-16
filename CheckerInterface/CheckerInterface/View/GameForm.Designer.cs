@@ -1,4 +1,5 @@
-﻿namespace CheckerInterface
+﻿using System.Drawing;
+namespace CheckerInterface
 {
     partial class GameForm
     {
@@ -47,6 +48,8 @@
             this.buttonPlay = new System.Windows.Forms.Button();
             this.panelBackground = new System.Windows.Forms.Panel();
             this.panelborder = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.replay = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -316,14 +319,41 @@
             this.panelborder.TabIndex = 9;
             this.panelborder.Visible = false;
             // 
-            // Form1
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.NavajoWhite;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.textBox1.Location = new System.Drawing.Point(-1, 681);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(919, 38);
+            this.textBox1.TabIndex = 10;
+            this.textBox1.Text = "White step";
+            // 
+            // replay
+            // 
+            this.replay.BackColor = System.Drawing.Color.NavajoWhite;
+            this.replay.BackgroundImage = global::CheckerInterface.Properties.Resources.playback_reload;
+            this.replay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.replay.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.replay.FlatAppearance.BorderSize = 0;
+            this.replay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.replay.Location = new System.Drawing.Point(871, 681);
+            this.replay.Name = "replay";
+            this.replay.Size = new System.Drawing.Size(47, 38);
+            this.replay.TabIndex = 11;
+            this.replay.UseVisualStyleBackColor = false;
+            this.replay.Click += new System.EventHandler(this.replay_Click);
+            // 
+            // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 683);
+            this.ClientSize = new System.Drawing.Size(917, 717);
+            this.Controls.Add(this.replay);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panelBackground);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "GameForm";
             this.Text = "Russian Checkers";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -334,6 +364,7 @@
             this.panelBackground.ResumeLayout(false);
             this.panelborder.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -358,6 +389,8 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panelborder;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button replay;
     }
 }
 

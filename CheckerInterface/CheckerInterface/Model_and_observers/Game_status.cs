@@ -115,7 +115,9 @@ namespace CheckerInterface
         {
             saved.statusDepth = statusDepth;
             saved.statusEvaluate = statusEvaluate;
-            saved.statusPlayer = statusPlayer;
+            if (saved.statusPlayer == null) saved.statusPlayer = new StatusPlayer[2];
+            saved.statusPlayer[0] = statusPlayer[0];
+            saved.statusPlayer[1] = statusPlayer[1];
             saved.statusSearch = statusSearch;
             return saved;
         }
