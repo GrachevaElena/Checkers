@@ -102,7 +102,6 @@ namespace CheckerInterface
             }
             board = new ViewBoard(controller, sizeCell, panel1);
         }
-
         public void SetInBorder(int sizeCell, int sizeBorder, Panel panel)
         {
             forBorder = new Label[4, 8];
@@ -138,10 +137,6 @@ namespace CheckerInterface
 
         public int[] count = {0, 0, 0};
         
-        /*public bool RadiosButtonsIsChecked()
-        {
-            return ((WhiteRadioButton.Checked || BlackRadioButton.Checked) && (DamkaRadioButton.Checked || CheckerRadioButton.Checked));
-        }*/ //not used
         public Color GetChosenColor()
         {
             if (WhiteRadioButton.Checked) return Color.white;
@@ -234,6 +229,23 @@ namespace CheckerInterface
             }
         }
 
+        public void visibleGameLog(bool f)
+        {
+            labelStatus.Visible = f;
+            labelPlayer.Visible = f;
+            buttReplay.Visible = f;
+        }
+        public void visibleInfo(bool f)
+        {
+            labelInfo.Visible = f;           
+        }
+        public void nextPlayer()
+        {
+            if (labelPlayer.Text == "white player")
+                labelPlayer.Text = "black player";
+            else labelPlayer.Text = "white player";
+        }
+
         void iObserver.updateEnableTimer()
         {
             timer.Enabled = true;
@@ -280,6 +292,7 @@ namespace CheckerInterface
 
         private void replay_Click(object sender, EventArgs e)
         {
+            labelPlayer.Text = "white player";
             controller.buttonPlayAgain();
         }
     }

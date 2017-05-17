@@ -35,6 +35,7 @@ namespace CheckerInterface
         //main menu
         private void buttonClear()//очищает все ресурсы, вызывается после нажатия кнопок главного меню
         {
+            form_view.labelPlayer.Text = "white player"; 
             if (game_model.GetStatusApplication() == StatusApplication.constructor)
                 form_view.panel2.Visible = false;
             form_view.count[0] = form_view.count[1] = 0;
@@ -55,7 +56,8 @@ namespace CheckerInterface
         public void buttonTwoPlayers()
         {
             buttonClear();
-            //form_view.ChangePanels();
+            form_view.visibleInfo(false);
+            form_view.visibleGameLog(true);
             game_model.SetStatusApplication(StatusApplication.game);
             form_view.CreateBoard(StatusApplication.game);
             game_model.FillBoardAndListCheckers();
@@ -66,6 +68,8 @@ namespace CheckerInterface
         public void buttonConstrutor()
         {
             buttonClear();
+            form_view.visibleInfo(false);
+            form_view.visibleGameLog(false);
             //form_view.ChangePanels();
             form_view.CreateBoard(StatusApplication.constructor);
             game_model.SetStatusApplication(StatusApplication.constructor);
@@ -108,9 +112,10 @@ namespace CheckerInterface
         }
         public void buttonPlaySetting()
         {
-           // if (settingForm.CanStartGame())
-            {
-                form_view.CreateBoard(StatusApplication.game);
+            form_view.visibleInfo(false);
+            form_view.visibleGameLog(true);
+            if (settingForm.GetColorPlayer1() == Color.black) form_view.nextPlayer();
+            form_view.CreateBoard(StatusApplication.game);
                 if (game_model.GetStatusApplication() == StatusApplication.constructor)
                 {
                     game_model.FillBoardOnForm();
@@ -130,7 +135,6 @@ namespace CheckerInterface
                 settingForm = null;
                 game_model.StartGame();
             }
-        }     //stting
 
         public void buttonPlayAgain()
         {
@@ -151,6 +155,8 @@ namespace CheckerInterface
 
         private void GameEnd()
         {
+            form_view.nextPlayer();
+            form_view.labelPlayer.Text += "(winner)";
             form_view.timer.Enabled = false;
             game_model.SetStartColor(Color.empty);
             game_model.SetStatusPlayers(StatusPlayer.empty, StatusPlayer.empty);
@@ -166,7 +172,7 @@ namespace CheckerInterface
                         if (game_model.HumanStep(x, y) == true)//если человек сходил
                         {
                             game_model.NextPlayer();
-
+                            form_view.nextPlayer();
                             if (game_model.SearchAnyMove()) //есть ходы?
                                 switch (game_model.GetStatusPlayer()) //да
                                 {
@@ -236,6 +242,7 @@ namespace CheckerInterface
             {
                 if (game_model.BotStep() == true)
                 {
+
                     if (game_model.GetStatusGame() == StatusGame.gameOver)
                     {
                         //game_model.SetStatusGame(StatusGame.wait);
@@ -252,6 +259,7 @@ namespace CheckerInterface
                         return;
                     }
 
+                    form_view.nextPlayer();
                     game_model.NextPlayer();
                     if (game_model.SearchAnyMove()) //есть ходы?
                     {

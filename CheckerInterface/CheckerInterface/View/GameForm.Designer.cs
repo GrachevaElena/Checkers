@@ -47,14 +47,18 @@ namespace CheckerInterface
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonPlay = new System.Windows.Forms.Button();
             this.panelBackground = new System.Windows.Forms.Panel();
+            this.log = new System.Windows.Forms.Panel();
+            this.labelInfo = new System.Windows.Forms.Label();
+            this.buttReplay = new System.Windows.Forms.Button();
             this.panelborder = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.replay = new System.Windows.Forms.Button();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.labelPlayer = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panelBackground.SuspendLayout();
+            this.log.SuspendLayout();
             this.panelborder.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -297,6 +301,7 @@ namespace CheckerInterface
             // panelBackground
             // 
             this.panelBackground.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelBackground.BackgroundImage")));
+            this.panelBackground.Controls.Add(this.log);
             this.panelBackground.Controls.Add(this.button4);
             this.panelBackground.Controls.Add(this.panel2);
             this.panelBackground.Controls.Add(this.button2);
@@ -305,8 +310,46 @@ namespace CheckerInterface
             this.panelBackground.Controls.Add(this.panelborder);
             this.panelBackground.Location = new System.Drawing.Point(-1, -1);
             this.panelBackground.Name = "panelBackground";
-            this.panelBackground.Size = new System.Drawing.Size(919, 683);
+            this.panelBackground.Size = new System.Drawing.Size(919, 720);
             this.panelBackground.TabIndex = 9;
+            // 
+            // log
+            // 
+            this.log.BackColor = System.Drawing.Color.NavajoWhite;
+            this.log.Controls.Add(this.labelPlayer);
+            this.log.Controls.Add(this.labelStatus);
+            this.log.Controls.Add(this.labelInfo);
+            this.log.Controls.Add(this.buttReplay);
+            this.log.Location = new System.Drawing.Point(0, 679);
+            this.log.Name = "log";
+            this.log.Size = new System.Drawing.Size(919, 38);
+            this.log.TabIndex = 10;
+            // 
+            // labelInfo
+            // 
+            this.labelInfo.AutoSize = true;
+            this.labelInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelInfo.Location = new System.Drawing.Point(539, 11);
+            this.labelInfo.Name = "labelInfo";
+            this.labelInfo.Size = new System.Drawing.Size(327, 17);
+            this.labelInfo.TabIndex = 12;
+            this.labelInfo.Text = "Elena Gracheva and Panov Alexander, UNN 2017 ";
+            // 
+            // buttReplay
+            // 
+            this.buttReplay.BackColor = System.Drawing.Color.NavajoWhite;
+            this.buttReplay.BackgroundImage = global::CheckerInterface.Properties.Resources.playback_reload;
+            this.buttReplay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttReplay.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.buttReplay.FlatAppearance.BorderSize = 0;
+            this.buttReplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttReplay.Location = new System.Drawing.Point(872, 0);
+            this.buttReplay.Name = "buttReplay";
+            this.buttReplay.Size = new System.Drawing.Size(47, 38);
+            this.buttReplay.TabIndex = 11;
+            this.buttReplay.UseVisualStyleBackColor = false;
+            this.buttReplay.Visible = false;
+            this.buttReplay.Click += new System.EventHandler(this.replay_Click);
             // 
             // panelborder
             // 
@@ -319,38 +362,33 @@ namespace CheckerInterface
             this.panelborder.TabIndex = 9;
             this.panelborder.Visible = false;
             // 
-            // textBox1
+            // labelStatus
             // 
-            this.textBox1.BackColor = System.Drawing.Color.NavajoWhite;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.textBox1.Location = new System.Drawing.Point(-1, 681);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(919, 38);
-            this.textBox1.TabIndex = 10;
-            this.textBox1.Text = "White step";
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelStatus.Location = new System.Drawing.Point(3, 6);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(133, 24);
+            this.labelStatus.TabIndex = 13;
+            this.labelStatus.Text = "Current player:";
+            this.labelStatus.Visible = false;
             // 
-            // replay
+            // labelPlayer
             // 
-            this.replay.BackColor = System.Drawing.Color.NavajoWhite;
-            this.replay.BackgroundImage = global::CheckerInterface.Properties.Resources.playback_reload;
-            this.replay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.replay.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.replay.FlatAppearance.BorderSize = 0;
-            this.replay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.replay.Location = new System.Drawing.Point(871, 681);
-            this.replay.Name = "replay";
-            this.replay.Size = new System.Drawing.Size(47, 38);
-            this.replay.TabIndex = 11;
-            this.replay.UseVisualStyleBackColor = false;
-            this.replay.Click += new System.EventHandler(this.replay_Click);
+            this.labelPlayer.AutoSize = true;
+            this.labelPlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPlayer.Location = new System.Drawing.Point(142, 6);
+            this.labelPlayer.Name = "labelPlayer";
+            this.labelPlayer.Size = new System.Drawing.Size(110, 24);
+            this.labelPlayer.TabIndex = 14;
+            this.labelPlayer.Text = "white player";
+            this.labelPlayer.Visible = false;
             // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(917, 717);
-            this.Controls.Add(this.replay);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panelBackground);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GameForm";
@@ -362,9 +400,10 @@ namespace CheckerInterface
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panelBackground.ResumeLayout(false);
+            this.log.ResumeLayout(false);
+            this.log.PerformLayout();
             this.panelborder.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -389,8 +428,11 @@ namespace CheckerInterface
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panelborder;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button replay;
+        private System.Windows.Forms.Button buttReplay;
+        private System.Windows.Forms.Panel log;
+        private System.Windows.Forms.Label labelInfo;
+        public System.Windows.Forms.Label labelPlayer;
+        private System.Windows.Forms.Label labelStatus;
     }
 }
 
