@@ -121,20 +121,26 @@
   <data name="LightBlackChecker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LightBlackChecker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BlackChecker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BlackChecker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LightWhiteQueen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LightWhiteQueen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LightIntermCell" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LightIntermCell.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="replay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\replay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BorderForGame" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BorderForGame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BlackChecker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlackChecker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LightIntermCell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LightIntermCell.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="LightBlackCell" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LightBlackCell.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playback_reload" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playback_reload.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LightWhiteQueen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LightWhiteQueen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BorderForConstructor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BorderForConstructor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,7 +166,7 @@
   <data name="LightWhiteChecker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LightWhiteChecker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="playback_reload" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\playback_reload.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="replay1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\replay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

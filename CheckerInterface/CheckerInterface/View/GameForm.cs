@@ -241,9 +241,9 @@ namespace CheckerInterface
         }
         public void nextPlayer()
         {
-            if (labelPlayer.Text == "white player")
-                labelPlayer.Text = "black player";
-            else labelPlayer.Text = "white player";
+            if (labelPlayer.Text == "white")
+                labelPlayer.Text = "black";
+            else labelPlayer.Text = "white";
         }
 
         void iObserver.updateEnableTimer()
@@ -292,8 +292,14 @@ namespace CheckerInterface
 
         private void replay_Click(object sender, EventArgs e)
         {
-            labelPlayer.Text = "white player";
+            labelPlayer.Text = "white";
             controller.buttonPlayAgain();
+        }
+
+        private void GameForm_Load(object sender, EventArgs e)
+        {
+            ToolTip t = new ToolTip();
+            t.SetToolTip(buttReplay, "Restart");
         }
     }
 }

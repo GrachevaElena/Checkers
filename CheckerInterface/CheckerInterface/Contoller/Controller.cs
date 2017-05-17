@@ -35,7 +35,7 @@ namespace CheckerInterface
         //main menu
         private void buttonClear()//очищает все ресурсы, вызывается после нажатия кнопок главного меню
         {
-            form_view.labelPlayer.Text = "white player"; 
+            form_view.labelPlayer.Text = "white"; 
             if (game_model.GetStatusApplication() == StatusApplication.constructor)
                 form_view.panel2.Visible = false;
             form_view.count[0] = form_view.count[1] = 0;
@@ -156,7 +156,7 @@ namespace CheckerInterface
         private void GameEnd()
         {
             form_view.nextPlayer();
-            form_view.labelPlayer.Text += "(winner)";
+            form_view.labelPlayer.Text += " (winner)";
             form_view.timer.Enabled = false;
             game_model.SetStartColor(Color.empty);
             game_model.SetStatusPlayers(StatusPlayer.empty, StatusPlayer.empty);

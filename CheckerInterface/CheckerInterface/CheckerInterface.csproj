@@ -147,6 +147,7 @@
     <None Include="Resources\BorderForConstructor.png" />
     <None Include="Resources\BorderForGame.png" />
     <Content Include="Resources\playback_reload.png" />
+    <Content Include="Resources\replay.png" />
     <Content Include="Resources\Splash.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

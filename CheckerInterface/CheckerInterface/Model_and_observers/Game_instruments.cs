@@ -53,6 +53,7 @@ namespace CheckerInterface
         }
         private void MoveChecker(Checker checker, int x, int y)//перемещение шашки и контроль за становлением дамки
         {
+
             board[checker.x, checker.y] = new LogicCell();
             notifyDeleteCheckerOrWay(checker.x, checker.y);
             board[x, y] = checker;
